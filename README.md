@@ -64,5 +64,6 @@ These are untested prototypes. Fit, strength and durability have not been checke
 | `validation/` | Checker report |
 | `docs/` | Topic docs |
 | `.githooks/` | Layout check. Turn it on with `git config core.hooksPath .githooks` |
+| `.github/` | `workflows/traffic.yml`: saves repo traffic daily to the `stats` branch |
 
 Licence: see `LICENSE`.

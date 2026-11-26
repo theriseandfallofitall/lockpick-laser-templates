@@ -1,0 +1,61 @@
+# Saves the repo traffic GitHub keeps for only 14 days (views, unique visitors, clones, referrers, popular pages)
+# to the `stats` branch every day, so the history is kept. GitHub has no analytics for the Pages site itself:
+# these are visits to the repo on github.com. Needs secret TRAFFIC_TOKEN (a token with repo access).
+name: Archive repo traffic
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: traffic
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the stats branch (created on the first run)
+        run: |
+          git init -q stats && cd stats
+          git remote add origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          if git fetch -q --depth 1 origin stats; then git checkout -q -b stats FETCH_HEAD; else git checkout -q --orphan stats; fi
+      - name: Fetch traffic and merge it into the history
+        env:
+          TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          cd stats
+          python3 - <<'PY'
+          import json, os, urllib.request
+          from pathlib import Path
+          def get(p):
+              r = urllib.request.Request(f"https://api.github.com/repos/{os.environ['REPO']}/traffic/{p}",
+                                         headers={"Authorization": f"Bearer {os.environ['TOKEN']}", "Accept": "application/vnd.github+json"})
+              return json.load(urllib.request.urlopen(r))
+          f = Path("traffic.json")
+          h = json.loads(f.read_text()) if f.exists() else {"views": {}, "clones": {}, "referrers": {}, "paths": {}}
+          for kind in ("views", "clones"):
+              for d in get(kind)[kind]:                       # daily rows: the newest value for a day wins
+                  h[kind][d["timestamp"][:10]] = {"count": d["count"], "uniques": d["uniques"]}
+          today = __import__("datetime").date.today().isoformat()
+          h["referrers"][today] = get("popular/referrers")    # 14-day snapshots, one per day
+          h["paths"][today] = [{k: p[k] for k in ("path", "count", "uniques")} for p in get("popular/paths")]
+          f.write_text(json.dumps(h, indent=1, sort_keys=True) + "\n")
+          v, c = h["views"], h["clones"]
+          rows = "\n".join(f"| {d} | {v.get(d, {}).get('count', 0)} | {v.get(d, {}).get('uniques', 0)} | {c.get(d, {}).get('count', 0)} |"
+                           for d in sorted(set(v) | set(c), reverse=True))
+          refs = "\n".join(f"| {r['referrer']} | {r['count']} | {r['uniques']} |" for r in h["referrers"][today]) or "| none yet | | |"
+          Path("README.md").write_text(
+              "# Repo traffic\n\nVisits to the repo on github.com, saved daily by `.github/workflows/traffic.yml` on `main`. "
+              "GitHub does not record visits to the Pages site itself.\n\n"
+              f"Total: {sum(x['count'] for x in v.values())} views, {sum(x['count'] for x in c.values())} clones since records began.\n\n"
+              f"## Referrers (last 14 days, as of {today})\n\n| Site | Views | Unique |\n|---|---|---|\n{refs}\n\n"
+              f"## By day\n\n| Day | Views | Unique visitors | Clones |\n|---|---|---|---|\n{rows}\n")
+          PY
+      - name: Commit
+        run: |
+          cd stats
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -q -m "Traffic $(date -u +%F)"
+          git push -q origin HEAD:stats
