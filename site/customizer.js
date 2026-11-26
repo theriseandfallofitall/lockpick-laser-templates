@@ -402,7 +402,7 @@ if (typeof document !== "undefined") {
     const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; };
     const els = {}, rngs = {}, rows = {}, sets = {};
     const bar = mk("div", "ck-bar"); root.append(bar);
-    const advBox = document.createElement("input"); advBox.type = "checkbox"; advBox.id = "ck-adv";
+    const advBox = document.createElement("input"); advBox.type = "checkbox"; advBox.id = "ck-adv"; advBox.checked = true;   // all fields shown by default; untick for the short list
     const start = document.createElement("select"); start.id = "ck-start";
     let lastStart = { ...DEF }, canvas = null, applied = { ...DEF };   // applied: preset last loaded (kept while you edit)
     const curTool = () => els.tool.value;
@@ -469,7 +469,13 @@ if (typeof document !== "undefined") {
       for (const [k, fl] of Object.entries(F)) if (fl.tool === tool && !(tool === P && fl.grp === "Handle")) setVal(k, vals[k]);   // handle choices are kept
       lastStart[tool] = id; applied[tool] = id; draw();
     });
-    reset.onclick = () => { for (const [k, fl] of Object.entries(F)) setVal(k, fl.v); lastStart = { ...DEF }; applied = { ...DEF }; fillStart(); draw(); };
+    // Reset all: keep the tool (pick / tension bar) and the chosen design; put every value back to that design's values
+    reset.onclick = () => {
+      const tool = curTool(), id = applied[tool] || lastStart[tool] || DEF[tool];
+      const p = (CK.PRESETS[tool].find(x => x[0] === id) || [])[2] || {}, vals = { ...CK.BASE, ...p };
+      for (const [k, fl] of Object.entries(F)) if (k !== "tool") setVal(k, fl.tool === tool && k in vals ? vals[k] : fl.v);
+      lastStart[tool] = id; applied[tool] = id; fillStart(); draw();
+    };
     advBox.addEventListener("change", draw);
 
     // ---------- tip drawing canvas: heights sampled every 0.5 mm along tipL, snapped to 0.1 mm; kept in sync with the text box
