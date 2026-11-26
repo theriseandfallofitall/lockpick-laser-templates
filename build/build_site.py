@@ -22,12 +22,17 @@ THUMBS = ROOT / "previews/laser-index"
 
 
 def thumb(stem):
-    """Display-only copy with a visible, non-scaling stroke (cut files use hairlines that vanish when shrunk)."""
+    """Display-only copy for the dark page: every cut shape gets the same fill and a visible non-scaling stroke,
+    whatever colour the cut file uses (red, black, none); blue guide lines stay blue. Cut files are untouched."""
     src = (ROOT / (stem + ".svg")).read_text(encoding="utf-8")
-    src = re.sub(r'stroke-width="[^"]*"', 'stroke-width="1.4" vector-effect="non-scaling-stroke"', src)
-    src = src.replace('fill="none" stroke="#ff0000"', 'fill="#3a1b1d" stroke="#ff6b6b"')
-    src = src.replace('fill="none" stroke="#0000ff"', 'fill="none" stroke="#6f86ff"')
-    src = re.sub(r'<path(?![^>]*stroke=)', '<path fill="#3a1b1d" stroke="#ff6b6b" stroke-width="1.4" vector-effect="non-scaling-stroke"', src)
+
+    def recolour(m):
+        tag = m.group(0)
+        guide = re.search(r'stroke="(#0000ff|blue)"', tag, re.I)
+        tag = re.sub(r'\s(fill|stroke|stroke-width|vector-effect|style)="[^"]*"', "", tag)
+        attrs = ('fill="none" stroke="#6f86ff"' if guide else 'fill="#3a1b1d" stroke="#ff6b6b"') + ' stroke-width="1.4" vector-effect="non-scaling-stroke"'
+        return tag[:-2].rstrip() + " " + attrs + "/>" if tag.endswith("/>") else tag[:-1].rstrip() + " " + attrs + ">"
+    src = re.sub(r"<(?:path|circle|rect|polygon|polyline|ellipse)(?=[\s/>])[^>]*>", recolour, src)
     out = THUMBS / (stem.replace("/", "__") + ".svg")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(src, encoding="utf-8")
@@ -77,6 +82,8 @@ for lock, chip in LOCKS:
             links = [("Holes SVG", holes[0]), ("Holes DXF", holes[1]), ("No holes SVG", plain[0]), ("No holes DXF", plain[1])]
             if xr:
                 links += [("X-Acto SVG", xr["files"][0]), ("X-Acto DXF", xr["files"][1])]
+                if len(xr["files"]) >= 4:
+                    links += [("X-Acto + hole SVG", xr["files"][2]), ("X-Acto + hole DXF", xr["files"][3])]
             c = laser_card(holes[0][:-4], pretty(base))
             c["links"] = links; c["note"] = r.get("note", "")
             cards.append(c)
@@ -84,8 +91,9 @@ for lock, chip in LOCKS:
             c = laser_card(r["files"][0][:-4], pretty(base) + " " + r["id"].split("__")[1] + " mm"); c["note"] = r.get("note", "")
             cards.append(c)
     T[("picks", chip)] = cards
-T[("picks", "Originals · X-Acto")] = [laser_card(s, pretty(re.sub(r"-xacto-v2.*", "", s.rsplit("/", 1)[1])))
-                                      for s in stems(r"^generated/xacto-tang-v2/pick-")]
+T[("picks", "Originals · X-Acto")] = [laser_card(s, pretty(re.sub(r"-xacto-v2.*", "", s.rsplit("/", 1)[1])),
+                                                 [("+ hole SVG", s + "__hole-2.2.svg"), ("+ hole DXF", s + "__hole-2.2.dxf")] if (ROOT / (s + "__hole-2.2.svg")).exists() else [])
+                                      for s in stems(r"^generated/xacto-tang-v2/pick-") if "__hole-" not in s]
 
 
 def oid(s):

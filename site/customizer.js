@@ -7,7 +7,7 @@ const CK = (() => {
 
   // ---------- defaults (also the "Reset all" values) and presets
   const PICK_BASE = { handle: "full", handleL: 62, handleH: 9, handleEnd: "round", holes: true, holeD: 3.4, hole1: 15, hole2: 50,
-    tangW: 5.8, tangL: 10, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
+    tangW: 5.8, tangL: 10, shoulderL: 2, shoulderW: 10, tangHole: false, tangHoleD: 2.2, tangHoleX: 5, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
     tip: "hook", tipH: 2.6, tipW: 1.0, tipL: 10, peaks: 3, lean: 0, n: 5, pitch: 3.2, custom: "0 2.2 0.6 2.8 1.2 2.4 0" };
   const TENSION_BASE = { length: 76, shaftW: 3.4, dirA: "up", tipA: 2.4, linA: 4.7, dirB: "up", tipB: 2.8, linB: 4.7, serr: false };
   const BASE = { tool: "pick", ...PICK_BASE, ...TENSION_BASE };
@@ -46,8 +46,8 @@ const CK = (() => {
     let x0, handleTop, handleBot, holes = [];
     if (o.handle === "xacto") {
       const tw = o.tangW, tl = o.tangL, c = 0.4;
-      x0 = tl + 2;                                   // shoulders end
-      handleTop = x => x < c ? -tw / 2 + c - x : x < tl ? -tw / 2 : -5;
+      x0 = tl + o.shoulderL;                         // shoulders end
+      handleTop = x => x < c ? -tw / 2 + c - x : x < tl ? -tw / 2 : -o.shoulderW / 2;
       handleBot = x => -handleTop(x);
     } else {
       const L = o.handleL, H = o.handleH;
@@ -60,8 +60,8 @@ const CK = (() => {
       handleBot = x => H / 2 - edge(x);
       if (o.holes) holes = [[o.hole1, 0], [o.hole2, 0]];
     }
-    const rootHalf = o.handle === "xacto" ? 5 : o.handleH / 2;      // full shoulder / handle width: no step where the neck starts
-    const neckStart = o.handle === "xacto" ? x0 - 1.0 : x0 - 4;
+    const rootHalf = o.handle === "xacto" ? o.shoulderW / 2 : o.handleH / 2;      // full shoulder / handle width: no step where the neck starts
+    const neckStart = o.handle === "xacto" ? x0 - Math.min(1.0, o.shoulderL / 2) : x0 - 4;
     const neckEnd = neckStart + o.neckL;
     const tipStart = neckEnd + o.shaftL;
     const tip = TIPS[o.tip](o);
@@ -89,6 +89,8 @@ const CK = (() => {
     const top = xs.map(x => [x, topAt(x)]), bot = xs.slice().reverse().map(x => [x, botAt(x)]);
     const ring = top.concat(bot);
     const circles = holes.map(([hx, hy]) => ({ x: hx, y: hy, r: o.holeD / 2 }));
+    // optional hole through the tang: a cone-point grub screw in the DIY bar handle seats in it (stops pull-out)
+    if (o.handle === "xacto" && o.tangHole) circles.push({ x: o.tangL - o.tangHoleX, y: 0, r: o.tangHoleD / 2 });
     return finish({ rings: [ring], circles, guides: [] });
   }
 
@@ -245,6 +247,7 @@ if (typeof process !== "undefined" && process.argv && process.argv.includes("--s
   // extras: handle variants, X-Acto tang, sweep, lean, serrations, mixed leg directions, drawn profile
   const B = CK.BASE;
   emit("extra-xacto-rake", "pick", { ...B, handle: "xacto", tip: "rake", tipH: 2.2 });
+  emit("extra-xacto-tang-hole-big-shoulders", "pick", { ...B, handle: "xacto", tangHole: true, tangHoleD: 2.4, shoulderL: 3.5, shoulderW: 12 });
   emit("extra-square-end", "pick", { ...B, handleEnd: "square" });
   emit("extra-point-end", "pick", { ...B, handleEnd: "point", handleL: 70 });
   emit("extra-ball-sweep", "pick", { ...B, tip: "ball", tipH: 4, sweep: -1.5, holes: false });
@@ -280,6 +283,11 @@ if (typeof document !== "undefined") {
     hole2: num(P, "Handle", "Hole 2 position", "mm", 5, 85, 0.5, { only: hasHoles }),
     tangW: num(P, "Handle", "Tang width (measure your collet)", "mm", 5.0, 6.4, 0.05, { only: o => o.handle === "xacto" }),
     tangL: num(P, "Handle", "Tang length", "mm", 6, 16, 0.5, { only: o => o.handle === "xacto" }),
+    shoulderL: num(P, "Handle", "Shoulder thickness (along the pick)", "mm", 0.8, 6, 0.1, { only: o => o.handle === "xacto" }),
+    shoulderW: num(P, "Handle", "Shoulder width (stop against the collet)", "mm", 7, 14, 0.1, { only: o => o.handle === "xacto" }),
+    tangHole: { tool: P, grp: "Handle", label: "Hole through the tang (for the DIY bar grub screw)", type: "check", simple: true, only: o => o.handle === "xacto" },
+    tangHoleD: num(P, "Handle", "Tang hole diameter", "mm", 1.2, 3.5, 0.05, { only: o => o.handle === "xacto" && o.tangHole }),
+    tangHoleX: num(P, "Handle", "Tang hole, distance in front of the shoulders", "mm", 2, 12, 0.1, { only: o => o.handle === "xacto" && o.tangHole }),
     // shaft
     neckL: num(P, "Shaft", "Neck taper length", "mm", 6, 30, 0.5),
     shaftL: num(P, "Shaft", "Shaft length", "mm", 15, 75, 0.5, { simple: true }),
@@ -422,7 +430,7 @@ if (typeof document !== "undefined") {
       for (const fs of Object.values(sets)) fs.hidden = !fs.querySelector(".f:not([hidden])");
       if (o.tool === "pick" && o.tip === "custom") drawCanvas(o);
       g = CK.build(o.tool, o);
-      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW : (o.holes ? "holes" : "no-holes")}`
+      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW + (o.tangHole ? "-hole-" + o.tangHoleD : "") : (o.holes ? "holes" : "no-holes")}`
         : `custom-tension__${o.dirA}-${o.dirB}__tip-${o.tipA}`;
       view.innerHTML = CK.toSVG(g, name).replace(/width="[^"]*mm" height="[^"]*mm"/, 'width="100%"').replace(/fill="none" stroke="#ff0000" stroke-width="0.05"/g, 'fill="#3a1b1d" stroke="#ff6b6b" stroke-width="1.4" vector-effect="non-scaling-stroke"');
       const w = CK.validate(g);

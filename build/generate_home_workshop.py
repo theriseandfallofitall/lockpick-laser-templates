@@ -35,12 +35,19 @@ ap.add_argument("--tang-width", type=float, default=5.80, help="tang width acros
 ap.add_argument("--tang-length", type=float, default=10.0, help="tang insertion length, mm")
 ap.add_argument("--blade-width", type=float, default=12.7, help="hacksaw blade width, mm")
 ap.add_argument("--tooth-margin", type=float, default=1.5, help="keep-out from the tooth edge, mm")
+ap.add_argument("--shoulder-length", type=float, default=2.0, help="X-Acto shoulder thickness along the pick, mm")
+ap.add_argument("--shoulder-width", type=float, default=10.0, help="X-Acto shoulder width (the stop), mm")
+ap.add_argument("--tang-hole", type=float, default=2.2, help="hole through the tang for the DIY bar grub screw; 0 = none")
+ap.add_argument("--tang-hole-x", type=float, default=5.0, help="tang hole centre, mm in front of the shoulder face")
 ap.add_argument("--gap", type=float, default=6.0, help="minimum gap between parts on a blade (room to saw them apart), mm")
 ap.add_argument("--pin-hole", type=float, default=4.0, help="hacksaw blade pin-hole diameter, mm")
 args = ap.parse_args()
 
 TW, TL = args.tang_width, args.tang_length
-SHOULDER_W, SHOULDER_L = 10.0, 2.0
+SHOULDER_W, SHOULDER_L = args.shoulder_width, args.shoulder_length
+TANG_HOLE_D, TANG_HOLE_X = args.tang_hole, args.tang_hole_x
+NECK_IN = min(1.0, SHOULDER_L / 2)          # neck starts this far inside the shoulder: no step in front of it
+SH_R = min(0.4, SHOULDER_L / 2 - 0.05)     # shoulder corner radius
 SOURCE_CUT = 88.0          # original working section kept from this source X to the tip (as v1)
 records = []
 
@@ -70,9 +77,9 @@ def xacto_tang(neck_half):
     """Tang (x 0..TL) + shoulders (TL..TL+2) + tapered neck to the shaft at x = TL+8."""
     c = 0.4
     tang = Polygon([(0, -TW / 2 + c), (c, -TW / 2), (TL, -TW / 2), (TL, TW / 2), (c, TW / 2), (0, TW / 2 - c)])
-    guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-0.4).buffer(0.4, quad_segs=16)
-    neck = Polygon([(TL + SHOULDER_L - 0.4, -3.3), (TL + 8, -neck_half), (TL + 8, neck_half), (TL + SHOULDER_L - 0.4, 3.3)])
-    return unary_union([tang, guard, neck]), TL + 8
+    guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-SH_R).buffer(SH_R, quad_segs=16)
+    neck = Polygon([(TL + SHOULDER_L - SH_R, -3.3), (TL + SHOULDER_L + 6, -neck_half), (TL + SHOULDER_L + 6, neck_half), (TL + SHOULDER_L - SH_R, 3.3)])
+    return unary_union([tang, guard, neck]), TL + SHOULDER_L + 6
 
 
 def full_handle(neck_half, length=62.0, height=9.0):
@@ -238,9 +245,9 @@ def comb_tool(teeth, style, pitch=3.9, tooth_w=1.5, tooth_h=2.2, body_h=4.6):
     if style == "xacto":
         c = 0.4
         tang = Polygon([(0, -TW / 2 + c), (c, -TW / 2), (TL, -TW / 2), (TL, TW / 2), (c, TW / 2), (0, TW / 2 - c)])
-        guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-0.4).buffer(0.4, quad_segs=16)
-        x0, bot = TL + 1.0, SHOULDER_W / 2
-        base, holes = unary_union([tang, guard]), []
+        guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-SH_R).buffer(SH_R, quad_segs=16)
+        x0, bot = TL + NECK_IN, SHOULDER_W / 2
+        base, holes = unary_union([tang, guard]), [(TL - TANG_HOLE_X, 0.0)]
         root_top = -SHOULDER_W / 2
     else:
         base = box(0, -4.5, 56, 4.5).buffer(-2).buffer(2, quad_segs=16)
@@ -266,7 +273,7 @@ def build_other(style):
         neck_half = max(sh / 2, 0.7) + 0.5
         if style == "xacto":
             base, x0 = xacto_tang(neck_half)
-            holes = []
+            holes = [(TL - TANG_HOLE_X, 0.0)]                 # tang hole (drilled only in the "+hole" variant)
         else:
             base, x0, holes = full_handle(neck_half)
         tip, xend = tipf(x0 + sl)
@@ -275,7 +282,7 @@ def build_other(style):
         dy = max(0.0, -half - work.bounds[1])        # drop tall tips so the whole pick stays within the handle height
         work = translate(work, 0, dy)
         if style == "xacto":
-            neck = smooth_neck(TL + 1.0, SHOULDER_W / 2, x0 + 10, sh / 2, dy)   # starts at full shoulder width: no step in front of the shoulders
+            neck = smooth_neck(TL + NECK_IN, SHOULDER_W / 2, x0 + 10, sh / 2, dy)   # starts at full shoulder width: no step in front of the shoulders
         else:
             neck = smooth_neck(62.0 - 4, 4.5, x0 + 10, sh / 2, dy)          # starts at full handle height: no step
         base = base.intersection(box(-1, -50, (TL + SHOULDER_L) if style == "xacto" else 62.0 - 3, 50))  # drop the old straight necks
@@ -286,10 +293,10 @@ def build_other(style):
     return out
 
 
-def drill(p, holes, web=1.2):
+def drill(p, holes, web=1.2, r=None):
     """Cut the handle holes; refuse if any hole leaves less than `web` mm of metal round it."""
     for hx, hy in holes:
-        c = Point(hx, hy).buffer(HOLE_R, quad_segs=32)
+        c = Point(hx, hy).buffer(r or HOLE_R, quad_segs=32)
         assert c.buffer(web).within(p), f"hole at {hx:.1f},{hy:.1f} leaves < {web} mm web"
         p = p.difference(c)
     return p
@@ -320,17 +327,21 @@ if ORIGINALS:
         active_t = translate(active, x0 + 4 - SOURCE_CUT, -centre)
         xe = x0 + 14                                   # blend ends 10 mm into the original working section
         sec = active_t.intersection(LineString([(xe, -50), (xe, 50)]))
-        neck = smooth_neck(TL + 1.0, SHOULDER_W / 2, xe, (sec.bounds[3] - sec.bounds[1]) / 2, (sec.bounds[1] + sec.bounds[3]) / 2)
+        neck = smooth_neck(TL + NECK_IN, SHOULDER_W / 2, xe, (sec.bounds[3] - sec.bounds[1]) / 2, (sec.bounds[1] + sec.bounds[3]) / 2)
         base = base.intersection(box(-1, -50, TL + SHOULDER_L, 50))
         p = unary_union([base, neck, active_t]).simplify(0.001, preserve_topology=True)
         assert p.geom_type == "Polygon" and p.is_valid and not p.interiors, row["id"]
         dev = p.intersection(box(xe + 0.5, -100, 400, 100)).hausdorff_distance(active_t.intersection(box(xe + 0.5, -100, 400, 100)))
         assert dev < 0.003, (row["id"], dev)
+        ph = drill(p, [(TL - TANG_HOLE_X, 0.0)], web=1.0, r=TANG_HOLE_D / 2) if TANG_HOLE_D > 0 else None
         p = place(p)
         ident = row["id"] + "-xacto-v2"
         xacto[ident] = p
         files = write_pair(OUTX / f"{ident}__tang-{TW:.2f}x{TL:.0f}mm", [(ident, p)],
                            title=f"Cut outline mm 1:1; X-Acto tang {TW:.2f} wide x {TL:.0f} long; fit-test first")
+        if ph is not None:
+            files += write_pair(OUTX / f"{ident}__tang-{TW:.2f}x{TL:.0f}mm__hole-{TANG_HOLE_D:.1f}", [(ident, place(ph))],
+                                title=f"X-Acto / DIY bar tang with a Ø{TANG_HOLE_D} hole {TANG_HOLE_X} mm in front of the shoulders")
         record(ident, "xacto-tang-v2", p, files, source_id=row["id"], tang_width_mm=TW, tang_length_mm=TL,
                working_profile_hausdorff_mm=round(dev, 5))
 
@@ -340,7 +351,7 @@ widths = [round(TW + d, 2) for d in (-0.40, -0.30, -0.20, -0.10, 0.0, 0.10, 0.20
 for k, w in enumerate(widths):
     c = 0.4
     tang = Polygon([(0, -w / 2 + c), (c, -w / 2), (TL, -w / 2), (TL, w / 2), (c, w / 2), (0, w / 2 - c)])
-    guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-0.4).buffer(0.4, quad_segs=16)
+    guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-SH_R).buffer(SH_R, quad_segs=16)
     tab = box(TL + 1.6, -2.5, TL + 22, 2.5)
     p = unary_union([tang, guard, tab])
     for j in range(k + 1):  # hole count = position in the series (1 = narrowest)
@@ -371,9 +382,14 @@ for ident, lock, note, p, holes in build_other("full"):
     record(full_id, "other-lock-picks", ph, f1 + f2, lock_type=lock, handle="full-handle", note=note,
            holes_mm=[[round(x, 3), round(y, 3)] for x, y in holes])
     other_holes[full_id], other_plain[full_id] = ph, p
-for ident, lock, note, p, _ in build_other("xacto"):
+for old in OUTO.glob("*__xacto__tang-*"):
+    old.unlink()
+for ident, lock, note, p, tholes in build_other("xacto"):
     full_id = f"{ident}__xacto"
     files = write_pair(OUTO / (full_id + f"__tang-{TW:.2f}x{TL:.0f}mm"), [(full_id, p)])
+    if TANG_HOLE_D > 0:
+        files += write_pair(OUTO / (full_id + f"__tang-{TW:.2f}x{TL:.0f}mm__hole-{TANG_HOLE_D:.1f}"),
+                            [(full_id, drill(p, tholes, web=1.0, r=TANG_HOLE_D / 2))])
     record(full_id, "other-lock-picks", p, files, lock_type=lock, handle="xacto", note=note)
     other_xacto[full_id] = p
 
