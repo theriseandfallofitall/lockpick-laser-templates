@@ -88,6 +88,10 @@ const CK = (() => {
     }
     const xs = [];
     for (let x = 0; x < xEnd - 1e-6; x += x < tipStart - 1 ? 0.25 : 0.04) xs.push(+x.toFixed(4));
+    const breaks = o.handle === "xacto" ? [0.4, o.tangL, x0] : [];   // feature edges: sample both sides so steps stay square
+    for (const b of breaks.concat([neckStart, neckEnd, tipStart])) if (b > 0 && b < xEnd) xs.push(+(b - 1e-4).toFixed(4), +b.toFixed(4));
+    xs.sort((a, b) => a - b);
+    for (let i = xs.length - 1; i > 0; i--) if (xs[i] - xs[i - 1] < 5e-5) xs.splice(i, 1);
     while (xs.length && xs[xs.length - 1] >= xEnd - 1e-6) xs.pop();
     xs.push(xEnd);
     const top = xs.map(x => [x, topAt(x)]), bot = xs.slice().reverse().map(x => [x, botAt(x)]);
@@ -99,8 +103,8 @@ const CK = (() => {
     if (o.handle === "xacto" && o.tangHole && o.tangHole2) circles.push({ x: o.tangL - o.tangHole2X, y: 0, r: o.tangHoleD / 2 });
     // dimension marks for the preview (display only): [label, x from, x to] in raw coordinates
     const marks = o.handle === "xacto"
-      ? [["tang", 0, o.tangL], ["shoulder", o.tangL, x0], ["neck", x0, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]]
-      : [["handle", 0, neckStart], ["neck", neckStart, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]];
+      ? [["tang", 0, o.tangL], ["shoulder", o.tangL, x0], ["neck", neckStart, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]]
+      : [["handle", 0, x0], ["neck", neckStart, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]];
     // vertical dimension marks: [label, x, y top, y bottom] in raw coordinates
     let pk = tipStart, pkY = topAt(tipStart);                       // highest point of the tip
     for (let x = tipStart; x <= xEnd; x += 0.02) { const y = topAt(Math.min(x, xEnd - 1e-6)); if (y < pkY) { pkY = y; pk = x; } }
@@ -108,10 +112,18 @@ const CK = (() => {
     const vmarks = [
       [o.handle === "xacto" ? "tang" : "handle", hx, topAt(hx), botAt(hx)],
       ["shaft", sx, topAt(sx), botAt(sx)],
-      ["tip", pk, pkY, centre(tipStart) - half],
+      [["ball", "doubleBall", "halfBall"].includes(o.tip) ? "above shaft" : "tip", pk, pkY, centre(tipStart) - half],
     ];
     if (o.handle === "xacto") vmarks.splice(1, 0, ["shoulder", o.tangL + o.shoulderL / 2, -o.shoulderW / 2, o.shoulderW / 2]);
-    return finish({ rings: [ring], circles, guides: [], marks, vmarks });
+    // peaks closer than ~1.2 mm leave valleys narrower than a kerf / needle file
+    const notes = [];
+    if (o.tip === "rake" && o.tipL / o.peaks < 1.2) notes.push(`Rake peaks are ${(o.tipL / o.peaks).toFixed(2)} mm apart - lengthen the tip or use fewer peaks (min 1.2 mm)`);
+    if (o.tip === "custom") {
+      const h = parseHeights(o.custom), st = o.tipL / Math.max(1, h.length - 1), pk = h.map((v, i) => i > 0 && i < h.length - 1 && v > h[i - 1] && v >= h[i + 1] ? i : -1).filter(i => i >= 0);
+      const gap = Math.min(...pk.slice(1).map((v, i) => (v - pk[i]) * st));
+      if (gap < 1.2) notes.push(`Tip peaks are ${gap.toFixed(2)} mm apart - lengthen the tip (min 1.2 mm between peaks)`);
+    }
+    return finish({ rings: [ring], circles, guides: [], marks, vmarks, notes });
   }
 
   const flat = () => 0;
@@ -135,17 +147,18 @@ const CK = (() => {
     saw: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch;
       return { len: n * p, down: flat, up: d => { const k = Math.min(n - 1, Math.floor(d / p)); return o.tipH * (d - k * p) / p; } }; },
     // comb: n square teeth, `pitch` apart, tipW wide, tipH tall
-    comb: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch, tw = Math.min(o.tipW, p - 0.3);
+    comb: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch, tw = Math.max(0.3, Math.min(o.tipW, p - 0.5));   // >= 0.5 mm gap between teeth (kerf)
       return { len: (n - 1) * p + tw, down: flat, up: d => { const k = Math.min(n - 1, Math.floor(d / p)); return d - k * p <= tw ? o.tipH : 0; } }; },
     // warded L bit: flat-topped post with a centre slot (half depth)
-    warded: o => { const W = o.tipW; return { len: 1 + W, down: flat, up: d => d < 1 ? 0 : Math.abs(d - 1 - W / 2) < W / 6 ? o.tipH * 0.5 : o.tipH }; },
+    warded: o => { const W = Math.max(1.5, o.tipW), sl = Math.max(0.25, W / 6);   // slot >= 0.5 mm wide (kerf)
+      return { len: 1 + W, down: flat, up: d => d < 1 ? 0 : Math.abs(d - 1 - W / 2) < sl ? o.tipH * 0.5 : o.tipH }; },
     // lever lifter: long gentle ramp ending in a short flat lip
     lever: o => ({ len: o.tipL + o.tipW, down: flat, up: d => d < o.tipL ? o.tipH * d / o.tipL : o.tipH }),
     custom: o => {
       const h = parseHeights(o.custom);
       const n = Math.max(2, h.length), step = o.tipL / (n - 1);
       return { len: o.tipL, down: flat, up: d => { const i = Math.min(n - 2, Math.floor(d / step)), t = d / step - i;
-        return Math.max(0, (h[i] || 0) * (1 - t) + (h[i + 1] || 0) * t); } };
+        return Math.min(6, Math.max(0, (h[i] || 0) * (1 - t) + (h[i + 1] || 0) * t)); } };
     },
   };
 
@@ -154,6 +167,7 @@ const CK = (() => {
   // and the leg corner (leg meets the shaft).
   function tension(o) {
     o = { ...TENSION_BASE, ...o };
+    o.waves = Math.max(1, Math.round(o.waves) || 1);   // whole half-waves only: a fraction leaves a step at the wave end
     const SW = o.shaftW, S = 1.5, L = o.length;
     const legPts = (side, dir, tw, lin) => {   // side: 0 left / 1 right; dir: -1 up / +1 down. Points along the edge.
       // a relief at the tip corner needs a longer shoulder step to sit in: widen the leg just enough
@@ -277,7 +291,11 @@ const CK = (() => {
       if (!inside) warn.push(`Hole ${i + 1} is outside the outline`);
       else if (wall < minWall) warn.push(`Hole ${i + 1} has only ${Math.max(0, wall).toFixed(1)} mm of metal around it (min ${minWall})`);
     });
-    return warn;
+    g.circles.forEach((c, i) => g.circles.slice(i + 1).forEach((d, j) => {
+      const gap = Math.hypot(c.x - d.x, c.y - d.y) - c.r - d.r;
+      if (gap < minWall) warn.push(`Holes ${i + 1} and ${i + j + 2} are ${gap < 0 ? "overlapping" : "only " + gap.toFixed(1) + " mm apart"} (min ${minWall})`);
+    }));
+    return warn.concat(g.notes || []);
   }
 
   function finish(g) {
@@ -459,12 +477,15 @@ if (typeof document !== "undefined") {
         else { input = document.createElement("input"); input.type = "number"; Object.assign(input, { min: fl.min, max: fl.max, step: fl.step, value: fl.v }); }
         input.id = "ck-" + k; els[k] = input;
         const lab = mk("label", "t", fl.label); lab.htmlFor = input.id;
-        if (fl.type === "check") { row.classList.add("chk"); row.append(input, lab); input.addEventListener("change", () => touch(k)); }
+        if (fl.type === "check") { row.classList.add("chk"); row.append(input, lab); input.addEventListener("change", () => {
+          if (k === "tangHole2" && input.checked && clampNum(F.tangL, els.tangL.value) < 14) { setVal("tangL", 14); setVal("tangHoleX", 4); setVal("tangHole2X", 10); }
+          touch(k); }); }
         else if (fl.min !== undefined) {
           const r = document.createElement("input"); r.type = "range"; Object.assign(r, { min: fl.min, max: fl.max, step: fl.step, value: fl.v }); r.id = "ck-" + k + "-r"; rngs[k] = r;
           const rw = mk("div", "row"), u = mk("span", "u", fl.u || "");
           r.addEventListener("input", () => { input.value = r.value; touch(k); });
           input.addEventListener("input", () => { r.value = input.value; touch(k); });
+          input.addEventListener("change", () => { const v = clampNum(fl, input.value); if (+input.value !== v || input.value.trim() === "") { input.value = r.value = v; touch(k); } });
           rw.append(r, input, u); row.append(lab, rw);
         } else { row.append(lab, input); input.addEventListener(fl.type === "select" ? "change" : "input", () => touch(k)); }
       }
@@ -491,9 +512,11 @@ if (typeof document !== "undefined") {
     aRow.append(al, dl, reset); bar.append(sRow, aRow);
     fillStart();
 
+    // typed values are clamped to the field's range; empty or non-numeric falls back to the default
+    const clampNum = (fl, s) => { const v = parseFloat(s); return String(s).trim() === "" || !isFinite(v) ? fl.v : Math.min(fl.max, Math.max(fl.min, v)); };
     const read = () => Object.fromEntries(Object.entries(F).filter(([, fl]) => fl.type !== "draw").map(([k, fl]) => {
       const el = els[k];
-      return [k, fl.type === "check" ? el.checked : (fl.type === "select" || fl.type === "text") ? el.value : +el.value];
+      return [k, fl.type === "check" ? el.checked : (fl.type === "select" || fl.type === "text") ? el.value : clampNum(fl, el.value)];
     }));
     const setVal = (k, v) => { const fl = F[k]; if (fl.type === "draw") return; if (fl.type === "check") els[k].checked = !!v; else { els[k].value = v; if (rngs[k]) rngs[k].value = v; } };
     start.addEventListener("change", () => {
@@ -591,7 +614,7 @@ if (typeof document !== "undefined") {
       info.innerHTML = `Overall length <b>${g.length.toFixed(1)} mm</b> × height ${g.height.toFixed(1)} mm · ` +
         (g.fitsBlade ? '<span class="ok">fits a 12.7 mm hacksaw blade</span>' : '<span class="no">too tall for a hacksaw blade - use wider sheet</span>');
     }
-    const save = (text, ext, type) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name + "." + ext; a.click(); };
+    const save = (text, ext, type) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name + "." + ext; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); };
     document.getElementById("ck-svg").onclick = () => save(CK.toSVG(g, name), "svg", "image/svg+xml");
     document.getElementById("ck-dxf").onclick = () => save(CK.toDXF(g), "dxf", "application/dxf");
     // print at true size: a plain page with the outline in mm and a 50 mm check bar, then the browser's print dialog
@@ -600,6 +623,7 @@ if (typeof document !== "undefined") {
       e.preventDefault();
       const svg = CK.toSVG(g, name).replace(/stroke="#ff0000"/g, 'stroke="#000"').replace(/stroke-width="0.05"/g, 'stroke-width="0.15"');
       const w = window.open("", "_blank");
+      if (!w) { warnEl.textContent = "The print window was blocked: allow pop-ups for this page and try again."; return; }
       w.document.write(`<!doctype html><title>${name} (print at 100 %)</title><style>@page{size:A4 ${g.w > 186 ? "landscape" : "portrait"};margin:10mm}` +
         `body{margin:0;font:9pt system-ui;color:#000;background:#fff}.bar{width:50mm;border-bottom:0.3mm solid #000;margin:2mm 0 6mm}</style>` +
         `<p>${name} · print at 100 % / Actual size (no “fit to page”). The bar must measure 50 mm.</p><div class="bar"></div>${svg}` +

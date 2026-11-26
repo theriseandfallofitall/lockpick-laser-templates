@@ -6,7 +6,7 @@ A tension tool has three numbers that matter. All three come from the lock, so y
 |---|---|---|---|---|
 | Insertion length `L_in` | how far the tip goes into the keyway | `first_pin − pin_dia/2 − 0.1` → stops in front of pin 1 | 6.27 − 1.46 − 0.1 = **4.7 mm** | KW1 first cut 0.247", pin Ø0.115" ([LockWiki](https://www.lockwiki.com/index.php/Kwikset_Classic)) |
 | Recessed length | same, for plugs set back behind the cylinder face | `L_in + recess` (default 6 mm) | **10.7 mm** | |
-| Tip width | the tip's height in the keyway (flat face against the plug wall) | about ⅓ of the keyway height, ≤ 3.2 mm, leaving room for the pick | **2.4–2.8 mm** (narrow keyways), 3.3–4.0 mm (wide / Euro) | |
+| Tip width | the tip's height in the keyway (flat face against the plug wall) | about ⅓ of the keyway height, leaving room for the pick (≤ 3.2 mm in narrow keyways) | **2.4–2.8 mm** (narrow keyways), 3.3–4.0 mm (wide / Euro) | |
 | Thickness | across the keyway, so it is set by the stock | TOK 0.6–1.2 mm (0.025–0.050"); BOK 0.45–0.8 mm | | Peterson, SouthOrd, Dangerfield, Multipick |
 | Shaft | handle width and length | 3.0–3.4 mm wide, 76 mm (3") long | | Multipick SP33/SP45/SP57 |
 
@@ -17,9 +17,20 @@ This explains the published Multipick sizes. SP11–13 have a 4.7 mm short side,
 | Shape (in `generated/tension-tools-v2/`) | Fits a 12.7 mm blade | Notes |
 |---|---|---|
 | `TOK-C` (both short ends on one side) | yes, 9.6 mm | Same working ends as SP11–13. Turn it over to use the other end. |
-| `TOK-STRAIGHT-BEND` (Peterson-style) | yes, 3.4 mm | Cut a straight strip, then bend 90° at the blue line. Hacksaw steel is hard: heat the bend to dull red and let it cool, or it snaps. Wiper inserts bend cold. |
-| `BOK-STRAIGHT-BEND` | yes | The classic bent bottom-of-keyway wrench. |
+| `TOK-STRAIGHT-BEND` (Peterson-style) | yes, 3.4–5.0 mm (the bar is at least 0.6 mm wider than its widest tip) | Cut a straight strip, then bend 90° at the blue line. Hacksaw steel is hard: heat the bend to dull red and let it cool, or it snaps, and the bend is left soft. Better: cut it from bendable stock (see below). |
+| `BOK-STRAIGHT-BEND` | yes, 3.0–3.7 mm | The classic bent bottom-of-keyway wrench. Needs a cold 90° bend: use bendable stock, not hacksaw blade (see below). |
 | `TOK-Z`, `BOK-L`, all `ADV__` tools | no | Cut from sheet that is 25 mm wide or more. |
+
+## Which steel
+
+Hacksaw blade suits flat tools only. Anything bent after cutting wants stock that takes a cold 90° bend. Sources are mostly maker listings and forum reports, so treat this as guidance, not tested fact.
+
+| Tool | Best stock | Hacksaw blade? |
+|---|---|---|
+| Flat TOK bars (`TOK-C`, `TOK-L-SINGLE`, `TOK-Z`) | 1.0–1.25 mm (0.040–0.050") 301 stainless or 1075/1095 spring steel; commercial TOK bars are this thick (Peterson Pry Bar 0.050", Pry Bar Lite 0.040") | Works if cut flat, but 0.5–0.65 mm is thin for TOK and can slip in the keyway. Use a plain carbon blade, not bi-metal (its HSS tooth strip is brittle) |
+| `TOK-STRAIGHT-BEND`, `BOK-STRAIGHT-BEND` (bend after cutting) | 0.5–0.8 mm annealed 1075/1095, 301 spring-temper stainless, or wiper-blade inserts (bend cold) | No for a cold bend: it snaps. A red-heat bend works but leaves a soft corner |
+| `BOK-L` | 0.45–0.8 mm spring steel or wiper insert | Too tall for a blade anyway |
+| `ADV__` tools | 0.5–1.0 mm 301 spring-temper or annealed 1075/1095 sheet | Too wide for a blade |
 
 ## Advanced designs
 

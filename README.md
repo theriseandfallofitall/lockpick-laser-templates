@@ -22,7 +22,7 @@ Free cut files for making your own lock picks and tension tools at home: laser-c
 
 1. Open the site and cut the **Fit tests** first. The scale coupon must measure 50 × 20 mm.
 2. Pick a design and download the SVG or DXF. In your laser software, import it at 100 %. The red / `CUT` layer is the cut. The blue / `REFERENCE-DO-NOT-CUT` layer is guides only.
-3. Typical stock is 0.5–0.65 mm hacksaw blade or spring steel. A CO2 laser marks or cuts templates; the steel itself is cut with hand tools or a fibre laser.
+3. Picks: 0.5–0.65 mm hacksaw blade or spring steel. Tension tools: flat bars from hacksaw blade or 1.0–1.25 mm spring steel; anything you bend after cutting needs bendable stock, not hacksaw blade (`docs/tension-sizing.md`, Which steel). A CO2 laser marks or cuts templates; the steel itself is cut with hand tools or a fibre laser.
 
 ## Rebuild the files
 

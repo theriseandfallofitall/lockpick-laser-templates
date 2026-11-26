@@ -6,8 +6,6 @@ Outputs (all SVG + DXF, millimetres, 1:1, unfilled, closed outlines, no kerf off
   generated/xacto-tang-v2/          53 original working profiles on a corrected X-Acto tang + fit-test tangs
   generated/other-lock-picks/       own-design picks: pin tumbler, wafer, warded, lever, dimple
                                     (full handle with / without Ø3.40 holes at 15 / 50 mm, and X-Acto tang)
-  generated/picks-with-holes/, generated/le-corbeau-body-blended-with-holes/
-                                    private originals with the hole-layout holes (only when manifest.json exists)
   generated/hacksaw-blade-layouts/  parts evenly spaced (>= --gap) on a 300 mm-centre hacksaw blade + blade jig;
                                     full-handle parts sit flush at the blade ends so the pin hole becomes a lanyard hole
   manifest-home-workshop.json       one row per outline (id, family, size, files)
@@ -83,7 +81,7 @@ def xacto_tang(neck_half):
 
 
 def full_handle(neck_half, length=62.0, height=9.0):
-    """Flat handle with two Ø3.40 holes at 15 / 50 mm from the butt (same layout as hole-layouts/ and wood scales)."""
+    """Flat handle with two Ø3.40 holes at 15 / 50 mm from the butt."""
     body = box(0, -height / 2, length, height / 2).buffer(-2).buffer(2, quad_segs=16)
     neck = Polygon([(length - 3, -height / 2 + 0.6), (length + 12, -neck_half), (length + 12, neck_half), (length - 3, height / 2 - 0.6)])
     return unary_union([body, neck]), length + 12, [(15.0, 0.0), (50.0, 0.0)]
@@ -234,7 +232,7 @@ OTHER = [
      "Flat blank; bend the 2.0 mm flag 90° at the notches. Flag 2.0 x 2.5 mm after bending (Multipick-style). Hand-finish."),
 ]
 
-HOLE_R = 1.7          # Ø3.40 handle holes, same as the wood scales, hole layouts and printed Rev D handle
+HOLE_R = 1.7          # Ø3.40 handle holes
 HOLE_X = (15.0, 50.0)  # from the butt
 
 
@@ -312,7 +310,7 @@ def src_working(row):
     return active, (lo + hi) / 2, hi - lo
 
 
-ORIGINALS = (ROOT / "manifest.json").exists()   # the 53 source profiles are private (no source licence)
+ORIGINALS = (ROOT / "manifest.json").exists()   # source profiles: not in this repo
 
 # ---------------------------------------------------------------- 1. X-Acto tang family (private originals) + fit tests
 OUTX = ROOT / "generated/xacto-tang-v2"; OUTX.mkdir(parents=True, exist_ok=True)
@@ -352,7 +350,7 @@ for k, w in enumerate(widths):
     c = 0.4
     tang = Polygon([(0, -w / 2 + c), (c, -w / 2), (TL, -w / 2), (TL, w / 2), (c, w / 2), (0, w / 2 - c)])
     guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-SH_R).buffer(SH_R, quad_segs=16)
-    tab = box(TL + 1.6, -2.5, TL + 22, 2.5)
+    tab = box(TL + SHOULDER_L - 0.4, -2.5, TL + 22, 2.5)   # overlaps the shoulder for any --shoulder-length
     p = unary_union([tang, guard, tab])
     for j in range(k + 1):  # hole count = position in the series (1 = narrowest)
         p = p.difference(Point(TL + 6 + j * 2.0, 0).buffer(0.6, quad_segs=16))
@@ -362,6 +360,9 @@ for k, w in enumerate(widths):
     record(ident, "xacto-fit-test", p, files, tang_width_mm=w, holes=k + 1)
     strip.append((ident, translate(p, 0, k * 12)))
 write_pair(FIT / f"ALL-FIT-TESTS__{widths[0]:.2f}-to-{widths[-1]:.2f}mm", strip)
+keep = {i for i, _ in strip} | {f"ALL-FIT-TESTS__{widths[0]:.2f}-to-{widths[-1]:.2f}mm"}   # names carry the tang width: drop other runs' files
+for old in [f for e in ("svg", "dxf", "pdf") for f in FIT.glob("*." + e) if f.stem not in keep]:
+    old.unlink()
 
 CAL = ROOT / "generated/calibration"
 if not (CAL / "calibration-50x20__plastic-2.00mm.svg").exists():   # public build: make our own scale coupon
@@ -402,36 +403,12 @@ for wa, wb in ((2.5, 3.0), (3.0, 4.0)):
     record(ident, "other-lock-picks", p, files, lock_type="dimple", handle="bar",
            note="Dimple tensioner: tips 2.5-4.0 mm wide, 12 mm long. Needs 1.2-1.5 mm stock, not hacksaw blade.")
 
-# ---------------------------------------------------------------- 2b. private originals with the hole-layout holes
 orig_plain, orig_holes = [], []
-if ORIGINALS:
-    LAY = {}
-    for st in ("slim", "medium-tapered", "tapered", "le-corbeau-body"):
-        d = ezdxf.readfile(ROOT / f"hole-layouts/{st}/hole-layout__{st}__tang-3.40mm__centres-15-50mm.dxf")
-        LAY[st] = [(e.dxf.center.x, -e.dxf.center.y) for e in d.modelspace().query("CIRCLE")]
-    OUTP = ROOT / "generated/picks-with-holes"; OUTP.mkdir(parents=True, exist_ok=True)
-    for row in sources:
-        st = "medium-tapered" if "medium-tapered" in row["id"] else ("slim" if "slim" in row["id"] else "tapered")
-        d = ezdxf.readfile(ROOT / row["files"][1]); e = next(iter(d.modelspace().query("LWPOLYLINE")))
-        p0 = Polygon([(v[0], -v[1]) for v in e.get_points()])
-        ph = drill(p0, LAY[st], web=2.0)
-        ident = row["id"] + "__holes-3.40mm-at-15-50"
-        files = write_pair(OUTP / ident, [(row["id"], place(ph))], title="Original profile with the hole-layout holes (matches the wood scales)")
-        record(ident, "picks-with-holes", ph, files, source_id=row["id"], body_style=st)
-        orig_plain.append((row["id"], place(p0)))
-        orig_holes.append((row["id"], place(ph)))
-    corb = json.loads((ROOT / "manifest-le-corbeau-body-blended.json").read_text(encoding="utf-8"))
-    OUTC = ROOT / "generated/le-corbeau-body-blended-with-holes"; OUTC.mkdir(parents=True, exist_ok=True)
-    for row in [r for r in corb if r["steel_thickness_mm"] == 0.5]:
-        d = ezdxf.readfile(ROOT / [f for f in row["files"] if f.endswith(".dxf")][0]); e = next(iter(d.modelspace().query("LWPOLYLINE")))
-        p0 = Polygon([(v[0], -v[1]) for v in e.get_points()])
-        ph = drill(p0, LAY["le-corbeau-body"], web=2.0)
-        ident = row["id"] + "__holes-3.40mm-at-15-50"
-        files = write_pair(OUTC / ident, [(row["id"], place(ph))], title="Le Corbeau body with the hole-layout holes (matches the wood scales)")
-        record(ident, "le-corbeau-with-holes", ph, files, source_id=row["id"])
 
 # ---------------------------------------------------------------- 3. hacksaw blade layouts + jig
 OUTH = ROOT / "generated/hacksaw-blade-layouts"
+if args.pin_hole <= 0:
+    sys.exit("--pin-hole must be > 0 mm")
 for old in OUTH.glob("blade-*"):
     old.unlink()
 OUTH.mkdir(parents=True, exist_ok=True)
@@ -582,6 +559,9 @@ for name, polys, end_ok in sets:
         layouts.append(dict(set=name, sheet=n, outlines=[i for i, _ in items], files=files,
                             min_gap_mm=round(min(gaps), 2) if gaps else None, ends_use_blade_pin_holes=used_end))
 jig = box(0, 0, BL + 2 * M, BW + 2 * M + 10).difference(box(M - 0.15, M - 0.15, M + BL + 0.15, M + BW + 0.15))
+jig_stem = f"JIG__hacksaw-blade-{BW:.1f}x{BL:.0f}mm__pocket+0.15mm"
+for old in [f for f in OUTH.glob("JIG__*") if f.stem != jig_stem]:   # a jig left by another --blade-width
+    old.unlink()
 files = write_pair(OUTH / f"JIG__hacksaw-blade-{BW:.1f}x{BL:.0f}mm__pocket+0.15mm", [("jig-plate", jig)],
                    w=BL + 2 * M, h=BW + 2 * M + 10,
                    title="Cut from 3 mm sheet, leave it in place on the bed, drop the blade in the pocket, run the blade layout at the same origin.")

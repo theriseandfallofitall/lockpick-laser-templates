@@ -122,10 +122,6 @@ for s in stems(r"^generated/xacto-tang-v2/pick-"):
     orig.append(styled(s, pretty(re.sub(r"-xacto-v2.*", "", s.rsplit("/", 1)[1])),
                        [fmt_row("Plain", s + ".svg")] + ([fmt_row("Tang hole", hs)] if (ROOT / hs).exists() else []), "xacto"))
 T[("picks", "Originals")] = orig
-T[("picks", "Originals · Le Corbeau")] = [
-    styled(s, pretty(re.sub(r"-le-corbeau.*", "", oid(s))),
-           [fmt_row("Holes", f"generated/le-corbeau-body-blended-with-holes/{oid(s)}__holes-3.40mm-at-15-50.svg"), fmt_row("No holes", s + ".svg")], None)  # no X-Acto version: shown in both
-    for s in stems(r"^generated/le-corbeau-body-blended/.*steel-0\.50mm$")]
 
 
 def tension_name(s):
@@ -148,21 +144,6 @@ tt = stems(r"^generated/tension-tools-v2/")
 T[("tension", "Fits a hacksaw blade")] = [laser_card(s, tension_name(s)) for s in tt if checks[s].get("fits_hacksaw_12.7mm")]
 T[("tension", "Wider sheet")] = [laser_card(s, tension_name(s)) for s in tt if not checks[s].get("fits_hacksaw_12.7mm") and "/ADV__" not in s]
 T[("tension", "Advanced")] = [laser_card(s, tension_name(s)) for s in tt if "/ADV__" in s]
-T[("tension", "SP11–SP17")] = [laser_card(s, re.sub(r"tok-(SP\d+).*__steel-([\d.]+)mm", r"\1 · \2 mm steel", s.rsplit("/", 1)[1]))
-                               for s in stems(r"^generated/tension-clean-rebuild/")]
-
-# Private approximate traces (never exported)
-if exists("generated/sparrows-traces-approx/manifest.json"):
-    tr = json.loads((ROOT / "generated/sparrows-traces-approx/manifest.json").read_text(encoding="utf-8"))
-    tr = tr if isinstance(tr, list) else tr.get("traces", tr.get("items", []))
-    cards = []
-    for r in tr:
-        svg = next((f for f in r.get("files", []) if f.endswith(".svg")), None)
-        if svg and svg[:-4] in checks:
-            c = laser_card(svg[:-4], (r.get("product") or r.get("id", "")) + " " + r.get("id", "").rsplit("-", 1)[-1] + " · APPROX")
-            c["note"] = f"Scale: {r.get('scale_class', '?')}, ±{r.get('uncertainty_pct', '?')} %. Private reference only."
-            cards.append(c)
-    T[("picks", "Sparrows traces (approx, private)")] = cards
 
 # Handles
 dh = "generated/diy-handle/"
@@ -171,37 +152,10 @@ if exists(dh + "DIY-HANDLE__drawing-preview.png"):
                                                   "Hand tools or lathe · print at 100 %",
                                                   [("Drawing + marking wrap PDF", dh + "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf"),
                                                    ("End disc SVG", dh + "DIY-HANDLE__end-marking-disc.svg"), ("End disc DXF", dh + "DIY-HANDLE__end-marking-disc.dxf")])]
-T[("handles", "Wood scales")] = [laser_card(s, pretty(s.split("/")[1]).replace("Le corbeau body", "Le Corbeau") + " · both sides",
-                                            [("Side A DXF", s.replace("__PAIR__", "__wood-scale-A__") + ".dxf"),
-                                             ("Side B DXF", s.replace("__PAIR__", "__wood-scale-B-MIRRORED__") + ".dxf")])
-                                 for s in stems(r"^wooden-grip-scales/[^/]+/.*__PAIR__")]
-T[("handles", "Steel hole layouts")] = [laser_card(s, pretty(s.split("/")[1]) + " · hole layout") for s in stems(r"^hole-layouts/")]
-if exists("clip-together-handles-v4/generated"):
-    cases = []
-    for style, label in (("slim-19", "Slim"), ("medium-tapered-16", "Medium tapered"), ("tapered-18", "Tapered"), ("le-corbeau-53", "Le Corbeau")):
-        links = []
-        for gg in ("0.40", "0.50", "0.60"):
-            d = f"clip-together-handles-v4/generated/{style}/steel-{gg}mm"
-            links += [(f"{gg} lower", f"{d}/{style}__handle-lower__steel-{gg}mm.stl"), (f"{gg} upper", f"{d}/{style}__handle-upper__steel-{gg}mm.stl")]
-        d = f"clip-together-handles-v4/generated/{style}/steel-0.50mm/coupon"
-        links += [("Coupon lower", f"{d}/{style}__coupon-lower__steel-0.50mm.stl"), ("Coupon upper", f"{d}/{style}__coupon-upper__steel-0.50mm.stl")]
-        cases.append(file_card(f"{label} snap case", f"previews/hub/case-{style}.png", "3D print · pick the steel thickness", links))
-    T[("handles", "Printed snap cases")] = cases
-rd = "handle-concepts/STL-Rev-D/"
-if exists(rd):
-    T[("handles", "Printed screw handle")] = [file_card("Rev D screw handle (0.50 mm steel, M3)", "handle-concepts/Printed-Handle-Rev-D_STL-preview.png",
-                                                        "3D print · 2 × M3 screws, holes at 15 / 50 mm",
-                                                        [("Upper STL", rd + "Handle-Rev-D_UPPER__steel-0.50mm__M3-clearance-3.40mm__flat-down.stl"),
-                                                         ("Lower STL", rd + "Handle-Rev-D_LOWER__steel-0.50mm__M3-insert-pilot-4.00mm__flat-down.stl"),
-                                                         ("Instructions", rd + "PRINT-AND-ASSEMBLE.txt")])]
 # Fit tests
 fit = ([laser_card(s, "Laser / printer scale check · must measure 50 × 20 mm") for s in stems(r"^generated/calibration/")]
        + [laser_card(s, "X-Acto tang " + re.search(r"tang-([\d.]+)", s).group(1) + " mm · " + re.search(r"(\d+)-holes", s).group(1) + " hole(s)")
-          for s in stems(r"^generated/xacto-tang-v2/fit-tests/FIT-TEST")]
-       + [laser_card(s, "Wood screw-hole test 3.2–3.6 mm") for s in stems(r"^wooden-grip-scales/HOLE-TEST")])
-if exists(rd):
-    fit.append(file_card("M3 insert fit coupon", "handle-concepts/Printed-Handle-Rev-D_STL-preview.png", "3D print · pilots 4.0 / 4.2 / 4.4 mm",
-                         [("STL", rd + "M3-Insert-Fit-Coupon__pilots-4.00-4.20-4.40mm__depth-4.10mm.stl")]))
+          for s in stems(r"^generated/xacto-tang-v2/fit-tests/FIT-TEST")])
 T[("fit", "Cut these first")] = fit
 # Blade layouts: holes / no-holes pairs share one card (labelled rows); spine-edge layouts have their own chips
 LAY = json.loads((ROOT / "generated/hacksaw-blade-layouts/layouts.json").read_text(encoding="utf-8"))["layouts"]
@@ -239,7 +193,7 @@ TABS = [("picks", "Picks", "Every design comes as a flat handle with or without 
                            "and on the X-Acto / DIY-bar tang. The outline is the same for any steel thickness."),
         ("tension", "Tension", "Sized from the lock: the short end (4.7 mm) stops in front of pin 1, the long end (10.7 mm) is for recessed plugs. "
                                "Only bars with both legs on the same side (or a single leg) fit a 12.7 mm blade. Blue lines are bend lines."),
-        ("handles", "Handles", "The DIY bar handle takes every X-Acto-tang pick. Wood scales and the screw handle use the Ø3.40 holes at 15 / 50 mm."),
+        ("handles", "Handles", "The DIY bar handle takes every X-Acto-tang pick."),
         ("fit", "Fit tests", "Cut or print these before a full set. X-Acto tangs: hole count = position in the series; use the widest that clamps without forcing."),
         ("blade", "Blade layouts", "One file per 12.7 × 315 mm hacksaw blade, parts evenly spaced with at least 6 mm between them to saw apart. "
                                    "Cut the jig once, leave it on the bed, drop a blade in, run a layout at the same origin. Blue = blade outline, do not output."),

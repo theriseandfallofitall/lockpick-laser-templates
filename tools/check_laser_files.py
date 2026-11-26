@@ -26,7 +26,7 @@ from svgpathtools import parse_path
 ROOT = Path(__file__).resolve().parents[1]
 HISTORY = ("previews/laser-index/", "archive/", "redraw-review/", "handle-concepts/", "clip-together-handles-v3/",
            "previews/", "dimensioned-reference-drawings/", "exports/generated/",
-           "sources/", "generated/le-corbeau-body/", "generated/tension-bars/",
+           "sources/", "generated/tension-bars/",
            "generated/tension-smooth-current/", "generated/tension-controlled-curves/")
 # Reference plans, not cut files (they intentionally contain notes / multiple views).
 REFERENCE_ONLY = ("clip-together-handles-v4/",)
@@ -48,7 +48,9 @@ def svg_rings(path):
     if not (wmm and hmm):
         issues.append("width/height not in mm")
     vb = [float(x) for x in re.split(r"[ ,]+", root.get("viewBox", "").strip())] if root.get("viewBox") else None
-    if vb and w and h and (abs(vb[2] - w) > 1e-3 or abs(vb[3] - h) > 1e-3):
+    if not vb:
+        issues.append("no viewBox (imports at the wrong scale)")
+    elif w and h and (abs(vb[2] - w) > 1e-3 or abs(vb[3] - h) > 1e-3):
         issues.append(f"viewBox {vb[2:]} != width/height {w},{h} (scale not 1 unit = 1 mm)")
     for tag in ("text", "image"):
         if root.iter(NS + tag) and any(True for _ in root.iter(NS + tag)):
@@ -61,6 +63,8 @@ def svg_rings(path):
         style = (el.get("style") or "") + ";fill:" + (el.get("fill") or "")
         if re.search(r"fill:\s*(#|rgb|red|black)", style) and "fill:none" not in style.replace(" ", ""):
             issues.append("filled path")
+        elif "fill:none" not in style.replace(" ", ""):
+            issues.append("path has no fill=none (renders filled black)")
         if el.get("transform"):
             issues.append("path transform present")
         d = el.get("d", "")
@@ -183,7 +187,7 @@ def main():
                     abs(a - b) > BBOX_TOL for a, b in zip(rec["svg_bbox_mm"], rec["dxf_bbox_mm"])):
                 rec["issues"].append("pair: bounding boxes differ")
         bb = rec.get("dxf_bbox_mm") or rec.get("svg_bbox_mm")
-        if bb and not any(k in stem for k in ("sheet", "ALL-", "hacksaw-blade-layouts/", "COUPON", "calibration", "clip-together", "hole-layouts/le-corbeau", "wooden-grip-scales/")):
+        if bb and not any(k in stem for k in ("sheet", "ALL-", "hacksaw-blade-layouts/", "COUPON", "calibration", "clip-together", "wooden-grip-scales/")):
             rec["fits_hacksaw_12.7mm"] = min(bb) <= HACKSAW_USABLE
         if ref_only:
             rec["reference_plan_only"] = True
@@ -205,6 +209,8 @@ def main():
     out.write_text(json.dumps({"summary": summary, "files": results}, indent=1))
     print(json.dumps({k: v for k, v in summary.items() if k != "too_wide_for_hacksaw"}, indent=1))
     print("too wide for a 12.7 mm hacksaw blade:", len(summary["too_wide_for_hacksaw"]))
+    for r in [r for r in results if r["issues"]][:40]:
+        print("FAIL", r["stem"], "; ".join(r["issues"]))
     return 1 if fails else 0
 
 

@@ -63,7 +63,7 @@ for name, pat in GROUPS:
     if not stems:
         continue
     pdf_path = OUT / f"{name}__A4-print-at-100pct.pdf"
-    with PdfPages(pdf_path) as pdf:
+    with PdfPages(pdf_path, metadata={"CreationDate": None, "ModDate": None}) as pdf:
         page, fig, ax = 0, None, None
         y = x = row_h = 0
         for stem in stems:
@@ -106,7 +106,7 @@ def design_pdf(stem):
     usable = pw - 2 * PM
     tiles = 1 if w <= usable else -(-(w - OVERLAP) // (usable - OVERLAP))
     tiles = int(tiles)
-    with PdfPages(ROOT / (stem + ".pdf")) as pdf:
+    with PdfPages(ROOT / (stem + ".pdf"), metadata={"CreationDate": None, "ModDate": None}) as pdf:
         for k in range(tiles):
             fig = plt.figure(figsize=(pw / 25.4, ph / 25.4))
             ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, pw); ax.set_ylim(ph, 0); ax.axis("off")
@@ -136,8 +136,6 @@ def design_pdf(stem):
 
 
 if __name__ == "__main__":
-    import argparse
-    ap = argparse.ArgumentParser(); ap.add_argument("--per-design", action="store_true", default=True); a, _ = ap.parse_known_args()
     n = t = 0
     for r in checks:
         if r.get("dxf_bbox_mm") and not r["stem"].startswith(("generated/sheets/", "dimensioned-reference-drawings/")):

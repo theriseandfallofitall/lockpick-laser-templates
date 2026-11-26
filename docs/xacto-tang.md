@@ -8,7 +8,7 @@ An earlier tang (6.20 × 12 mm, thinned to 0.40 mm) is **too wide**. It was a gu
 
 | Dimension | Value | Source | Confidence |
 |---|---|---|---|
-| No.11 blade thickness | 0.51 mm (0.020") nominal; catalogue 0.53 mm (0.021") | McMaster, EIS, Stanley; `sources/craft-knife/no11-reference-source.json` | medium |
+| No.11 blade thickness | 0.51 mm (0.020") nominal; catalogue 0.53 mm (0.021") | McMaster, EIS, Stanley; a No. 11 blade reference | medium |
 | No.11 blade height | 8.7–9.5 mm | Zoro, McMaster, razorbladeco | medium |
 | "Shank width" | 6.35 mm (0.25") nominal; 5.8 mm (0.23") for the titanium No.11 | McMaster | medium-low: catalogue rounding |
 | Collet slot width / depth | not published anywhere found | — | none |

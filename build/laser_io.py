@@ -1,8 +1,15 @@
 """Shared SVG/DXF writer for the home-workshop generators: mm 1:1, unfilled, closed outlines.
 Red / DXF layer CUT = cut. Blue / DXF layer REFERENCE-DO-NOT-CUT = guides only."""
+import os, subprocess, sys
 from pathlib import Path
 
+# Reproducible output: ezdxf orders some DXF objects by hash, so pin the hash seed (re-run the calling script once with it set)
+if os.environ.get("PYTHONHASHSEED") != "0" and getattr(sys.modules.get("__main__"), "__file__", None):
+    sys.exit(subprocess.run([sys.executable, sys.modules["__main__"].__file__, *sys.argv[1:]], env={**os.environ, "PYTHONHASHSEED": "0"}).returncode)
+
 import ezdxf
+
+ezdxf.options.write_fixed_meta_data_for_testing = True   # fixed timestamps / GUIDs: regenerating gives identical bytes
 from shapely.affinity import translate
 from shapely.geometry import LineString
 

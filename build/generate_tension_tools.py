@@ -34,10 +34,12 @@ ap.add_argument("--shaft", type=float, default=3.4)
 a = ap.parse_args()
 
 ROOT = W.ROOT
-OUT = ROOT / "generated/tension-tools-v2"; OUT.mkdir(parents=True, exist_ok=True)
 L_IN = round(a.first_pin - a.pin_dia / 2 - a.clearance, 2)
 L_REC = round(L_IN + a.recess, 2)
 SW, LEN = a.shaft, a.length
+if L_IN <= 0.5 or a.length < 2 * (L_REC + 8):
+    ap.error(f"insertion {L_IN} mm / length {a.length} mm: check --first-pin, --recess and --length")
+OUT = ROOT / "generated/tension-tools-v2"; OUT.mkdir(parents=True, exist_ok=True)
 TIPS = [2.4, 2.8, 3.3, 4.0]
 SHOULDER = 1.5          # leg beyond the insertion length; its step stops against the plug face
 records = []
@@ -85,17 +87,17 @@ def tok_bar(tip_a, tip_b, lin_a, lin_b, same_side):
 
 def straight_bend(tip_a, tip_b, lin_a, lin_b, width=SW, serr=False):
     """Peterson-style straight bar: cut flat, bend 90 deg out of plane at the blue lines."""
+    width = max(width, max(tip_a, tip_b) + 0.6)   # the bar must be wider than its tips, else nothing is narrowed (>= 0.6 mm shoulder)
     p = box(0, -width / 2, LEN, width / 2)
     cut = []
     for x0, tip, lin, s in ((0, tip_a, lin_a, 1), (LEN, tip_b, lin_b, -1)):
         xs = sorted([x0, x0 + s * lin])
         cut.append(box(xs[0] - 0.01, -width / 2 - 0.01, xs[1], width / 2 - tip))  # narrow from the top edge, keep bottom edge straight
-    p = p.difference(unary_union(cut))
-    if serr:
+    p = fillet(p.difference(unary_union(cut)), 0.4, 0.25)
+    if serr:   # after the fillet (it would round the 0.3 mm teeth away); teeth point into the metal (+y) from the tip's cut edge
         for x0, lin, tip, s in ((0, lin_a, tip_a, 1), (LEN, lin_b, tip_b, -1)):
             xs = sorted([x0 + s * 0.6, x0 + s * (lin - 0.4)])
-            p = serrate(p, xs[0], xs[1], width / 2 - tip, up=False)
-    p = fillet(p, 0.4, 0.25)
+            p = serrate(p, xs[0], xs[1], width / 2 - tip, up=True)
     bends = [LineString([(lin_a + SHOULDER, -width / 2 - 1), (lin_a + SHOULDER, width / 2 + 1)]),
              LineString([(LEN - lin_b - SHOULDER, -width / 2 - 1), (LEN - lin_b - SHOULDER, width / 2 + 1)])]
     return p, bends
@@ -215,7 +217,7 @@ def comb_bar(teeth=4, pitch=3.9, tooth_w=1.5, tooth_h=2.2, body_h=4.6):
 
 
 # ---------------------------------------------------------------- build everything
-def emit(ident, group, poly, note, ref=(), fits=None):
+def emit(ident, group, poly, note, ref=(), fits=None, ins=(L_IN, L_REC)):   # ins: (short, long) insertion, None = n/a
     p = W.place(poly, 2.0)
     dx = p.bounds[0] - poly.bounds[0]; dy = p.bounds[1] - poly.bounds[1]
     ref = [(f"{ident}-bend-{i}", translate(g, dx, dy)) for i, g in enumerate(ref)]
@@ -223,7 +225,7 @@ def emit(ident, group, poly, note, ref=(), fits=None):
                          title=f"{ident}: mm 1:1, no kerf. Blue = bend line / guide, do not cut.")
     h = p.bounds[3] - p.bounds[1]
     records.append(dict(id=ident, group=group, length_mm=round(p.bounds[2] - p.bounds[0], 2), height_mm=round(h, 2),
-                        fits_12_7mm_blade=h <= 10.7, insertion_mm=L_IN, recessed_insertion_mm=L_REC, note=note, files=files))
+                        fits_12_7mm_blade=h <= 10.7, insertion_mm=ins[0], recessed_insertion_mm=ins[1], note=note, files=files))
 
 
 for t in TIPS:
@@ -238,16 +240,15 @@ for t in TIPS:
     emit(f"TOK-STRAIGHT-BEND-SERRATED__tip-{t:.1f}-{t + 0.4:.1f}", "TOK straight, bend after cutting (blade-fit)", p,
          "As above with 0.6 mm grip serrations on the bearing edge.", ref=bends)
 for t in TIPS:
-    shaft = box(0, -SW / 2, LEN, SW / 2).buffer(-0.01).buffer(SW / 2 - 0.02, quad_segs=16).intersection(box(-1, -SW / 2, LEN + 2, SW / 2))
     la, _ = leg(0, -1, -1, t, L_IN)
     emit(f"TOK-L-SINGLE__tip-{t:.1f}__short-{L_IN}", "TOK single-ended, blade-fit",
          fillet(unary_union([box(0, -SW / 2, LEN - SW / 2, SW / 2), Point(LEN - SW / 2, 0).buffer(SW / 2, quad_segs=16), la])),
          "One working end, round other end: the simplest bar that fits a 12.7 mm hacksaw blade.")
 for t in (2.2, 3.1):
-    emit(f"BOK-L__tip-{t:.1f}__leg-12", "BOK flat L (sheet)", bok_L(t), "Bottom-of-keyway L wrench, 3.0 mm shaft.")
+    emit(f"BOK-L__tip-{t:.1f}__leg-12", "BOK flat L (sheet)", bok_L(t), "Bottom-of-keyway L wrench, 3.0 mm shaft.", ins=(12.0, None))
     p, bends = straight_bend(t, t, 10.0, 14.0, width=3.0)
     emit(f"BOK-STRAIGHT-BEND__tip-{t:.1f}", "BOK straight, bend after cutting (blade-fit)", p,
-         "Classic bent BOK wrench; 10 / 14 mm legs.", ref=bends)
+         "Classic bent BOK wrench; 10 / 14 mm legs.", ref=bends, ins=(10.0, 14.0))
 emit("ADV__flex-gauge-tensioner", "Advanced", flex_gauge(),
      "S-flexure between head and handle with a pointer and tick notches: repeatable feather-light tension.")
 emit("ADV__curved-finger-pad-TOK", "Advanced", curved_bar(),
@@ -256,12 +257,15 @@ emit("ADV__Z-bar-TOK-plus-BOK", "Advanced", z_bar(), "TOK end + BOK end in one t
 emit("ADV__multi-arm-wrench", "Advanced", multi_wrench(),
      "Own multi-arm wrench: short TOK, recessed TOK, 4.0 mm wide wafer/Euro TOK and 12 mm BOK on one plate.")
 emit("ADV__tension-wheel-40", "Advanced", tension_wheel(),
-     "Own tension wheel: slides onto a flat bar; roll the rim, count the notches for repeatable tension.")
+     "Own tension wheel: slides onto a flat bar; roll the rim, count the notches for repeatable tension.", ins=(None, None))
 for n in (3, 4, 5):
     emit(f"ADV__comb-bar-{n}-pin", "Advanced", comb_bar(n),
-         f"Own comb bar: stepped TOK tension leg (4.7 mm) at one end, {n}-tooth comb (3.9 mm pitch) at the other.")
+         f"Own comb bar: stepped TOK tension leg (4.7 mm) at one end, {n}-tooth comb (3.9 mm pitch) at the other.", ins=(L_IN, None))
 emit("ADV__tension-card-85x54", "Advanced", tension_card(),
      "Credit-card multi-tool: 4 short TOK, 4 recessed TOK, 2 BOK tips, finger hole. Cut from 0.6-1.0 mm sheet.")
 
+keep = {r["id"] for r in records}   # names carry the sizes: remove files a run with other flags left behind
+for old in [f for e in ("svg", "dxf", "pdf") for f in OUT.glob("*." + e) if f.stem not in keep]:
+    old.unlink()
 (ROOT / "manifest-tension-tools-v2.json").write_text(json.dumps(records, indent=1), encoding="utf-8")
 print(f"tension tools {len(records)}  L_in {L_IN}  recessed {L_REC}  blade-fit {sum(r['fits_12_7mm_blade'] for r in records)}")

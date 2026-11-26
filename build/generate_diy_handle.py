@@ -24,11 +24,10 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--bar", type=float, default=10.0, help="bar diameter, mm (10 mm aluminium or brass)")
 ap.add_argument("--length", type=float, default=100.0)
 ap.add_argument("--tang-width", type=float, default=5.80)
-ap.add_argument("--tang-length", type=float, default=10.0)
 ap.add_argument("--slot-depth", type=float, default=12.0, help="slot depth; >= tang length + 2")
 ap.add_argument("--screw-x", type=float, default=5.0, help="grub screw centre from the bar end, mm")
 ap.add_argument("--screw2-x", type=float, default=0.0, help="optional second grub screw from the bar end, mm (0 = none; use with a two-hole tang)")
-ap.add_argument("--double-ended", action="store_true", default=True)
+ap.add_argument("--double-ended", action=argparse.BooleanOptionalAction, default=True, help="slot both ends (--no-double-ended for one)")
 a = ap.parse_args()
 D, L, SD, SX, SX2 = a.bar, a.length, a.slot_depth, a.screw_x, a.screw2_x
 if SX2:
@@ -57,7 +56,7 @@ def dim(ax, x0, y0, x1, y1, text, off=4, vertical=False):
         ax.text((x0 + x1) / 2, y0 - off - 1, text, fontsize=6, ha="center")
 
 
-with PdfPages(OUT / "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf") as pdf:
+with PdfPages(OUT / "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf", metadata={"CreationDate": None, "ModDate": None}) as pdf:
     fig, ax = page("DIY grub-screw pick handle · 1:1")
     # side view at 1:1
     x0, yc = 20, 60
@@ -68,12 +67,12 @@ with PdfPages(OUT / "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf") as pdf:
         for sx in [SX] + ([SX2] if SX2 else []):
             ax.add_patch(plt.Circle((end + s * sx, yc - D / 2 + 0.01), 1.25, fill=False, lw=0.5))
             ax.plot([end + s * sx] * 2, [yc - D / 2, yc], "k-", lw=0.3)
-    dim(ax, x0, yc - D / 2, x0 + L, yc - D / 2, f"{L:.0f}", off=6)
-    dim(ax, x0, yc - D / 2, x0 + SD, yc - D / 2, f"slot {SD:.0f} deep", off=12)
-    dim(ax, x0, yc - D / 2, x0 + SX, yc - D / 2, f"M3 at {SX:.0f}", off=18)
+    dim(ax, x0, yc - D / 2, x0 + L, yc - D / 2, f"{L:g}", off=6)
+    dim(ax, x0, yc - D / 2, x0 + SD, yc - D / 2, f"slot {SD:g} deep", off=12)
+    dim(ax, x0, yc - D / 2, x0 + SX, yc - D / 2, f"M3 at {SX:g}", off=18)
     if SX2:
-        dim(ax, x0, yc - D / 2, x0 + SX2, yc - D / 2, f"2nd M3 at {SX2:.0f}", off=24)
-    dim(ax, x0, yc - D / 2, x0, yc + D / 2, f"Ø{D:.0f}", off=3, vertical=True)
+        dim(ax, x0, yc - D / 2, x0 + SX2, yc - D / 2, f"2nd M3 at {SX2:g}", off=24)
+    dim(ax, x0, yc - D / 2, x0, yc + D / 2, f"Ø{D:g}", off=3, vertical=True)
     # end view, 4:1
     cx, cy, k = 50, 120, 4
     ax.add_patch(plt.Circle((cx, cy), D / 2 * k, fill=False, lw=0.6))
@@ -85,10 +84,10 @@ with PdfPages(OUT / "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf") as pdf:
             f"tang ({a.tang_width:.2f} wide) sits in the slot; the screw presses its flat face.", fontsize=6)
     notes = [
         "Hand tools (bench vice, hacksaw, drill, M3 tap):",
-        f"1. Cut {L:.0f} mm of Ø{D:.0f} aluminium or brass bar; square and chamfer both ends.",
+        f"1. Cut {L:g} mm of Ø{D:g} aluminium or brass bar; square and chamfer both ends.",
         f"2. Wrap the page-2 strip round one end, mark the slot line and the hole cross.",
-        f"3. Hacksaw a slot {SD:.0f} mm deep across the end, through the centre (one blade kerf, ~0.8 mm).",
-        f"4. At {SX:.0f} mm from the end, at 90° to the slot, drill Ø2.5 into the slot; tap M3.",
+        f"3. Hacksaw a slot {SD:g} mm deep across the end, through the centre (one blade kerf, ~0.8 mm).",
+        f"4. At {SX:g} mm from the end, at 90° to the slot, drill Ø2.5 into the slot; tap M3.",
         "5. Fit an M3 x 5 grub screw (cup point). Repeat on the other end for a double-ended handle.",
         "6. Slide the X-Acto-tang pick in until the 10 mm shoulders touch the bar end; tighten.",
         "Lathe: face, centre, chamfer 0.5 x 45°, knurl the middle 60 mm, part off; slot and tap as above.",
@@ -109,7 +108,7 @@ with PdfPages(OUT / "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf") as pdf:
     for sx in [SX] + ([SX2] if SX2 else []):
         ax.plot([hx - 1.5, hx + 1.5], [y0 + sx] * 2, "k-", lw=0.5); ax.plot([hx] * 2, [y0 + sx - 1.5, y0 + sx + 1.5], "k-", lw=0.5)
         ax.text(hx + 2, y0 + sx, "drill M3 tap hole", fontsize=6, va="center")
-    ax.text(x0, y0 - 2, f"Strip = π × {D:.0f} = {circ:.2f} mm round; this top edge sits on the end face", fontsize=6)
+    ax.text(x0, y0 - 2, f"Strip = π × {D:g} = {circ:.2f} mm round; this top edge sits on the end face", fontsize=6)
     pdf.savefig(fig); plt.close(fig)
 
 disc = Point(0, 0).buffer(D / 2, quad_segs=48).difference(box(-D, -0.4, D, 0.4)).difference(Point(0, 0).buffer(0.01))
