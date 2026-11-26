@@ -4,6 +4,8 @@ A handle that takes every X-Acto-tang pick and can be made with hand tools. The 
 
 The tang hole position matches the screw position (`--screw-x` here, `--tang-hole-x` in `build/generate_home_workshop.py`, both 5 mm by default). Shoulder thickness and width can be changed with `--shoulder-length` and `--shoulder-width`, or in the site's Customise tab.
 
+For two screws, make the tang longer (about 14 mm) with holes at 4 and 10 mm in the customiser. Then run `python build/generate_diy_handle.py --screw-x 4 --screw2-x 10`; the slot is deepened to match.
+
 ## Why a solid bar, not a tube
 
 - A thin-wall tube leaves the 5.80 mm tang loose in a round bore, so it turns. A slot across a solid bar stops it turning.

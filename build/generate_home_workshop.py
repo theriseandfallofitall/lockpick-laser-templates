@@ -472,6 +472,37 @@ def end_place(p, right):
     return q, ok
 
 
+def spine_place(p, x):
+    """Put the pick's straight handle edge exactly on the blade's smooth back (spine) edge: that side needs no cutting."""
+    return translate(p, x - p.bounds[0], M - p.bounds[1])
+
+
+def blades_spine(items):
+    """Even spacing, every part's top (handle) edge on the spine. No end slots: the pin hole would sit too near the edge."""
+    out, cur = [], []
+    span = (M + BL - END_KEEP) - (M + END_KEEP)
+    for it in items:
+        trial = cur + [it]
+        if cur and sum(i[1].bounds[2] - i[1].bounds[0] for i in trial) + GAP * (len(trial) + 1) > span:
+            out.append(cur); cur = [it]
+        else:
+            cur = trial
+    if cur:
+        out.append(cur)
+    placed = []
+    for group in out:
+        Ls = [p.bounds[2] - p.bounds[0] for _, p in group]
+        g = (span - sum(Ls)) / (len(group) + 1)
+        x, res = M + END_KEEP + g, []
+        for (ident, p), L in zip(group, Ls):
+            q = spine_place(p, x)
+            assert q.bounds[3] <= band[1] + 1e-6, ident          # clear of the tooth margin
+            res.append((ident, q)); x += L + g
+        gaps = [res[i + 1][1].bounds[0] - res[i][1].bounds[2] for i in range(len(res) - 1)]
+        placed.append((res, False, gaps))
+    return placed
+
+
 def blades_for(items, end_ok):
     """Greedy fill, then even spacing. end_ok: the first/last items sit flush at the blade ends."""
     span_end, span_mid = BL - 2 * FLUSH, (M + BL - END_KEEP) - (M + END_KEEP)
@@ -536,11 +567,15 @@ if ORIGINALS:
     sets += [("xacto-v2-picks", list(xacto.items()), False),
              ("original-picks__no-holes", orig_plain, True),
              ("original-picks__with-holes", orig_holes, True)]
+# spine-edge versions of the flat-handle sets: handle edge on the blade's back edge (one side needs no cutting)
+sets += [(n + "__spine", polys, None) for n, polys, end_ok in list(sets) if end_ok]
 layouts = []
 too_tall = [i for _, polys, _ in sets for i, p in polys if p.bounds[3] - p.bounds[1] > usable_h]
 for name, polys, end_ok in sets:
-    polys = [(i, p) for i, p in polys if p.bounds[3] - p.bounds[1] <= usable_h]
-    for n, (items, used_end, gaps) in enumerate(blades_for(polys, end_ok), 1):
+    polys = [(i, p) for i, p in polys if p.bounds[3] - p.bounds[1] <= BW - TM]
+    if end_ok is not None:
+        polys = [(i, p) for i, p in polys if p.bounds[3] - p.bounds[1] <= usable_h]
+    for n, (items, used_end, gaps) in enumerate(blades_spine(polys) if end_ok is None else blades_for(polys, end_ok), 1):
         stem = OUTH / f"blade-{BW:.1f}mm__{name}__{n:02d}"
         files = write_pair(stem, items, w=BL + 2 * M, h=BW + 2 * M, ref=blade_ref,
                            title="Red = cut/mark. Blue = blade reference, do not cut. Origin matches the blade jig.")

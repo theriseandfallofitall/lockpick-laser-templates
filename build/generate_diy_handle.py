@@ -27,9 +27,12 @@ ap.add_argument("--tang-width", type=float, default=5.80)
 ap.add_argument("--tang-length", type=float, default=10.0)
 ap.add_argument("--slot-depth", type=float, default=12.0, help="slot depth; >= tang length + 2")
 ap.add_argument("--screw-x", type=float, default=5.0, help="grub screw centre from the bar end, mm")
+ap.add_argument("--screw2-x", type=float, default=0.0, help="optional second grub screw from the bar end, mm (0 = none; use with a two-hole tang)")
 ap.add_argument("--double-ended", action="store_true", default=True)
 a = ap.parse_args()
-D, L, SD, SX = a.bar, a.length, a.slot_depth, a.screw_x
+D, L, SD, SX, SX2 = a.bar, a.length, a.slot_depth, a.screw_x, a.screw2_x
+if SX2:
+    SD = max(SD, SX2 + 3)          # slot must reach past the second screw
 OUT = W.ROOT / "generated/diy-handle"; OUT.mkdir(parents=True, exist_ok=True)
 A4 = (210.0, 297.0)
 
@@ -62,11 +65,14 @@ with PdfPages(OUT / "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf") as pdf:
     for end in ([x0] + ([x0 + L] if a.double_ended else [])):
         s = 1 if end == x0 else -1
         ax.plot([end, end + s * SD], [yc, yc], "k--", lw=0.4)                       # slot (seen edge-on)
-        ax.add_patch(plt.Circle((end + s * SX, yc - D / 2 + 0.01), 1.25, fill=False, lw=0.5))
-        ax.plot([end + s * SX] * 2, [yc - D / 2, yc], "k-", lw=0.3)
+        for sx in [SX] + ([SX2] if SX2 else []):
+            ax.add_patch(plt.Circle((end + s * sx, yc - D / 2 + 0.01), 1.25, fill=False, lw=0.5))
+            ax.plot([end + s * sx] * 2, [yc - D / 2, yc], "k-", lw=0.3)
     dim(ax, x0, yc - D / 2, x0 + L, yc - D / 2, f"{L:.0f}", off=6)
     dim(ax, x0, yc - D / 2, x0 + SD, yc - D / 2, f"slot {SD:.0f} deep", off=12)
     dim(ax, x0, yc - D / 2, x0 + SX, yc - D / 2, f"M3 at {SX:.0f}", off=18)
+    if SX2:
+        dim(ax, x0, yc - D / 2, x0 + SX2, yc - D / 2, f"2nd M3 at {SX2:.0f}", off=24)
     dim(ax, x0, yc - D / 2, x0, yc + D / 2, f"Ø{D:.0f}", off=3, vertical=True)
     # end view, 4:1
     cx, cy, k = 50, 120, 4
@@ -100,8 +106,9 @@ with PdfPages(OUT / "DIY-HANDLE__drawing-and-marking-wrap__A4.pdf") as pdf:
     for frac, lab in ((0.0, "slot"), (0.5, "slot")):
         ax.plot([x0 + frac * circ] * 2, [y0, y0 + SD], "r-", lw=0.6); ax.text(x0 + frac * circ + 0.5, y0 + SD + 3, lab, fontsize=6, color="r")
     hx = x0 + 0.25 * circ
-    ax.plot([hx - 1.5, hx + 1.5], [y0 + SX] * 2, "k-", lw=0.5); ax.plot([hx] * 2, [y0 + SX - 1.5, y0 + SX + 1.5], "k-", lw=0.5)
-    ax.text(hx + 2, y0 + SX, "drill M3 tap hole", fontsize=6, va="center")
+    for sx in [SX] + ([SX2] if SX2 else []):
+        ax.plot([hx - 1.5, hx + 1.5], [y0 + sx] * 2, "k-", lw=0.5); ax.plot([hx] * 2, [y0 + sx - 1.5, y0 + sx + 1.5], "k-", lw=0.5)
+        ax.text(hx + 2, y0 + sx, "drill M3 tap hole", fontsize=6, va="center")
     ax.text(x0, y0 - 2, f"Strip = π × {D:.0f} = {circ:.2f} mm round; this top edge sits on the end face", fontsize=6)
     pdf.savefig(fig); plt.close(fig)
 

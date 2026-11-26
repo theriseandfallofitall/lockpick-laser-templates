@@ -7,7 +7,7 @@ const CK = (() => {
 
   // ---------- defaults (also the "Reset all" values) and presets
   const PICK_BASE = { handle: "full", handleL: 62, handleH: 9, handleEnd: "round", holes: true, holeD: 3.4, hole1: 15, hole2: 50,
-    tangW: 5.8, tangL: 10, shoulderL: 2, shoulderW: 10, tangHole: false, tangHoleD: 2.2, tangHoleX: 5, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
+    tangW: 5.8, tangL: 10, shoulderL: 2, shoulderW: 10, tangHole: false, tangHoleD: 2.2, tangHoleX: 5, tangHole2: false, tangHole2X: 10, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
     tip: "hook", tipH: 2.6, tipW: 1.0, tipL: 10, peaks: 3, lean: 0, n: 5, pitch: 3.2, custom: "0 2.2 0.6 2.8 1.2 2.4 0" };
   const TENSION_BASE = { length: 76, shaftW: 3.4, dirA: "up", tipA: 2.4, linA: 4.7, dirB: "up", tipB: 2.8, linB: 4.7, serr: false,
     outer: "round", outerR: 0.3, tipCorner: "sharp", tipCornerR: 0.5, legCorner: "round", legCornerR: 0.8, ovalStretch: 1.6, wave: 0, waves: 1 };
@@ -95,7 +95,13 @@ const CK = (() => {
     const circles = holes.map(([hx, hy]) => ({ x: hx, y: hy, r: o.holeD / 2 }));
     // optional hole through the tang: a cone-point grub screw in the DIY bar handle seats in it (stops pull-out)
     if (o.handle === "xacto" && o.tangHole) circles.push({ x: o.tangL - o.tangHoleX, y: 0, r: o.tangHoleD / 2 });
-    return finish({ rings: [ring], circles, guides: [] });
+    // optional second hole (second grub screw in the DIY bar handle); needs a longer tang, e.g. 14 mm with holes at 4 / 10
+    if (o.handle === "xacto" && o.tangHole && o.tangHole2) circles.push({ x: o.tangL - o.tangHole2X, y: 0, r: o.tangHoleD / 2 });
+    // dimension marks for the preview (display only): [label, x from, x to] in raw coordinates
+    const marks = o.handle === "xacto"
+      ? [["tang", 0, o.tangL], ["shoulder", o.tangL, x0], ["neck", x0, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]]
+      : [["handle", 0, neckStart], ["neck", neckStart, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]];
+    return finish({ rings: [ring], circles, guides: [], marks });
   }
 
   const flat = () => 0;
@@ -261,6 +267,7 @@ const CK = (() => {
     const m = 1;
     g.rings = g.rings.map(r => r.map(([x, y]) => [x - minX + m, y - minY + m]));
     g.circles = g.circles.map(c => ({ ...c, x: c.x - minX + m, y: c.y - minY + m }));
+    g.marks = (g.marks || []).map(([l, a, b]) => [l, a - minX + m, b - minX + m]);
     const all = g.rings.flat();
     g.w = Math.max(...all.map(p => p[0])) + m; g.h = Math.max(...all.map(p => p[1])) + m;
     g.length = g.w - 2 * m; g.height = g.h - 2 * m; g.fitsBlade = g.height <= BLADE_USABLE;
@@ -310,6 +317,7 @@ if (typeof process !== "undefined" && process.argv && process.argv.includes("--s
   const B = CK.BASE;
   emit("extra-xacto-rake", "pick", { ...B, handle: "xacto", tip: "rake", tipH: 2.2 });
   emit("extra-xacto-tang-hole-big-shoulders", "pick", { ...B, handle: "xacto", tangHole: true, tangHoleD: 2.4, shoulderL: 3.5, shoulderW: 12 });
+  emit("extra-xacto-two-tang-holes", "pick", { ...B, handle: "xacto", tangL: 14, tangHole: true, tangHoleX: 4, tangHole2: true, tangHole2X: 10 });
   emit("extra-square-end", "pick", { ...B, handleEnd: "square" });
   emit("extra-point-end", "pick", { ...B, handleEnd: "point", handleL: 70 });
   emit("extra-ball-sweep", "pick", { ...B, tip: "ball", tipH: 4, sweep: -1.5, holes: false });
@@ -352,7 +360,9 @@ if (typeof document !== "undefined") {
     shoulderW: num(P, "Handle", "Shoulder width (stop against the collet)", "mm", 7, 14, 0.1, { only: o => o.handle === "xacto" }),
     tangHole: { tool: P, grp: "Handle", label: "Hole through the tang (for the DIY bar grub screw)", type: "check", simple: true, only: o => o.handle === "xacto" },
     tangHoleD: num(P, "Handle", "Tang hole diameter", "mm", 1.2, 3.5, 0.05, { only: o => o.handle === "xacto" && o.tangHole }),
-    tangHoleX: num(P, "Handle", "Tang hole, distance in front of the shoulders", "mm", 2, 12, 0.1, { only: o => o.handle === "xacto" && o.tangHole }),
+    tangHoleX: num(P, "Handle", "Tang hole, distance in front of the shoulders", "mm", 2, 15, 0.1, { only: o => o.handle === "xacto" && o.tangHole }),
+    tangHole2: { tool: P, grp: "Handle", label: "Second tang hole (two grub screws; lengthen the tang to ~14 mm)", type: "check", only: o => o.handle === "xacto" && o.tangHole },
+    tangHole2X: num(P, "Handle", "Second hole, distance in front of the shoulders", "mm", 2, 15, 0.1, { only: o => o.handle === "xacto" && o.tangHole && o.tangHole2 }),
     // shaft
     neckL: num(P, "Shaft", "Neck taper length", "mm", 6, 30, 0.5),
     shaftL: num(P, "Shaft", "Shaft length", "mm", 15, 75, 0.5, { simple: true }),
@@ -455,7 +465,10 @@ if (typeof document !== "undefined") {
     const sRow = mk("div", "f"), sl = mk("label", "t", "Start from"); sl.htmlFor = "ck-start"; sRow.append(sl, start);
     const aRow = mk("div", "ck-actions"), al = mk("label", "chk", ""); al.append(advBox, document.createTextNode(" Advanced (all fields)"));
     const reset = mk("button", "", "Reset all"); reset.type = "button"; reset.id = "ck-reset";
-    aRow.append(al, reset); bar.append(sRow, aRow);
+    const dimBox = document.createElement("input"); dimBox.type = "checkbox"; dimBox.id = "ck-dims"; dimBox.checked = true;
+    const dl = mk("label", "chk", ""); dl.append(dimBox, document.createTextNode(" Show dimensions"));
+    dimBox.addEventListener("change", () => draw());
+    aRow.append(al, dl, reset); bar.append(sRow, aRow);
     fillStart();
 
     const read = () => Object.fromEntries(Object.entries(F).filter(([, fl]) => fl.type !== "draw").map(([k, fl]) => {
@@ -513,6 +526,27 @@ if (typeof document !== "undefined") {
     canvas.addEventListener("pointerup", stop); canvas.addEventListener("pointercancel", stop);
 
     let g = null, name = "";
+    // preview: the outline plus dimension lines (mm). Display only: downloads never include the dimensions.
+    function preview(g, dims) {
+      const body = CK.toSVG(g, "").replace(/^.*?<\/title>/, "").replace(/<\/svg>$/, "")
+        .replace(/fill="none" stroke="#ff0000" stroke-width="0.05"/g, 'fill="#3a1b1d" stroke="#ff6b6b" stroke-width="1.4" vector-effect="non-scaling-stroke"');
+      if (!dims) return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 ${g.w} ${g.h}">${body}</svg>`;
+      const fs = Math.max(2.0, Math.min(4, g.w / 42)), padT = g.marks.length ? fs * 3.2 : 1, padB = fs * 3.2, padR = fs * 5;
+      const ln = (x1, y1, x2, y2, c = "#7d8b95") => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="1" vector-effect="non-scaling-stroke"/>`;
+      const tx = (x, y, t, a = "middle", c = "#cfd8de") => `<text x="${x}" y="${y}" font-size="${fs}" fill="${c}" text-anchor="${a}" font-family="system-ui">${t}</text>`;
+      const hdim = (a, b, y, label, c) => ln(a, y, b, y, c) + ln(a, y - fs * 0.5, a, y + fs * 0.5, c) + ln(b, y - fs * 0.5, b, y + fs * 0.5, c) + tx((a + b) / 2, y - fs * 0.35, label, "middle", c);
+      let d = "";
+      const x0 = 1, x1 = g.w - 1, y0 = 1, y1 = g.h - 1;
+      d += hdim(x0, x1, y1 + padB * 0.75, `${(x1 - x0).toFixed(1)} mm overall`, "#ff8080");                  // overall length
+      d += ln(x1 + padR * 0.35, y0, x1 + padR * 0.35, y1, "#ff8080") + ln(x1 + padR * 0.2, y0, x1 + padR * 0.5, y0, "#ff8080") +
+           ln(x1 + padR * 0.2, y1, x1 + padR * 0.5, y1, "#ff8080") + tx(x1 + padR * 0.45, (y0 + y1) / 2 + fs * 0.35, `${(y1 - y0).toFixed(1)}`, "start", "#ff8080");
+      g.marks.forEach(([l, a, b], i) => {                                                                     // segment lengths along the top
+        if (b - a < 0.5) return;
+        const y = y0 - padT * (i % 2 ? 0.3 : 0.7);
+        d += hdim(a, b, y, b - a > fs * 4 ? `${l} ${(b - a).toFixed(1)}` : (b - a).toFixed(1));
+      });
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 ${-padT} ${g.w + padR} ${g.h + padT + padB}">${body}${d}</svg>`;
+    }
     function draw() {
       const o = read(), adv = advBox.checked;
       for (const [k, fl] of Object.entries(F)) {
@@ -522,9 +556,9 @@ if (typeof document !== "undefined") {
       for (const fs of Object.values(sets)) fs.hidden = !fs.querySelector(".f:not([hidden])");
       if (o.tool === "pick" && o.tip === "custom") drawCanvas(o);
       g = CK.build(o.tool, o);
-      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW + (o.tangHole ? "-hole-" + o.tangHoleD : "") : (o.holes ? "holes" : "no-holes")}`
+      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW + (o.tangHole ? (o.tangHole2 ? "-2holes-" : "-hole-") + o.tangHoleD : "") : (o.holes ? "holes" : "no-holes")}`
         : `custom-tension__${o.dirA}-${o.dirB}__tip-${o.tipA}`;
-      view.innerHTML = CK.toSVG(g, name).replace(/width="[^"]*mm" height="[^"]*mm"/, 'width="100%"').replace(/fill="none" stroke="#ff0000" stroke-width="0.05"/g, 'fill="#3a1b1d" stroke="#ff6b6b" stroke-width="1.4" vector-effect="non-scaling-stroke"');
+      view.innerHTML = preview(g, document.getElementById("ck-dims") ? document.getElementById("ck-dims").checked : true);
       const w = CK.validate(g);
       warnEl.textContent = w.length ? "Warning: " + w.join(" / ") : "";
       info.innerHTML = `Overall length <b>${g.length.toFixed(1)} mm</b> × height ${g.height.toFixed(1)} mm · ` +

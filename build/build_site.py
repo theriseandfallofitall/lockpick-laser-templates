@@ -203,24 +203,30 @@ if exists(rd):
     fit.append(file_card("M3 insert fit coupon", "handle-concepts/Printed-Handle-Rev-D_STL-preview.png", "3D print · pilots 4.0 / 4.2 / 4.4 mm",
                          [("STL", rd + "M3-Insert-Fit-Coupon__pilots-4.00-4.20-4.40mm__depth-4.10mm.stl")]))
 T[("fit", "Cut these first")] = fit
-# Blade layouts: holes / no-holes pairs share one card
+# Blade layouts: holes / no-holes pairs share one card (labelled rows); spine-edge layouts have their own chips
 LAY = json.loads((ROOT / "generated/hacksaw-blade-layouts/layouts.json").read_text(encoding="utf-8"))["layouts"]
-SETNAME = [("jig", "Jig"), ("own-picks-xacto", "Picks · X-Acto"), ("own-picks-full-handle", "Picks · flat handle"),
-           ("tension-tools-v2", "Tension tools"), ("xacto-v2-picks", "Originals · X-Acto"), ("original-picks", "Originals · flat handle")]
-for key, label in SETNAME:
+SETNAME = [("jig", "", "Jig"), ("own-picks-xacto", "", "Picks · X-Acto"), ("own-picks-full-handle", "", "Picks · flat, centred"),
+           ("own-picks-full-handle", "spine", "Picks · flat, on the blade edge"), ("tension-tools-v2", "", "Tension tools"),
+           ("xacto-v2-picks", "", "Originals · X-Acto"), ("original-picks", "", "Originals · centred"),
+           ("original-picks", "spine", "Originals · on the blade edge")]
+NOTE_SPINE = "Each handle's straight edge sits on the blade's smooth back edge: that side is already cut. Teeth side down."
+for key, mode, label in SETNAME:
     cards = []
-    for l in [l for l in LAY if l["set"].split("__")[0] == key and not l["set"].endswith("__with-holes")]:
+    for l in LAY:
+        parts = l["set"].split("__")
+        if parts[0] != key or "with-holes" in parts or ("spine" in parts) != (mode == "spine"):
+            continue
         stem = l["files"][0][:-4]
-        if key == "jig":
-            nm = "Blade jig · cut once from 3 mm sheet"
-        else:
-            nm = f"Blade {l['sheet']:02d} · " + ", ".join(pretty(re.sub(r"(-xacto-v2|__xacto|__full-handle|__tip.*|__short.*)$", "", o)) for o in l["outlines"])
-        extra = []
-        if l["set"].endswith("__no-holes"):
+        nm = ("Blade jig · cut once from 3 mm sheet" if key == "jig" else
+              f"Blade {l['sheet']:02d} · " + ", ".join(pretty(re.sub(r"(-xacto-v2|__xacto|__full-handle|__tip.*|__short.*)$", "", o)) for o in l["outlines"]))
+        if "no-holes" in parts:
             twin = stem.replace("__no-holes__", "__with-holes__")
-            extra = [("Holes SVG", twin + ".svg"), ("Holes DXF", twin + ".dxf")] + ([("Holes PDF", twin + ".pdf")] if (ROOT / (twin + ".pdf")).exists() else [])
-        c = laser_card(stem, nm, extra)
-        if l.get("ends_use_blade_pin_holes"):
+            c = styled(stem, nm, [fmt_row("No holes", stem + ".svg")] + ([fmt_row("Holes", twin + ".svg")] if (ROOT / (twin + ".svg")).exists() else []), None)
+        else:
+            c = laser_card(stem, nm)
+        if mode == "spine":
+            c["note"] = NOTE_SPINE
+        elif l.get("ends_use_blade_pin_holes"):
             c["note"] = "End picks sit flush at the blade ends: the blade's pin hole becomes a lanyard hole."
         cards.append(c)
     T[("blade", label)] = cards
@@ -315,7 +321,7 @@ dialog button.x{font:inherit;font-weight:600;color:#0d1114;border:1px solid #ff5
 #ck-form{display:flex;flex-direction:column;gap:6px;background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px}
 #ck-form [hidden]{display:none!important}
 .ck-bar{display:flex;flex-direction:column;gap:10px;padding-bottom:10px;border-bottom:1px solid #243038}
-.ck-actions{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:#a9b5bd}
+.ck-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:13px;color:#a9b5bd} .ck-actions label{white-space:nowrap} .ck-actions #ck-reset{margin-left:auto}
 #ck-form fieldset{border:0;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;min-width:0}
 #ck-form legend{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6f7d87;padding:0;margin-bottom:6px}
 #ck-form .f{display:flex;flex-direction:column;gap:3px;font-size:13px;color:#a9b5bd}
