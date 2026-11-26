@@ -128,9 +128,13 @@ const CK = (() => {
     const sx = (neckEnd + tipStart) / 2, hx = o.handle === "xacto" ? o.tangL / 2 : Math.min(8, neckStart / 2);
     const vmarks = [
       [o.handle === "xacto" ? "tang" : "handle", hx, topAt(hx) + fe(hx), botAt(hx) + fe(hx)],
-      ["shaft", sx, topAt(sx) + fe(sx), botAt(sx) + fe(sx)],
-      [["ball", "doubleBall", "halfBall"].includes(o.tip) ? "above shaft" : "tip", pk, pkY, centre(tipStart) - half + fe(tipStart)],
+      [o.tip === "comb" ? "comb body" : "shaft", sx, topAt(sx) + fe(sx), botAt(sx) + fe(sx)],
+      [["ball", "doubleBall", "halfBall"].includes(o.tip) ? "ball above shaft" : o.tip === "comb" ? "stop above body" : "tip above shaft", pk, pkY, centre(tipStart) - half + fe(tipStart)],
     ];
+    if (o.tip === "comb") {   // tooth height at the front tooth (the tallest point is the stop)
+      const xt = tipStart + 2 + o.first + (Math.max(1, Math.round(o.n)) - 1) * o.pitch;
+      vmarks.push(["tooth", xt, topAt(xt) + fe(xt), centre(tipStart) - half + fe(tipStart)]);
+    }
     if (o.handle === "xacto") vmarks.splice(1, 0, ["shoulder", o.tangL + o.shoulderL / 2, -o.shoulderW / 2 + fe(o.tangL + 0.1), o.shoulderW / 2 + fe(o.tangL + 0.1)]);
     // peaks closer than ~1.2 mm leave valleys narrower than a kerf / needle file
     const notes = [];
@@ -265,12 +269,12 @@ const CK = (() => {
     const ring = corners(top.concat(bot), {
       outer: [o.outer, o.outerR], tip: [o.tipCorner, o.tipCornerR], leg: [o.legCorner, o.legCornerR], stretch: o.ovalStretch });
     const off = o.wave ? o.wave * Math.sin(Math.PI * o.waves * ((L / 2 - xa) / Math.max(1, xb - xa))) : 0;   // follow the wave at mid-length
-    const vmarks = [["bar", L / 2, -SW / 2 + off, SW / 2 + off]], marks = [];
+    const vmarks = [["bar height", L / 2, -SW / 2 + off, SW / 2 + off]], marks = [];
     const endMarks = (e, side) => {
       if (!on(e)) return;
       const yS = e.dir * (SW / 2 + S), yE = yS + e.dir * e.lin, x = side ? L - e.tip / 2 : e.tip / 2;
-      vmarks.push(["in", x, Math.min(yS, yE), Math.max(yS, yE)]);
-      marks.push([`tip ${e.tip}`, side ? L - e.tip : 0, side ? L : e.tip]);
+      vmarks.push(["into lock", x, Math.min(yS, yE), Math.max(yS, yE)]);
+      marks.push(["tip width", side ? L - e.tip : 0, side ? L : e.tip]);
     };
     endMarks(A, 0); endMarks(B, 1);
     return finish({ rings: [ring], circles: [], guides: [], marks, vmarks });
@@ -453,16 +457,16 @@ if (typeof document !== "undefined") {
   const F = {
     tool: sel(null, null, "Make a", [["pick", "Pick"], ["tension", "Tension bar"]], { bar: true }),
     // handle
-    handle: sel(P, "Handle", "Type", [["full", "Flat handle"], ["xacto", "X-Acto / DIY bar tang"]], { simple: true }),
-    holes: { tool: P, grp: "Handle", label: "Screw holes", type: "check", simple: true, only: o => o.handle === "full" },
-    handleL: num(P, "Handle", "Length", "mm", 40, 90, 1, { only: o => o.handle === "full" }),
-    handleH: num(P, "Handle", "Height", "mm", 6, 12, 0.1, { only: o => o.handle === "full" }),
-    handleEnd: sel(P, "Handle", "End shape", [["round", "Rounded"], ["square", "Square"], ["point", "Pointed"]], { only: o => o.handle === "full" }),
-    holeD: num(P, "Handle", "Hole diameter", "mm", 2, 5, 0.05, { only: hasHoles }),
-    hole1: num(P, "Handle", "Hole 1 position", "mm", 5, 85, 0.5, { only: hasHoles }),
-    hole2: num(P, "Handle", "Hole 2 position", "mm", 5, 85, 0.5, { only: hasHoles }),
-    tangW: num(P, "Handle", "Tang width (measure your collet)", "mm", 5.0, 6.4, 0.05, { only: o => o.handle === "xacto" }),
-    tangL: num(P, "Handle", "Tang length", "mm", 6, 16, 0.5, { only: o => o.handle === "xacto" }),
+    handle: sel(P, "Handle", "Handle type", [["full", "Flat handle"], ["xacto", "X-Acto / DIY bar tang"]], { simple: true }),
+    holes: { tool: P, grp: "Handle", label: "Two screw holes (to bolt on handle scales)", type: "check", simple: true, only: o => o.handle === "full" },
+    handleL: num(P, "Handle", "Handle length", "mm", 40, 90, 1, { only: o => o.handle === "full" }),
+    handleH: num(P, "Handle", "Handle height (top to bottom)", "mm", 6, 12, 0.1, { only: o => o.handle === "full" }),
+    handleEnd: sel(P, "Handle", "Handle end shape", [["round", "Rounded"], ["square", "Square"], ["point", "Pointed"]], { only: o => o.handle === "full" }),
+    holeD: num(P, "Handle", "Screw hole diameter (3.4 fits M3)", "mm", 2, 5, 0.05, { only: hasHoles }),
+    hole1: num(P, "Handle", "Hole 1: distance from the handle end", "mm", 5, 85, 0.5, { only: hasHoles }),
+    hole2: num(P, "Handle", "Hole 2: distance from the handle end", "mm", 5, 85, 0.5, { only: hasHoles }),
+    tangW: num(P, "Handle", "Tang width (the part the knife grips; cut the fit tests to find yours)", "mm", 5.0, 6.4, 0.05, { only: o => o.handle === "xacto" }),
+    tangL: num(P, "Handle", "Tang length (how far it goes into the knife)", "mm", 6, 16, 0.5, { only: o => o.handle === "xacto" }),
     shoulderL: num(P, "Handle", "Shoulder thickness (along the pick)", "mm", 0.8, 6, 0.1, { only: o => o.handle === "xacto" }),
     shoulderW: num(P, "Handle", "Shoulder width (stop against the collet)", "mm", 7, 14, 0.1, { only: o => o.handle === "xacto" }),
     tangHole: { tool: P, grp: "Handle", label: "Hole through the tang (for the DIY bar grub screw)", type: "check", simple: true, only: o => o.handle === "xacto" },
@@ -473,48 +477,48 @@ if (typeof document !== "undefined") {
     flatEdge: { tool: P, grp: "Handle", label: "Flat edge: one straight side from butt to tip (lay it on the hacksaw blade's back, no cutting on that side)", type: "check", simple: true,
       only: o => !["ball", "doubleBall"].includes(o.tip) },
     // shaft
-    neckL: num(P, "Shaft", "Neck taper length", "mm", 6, 30, 0.5),
-    shaftL: num(P, "Shaft", "Shaft length", "mm", 15, 75, 0.5, { simple: true }),
-    shaftH: num(P, "Shaft", "Shaft height (thicker = stiffer)", "mm", 0.8, 3, 0.05, { simple: true }),
-    sweep: num(P, "Shaft", "Sweep (- rises, + drops to tip)", "mm", -4, 4, 0.1, { only: o => !o.flatEdge }),
+    neckL: num(P, "Shaft", "Neck length (where the handle narrows to the shaft)", "mm", 6, 30, 0.5),
+    shaftL: num(P, "Shaft", o => o.tip === "comb" ? "Shaft length (between the neck and the stop)" : "Shaft length (the thin part before the tip)", "mm", 15, 75, 0.5, { simple: true }),
+    shaftH: num(P, "Shaft", o => o.tip === "comb" ? "Comb body height (under the teeth; 2 mm slides under the pins)" : "Shaft height (taller = stiffer, but less room in the keyway)", "mm", 0.8, 3, 0.05, { simple: true }),
+    sweep: num(P, "Shaft", o => o.tip === "comb" ? "Shaft offset at the tip (3.5 puts the comb level with the handle bottom)" : "Shaft offset at the tip (minus = up, plus = down)", "mm", -4, 4, 0.1, { only: o => !o.flatEdge }),
     // tip
-    tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["swept", "Swept hook (shaft curves up)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
+    tip: sel(P, "Tip", "Tip shape", [["hook", "Hook"], ["swept", "Swept hook (shaft curves up)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
       ["halfBall", "Half-ball"], ["ball", "Ball"], ["doubleBall", "Double ball"], ["comb", "Comb"], ["warded", "Warded L bit"], ["custom", "Custom / drawn"]]),
-    tipH: num(P, "Tip", "Tip height (above the shaft top; comb: tooth height)", "mm", 0.5, 6, 0.1, { simple: true }),
-    tipW: num(P, "Tip", "Tip width (hooks and rakes: strip width at the end; comb: tooth width)", "mm", 0.6, 4, 0.05, { only: o => ["hook", "curve", "swept", "gem", "warded", "lever", "comb", "rake"].includes(o.tip) }),
-    tipL: num(P, "Tip", "Tip length (swept hook: reach of the curve; half-diamond: back slope)", "mm", 1, 25, 0.1, { only: o => ["halfDiamond", "rake", "custom", "curve", "swept"].includes(o.tip) }),
-    bendR: num(P, "Tip", "Bend radius (bigger = gentler curve)", "mm", 0.6, 6, 0.1, { only: o => ["hook", "gem", "lever"].includes(o.tip) }),
-    lean: num(P, "Tip", "Lean (forward)", "deg", 0, 60, 1, { only: o => ["hook", "gem"].includes(o.tip) }),
-    waveStyle: sel(P, "Tip", "Waves", [["up", "Up only (Bogota)"], ["both", "Up and down (snake)"]], { only: o => o.tip === "rake" }),
-    peaks: num(P, "Tip", "Humps", "", 1, 6, 1, { only: o => o.tip === "rake" }),
-    n: num(P, "Tip", "Teeth / strokes", "", 2, 8, 1, { only: o => ["comb", "saw"].includes(o.tip) }),
-    pitch: num(P, "Tip", "Pitch (comb: Kwikset 3.81, Schlage 3.96)", "mm", 1.5, 6, 0.01, { only: o => ["comb", "saw"].includes(o.tip) }),
+    tipH: num(P, "Tip", o => ({ comb: "Tooth height (5 mm reaches past the shear line)", ball: "Ball diameter", doubleBall: "Front ball diameter", halfBall: "Half-ball diameter", rake: "Hump height above the shaft (front hump)", warded: "Bit height above the shaft" })[o.tip] || "Tip height above the shaft", "mm", 0.5, 6, 0.1, { simple: true }),
+    tipW: num(P, "Tip", o => ({ comb: "Tooth width (pin holes are about 2.9 mm)", warded: "Bit width", rake: "Strip width at the tip" })[o.tip] || "Width of the hook at its tip", "mm", 0.6, 4, 0.05, { only: o => ["hook", "curve", "swept", "gem", "warded", "lever", "comb", "rake"].includes(o.tip) }),
+    tipL: num(P, "Tip", o => ({ swept: "Reach: how far forward the curve runs", curve: "Reach: how far forward the curve runs", halfDiamond: "Back slope length (longer = gentler)", rake: "Length of the wavy part" })[o.tip] || "Tip length", "mm", 1, 25, 0.1, { only: o => ["halfDiamond", "rake", "custom", "curve", "swept"].includes(o.tip) }),
+    bendR: num(P, "Tip", "Bend radius where the shaft turns up (bigger = gentler)", "mm", 0.6, 6, 0.1, { only: o => ["hook", "gem", "lever"].includes(o.tip) }),
+    lean: num(P, "Tip", "Tip lean forward (0 = straight up)", "deg", 0, 60, 1, { only: o => ["hook", "gem"].includes(o.tip) }),
+    waveStyle: sel(P, "Tip", "Wave direction", [["up", "Up only (Bogota)"], ["both", "Up and down (snake)"]], { only: o => o.tip === "rake" }),
+    peaks: num(P, "Tip", "Number of humps", "", 1, 6, 1, { only: o => o.tip === "rake" }),
+    n: num(P, "Tip", o => o.tip === "comb" ? "Number of teeth (one per pin)" : "Number of teeth", "", 2, 8, 1, { only: o => ["comb", "saw"].includes(o.tip) }),
+    pitch: num(P, "Tip", o => o.tip === "comb" ? "Tooth spacing (Kwikset 3.81, Schlage 3.96)" : "Tooth spacing", "mm", 1.5, 6, 0.01, { only: o => ["comb", "saw"].includes(o.tip) }),
     first: num(P, "Tip", "First tooth from the stop (Kwikset 6.27, Schlage 5.87)", "mm", 3, 9, 0.01, { only: o => o.tip === "comb" }),
-    draw: { tool: P, grp: "Tip", type: "draw", label: "Draw the tip top edge (click / drag)", simple: true, only: o => o.tip === "custom" },
-    custom: { tool: P, grp: "Tip", label: "Heights along the tip, mm", type: "text", only: o => o.tip === "custom" },
+    draw: { tool: P, grp: "Tip", type: "draw", label: "Draw the top edge of the tip (click or drag)", simple: true, only: o => o.tip === "custom" },
+    custom: { tool: P, grp: "Tip", label: "Tip heights in mm, evenly spaced, front to back (end on -shaft height for a pointed nose)", type: "text", only: o => o.tip === "custom" },
     // tension
     length: num(T, "Shaft", "Overall length", "mm", 50, 110, 0.5, { simple: true }),
-    shaftW: num(T, "Shaft", "Bar width", "mm", 2.4, 5, 0.1, { simple: true }),
-    dirA: sel(T, "Tension ends", "End A leg", [["up", "Up"], ["down", "Down"], ["none", "None"]]),
-    tipA: num(T, "Tension ends", "End A tip width", "mm", 1.8, 4.5, 0.1, { simple: true, only: o => o.dirA !== "none" }),
-    linA: num(T, "Tension ends", "End A insertion (4.7 Kwikset)", "mm", 2, 14, 0.1, { simple: true, only: o => o.dirA !== "none" }),
-    dirB: sel(T, "Tension ends", "End B leg", [["up", "Up"], ["down", "Down"], ["none", "None"]]),
-    tipB: num(T, "Tension ends", "End B tip width", "mm", 1.8, 4.5, 0.1, { only: o => o.dirB !== "none" }),
-    linB: num(T, "Tension ends", "End B insertion (recessed 10.7)", "mm", 2, 14, 0.1, { only: o => o.dirB !== "none" }),
-    serr: { tool: T, grp: "Tension ends", label: "Serrations (V-notches on tip)", type: "check" },
+    shaftW: num(T, "Shaft", "Bar height (top to bottom edge)", "mm", 2.4, 5, 0.1, { simple: true }),
+    dirA: sel(T, "Tension ends", "Left end: tip points", [["up", "Up"], ["down", "Down"], ["none", "None"]]),
+    tipA: num(T, "Tension ends", "Left tip width (how much of the keyway height it fills)", "mm", 1.8, 4.5, 0.1, { simple: true, only: o => o.dirA !== "none" }),
+    linA: num(T, "Tension ends", "Left tip length into the lock (4.7 stops before pin 1)", "mm", 2, 14, 0.1, { simple: true, only: o => o.dirA !== "none" }),
+    dirB: sel(T, "Tension ends", "Right end: tip points", [["up", "Up"], ["down", "Down"], ["none", "None"]]),
+    tipB: num(T, "Tension ends", "Right tip width", "mm", 1.8, 4.5, 0.1, { only: o => o.dirB !== "none" }),
+    linB: num(T, "Tension ends", "Right tip length into the lock (10.7 for recessed plugs)", "mm", 2, 14, 0.1, { only: o => o.dirB !== "none" }),
+    serr: { tool: T, grp: "Tension ends", label: "Grip notches on the tips (serrations)", type: "check" },
     // corners
     outer: sel(T, "Corners", "Outside corners", [["sharp", "Sharp"], ["round", "Rounded (fillet)"], ["chamfer", "Chamfer"]], { simple: true }),
-    outerR: num(T, "Corners", "Outside corner size", "mm", 0.1, 2, 0.05, { only: o => o.outer !== "sharp" }),
+    outerR: num(T, "Corners", "Outside corner radius / chamfer size", "mm", 0.1, 2, 0.05, { only: o => o.outer !== "sharp" }),
     tipCorner: sel(T, "Corners", "Tip corner (tip meets its shoulder)",
       [["sharp", "Sharp"], ["round", "Rounded"], ["mouse", "Mouse bite (sits flush on the plug face)"], ["oval", "Oval relief (Reaper-style scoop)"]], { simple: true }),
-    tipCornerR: num(T, "Corners", "Tip corner size", "mm", 0.2, 1.5, 0.05, { only: o => o.tipCorner !== "sharp" }),
+    tipCornerR: num(T, "Corners", "Tip corner radius / relief size", "mm", 0.2, 1.5, 0.05, { only: o => o.tipCorner !== "sharp" }),
     legCorner: sel(T, "Corners", "Leg corner (leg meets the bar)",            // no reliefs here: they undercut the shoulder
       [["sharp", "Sharp"], ["round", "Rounded"], ["chamfer", "Chamfer"]]),
-    legCornerR: num(T, "Corners", "Leg corner size", "mm", 0.2, 3, 0.05, { only: o => o.legCorner !== "sharp" }),
-    ovalStretch: num(T, "Corners", "Oval stretch (1 = round)", "×", 1, 3, 0.1, { only: o => o.tipCorner === "oval" }),
+    legCornerR: num(T, "Corners", "Leg corner radius / chamfer size", "mm", 0.2, 3, 0.05, { only: o => o.legCorner !== "sharp" }),
+    ovalStretch: num(T, "Corners", "Oval relief stretch (1 = round)", "×", 1, 3, 0.1, { only: o => o.tipCorner === "oval" }),
     // body shape
-    wave: num(T, "Body", "Wave height (S-curve body; 0 = straight)", "mm", -4, 4, 0.1),
-    waves: num(T, "Body", "Number of half-waves", "", 1, 4, 1, { only: o => o.wave !== 0 }),
+    wave: num(T, "Body", "Body wave height (0 = straight bar)", "mm", -4, 4, 0.1),
+    waves: num(T, "Body", "Number of bends in the body", "", 1, 4, 1, { only: o => o.wave !== 0 }),
   };
   for (const [k, fl] of Object.entries(F)) fl.v = k === "tool" ? "pick" : CK.BASE[k];
   const DEF = { pick: "hookM", tension: "U" };
@@ -522,7 +526,8 @@ if (typeof document !== "undefined") {
   const root = document.getElementById("ck-form"), view = document.getElementById("ck-view"), info = document.getElementById("ck-info"), warnEl = document.getElementById("ck-warn");
   if (root) {
     const mk = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; };
-    const els = {}, rngs = {}, rows = {}, sets = {};
+    const els = {}, rngs = {}, rows = {}, sets = {}, labs = {};
+    const labelOf = (fl, o) => typeof fl.label === "function" ? fl.label(o) : fl.label;
     const bar = mk("div", "ck-bar"); root.append(bar);
     const advBox = document.createElement("input"); advBox.type = "checkbox"; advBox.id = "ck-adv"; advBox.checked = true;   // all fields shown by default; untick for the short list
     const start = document.createElement("select"); start.id = "ck-start";
@@ -541,7 +546,7 @@ if (typeof document !== "undefined") {
         canvas = document.createElement("canvas"); canvas.id = "ck-canvas"; canvas.width = 500; canvas.height = 120;
         const b = mk("div", "ck-draw-btns"), cl = mk("button", "", "Clear"), sm = mk("button", "", "Smooth");
         cl.type = sm.type = "button"; cl.id = "ck-clear"; sm.id = "ck-smooth"; b.append(cl, sm);
-        row.append(mk("span", "t", fl.label), canvas, b); els[k] = canvas;
+        row.append(mk("span", "t", labelOf(fl, CK.BASE)), canvas, b); els[k] = canvas;
         cl.onclick = () => setHeights(new Array(sampleN()).fill(0));
         sm.onclick = () => { const h = heights(); setHeights(h.map((v, i) => (h[Math.max(0, i - 1)] + v + h[Math.min(h.length - 1, i + 1)]) / 3)); };
       } else {
@@ -550,7 +555,7 @@ if (typeof document !== "undefined") {
         else if (fl.type === "text") { input = document.createElement("input"); input.type = "text"; input.value = fl.v; }
         else { input = document.createElement("input"); input.type = "number"; Object.assign(input, { min: fl.min, max: fl.max, step: fl.step, value: fl.v }); }
         input.id = "ck-" + k; els[k] = input;
-        const lab = mk("label", "t", fl.label); lab.htmlFor = input.id;
+        const lab = mk("label", "t", labelOf(fl, CK.BASE)); lab.htmlFor = input.id; labs[k] = lab;
         if (fl.type === "check") { row.classList.add("chk"); row.append(input, lab); input.addEventListener("change", () => {
           if (k === "tangHole2" && input.checked && clampNum(F.tangL, els.tangL.value) < 14) { setVal("tangL", 14); setVal("tangHoleX", 4); setVal("tangHole2X", 10); }
           touch(k); }); }
@@ -564,7 +569,7 @@ if (typeof document !== "undefined") {
         } else { row.append(lab, input); input.addEventListener(fl.type === "select" ? "change" : "input", () => touch(k)); }
       }
       if (k !== "tool" && fl.type !== "draw") {     // per-field reset: back to the started-from preset's value, else the default
-        const rs = mk("button", "rs", "↺"); rs.type = "button"; rs.title = "Reset this field"; rs.setAttribute("aria-label", "Reset " + fl.label);
+        const rs = mk("button", "rs", "↺"); rs.type = "button"; rs.title = "Reset this field"; rs.setAttribute("aria-label", "Reset " + labelOf(fl, CK.BASE));
         rs.onclick = () => {
           const id = applied[curTool()], p = id ? (CK.PRESETS[curTool()].find(x => x[0] === id) || [])[2] : null;
           setVal(k, p && k in p ? p[k] : fl.v); draw();
@@ -648,26 +653,45 @@ if (typeof document !== "undefined") {
       const body = CK.toSVG(g, "").replace(/^.*?<\/title>/, "").replace(/<\/svg>$/, "")
         .replace(/fill="none" stroke="#ff0000" stroke-width="0.05"/g, 'fill="#3a1b1d" stroke="#ff6b6b" stroke-width="1.4" vector-effect="non-scaling-stroke"');
       if (!dims) return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 ${g.w} ${g.h}">${body}</svg>`;
-      const fs = Math.max(2.0, Math.min(4, g.w / 42)), padT = g.marks.length ? fs * 3.2 : 1, padB = fs * 3.2, padR = fs * 5;
+      const vm = (g.vmarks || []).filter(([, , a, b]) => b - a >= 0.2);
+      const fs = Math.max(2.0, Math.min(4, g.w / 42)), padR = fs * 5;
+      // lengths along the top: each label goes in the lowest row where neither it nor its dimension line touches another
+      const tops = [], lanes = [];
+      g.marks.filter(([, a, b]) => b - a >= 0.5).sort((p, q) => p[1] - q[1]).forEach(([l, a, b]) => {
+        const txt = `${l} ${(b - a).toFixed(1)}`, tw = txt.length * fs * 0.56, fits = b - a > tw + fs * 0.6;
+        const side = !fits && b + fs * 0.4 + tw > g.w + padR ? "left" : fits ? "" : "right";
+        const lo = Math.min(a, side === "left" ? a - fs * 0.4 - tw : fits ? (a + b - tw) / 2 : a) - fs * 0.3;
+        const hi = Math.max(b, side === "right" ? b + fs * 0.4 + tw : fits ? (a + b + tw) / 2 : b) + fs * 0.3;
+        let k = 0; while ((lanes[k] || []).some(([p, q]) => lo < q && hi > p)) k++;
+        (lanes[k] = lanes[k] || []).push([lo, hi]); tops.push({ txt, a, b, side, k });
+      });
+      const padT = lanes.length ? fs * (1.7 * lanes.length + 0.5) : 1;
+      const rowY = g.h - 1 + fs * 1.9, padB = (vm.length ? fs * 2.2 : 0) + fs * 3.2;   // label row, then the overall length
       const ln = (x1, y1, x2, y2, c = "#7d8b95") => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="1" vector-effect="non-scaling-stroke"/>`;
       const tx = (x, y, t, a = "middle", c = "#cfd8de") => `<text x="${x}" y="${y}" font-size="${fs}" fill="${c}" text-anchor="${a}" font-family="system-ui">${t}</text>`;
       const hdim = (a, b, y, label, c) => ln(a, y, b, y, c) + ln(a, y - fs * 0.5, a, y + fs * 0.5, c) + ln(b, y - fs * 0.5, b, y + fs * 0.5, c) + tx((a + b) / 2, y - fs * 0.35, label, "middle", c);
       let d = "";
       const x0 = 1, x1 = g.w - 1, y0 = 1, y1 = g.h - 1;
-      d += hdim(x0, x1, y1 + padB * 0.75, `${(x1 - x0).toFixed(1)} mm overall`, "#ff8080");                  // overall length
+      d += hdim(x0, x1, y1 + padB - fs * 0.8, `${(x1 - x0).toFixed(1)} mm overall`, "#ff8080");               // overall length
       d += ln(x1 + padR * 0.35, y0, x1 + padR * 0.35, y1, "#ff8080") + ln(x1 + padR * 0.2, y0, x1 + padR * 0.5, y0, "#ff8080") +
            ln(x1 + padR * 0.2, y1, x1 + padR * 0.5, y1, "#ff8080") + tx(x1 + padR * 0.45, (y0 + y1) / 2 + fs * 0.35, `${(y1 - y0).toFixed(1)}`, "start", "#ff8080");
-      g.marks.forEach(([l, a, b], i) => {                                                                     // segment lengths along the top
-        if (b - a < 0.5) return;
-        const y = y0 - padT * (i % 2 ? 0.3 : 0.7);
-        d += hdim(a, b, y, b - a > fs * 4 ? `${l} ${(b - a).toFixed(1)}` : (b - a).toFixed(1));
+      tops.forEach(({ txt, a, b, side, k }) => {
+        const y = y0 - fs * (0.9 + 1.7 * k);
+        d += side ? hdim(a, b, y, "") + tx(side === "left" ? a - fs * 0.4 : b + fs * 0.4, y + fs * 0.35, txt, side === "left" ? "end" : "start")
+                  : hdim(a, b, y, txt);
       });
-      (g.vmarks || []).forEach(([l, x, a, b]) => {
-        if (b - a < 0.2) return;
-        const c = "#8fd3ff", t = fs * 0.32;
+      // heights: a thin dimension line on the feature, its label in a row below the outline (never on top of it),
+      // labels pushed apart left to right so they cannot overlap, a dashed leader from the feature to its label
+      const c = "#8fd3ff", t = fs * 0.32, fl = fs * 0.85, gap = fs * 0.8;
+      const labs = vm.map(([l, x, a, b]) => ({ x, a, b, s: `${l} ${(b - a).toFixed(1)}` })).sort((p, q) => p.x - q.x);
+      labs.forEach(L => { L.w = L.s.length * fl * 0.56; L.cx = L.x; });
+      for (let i = 0; i < labs.length; i++) labs[i].cx = Math.max(labs[i].cx, i ? labs[i - 1].cx + (labs[i - 1].w + labs[i].w) / 2 + gap : labs[i].w / 2);
+      const right = g.w + padR - 1;
+      for (let i = labs.length - 1; i >= 0; i--) labs[i].cx = Math.min(labs[i].cx, i < labs.length - 1 ? labs[i + 1].cx - (labs[i + 1].w + labs[i].w) / 2 - gap : right - labs[i].w / 2);
+      labs.forEach(({ x, a, b, s: txt, cx }) => {
         d += ln(x, a, x, b, c) + ln(x - t, a, x + t, a, c) + ln(x - t, b, x + t, b, c) +
-             `<text x="${x + fs * 0.4}" y="${(a + b) / 2 + fs * 0.3}" font-size="${fs * 0.8}" fill="${c}" font-family="system-ui" ` +
-             `paint-order="stroke" stroke="#0f1418" stroke-width="${fs * 0.25}">${l} ${(b - a).toFixed(1)}</text>`;
+             `<path d="M${x} ${b} L${x} ${rowY - fl * 1.3} L${cx} ${rowY - fl * 0.95}" fill="none" stroke="${c}" stroke-width="1" stroke-dasharray="2 2" opacity="0.6" vector-effect="non-scaling-stroke"/>` +
+             `<text x="${cx}" y="${rowY}" font-size="${fl}" fill="${c}" text-anchor="middle" font-family="system-ui">${txt}</text>`;
       });
       return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 ${-padT} ${g.w + padR} ${g.h + padT + padB}">${body}${d}</svg>`;
     }
@@ -676,6 +700,7 @@ if (typeof document !== "undefined") {
       for (const [k, fl] of Object.entries(F)) {
         if (fl.bar) continue;
         rows[k].hidden = !(!(fl.tool && fl.tool !== o.tool) && !(fl.only && !fl.only(o)) && (adv || fl.simple));
+        if (labs[k] && typeof fl.label === "function") labs[k].textContent = fl.label(o);
       }
       for (const fs of Object.values(sets)) fs.hidden = !fs.querySelector(".f:not([hidden])");
       if (o.tool === "pick" && o.tip === "custom") drawCanvas(o);

@@ -289,6 +289,7 @@ dialog button.x{font:inherit;font-weight:600;color:#0d1114;border:1px solid #ff5
 #ck-form .f.chk{flex-direction:row;align-items:center;gap:8px}
 #ck-form .f{position:relative} #ck-form .f .rs{position:absolute;right:0;top:-3px;font:13px system-ui;line-height:1;color:#0d1114;background:#ff5a5a;border:1px solid #ff5a5a;border-radius:5px;padding:2px 6px;cursor:pointer}
 #ck-form .f .rs:hover{background:#ff8080;border-color:#ff8080} #ck-form .f.chk{padding-right:30px}
+#ck-form .f:not(.chk)>.t{padding-right:34px}   /* label text wraps before the reset button */
 #ck-form .row{display:flex;align-items:center;gap:8px}
 #ck-form .row input[type=range]{flex:1;min-width:0;accent-color:#ff5a5a}
 #ck-form .row input[type=number]{width:72px;flex:none}
