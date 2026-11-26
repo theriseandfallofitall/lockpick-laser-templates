@@ -15,8 +15,8 @@ Free cut files for making your own lock picks and tension tools at home: laser-c
 | Handles | A grub-screw bar handle you can make with hand tools or a lathe (`docs/diy-handle.md`) |
 | Fit tests | A scale check and an X-Acto tang width series. Cut these first |
 | Blade layouts | One file per hacksaw blade, with parts at least 6 mm apart, plus a laser jig that holds the blade |
-| Print | A4 PDFs. Print at 100 % / Actual size, glue the paper to the steel and file to the line |
-| Customise | Set the handle, holes, tang, shaft, sweep and tip, then download SVG/DXF |
+| Print | Every design has its own PDF button. Print at 100 % / Actual size, glue the paper to the steel (or the hacksaw blade) and file to the line. Blade layouts tile across A4 sheets |
+| Customise | Set the handle, holes, tang, shaft, sweep and tip, or the tension tool's corners, reliefs and S-curve, then download SVG/DXF or print 1:1. Each field has its own ↺ reset |
 
 ## Quick start
 

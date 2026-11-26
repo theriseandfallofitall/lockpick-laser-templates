@@ -54,8 +54,9 @@ def laser_card(stem, name, extra=()):
     r = checks[stem]
     bb = r.get("dxf_bbox_mm") or r["svg_bbox_mm"]
     fit = r.get("fits_hacksaw_12.7mm")
+    pdf = [("PDF", stem + ".pdf")] if (ROOT / (stem + ".pdf")).exists() else []
     return dict(name=name, size=f"{bb[0]:.1f} × {bb[1]:.1f} mm", fit=fit, thumb=thumb(stem),
-                links=[("SVG", stem + ".svg"), ("DXF", stem + ".dxf")] + list(extra))
+                links=[("SVG", stem + ".svg"), ("DXF", stem + ".dxf")] + pdf + list(extra))
 
 
 def file_card(name, img, size, links):
@@ -79,11 +80,13 @@ for lock, chip in LOCKS:
         if r.get("handle") == "full-handle":
             holes = [f for f in r["files"] if "__holes" in f]; plain = [f for f in r["files"] if "__no-holes" in f]
             xr = by_id.get(base + "__xacto")
-            links = [("Holes SVG", holes[0]), ("Holes DXF", holes[1]), ("No holes SVG", plain[0]), ("No holes DXF", plain[1])]
+            pdf = lambda f, lab: [(lab, f[:-4] + ".pdf")] if (ROOT / (f[:-4] + ".pdf")).exists() else []
+            links = ([("Holes SVG", holes[0]), ("Holes DXF", holes[1])] + pdf(holes[0], "Holes PDF")
+                     + [("No holes SVG", plain[0]), ("No holes DXF", plain[1])] + pdf(plain[0], "No holes PDF"))
             if xr:
-                links += [("X-Acto SVG", xr["files"][0]), ("X-Acto DXF", xr["files"][1])]
+                links += [("X-Acto SVG", xr["files"][0]), ("X-Acto DXF", xr["files"][1])] + pdf(xr["files"][0], "X-Acto PDF")
                 if len(xr["files"]) >= 4:
-                    links += [("X-Acto + hole SVG", xr["files"][2]), ("X-Acto + hole DXF", xr["files"][3])]
+                    links += [("X-Acto + hole SVG", xr["files"][2]), ("X-Acto + hole DXF", xr["files"][3])] + pdf(xr["files"][2], "X-Acto + hole PDF")
             c = laser_card(holes[0][:-4], pretty(base))
             c["links"] = links; c["note"] = r.get("note", "")
             cards.append(c)
@@ -201,7 +204,7 @@ for key, label in SETNAME:
         extra = []
         if l["set"].endswith("__no-holes"):
             twin = stem.replace("__no-holes__", "__with-holes__")
-            extra = [("Holes SVG", twin + ".svg"), ("Holes DXF", twin + ".dxf")]
+            extra = [("Holes SVG", twin + ".svg"), ("Holes DXF", twin + ".dxf")] + ([("Holes PDF", twin + ".pdf")] if (ROOT / (twin + ".pdf")).exists() else [])
         c = laser_card(stem, nm, extra)
         if l.get("ends_use_blade_pin_holes"):
             c["note"] = "End picks sit flush at the blade ends: the blade's pin hole becomes a lanyard hole."
@@ -235,7 +238,7 @@ def card_html(c):
 
 
 CUSTOM = """<div class="custom"><form id="ck-form" onsubmit="return false"></form><div class="ck-out"><div id="ck-view"></div>
-<p id="ck-warn"></p><p id="ck-info"></p><div class="dl"><a id="ck-svg" href="#">Download SVG</a><a id="ck-dxf" href="#">Download DXF</a></div>
+<p id="ck-warn"></p><p id="ck-info"></p><div class="dl"><a id="ck-svg" href="#">Download SVG</a><a id="ck-dxf" href="#">Download DXF</a><a id="ck-print" href="#">Print 1:1</a></div>
 <p class="note">Built in your browser: mm 1:1, no kerf. Cut a test piece first; custom shapes are only checked for size.</p></div></div>"""
 sections, tabs = [], []
 for key, title, intro in TABS:
@@ -290,6 +293,8 @@ dialog button.x{font:inherit;color:inherit;border:1px solid #33424c;background:#
 #ck-form legend{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6f7d87;padding:0;margin-bottom:6px}
 #ck-form .f{display:flex;flex-direction:column;gap:3px;font-size:13px;color:#a9b5bd}
 #ck-form .f.chk{flex-direction:row;align-items:center;gap:8px}
+#ck-form .f{position:relative} #ck-form .f .rs{position:absolute;right:0;top:-3px;font:13px system-ui;line-height:1;color:#9aa7b0;background:none;border:1px solid #33424c;border-radius:5px;padding:2px 6px;cursor:pointer}
+#ck-form .f .rs:hover{color:#ff8080;border-color:#ff5a5a} #ck-form .f.chk{padding-right:30px}
 #ck-form .row{display:flex;align-items:center;gap:8px}
 #ck-form .row input[type=range]{flex:1;min-width:0;accent-color:#ff5a5a}
 #ck-form .row input[type=number]{width:72px;flex:none}

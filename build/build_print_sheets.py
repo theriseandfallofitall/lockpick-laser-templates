@@ -87,3 +87,59 @@ for name, pat in GROUPS:
         if fig:
             pdf.savefig(fig); plt.close(fig)
     print(pdf_path.relative_to(ROOT).as_posix(), page, "pages")
+
+
+# ---------------------------------------------------------------- one PDF per design (next to its SVG / DXF)
+PW, PH, PM = 297.0, 210.0, 12.0        # A4 landscape, margin
+OVERLAP = 10.0
+
+
+def design_pdf(stem):
+    rings, guides, (x0, y0, x1, y1) = outline(stem)
+    for g in guides:                    # include the blade / guide outline in the extent so it can be cut to it
+        xs = [p[0] for p in g]; ys = [p[1] for p in g]
+        x0, y0, x1, y1 = min(x0, *xs), min(y0, *ys), max(x1, *xs), max(y1, *ys)
+    w, h = x1 - x0, y1 - y0
+    name = stem.rsplit("/", 1)[1]
+    portrait = w <= 210 - 2 * PM and h <= 297 - 2 * PM - 20
+    pw, ph = (210.0, 297.0) if portrait else (PW, PH)
+    usable = pw - 2 * PM
+    tiles = 1 if w <= usable else -(-(w - OVERLAP) // (usable - OVERLAP))
+    tiles = int(tiles)
+    with PdfPages(ROOT / (stem + ".pdf")) as pdf:
+        for k in range(tiles):
+            fig = plt.figure(figsize=(pw / 25.4, ph / 25.4))
+            ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, pw); ax.set_ylim(ph, 0); ax.axis("off")
+            sx = k * (usable - OVERLAP)                       # this page shows design x in [sx, sx + usable]
+            ox, oy = PM - sx - x0, 28 - y0
+            ax.text(PM, 8, name + (f"  ·  page {k + 1} of {tiles}" if tiles > 1 else ""), fontsize=7)
+            ax.text(PM, 13, "Print at 100 % / Actual size. The bar must measure 50 mm. Black = cut line, grey dashed = guide (blade outline / bend line).",
+                    fontsize=5.5)
+            ax.plot([PM, PM + 50], [18, 18], "k-", lw=0.8)
+            for i in range(6):
+                ax.plot([PM + 10 * i] * 2, [16.8, 18], "k-", lw=0.4)
+            ax.text(PM + 52, 18, "50 mm", fontsize=5, va="center")
+            clip = plt.Rectangle((PM, 22), usable, ph - 22 - PM / 2, transform=ax.transData)
+            for r in rings:
+                ln, = ax.plot([px + ox for px, _ in r], [py + oy for _, py in r], "k-", lw=0.35); ln.set_clip_path(clip)
+            for g in guides:
+                ln, = ax.plot([px + ox for px, _ in g], [py + oy for _, py in g], color="0.5", lw=0.3, ls="--"); ln.set_clip_path(clip)
+            if tiles > 1:                                     # overlap band + alignment crosses
+                for edge in ([PM + usable - OVERLAP] if k < tiles - 1 else []) + ([PM] if k > 0 else []):
+                    ax.add_patch(plt.Rectangle((edge, 22), OVERLAP, h + 12, color="0.85", lw=0, zorder=0))
+                    for yy in (24, 28 + h + 4):
+                        cx = edge + OVERLAP / 2
+                        ax.plot([cx - 3, cx + 3], [yy, yy], "k-", lw=0.4); ax.plot([cx, cx], [yy - 3, yy + 3], "k-", lw=0.4)
+                ax.text(PM, ph - 6, "Tiled: trim one page along the grey band, lay it over the next so the crosses and lines match, tape.", fontsize=5.5)
+            pdf.savefig(fig); plt.close(fig)
+    return tiles
+
+
+if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser(); ap.add_argument("--per-design", action="store_true", default=True); a, _ = ap.parse_known_args()
+    n = t = 0
+    for r in checks:
+        if r.get("dxf_bbox_mm") and not r["stem"].startswith(("generated/sheets/", "dimensioned-reference-drawings/")):
+            t += design_pdf(r["stem"]); n += 1
+    print(f"per-design PDFs: {n} files, {t} pages")

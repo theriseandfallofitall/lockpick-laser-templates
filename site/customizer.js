@@ -9,7 +9,8 @@ const CK = (() => {
   const PICK_BASE = { handle: "full", handleL: 62, handleH: 9, handleEnd: "round", holes: true, holeD: 3.4, hole1: 15, hole2: 50,
     tangW: 5.8, tangL: 10, shoulderL: 2, shoulderW: 10, tangHole: false, tangHoleD: 2.2, tangHoleX: 5, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
     tip: "hook", tipH: 2.6, tipW: 1.0, tipL: 10, peaks: 3, lean: 0, n: 5, pitch: 3.2, custom: "0 2.2 0.6 2.8 1.2 2.4 0" };
-  const TENSION_BASE = { length: 76, shaftW: 3.4, dirA: "up", tipA: 2.4, linA: 4.7, dirB: "up", tipB: 2.8, linB: 4.7, serr: false };
+  const TENSION_BASE = { length: 76, shaftW: 3.4, dirA: "up", tipA: 2.4, linA: 4.7, dirB: "up", tipB: 2.8, linB: 4.7, serr: false,
+    outer: "round", outerR: 0.3, tipCorner: "sharp", tipCornerR: 0.5, legCorner: "round", legCornerR: 0.8, ovalStretch: 1.6, wave: 0, waves: 1 };
   const BASE = { tool: "pick", ...PICK_BASE, ...TENSION_BASE };
   const PRESETS = {
     pick: [
@@ -36,6 +37,9 @@ const CK = (() => {
       ["single", "Single-ended", { dirB: "none", tipA: 2.8 }],
       ["Z", "SP-style Z (short up, recessed down)", { dirB: "down", tipB: 2.8, linB: 10.7 }],
       ["BOK", "BOK L-wrench (long thin tip)", { length: 70, shaftW: 3, tipA: 1.8, linA: 12, dirB: "none", serr: true }],
+      ["reaper", "Reaper-style: S-curve body, oval reliefs, serrated", { shaftW: 4.2, dirB: "down", tipA: 2.4, tipB: 2.8, linB: 10.7, serr: true,
+        tipCorner: "oval", tipCornerR: 0.8, legCorner: "round", legCornerR: 1.5, ovalStretch: 1.8, wave: 2.5, waves: 1, outerR: 0.5 }],
+      ["flush", "Flush-fit U-bar (mouse-bite tip corners)", { tipCorner: "mouse", tipCornerR: 0.5 }],
     ],
   };
 
@@ -129,36 +133,94 @@ const CK = (() => {
     },
   };
 
-  // ---------- tension bars: explicit orthogonal outline with a step shoulder on each working end
+  // ---------- tension bars: orthogonal outline with a step shoulder on each working end, then corner treatments
+  // Points carry a tag so each corner can be styled: outer (convex) corners, the tip corner (tip meets its shoulder)
+  // and the leg corner (leg meets the shaft).
   function tension(o) {
     o = { ...TENSION_BASE, ...o };
     const SW = o.shaftW, S = 1.5, L = o.length;
-    const legPts = (side, dir, tw, lin) => {   // side: 0 left / 1 right; dir: -1 up / +1 down. Returns points along the edge.
-      const lw = Math.max(tw + 0.9, SW), xo = side ? L : 0, s = side ? -1 : 1, y0 = dir * SW / 2;
+    const legPts = (side, dir, tw, lin) => {   // side: 0 left / 1 right; dir: -1 up / +1 down. Points along the edge.
+      // a relief at the tip corner needs a longer shoulder step to sit in: widen the leg just enough
+      const rel = (o.tipCorner === "mouse" || o.tipCorner === "oval") ? o.tipCornerR * (o.tipCorner === "oval" ? o.ovalStretch : 1) : 0;
+      const lw = Math.max(tw + 0.9, SW, tw + 2.2 * rel + 0.4), xo = side ? L : 0, s = side ? -1 : 1, y0 = dir * SW / 2;
       const yS = dir * (SW / 2 + S), yE = yS + dir * lin;
-      const pts = [[xo, yE], [xo + s * tw, yE]];
+      const pts = [[xo, yE, "outer"], [xo + s * tw, yE, "outer"]];
       if (o.serr) {   // small V-notches along the inner (bearing) edge of the tip
-        const p = 1.2, a = 0.5, dep = 0.35, n = Math.max(0, Math.floor((lin - 1.2) / p));
+        const p = 1.2, a = 0.5, dep = 0.35, n = Math.max(0, Math.floor((lin - 1.2 - (o.tipCorner === "sharp" ? 0 : o.tipCornerR)) / p));
         for (let k = 0; k < n; k++) { const yc = yE - dir * (0.6 + a + k * p);
-          pts.push([xo + s * tw, yc + dir * a], [xo + s * (tw - dep), yc], [xo + s * tw, yc - dir * a]); }
+          pts.push([xo + s * tw, yc + dir * a, "serr"], [xo + s * (tw - dep), yc, "serr"], [xo + s * tw, yc - dir * a, "serr"]); }
       }
-      return pts.concat([[xo + s * tw, yS], [xo + s * lw, yS], [xo + s * lw, y0 + dir * 0.6], [xo + s * (lw + 0.6), y0]]);
+      return pts.concat([[xo + s * tw, yS, "tip"], [xo + s * lw, yS, "outer"], [xo + s * lw, y0, "leg"]]);
     };
     const A = o.endA, B = o.endB, on = e => e && e.type !== "none";
-    // top edge, left -> right
-    const top = (on(A) && A.dir < 0 ? legPts(0, -1, A.tip, A.lin) : [[0, -SW / 2]])
-      .concat(on(B) && B.dir < 0 ? legPts(1, -1, B.tip, B.lin).reverse() : [[L, -SW / 2]]);
-    // bottom edge, right -> left
-    const bot = (on(B) && B.dir > 0 ? legPts(1, 1, B.tip, B.lin) : [[L, SW / 2]])
-      .concat(on(A) && A.dir > 0 ? legPts(0, 1, A.tip, A.lin).reverse() : [[0, SW / 2]]);
-    const ring = top.concat(bot);
+    // optional wave: the whole shaft (both edges) follows k half-sine bumps of amplitude `wave`, zero at the ends
+    const wavy = (x0, x1, y, reverse) => {
+      if (!o.wave || x1 - x0 < 4) return [];
+      const out = [];
+      for (let x = x0 + 1; x < x1 - 0.5; x += 1) out.push([x, y + o.wave * Math.sin(Math.PI * o.waves * (x - x0) / (x1 - x0)), "wave"]);
+      return reverse ? out.reverse() : out;
+    };
+    const lTop = on(A) && A.dir < 0 ? legPts(0, -1, A.tip, A.lin) : [[0, -SW / 2, "outer"]];
+    const rTop = on(B) && B.dir < 0 ? legPts(1, -1, B.tip, B.lin).reverse() : [[L, -SW / 2, "outer"]];
+    const rBot = on(B) && B.dir > 0 ? legPts(1, 1, B.tip, B.lin) : [[L, SW / 2, "outer"]];
+    const lBot = on(A) && A.dir > 0 ? legPts(0, 1, A.tip, A.lin).reverse() : [[0, SW / 2, "outer"]];
+    const legReach = o.legCorner === "sharp" ? 0 : o.legCornerR;
+    const pad = 0.6 + 2 * legReach;                       // wave starts clear of any leg-corner relief or fillet
+    const xa = Math.max(lTop[lTop.length - 1][0], lBot[0][0]) + pad, xb = Math.min(rTop[0][0], rBot[rBot.length - 1][0]) - pad;
+    const top = lTop.concat(wavy(xa, xb, -SW / 2, false), rTop);
+    const bot = rBot.concat(wavy(xa, xb, SW / 2, true), lBot);
+    const ring = corners(top.concat(bot), {
+      outer: [o.outer, o.outerR], tip: [o.tipCorner, o.tipCornerR], leg: [o.legCorner, o.legCornerR], stretch: o.ovalStretch });
     return finish({ rings: [ring], circles: [], guides: [] });
+  }
+
+  // corner treatments: round (tangent fillet), chamfer, mouse (round relief cut past the corner) or oval relief
+  function corners(R, opt) {
+    const n = R.length, area = R.reduce((a, p, i) => { const q = R[(i + 1) % n]; return a + p[0] * q[1] - q[0] * p[1]; }, 0);
+    const inside = (x, y) => { let c = false; for (let i = 0, j = n - 1; i < n; j = i++) { const [xi, yi] = R[i], [xj, yj] = R[j];
+      if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) c = !c; } return c; };
+    // distance from V along unit direction u to the first crossing of the original outline (material depth)
+    const depth = (V, u) => { let best = 1e9;
+      for (let i = 0; i < n; i++) { const a = R[i], b = R[(i + 1) % n], ex = b[0] - a[0], ey = b[1] - a[1];
+        const den = u[0] * ey - u[1] * ex; if (Math.abs(den) < 1e-12) continue;
+        const t = ((a[0] - V[0]) * ey - (a[1] - V[1]) * ex) / den, w = ((a[0] - V[0]) * u[1] - (a[1] - V[1]) * u[0]) / den;
+        if (t > 1e-6 && w >= 0 && w <= 1) best = Math.min(best, t); }
+      return best; };
+    const out = [];
+    for (let i = 0; i < n; i++) {
+      const P = R[(i - 1 + n) % n], V = R[i], N = R[(i + 1) % n], tag = V[2];
+      let [style, size] = opt[tag] || ["sharp", 0];
+      if (tag === "leg" && (style === "mouse" || style === "oval")) style = "round";
+      if (!style || style === "sharp" || !(size > 0)) { out.push([V[0], V[1]]); continue; }
+      const l1 = Math.hypot(V[0] - P[0], V[1] - P[1]), l2 = Math.hypot(N[0] - V[0], N[1] - V[1]);
+      if (l1 < 1e-6 || l2 < 1e-6) { out.push([V[0], V[1]]); continue; }
+      const d1 = [(V[0] - P[0]) / l1, (V[1] - P[1]) / l1], d2 = [(N[0] - V[0]) / l2, (N[1] - V[1]) / l2];
+      if (style === "round" || style === "chamfer") {
+        const t = Math.min(size, 0.45 * l1, 0.45 * l2), a = [V[0] - d1[0] * t, V[1] - d1[1] * t], b = [V[0] + d2[0] * t, V[1] + d2[1] * t];
+        if (style === "chamfer") { out.push(a, b); continue; }
+        for (let k = 0; k <= 10; k++) { const u = k / 10;   // quadratic Bezier with the corner as control point: tangent both ends
+          out.push([(1 - u) ** 2 * a[0] + 2 * u * (1 - u) * V[0] + u * u * b[0], (1 - u) ** 2 * a[1] + 2 * u * (1 - u) * V[1] + u * u * b[1]]); }
+        continue;
+      }
+      // reliefs (mouse / oval): an ellipse centred on the corner, axes along the two edges, cut through the material
+      const st = style === "oval" ? (opt.stretch || 1.6) : 1;
+      let r1 = size * (Math.abs(d1[0]) > Math.abs(d1[1]) ? st : 1), r2 = size * (Math.abs(d2[0]) > Math.abs(d2[1]) ? st : 1);
+      r1 = Math.min(r1, 0.5 * l1); r2 = Math.min(r2, 0.5 * l2);   // half an edge each: never meets the next corner
+      // and never deeper than 40 % of the metal behind the corner (the arc passes V - d2*r2 and V + d1*r1)
+      r2 = Math.min(r2, 0.4 * depth(V, [-d2[0], -d2[1]])); r1 = Math.min(r1, 0.4 * depth(V, d1));   // keep >= 60 % of the section
+      const pt = t => [V[0] - d1[0] * r1 * Math.cos(t) + d2[0] * r2 * Math.sin(t), V[1] - d1[1] * r1 * Math.cos(t) + d2[1] * r2 * Math.sin(t)];
+      // t = 0 -> on the incoming edge, t = pi/2 -> on the outgoing edge; take the sweep whose middle is inside the material
+      const mid = pt(-Math.PI / 2 - Math.PI / 4), dir = inside(mid[0], mid[1]) ? -1 : 1;
+      const span = dir < 0 ? -1.5 * Math.PI : 0.5 * Math.PI;
+      for (let k = 0; k <= 24; k++) out.push(pt(span * k / 24));
+    }
+    return out;
   }
   // flat form values -> tension geometry
   function tensionFromForm(o) {
     o = { ...TENSION_BASE, ...o };
     const e = (d, t, l) => d === "none" ? { type: "none" } : { type: "tok", dir: d === "up" ? -1 : 1, tip: t, lin: l };
-    return tension({ length: o.length, shaftW: o.shaftW, serr: o.serr, endA: e(o.dirA, o.tipA, o.linA), endB: e(o.dirB, o.tipB, o.linB) });
+    return tension({ ...o, endA: e(o.dirA, o.tipA, o.linA), endB: e(o.dirB, o.tipB, o.linB) });
   }
   const build = (tool, o) => tool === "tension" ? tensionFromForm(o) : pick(o);
 
@@ -256,6 +318,9 @@ if (typeof process !== "undefined" && process.argv && process.argv.includes("--s
   emit("extra-tension-serr-U", "tension", { ...B, serr: true });
   emit("extra-tension-downdown", "tension", { ...B, dirA: "down", dirB: "down", serr: true });
   emit("extra-tension-Zserr", "tension", { ...B, dirB: "down", linB: 10.7, serr: true });
+  emit("extra-tension-chamfer", "tension", { ...B, outer: "chamfer", outerR: 0.6, legCorner: "chamfer", legCornerR: 1.0 });
+  emit("extra-tension-mouse-serr", "tension", { ...B, tipCorner: "mouse", legCorner: "round", legCornerR: 1.5, serr: true });
+  emit("extra-tension-oval-big-wave", "tension", { ...B, dirB: "down", linB: 10.7, tipCorner: "oval", tipCornerR: 1.2, ovalStretch: 2.5, legCorner: "round", legCornerR: 2.5, wave: -3, waves: 2 });
   // drawn profile: 0.5 mm samples snapped to 0.1 mm over 17 mm (what the canvas produces)
   const drawn = Array.from({ length: 35 }, (_, i) => Math.max(0, +(2.5 + 1.8 * Math.sin(i * 0.5) * Math.cos(i * 0.11)).toFixed(1)));
   drawn[0] = 0; drawn[34] = 0.4;
@@ -315,6 +380,19 @@ if (typeof document !== "undefined") {
     tipB: num(T, "Tension ends", "End B tip width", "mm", 1.8, 4.5, 0.1, { only: o => o.dirB !== "none" }),
     linB: num(T, "Tension ends", "End B insertion (recessed 10.7)", "mm", 2, 14, 0.1, { only: o => o.dirB !== "none" }),
     serr: { tool: T, grp: "Tension ends", label: "Serrations (V-notches on tip)", type: "check" },
+    // corners
+    outer: sel(T, "Corners", "Outside corners", [["sharp", "Sharp"], ["round", "Rounded (fillet)"], ["chamfer", "Chamfer"]], { simple: true }),
+    outerR: num(T, "Corners", "Outside corner size", "mm", 0.1, 2, 0.05, { only: o => o.outer !== "sharp" }),
+    tipCorner: sel(T, "Corners", "Tip corner (tip meets its shoulder)",
+      [["sharp", "Sharp"], ["round", "Rounded"], ["mouse", "Mouse bite (sits flush on the plug face)"], ["oval", "Oval relief (Reaper-style scoop)"]], { simple: true }),
+    tipCornerR: num(T, "Corners", "Tip corner size", "mm", 0.2, 1.5, 0.05, { only: o => o.tipCorner !== "sharp" }),
+    legCorner: sel(T, "Corners", "Leg corner (leg meets the bar)",            // no reliefs here: they undercut the shoulder
+      [["sharp", "Sharp"], ["round", "Rounded"], ["chamfer", "Chamfer"]]),
+    legCornerR: num(T, "Corners", "Leg corner size", "mm", 0.2, 3, 0.05, { only: o => o.legCorner !== "sharp" }),
+    ovalStretch: num(T, "Corners", "Oval stretch (1 = round)", "×", 1, 3, 0.1, { only: o => o.tipCorner === "oval" }),
+    // body shape
+    wave: num(T, "Body", "Wave height (S-curve body; 0 = straight)", "mm", -4, 4, 0.1),
+    waves: num(T, "Body", "Number of half-waves", "", 1, 4, 1, { only: o => o.wave !== 0 }),
   };
   for (const [k, fl] of Object.entries(F)) fl.v = k === "tool" ? "pick" : CK.BASE[k];
   const DEF = { pick: "hookM", tension: "U" };
@@ -326,7 +404,7 @@ if (typeof document !== "undefined") {
     const bar = mk("div", "ck-bar"); root.append(bar);
     const advBox = document.createElement("input"); advBox.type = "checkbox"; advBox.id = "ck-adv";
     const start = document.createElement("select"); start.id = "ck-start";
-    let lastStart = { ...DEF }, canvas = null;
+    let lastStart = { ...DEF }, canvas = null, applied = { ...DEF };   // applied: preset last loaded (kept while you edit)
     const curTool = () => els.tool.value;
     const fillStart = () => {
       start.innerHTML = ""; start.add(new Option("Custom (your own values)", ""));
@@ -360,6 +438,14 @@ if (typeof document !== "undefined") {
           rw.append(r, input, u); row.append(lab, rw);
         } else { row.append(lab, input); input.addEventListener(fl.type === "select" ? "change" : "input", () => touch(k)); }
       }
+      if (k !== "tool" && fl.type !== "draw") {     // per-field reset: back to the started-from preset's value, else the default
+        const rs = mk("button", "rs", "↺"); rs.type = "button"; rs.title = "Reset this field"; rs.setAttribute("aria-label", "Reset " + fl.label);
+        rs.onclick = () => {
+          const id = applied[curTool()], p = id ? (CK.PRESETS[curTool()].find(x => x[0] === id) || [])[2] : null;
+          setVal(k, p && k in p ? p[k] : fl.v); draw();
+        };
+        row.append(rs);
+      }
       if (fl.bar) { bar.append(row); continue; }
       const gk = fl.tool + "|" + fl.grp;
       if (!sets[gk]) { const fs = mk("fieldset"); fs.append(mk("legend", "", fl.grp)); sets[gk] = fs; root.append(fs); }
@@ -381,9 +467,9 @@ if (typeof document !== "undefined") {
       const id = start.value; if (!id) { lastStart[curTool()] = ""; return; }
       const tool = curTool(), p = CK.PRESETS[tool].find(x => x[0] === id)[2], vals = { ...CK.BASE, ...p };
       for (const [k, fl] of Object.entries(F)) if (fl.tool === tool && !(tool === P && fl.grp === "Handle")) setVal(k, vals[k]);   // handle choices are kept
-      lastStart[tool] = id; draw();
+      lastStart[tool] = id; applied[tool] = id; draw();
     });
-    reset.onclick = () => { for (const [k, fl] of Object.entries(F)) setVal(k, fl.v); lastStart = { ...DEF }; fillStart(); draw(); };
+    reset.onclick = () => { for (const [k, fl] of Object.entries(F)) setVal(k, fl.v); lastStart = { ...DEF }; applied = { ...DEF }; fillStart(); draw(); };
     advBox.addEventListener("change", draw);
 
     // ---------- tip drawing canvas: heights sampled every 0.5 mm along tipL, snapped to 0.1 mm; kept in sync with the text box
@@ -441,6 +527,18 @@ if (typeof document !== "undefined") {
     const save = (text, ext, type) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name + "." + ext; a.click(); };
     document.getElementById("ck-svg").onclick = () => save(CK.toSVG(g, name), "svg", "image/svg+xml");
     document.getElementById("ck-dxf").onclick = () => save(CK.toDXF(g), "dxf", "application/dxf");
+    // print at true size: a plain page with the outline in mm and a 50 mm check bar, then the browser's print dialog
+    const pr = document.getElementById("ck-print");
+    if (pr) pr.onclick = e => {
+      e.preventDefault();
+      const svg = CK.toSVG(g, name).replace(/stroke="#ff0000"/g, 'stroke="#000"').replace(/stroke-width="0.05"/g, 'stroke-width="0.15"');
+      const w = window.open("", "_blank");
+      w.document.write(`<!doctype html><title>${name} (print at 100 %)</title><style>@page{size:A4 ${g.w > 186 ? "landscape" : "portrait"};margin:10mm}` +
+        `body{margin:0;font:9pt system-ui;color:#000;background:#fff}.bar{width:50mm;border-bottom:0.3mm solid #000;margin:2mm 0 6mm}</style>` +
+        `<p>${name} · print at 100 % / Actual size (no “fit to page”). The bar must measure 50 mm.</p><div class="bar"></div>${svg}` +
+        `<script>onload=()=>setTimeout(()=>print(),200)<\/script>`);
+      w.document.close();
+    };
     draw();
   }
 }
