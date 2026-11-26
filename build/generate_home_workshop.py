@@ -198,6 +198,9 @@ OTHER = [
      "Dimple pick blank. Bend the end 90° at the two notches to make a 2.0 × 2.5 mm flag."),
 ]
 
+# shaft length / height per design: the site's "Customise this" buttons hand these to the customiser
+SHAFT = {i: [sl, sh] for i, _, _, sl, sh, _ in OTHER}
+
 HOLE_R = 1.7          # Ø3.40 handle holes
 HOLE_X = (15.0, 50.0)  # from the butt
 
@@ -365,7 +368,7 @@ for ident, lock, note, p, holes in build_other("full"):
     ph = drill(p, holes)
     f1 = write_pair(OUTO / (full_id + "__holes-3.40mm-at-15-50"), [(full_id, ph)])
     f2 = write_pair(OUTO / (full_id + "__no-holes"), [(full_id, p)])
-    record(full_id, "other-lock-picks", ph, f1 + f2, lock_type=lock, handle="full-handle", note=note,
+    record(full_id, "other-lock-picks", ph, f1 + f2, lock_type=lock, handle="full-handle", note=note, shaft_mm=SHAFT[ident],
            holes_mm=[[round(x, 3), round(y, 3)] for x, y in holes])
     other_holes[full_id], other_plain[full_id] = ph, p
 for old in [*OUTO.glob("*__xacto__tang-*"), *OUTO.glob("*__xacto-flat-edge__*")]:
@@ -376,7 +379,7 @@ for ident, lock, note, p, tholes in build_other("xacto"):
     if TANG_HOLE_D > 0:
         files += write_pair(OUTO / (full_id + f"__tang-{TW:.2f}x{TL:.0f}mm__hole-{TANG_HOLE_D:.1f}"),
                             [(full_id, drill(p, tholes, web=1.0, r=TANG_HOLE_D / 2))])
-    record(full_id, "other-lock-picks", p, files, lock_type=lock, handle="xacto", note=note)
+    record(full_id, "other-lock-picks", p, files, lock_type=lock, handle="xacto", note=note, shaft_mm=SHAFT[ident])
     other_xacto[full_id] = p
 for ident, tipf, note in PIN:                       # flat-edge tang version: one straight side cut by the blade's back
     if tipf(0)[0].bounds[3] > 0.6 + 1e-6:          # underside dips below the shaft (snake): no straight edge possible

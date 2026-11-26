@@ -11,14 +11,17 @@ tools/check_laser_files.py first. Repo-relative. Writes INDEX.html, a redirect a
 (old link) and display-only thumbnails in previews/laser-index/.
 Superseded families are not shown; they stay in git and archive/ (see CURRENT-RELEASE.md).
 """
-import argparse, html, json, re
+import argparse, html, json, re, sys
 from pathlib import Path
+from urllib.parse import urlencode
 
 ROOT = Path(__file__).resolve().parents[1]
 ap = argparse.ArgumentParser(); ap.add_argument("--page", default="INDEX.html"); ARGS = ap.parse_args()
 checks = {r["stem"]: r for r in json.loads((ROOT / "validation/LASER-FILE-CHECKS.json").read_text(encoding="utf-8"))["files"]}
 esc = html.escape
 THUMBS = ROOT / "previews/laser-index"
+sys.path.insert(0, str(ROOT / "build"))
+import pick_shapes as PS   # the same numbers the generators used, handed to the customiser
 MADE = set()   # thumbnails written this run; the rest are left over from removed designs
 
 
@@ -65,6 +68,86 @@ def file_card(name, img, size, links):
     return dict(name=name, size=size, fit=None, thumb=img, links=links)
 
 
+# ---------------------------------------------------------------- "Customise this": library design -> customiser values
+# Only designs the customiser can draw get a button. Values match build/pick_shapes.py and the generator, so the
+# customiser starts from the same shape (its outline code is its own, so tiny differences in rounding are possible).
+HOOKS = {i: dict(tip="hook", tipH=h, bendR=R, lean=90 - a, tipW=w) for i, h, R, a, w, _ in PS.HOOKS}
+DIAMONDS = {i: dict(tip="halfDiamond", tipH=h, tipL=b) for i, h, b, _ in PS.DIAMONDS}
+FIXED = {
+    "rake-bogota-2": dict(tip="rake", waveStyle="up", peaks=2, tipL=9, tipH=1.65, tipW=0.9),
+    "rake-bogota-3": dict(tip="rake", waveStyle="up", peaks=3, tipL=13.5, tipH=1.65, tipW=0.9),
+    "rake-snake": dict(tip="rake", waveStyle="both", peaks=4, tipL=12, tipH=0.85, tipW=0.9),
+    "rake-city": dict(tip="custom", tipL=12.6, custom="0 2.2 2.2 0.6 0.6 2.8 2.8 1.2 1.2 2.4 2.4 -1.2"),
+    "rake-triple-peak": dict(tip="custom", tipL=8.6, custom="0 2.4 0.9 2.8 0.9 2.4 -1.2"),
+    "wafer-half-ball": dict(tip="halfBall", tipH=3.2),
+    "wafer-single-ball": dict(tip="ball", tipH=4.0),
+    "wafer-zigzag-rake": dict(tip="custom", tipL=16.2, custom="0 2.4 0 2.4 0 2.4 0 2.4 0 -1.4"),
+    "wafer-wide-rocker": dict(tip="rake", waveStyle="up", peaks=2, tipL=14, tipH=2.4, tipW=1.2),
+    "lever-lifter-hook-3.5": dict(tip="hook", tipH=3.5, bendR=1.8, lean=5, tipW=1.2),
+    "lever-lifter-hook-5.0": dict(tip="hook", tipH=5.0, bendR=1.8, lean=5, tipW=1.2),
+}
+
+
+def _tip_top(build):
+    return build(0.0)[0].bounds[1]   # highest point of the tip (y down) above the shaft centreline
+
+
+TIP_TOP = {i: _tip_top(lambda x, h=h, R=R, a=a, w=w: PS.hook(x, h, R, a, w)) for i, h, R, a, w, _ in PS.HOOKS}
+TIP_TOP.update({f"hook-swept-{h:.1f}": _tip_top(lambda x, h=h: PS.swept_hook(x, h, PS.swept_reach(h))) for h in PS.SWEPT})
+TIP_TOP.update({i: _tip_top(lambda x, h=h, b=b: PS.profile(x, PS.half_diamond(h, b))) for i, h, b, _ in PS.DIAMONDS})
+TIP_TOP.update({i: _tip_top(f) for i, f, _ in PS.RAKES})
+TIP_TOP.update({f"lever-lifter-hook-{h:.1f}": _tip_top(lambda x, h=h: PS.hook(x, h, 1.8, 85, 1.2, 2.0)) for h in (3.5, 5.0)})
+TIP_TOP["wafer-wide-rocker"] = _tip_top(lambda x: PS.wave_rake(x, 2, 14.0, 2.6, sh=1.6, w_end=1.2))
+
+
+def pick_custom(base, style, shaft):
+    """Customiser values (as a URL query) for an own-design pick, or None when the customiser cannot draw it."""
+    comb = re.match(r"pin-comb-(kwikset|schlage)-(\d)$", base)
+    if comb:
+        first, pitch = PS.COMB_LOCKS[comb.group(1)]
+        p = dict(tip="comb", n=int(comb.group(2)), pitch=round(pitch, 2), first=round(first, 2), tipW=PS.COMB_TOOTH_W,
+                 tipH=PS.COMB_TOOTH_H, shaftH=PS.COMB_BODY)   # the customiser joins a comb straight to the handle, as the generator does
+    else:
+        p = HOOKS.get(base) or DIAMONDS.get(base) or FIXED.get(base)
+        if base.startswith("hook-swept-"):
+            h = float(base.rsplit("-", 1)[1])
+            p = dict(tip="swept", tipH=h, tipL=round(PS.swept_reach(h), 2), tipW=0.9)
+        if p is None or not shaft:
+            return None
+        sl, sh = shaft
+        # generator: neck to x0 + 10, tip at x0 + sl; a tip taller than the handle is lowered until it fits (dy in
+        # build_other), which the customiser does with its shaft offset (sweep, + = down)
+        top = TIP_TOP.get(base, -sh / 2)
+        drop = max(0.0, -(5.0 if style == "xacto" else 4.5) - top)
+        p = dict(p, shaftL=sl - 10, shaftH=sh, sweep=round(drop, 2), neckL=17 if style == "xacto" else 26)
+    q = dict(tool="pick", handle="xacto" if style == "xacto" else "full", holes=1 if style != "xacto" else 0, flatEdge=0, **p)
+    return q
+
+
+def tension_custom(stem):
+    """Customiser values for the tension-tools-v2 bars it can draw (U, Z, single, BOK L), else None."""
+    n = stem.rsplit("/", 1)[1]
+    m = re.match(r"TOK-C__tip-([\d.]+)-([\d.]+)__short-([\d.]+)$", n)
+    if m:
+        return dict(tool="tension", dirA="up", tipA=m[1], linA=m[3], dirB="up", tipB=m[2], linB=m[3])
+    m = re.match(r"TOK-Z__tip-([\d.]+)__short-([\d.]+)-long-([\d.]+)$", n)
+    if m:
+        return dict(tool="tension", dirA="up", tipA=m[1], linA=m[2], dirB="down", tipB=m[1], linB=m[3])
+    m = re.match(r"TOK-L-SINGLE__tip-([\d.]+)__short-([\d.]+)$", n)
+    if m:
+        return dict(tool="tension", dirA="up", tipA=m[1], linA=m[2], dirB="none")
+    m = re.match(r"BOK-L__tip-([\d.]+)__leg-([\d.]+)$", n)
+    if m:
+        return dict(tool="tension", shaftW=3.0, dirA="none", dirB="down", tipB=m[1], linB=round(float(m[2]) - 1.5, 2))   # customiser counts the leg below its 1.5 mm step
+    return None
+
+
+def custom_link(c, q):
+    if q:
+        c["custom"] = urlencode(dict(q, name=c["name"]))
+    return c
+
+
 # ---------------------------------------------------------------- content (current files only; absent families skipped)
 exists = lambda rel: (ROOT / rel).exists()
 MAN = json.loads((ROOT / "manifest-home-workshop.json").read_text(encoding="utf-8")) if exists("manifest-home-workshop.json") else []
@@ -96,7 +179,8 @@ for lock, chip in LOCKS:
         if r.get("handle") == "full-handle":
             holes = next(f for f in r["files"] if "__holes" in f and f.endswith(".svg"))
             plain = next(f for f in r["files"] if "__no-holes" in f and f.endswith(".svg"))
-            cards.append(styled(holes[:-4], pretty(base), [fmt_row("Holes", holes), fmt_row("No holes", plain)], "flat", r.get("note", "")))
+            cards.append(custom_link(styled(holes[:-4], pretty(base), [fmt_row("Holes", holes), fmt_row("No holes", plain)], "flat", r.get("note", "")),
+                                     pick_custom(base, "flat", r.get("shaft_mm"))))
             xr = by_id.get(base + "__xacto")
             if xr:
                 xs = [f for f in xr["files"] if f.endswith(".svg")]
@@ -105,7 +189,8 @@ for lock, chip in LOCKS:
                 if fr:
                     fs = [f for f in fr["files"] if f.endswith(".svg")]
                     rows += [fmt_row("Flat edge", fs[0])] + ([fmt_row("Flat edge + hole", fs[1])] if len(fs) > 1 else [])
-                cards.append(styled(xs[0][:-4], pretty(base), rows, "xacto", r.get("note", "")))
+                cards.append(custom_link(styled(xs[0][:-4], pretty(base), rows, "xacto", r.get("note", "")),
+                                         pick_custom(base, "xacto", xr.get("shaft_mm"))))
         elif r.get("handle") == "bar":
             c = laser_card(r["files"][0][:-4], pretty(base) + " " + r["id"].split("__")[1] + " mm"); c["note"] = r.get("note", "")
             cards.append(c)                                     # no handle: shown in both styles
@@ -148,8 +233,9 @@ def tension_name(s):
 
 
 tt = stems(r"^generated/tension-tools-v2/")
-T[("tension", "Fits a hacksaw blade")] = [laser_card(s, tension_name(s)) for s in tt if checks[s].get("fits_hacksaw_12.7mm")]
-T[("tension", "Wider sheet")] = [laser_card(s, tension_name(s)) for s in tt if not checks[s].get("fits_hacksaw_12.7mm") and "/ADV__" not in s]
+T[("tension", "Fits a hacksaw blade")] = [custom_link(laser_card(s, tension_name(s)), tension_custom(s)) for s in tt if checks[s].get("fits_hacksaw_12.7mm")]
+T[("tension", "Wider sheet")] = [custom_link(laser_card(s, tension_name(s)), tension_custom(s)) for s in tt
+                                 if not checks[s].get("fits_hacksaw_12.7mm") and "/ADV__" not in s]
 T[("tension", "Advanced")] = [laser_card(s, tension_name(s)) for s in tt if "/ADV__" in s]
 
 # Handles
@@ -218,6 +304,8 @@ def card_html(c):
     q = esc((c["name"] + " " + " ".join(h for _, h in c["links"])).lower())
     img = (f'<button class="img" data-big="{esc(c["thumb"])}" aria-label="Enlarge {esc(c["name"])}"><img loading="lazy" src="{esc(c["thumb"])}" alt=""></button>'
            if c["thumb"] else "")
+    if c.get("custom"):   # opens the Customise tab with this design loaded (shareable link)
+        links += f'<div class="dl"><a class="cust" href="#custom?{esc(c["custom"])}" data-ck="{esc(c["custom"])}">Customise this</a></div>'
     note = f'<p class="note">{esc(c["note"])}</p>' if c.get("note") else ""
     st = f' data-style="{c["style"]}"' if c.get("style") else ""
     return f'<article data-q="{q}"{st}>{img}<h3>{esc(c["name"])}</h3><p>{esc(c["size"])} {badge}</p>{note}<div class="dls">{links}</div></article>'
@@ -231,7 +319,8 @@ for key, title, intro in TABS:
         if exists("site/customizer.js"):
             tabs.append('<button data-tab="custom">Customise</button>')
             sections.append('<section id="sec-custom" hidden><p class="intro">Design your own pick or tension bar, then download the cut file. '
-                            'Handle type and holes, tang width, shaft length and height, sweep and tip profile are all adjustable.</p>' + CUSTOM + '</section>')
+                            'Start from a preset, or press "Customise this" on any design in the Picks or Tension tabs to start from that one. '
+                            'Every value can be changed; ↺ puts a field back to the design you started from.</p>' + CUSTOM + '</section>')
         continue
     groups = [(chip, cards) for (k, chip), cards in T.items() if k == key and cards]
     if not groups:
@@ -266,6 +355,7 @@ article{background:#151b20;border:1px solid #243038;border-radius:10px;padding:1
 .dl{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:6px}
 .dl a{font-size:13px;font-weight:600;padding:3px 10px;border:1px solid #ff5a5a;border-radius:6px;background:#ff5a5a;color:#0d1114;text-decoration:none}
 .dl a:hover{background:#ff8080;border-color:#ff8080}
+.dl a.cust{background:none;color:#ff8080} .dl a.cust:hover{background:#2a1416;color:#ffb0b0}
 .dls{display:flex;flex-direction:column;gap:5px;margin-top:auto;padding-top:6px} .dls .dl{margin:0;padding:0;align-items:center}
 .rl{min-width:74px;font-size:12px;color:#9aa7b0}
 .switch{display:inline-flex;border:1px solid #33424c;border-radius:9px;overflow:hidden;margin:0 0 12px}
@@ -309,7 +399,7 @@ JS = """
 const $=s=>document.querySelectorAll(s);
 const setHdr=()=>document.documentElement.style.setProperty('--hdr',document.querySelector('header').offsetHeight+'px');setHdr();addEventListener('resize',setHdr);
 function tab(k){$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===k));$('main section').forEach(s=>s.hidden=s.id!=='sec-'+k);
- const sec=document.getElementById('sec-'+k);if(sec&&sec.querySelector('.chips')&&!sec.querySelector('.chips .on'))chip(sec,0);history.replaceState(null,'','#'+k)}
+ const sec=document.getElementById('sec-'+k);if(sec&&sec.querySelector('.chips')&&!sec.querySelector('.chips .on'))chip(sec,0);if(location.hash.slice(1).split('?')[0]!==k)history.replaceState(null,'','#'+k)}
 function chip(sec,i){sec.querySelectorAll('.chips button').forEach(b=>b.classList.toggle('on',+b.dataset.chip===+i));
  sec.querySelectorAll('.group').forEach(g=>g.hidden=+g.dataset.group!==+i)}
 $('nav button').forEach(b=>b.onclick=()=>{q.value='';q.oninput();tab(b.dataset.tab)});
@@ -319,12 +409,14 @@ $('.switch button').forEach(b=>b.onclick=()=>{const sec=b.closest('section');sec
 $('button.img').forEach(b=>b.onclick=()=>{const a=b.closest('article');document.getElementById('big-t').textContent=a.querySelector('h3').textContent;
  document.getElementById('big-i').src=b.dataset.big;document.getElementById('big-d').innerHTML=a.querySelector('.dls').innerHTML;big.showModal()});
 big.onclick=e=>{if(e.target===big)big.close()};
+document.addEventListener('click',e=>{const a=e.target.closest('a.cust');if(!a||!window.ckLoad)return;e.preventDefault();
+ if(big.open)big.close();q.value='';q.oninput();history.replaceState(null,'','#custom?'+a.dataset.ck);window.ckLoad(a.dataset.ck);tab('custom');scrollTo(0,0)});
 q.oninput=()=>{const v=q.value.toLowerCase().trim();document.body.classList.toggle('searching',!!v);
  if(!v){const k=(document.querySelector('nav .on')||{dataset:{}}).dataset.tab||'picks';$('main section').forEach(s=>s.hidden=s.id!=='sec-'+k);
   $('main section').forEach(s=>{if(s.querySelector('.chips'))chip(s,(s.querySelector('.chips .on')||{dataset:{chip:0}}).dataset.chip)});$('article').forEach(a=>a.hidden=false);return}
  $('main section').forEach(s=>s.hidden=s.id==='sec-custom');$('.group').forEach(g=>g.hidden=false);
  $('article').forEach(a=>a.hidden=!a.dataset.q.includes(v))};
-const p=new URLSearchParams(location.search),h=location.hash.slice(1);
+const p=new URLSearchParams(location.search),h=location.hash.slice(1).split('?')[0];
 const legacy={corbeau:'picks',knife:'picks',tension:'tension'}[p.get('family')]||({wood:'handles',cases:'handles'}[p.get('view')]||p.get('view'));
 const start=document.getElementById('sec-'+h)?h:(legacy&&document.getElementById('sec-'+legacy)?legacy:'picks');
 $('main section').forEach(s=>{if(s.querySelector('.chips'))chip(s,0)});tab(start);

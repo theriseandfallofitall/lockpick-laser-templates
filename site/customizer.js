@@ -35,8 +35,8 @@ const CK = (() => {
       ["ball", "Single ball", { tip: "ball", tipH: 4 }],
       ["halfBall", "Half ball", { tip: "halfBall", tipH: 4 }],
       ["snowman", "Double ball (snowman)", { tip: "doubleBall", tipH: 4 }],
-      ["combK", "Comb, Kwikset 5-pin", { tip: "comb", n: 5, pitch: 3.81, first: 6.27, tipW: 1.6, tipH: 5.0, shaftH: 2.0, shaftL: 15, sweep: 3.5 }],
-      ["combS", "Comb, Schlage 5-pin", { tip: "comb", n: 5, pitch: 3.96, first: 5.87, tipW: 1.6, tipH: 5.0, shaftH: 2.0, shaftL: 15, sweep: 3.5 }],
+      ["combK", "Comb, Kwikset 5-pin", { tip: "comb", n: 5, pitch: 3.81, first: 6.27, tipW: 1.6, tipH: 5.0, shaftH: 2.0 }],
+      ["combS", "Comb, Schlage 5-pin", { tip: "comb", n: 5, pitch: 3.96, first: 5.87, tipW: 1.6, tipH: 5.0, shaftH: 2.0 }],
       ["warded", "Warded L bit", { tip: "warded", tipH: 4, tipW: 3.2 }],
       ["lever", "Lever lifter (UK mortice)", { tip: "hook", tipH: 3.5, tipW: 1.2, bendR: 1.8, lean: 5, shaftH: 2.0, shaftL: 60 }],
       ["draw", "Draw your own tip", { tip: "custom", tipL: 14, custom: "0 1.5 2.5 3 2.5 1.5 0" }],
@@ -77,14 +77,18 @@ const CK = (() => {
       if (o.holes) holes = [[o.hole1, 0], [o.hole2, 0]];
     }
     const rootHalf = o.handle === "xacto" ? o.shoulderW / 2 : o.handleH / 2;      // full shoulder / handle width: no step where the neck starts
-    const neckStart = o.handle === "xacto" ? x0 - Math.min(1.0, o.shoulderL / 2) : x0 - 4;
-    const neckEnd = neckStart + o.neckL;
-    const tipStart = neckEnd + o.shaftL;
+    // comb (comb_tool() in build/generate_home_workshop.py): no neck or shaft. A stop block joins the handle
+    // (the last 2 mm of a flat handle, or 8 mm after the X-Acto shoulders) and the comb runs along the handle's bottom edge.
+    const comb = o.tip === "comb";
+    if (comb) o.combStop = o.handle === "xacto" ? 8 : 2;
+    const neckStart = comb ? (o.handle === "xacto" ? x0 : x0 - 2) : o.handle === "xacto" ? x0 - Math.min(1.0, o.shoulderL / 2) : x0 - 4;
+    const neckEnd = comb ? neckStart : neckStart + o.neckL;
+    const tipStart = comb ? neckStart : neckEnd + o.shaftL;
     const tip = TIPS[o.tip](o);
     const xEnd = tipStart + tip.len;
     // shaft centreline: optional sweep (smooth rise / drop over the shaft)
     const ss = t => t <= 0 ? 0 : t >= 1 ? 1 : t * t * (3 - 2 * t);
-    const centre = x => o.sweep * ss((x - neckEnd) / Math.max(1, o.shaftL));
+    const centre = comb ? () => rootHalf - half : x => o.sweep * ss((x - neckEnd) / Math.max(1, o.shaftL));
     const cos01 = t => 0.5 * (1 + Math.cos(Math.PI * Math.min(1, Math.max(0, t))));
     function topAt(x) {
       if (x < neckStart) return handleTop(x);
@@ -125,14 +129,14 @@ const CK = (() => {
     // vertical dimension marks: [label, x, y top, y bottom] in raw coordinates
     let pk = tipStart, pkY = topAt(tipStart) + fe(tipStart);          // highest point of the tip
     for (let x = tipStart; x <= xEnd; x += 0.02) { const xx = Math.min(x, xEnd - 1e-6), y = topAt(xx) + fe(xx); if (y < pkY) { pkY = y; pk = x; } }
-    const sx = (neckEnd + tipStart) / 2, hx = o.handle === "xacto" ? o.tangL / 2 : Math.min(8, neckStart / 2);
+    const sx = comb ? tipStart + o.combStop + 0.6 : (neckEnd + tipStart) / 2, hx = o.handle === "xacto" ? o.tangL / 2 : Math.min(8, neckStart / 2);
     const vmarks = [
       [o.handle === "xacto" ? "tang" : "handle", hx, topAt(hx) + fe(hx), botAt(hx) + fe(hx)],
       [o.tip === "comb" ? "comb body" : "shaft", sx, topAt(sx) + fe(sx), botAt(sx) + fe(sx)],
       [["ball", "doubleBall", "halfBall"].includes(o.tip) ? "ball above shaft" : o.tip === "comb" ? "stop above body" : "tip above shaft", pk, pkY, centre(tipStart) - half + fe(tipStart)],
     ];
     if (o.tip === "comb") {   // tooth height at the front tooth (the tallest point is the stop)
-      const xt = tipStart + 2 + o.first + (Math.max(1, Math.round(o.n)) - 1) * o.pitch;
+      const xt = tipStart + o.combStop + o.first + (Math.max(1, Math.round(o.n)) - 1) * o.pitch;
       vmarks.push(["tooth", xt, topAt(xt) + fe(xt), centre(tipStart) - half + fe(tipStart)]);
     }
     if (o.handle === "xacto") vmarks.splice(1, 0, ["shoulder", o.tangL + o.shoulderL / 2, -o.shoulderW / 2 + fe(o.tangL + 0.1), o.shoulderW / 2 + fe(o.tangL + 0.1)]);
@@ -207,9 +211,9 @@ const CK = (() => {
     // sawtooth "strokes": n ramps rising to tipH over `pitch`, then dropping
     saw: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch;
       return { len: n * p, down: flat, up: d => { const k = Math.min(n - 1, Math.floor(d / p)); return o.tipH * (d - k * p) / p; } }; },
-    // comb (COMB in build/pick_shapes.py): 2 mm stop rising 10.2 mm above the comb's bottom edge (rests on the lock face),
+    // comb (COMB in build/pick_shapes.py): stop block (combStop: 2 mm on a flat handle, 8 mm after X-Acto shoulders) rising 10.2 mm above the comb's bottom edge (rests on the lock face),
     // then round-topped teeth tipH tall at first + k * pitch from the stop face. The shaft is the comb body.
-    comb: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch, tw = Math.max(0.3, Math.min(o.tipW, p - 0.5)), r = tw / 2, S = 2;
+    comb: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch, tw = Math.max(0.3, Math.min(o.tipW, p - 0.5)), r = tw / 2, S = o.combStop || 2;
       const stopUp = Math.max(0, 10.2 - o.shaftH);
       return { len: S + o.first + (n - 1) * p + r + 1.2, down: flat, up: d => {
         if (d < S) return stopUp;
@@ -477,10 +481,10 @@ if (typeof document !== "undefined") {
     flatEdge: { tool: P, grp: "Handle", label: "Flat edge: one straight side from butt to tip (lay it on the hacksaw blade's back, no cutting on that side)", type: "check", simple: true,
       only: o => !["ball", "doubleBall"].includes(o.tip) },
     // shaft
-    neckL: num(P, "Shaft", "Neck length (where the handle narrows to the shaft)", "mm", 6, 30, 0.5),
-    shaftL: num(P, "Shaft", o => o.tip === "comb" ? "Shaft length (between the neck and the stop)" : "Shaft length (the thin part before the tip)", "mm", 15, 75, 0.5, { simple: true }),
+    neckL: num(P, "Shaft", "Neck length (where the handle narrows to the shaft)", "mm", 6, 30, 0.5, { only: o => o.tip !== "comb" }),
+    shaftL: num(P, "Shaft", "Shaft length (the thin part before the tip)", "mm", 15, 75, 0.5, { simple: true, only: o => o.tip !== "comb" }),
     shaftH: num(P, "Shaft", o => o.tip === "comb" ? "Comb body height (under the teeth; 2 mm slides under the pins)" : "Shaft height (taller = stiffer, but less room in the keyway)", "mm", 0.8, 3, 0.05, { simple: true }),
-    sweep: num(P, "Shaft", o => o.tip === "comb" ? "Shaft offset at the tip (3.5 puts the comb level with the handle bottom)" : "Shaft offset at the tip (minus = up, plus = down)", "mm", -4, 4, 0.1, { only: o => !o.flatEdge }),
+    sweep: num(P, "Shaft", "Shaft offset at the tip (minus = up, plus = down)", "mm", -4, 4, 0.1, { only: o => !o.flatEdge && o.tip !== "comb" }),
     // tip
     tip: sel(P, "Tip", "Tip shape", [["hook", "Hook"], ["swept", "Swept hook (shaft curves up)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
       ["halfBall", "Half-ball"], ["ball", "Ball"], ["doubleBall", "Double ball"], ["comb", "Comb"], ["warded", "Warded L bit"], ["custom", "Custom / drawn"]]),
@@ -611,6 +615,24 @@ if (typeof document !== "undefined") {
       for (const [k, fl] of Object.entries(F)) if (k !== "tool") setVal(k, fl.tool === tool && k in vals ? vals[k] : fl.v);
       lastStart[tool] = id; applied[tool] = id; fillStart(); draw();
     };
+    // Library page hook: load a library design (URL query string) into the customiser as a preset
+    window.ckLoad = query => {
+      const q = new URLSearchParams(query), tool = q.get("tool") === "tension" ? "tension" : "pick", p = {};
+      for (const [k, v] of q) {
+        if (k === "tool" || k === "name" || !(k in F) || F[k].type === "draw") continue;
+        const fl = F[k];
+        if (fl.type === "check") p[k] = v === "1" || v === "true";
+        else if (fl.type === "select") { if ([...els[k].options].some(o => o.value === v)) p[k] = v; }
+        else if (fl.type === "text") p[k] = v;
+        else p[k] = clampNum(fl, v);
+      }
+      CK.PRESETS[tool] = CK.PRESETS[tool].filter(x => x[0] !== "lib");
+      CK.PRESETS[tool].unshift(["lib", "From the library: " + (q.get("name") || "design"), p]);
+      setVal("tool", tool);
+      const vals = { ...CK.BASE, ...p };
+      for (const [k, fl] of Object.entries(F)) if (k !== "tool") setVal(k, fl.tool === tool && k in vals ? vals[k] : fl.v);
+      lastStart[tool] = "lib"; applied[tool] = "lib"; fillStart(); draw();
+    };
     advBox.addEventListener("change", draw);
 
     // ---------- tip drawing canvas: heights sampled every 0.5 mm along tipL, snapped to 0.1 mm; kept in sync with the text box
@@ -730,5 +752,8 @@ if (typeof document !== "undefined") {
       w.document.close();
     };
     draw();
+    const fromHash = () => { if (location.hash.startsWith("#custom?")) window.ckLoad(location.hash.slice(location.hash.indexOf("?") + 1)); };
+    fromHash();
+    addEventListener("hashchange", fromHash);
   }
 }

@@ -16,7 +16,7 @@ Free cut files for making your own lock picks and tension tools at home: laser-c
 | Fit tests | A scale check and an X-Acto tang width series. Cut these first |
 | Blade layouts | One file per hacksaw blade, with parts at least 6 mm apart, plus a laser jig that holds the blade |
 | Print | Every design has its own PDF button. Print at 100 % / Actual size, glue the paper to the steel (or the hacksaw blade) and file to the line. Blade layouts tile across A4 sheets |
-| Customise | Set the handle, holes, tang, shaft, sweep and tip, or the tension tool's corners, reliefs and S-curve, then download SVG/DXF or print 1:1. Each field has its own ↺ reset |
+| Customise | Set the handle, holes, tang, shaft, sweep and tip, or the tension tool's corners, reliefs and S-curve, then download SVG/DXF or print 1:1. Each field has its own ↺ reset. "Customise this" on a design in the Picks or Tension tab opens it here as the starting point; the link can be shared |
 
 ## Quick start
 

@@ -105,6 +105,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Short hook. The first pick to learn single-pin picking with: lifts one pin at a time.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -131,6 +135,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Medium hook. Reaches a pin set higher than its neighbours.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -157,6 +165,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Deep hook. Reaches a high pin at the back past low pins in front of it.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -183,6 +195,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Offset hook. The tip leans forward, so it reaches over a low pin onto the next one.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -209,6 +225,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 1.2 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -235,6 +255,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 1.6 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -261,6 +285,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 2 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -287,6 +315,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 2.5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -313,6 +345,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 3 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -339,6 +375,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 3.5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -365,6 +405,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 4 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -391,6 +435,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Swept hook, 5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -417,6 +465,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Small half-diamond. Single pins in tight keyways, and gentle raking.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -443,6 +495,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Medium half-diamond. The all-round shape: single pins, raking, wafer locks.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -469,6 +525,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Large half-diamond. Easier to feel on wide keyways and wafer locks.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -495,6 +555,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Steep half-diamond. Steeper sides reach a higher pin than the medium one.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -521,6 +585,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Bogota, two humps. Rock it up and down while pulling out slowly.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -547,6 +615,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Bogota, three humps. As the two-hump one, covers more pins at once.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -573,6 +645,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Snake rake. Waves up and down; scrub it in and out with light tension.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -599,6 +675,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "City rake (L-rake). Shaped like a key's cuts; rock it to set several pins at once.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -625,6 +705,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Triple-peak rake. Three sharp peaks; rock it while easing it out.",
+  "shaft_mm": [
+   46,
+   1.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -651,6 +735,10 @@
   "lock_type": "wafer",
   "handle": "full-handle",
   "note": "Half-ball. For wafer locks (desks, cabinets, cars); also lifts single pins.",
+  "shaft_mm": [
+   50,
+   1.4
+  ],
   "holes_mm": [
    [
     16.0,
@@ -677,6 +765,10 @@
   "lock_type": "wafer",
   "handle": "full-handle",
   "note": "Ball. Rides over wafers without catching; rock it in and out.",
+  "shaft_mm": [
+   50,
+   1.4
+  ],
   "holes_mm": [
    [
     16.0,
@@ -703,6 +795,10 @@
   "lock_type": "wafer",
   "handle": "full-handle",
   "note": "Double ball (snowman). Rocks two wafers at a time.",
+  "shaft_mm": [
+   48,
+   1.4
+  ],
   "holes_mm": [
    [
     16.0,
@@ -729,6 +825,10 @@
   "lock_type": "wafer",
   "handle": "full-handle",
   "note": "Zig-zag rake for wafer locks.",
+  "shaft_mm": [
+   44,
+   1.4
+  ],
   "holes_mm": [
    [
     16.0,
@@ -755,6 +855,10 @@
   "lock_type": "wafer",
   "handle": "full-handle",
   "note": "Wide rocker. Two tall humps for rocking wafer locks.",
+  "shaft_mm": [
+   42,
+   1.6
+  ],
   "holes_mm": [
    [
     16.0,
@@ -781,6 +885,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Comb for Kwikset, 5 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins.",
+  "shaft_mm": [
+   0,
+   0
+  ],
   "holes_mm": [
    [
     16.0,
@@ -807,6 +915,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Comb for Schlage, 5 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins.",
+  "shaft_mm": [
+   0,
+   0
+  ],
   "holes_mm": [
    [
     16.0,
@@ -833,6 +945,10 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Comb for Schlage, 6 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins.",
+  "shaft_mm": [
+   0,
+   0
+  ],
   "holes_mm": [
    [
     16.0,
@@ -859,6 +975,10 @@
   "lock_type": "warded",
   "handle": "full-handle",
   "note": "Warded pick, L shape, 4.0 mm bit. For cheap warded padlocks: the bit reaches round the wards to the catch.",
+  "shaft_mm": [
+   38,
+   2.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -885,6 +1005,10 @@
   "lock_type": "warded",
   "handle": "full-handle",
   "note": "Warded pick, L shape, 5.5 mm bit.",
+  "shaft_mm": [
+   38,
+   2.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -911,6 +1035,10 @@
   "lock_type": "warded",
   "handle": "full-handle",
   "note": "Warded pick, L shape, 6.8 mm bit.",
+  "shaft_mm": [
+   38,
+   2.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -937,6 +1065,10 @@
   "lock_type": "warded",
   "handle": "full-handle",
   "note": "Warded pick, T shape, 2.5 mm bit each side.",
+  "shaft_mm": [
+   38,
+   2.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -963,6 +1095,10 @@
   "lock_type": "warded",
   "handle": "full-handle",
   "note": "Warded pick, T shape, 3.5 mm bit each side.",
+  "shaft_mm": [
+   38,
+   2.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -989,6 +1125,10 @@
   "lock_type": "lever (mortice)",
   "handle": "full-handle",
   "note": "Lever lifter, 3.5 mm. For UK lever mortice locks: lifts one lever at a time. Use with a curtain wrench.",
+  "shaft_mm": [
+   70,
+   2.0
+  ],
   "holes_mm": [
    [
     16.0,
@@ -1015,6 +1155,10 @@
   "lock_type": "lever (mortice)",
   "handle": "full-handle",
   "note": "Lever lifter, 5.0 mm. For levers that sit higher.",
+  "shaft_mm": [
+   70,
+   2.0
+  ],
   "holes_mm": [
    [
     16.0,
@@ -1041,6 +1185,10 @@
   "lock_type": "lever (mortice)",
   "handle": "full-handle",
   "note": "Curtain wrench, 6 mm bit. The tension tool for lever locks: it turns the bolt stump. Check the bit fits your keyhole.",
+  "shaft_mm": [
+   66,
+   2.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -1067,6 +1215,10 @@
   "lock_type": "lever (mortice)",
   "handle": "full-handle",
   "note": "Curtain wrench, 8 mm bit.",
+  "shaft_mm": [
+   66,
+   2.2
+  ],
   "holes_mm": [
    [
     16.0,
@@ -1093,6 +1245,10 @@
   "lock_type": "dimple",
   "handle": "full-handle",
   "note": "Dimple pick blank. Bend the end 90\u00b0 at the two notches to make a 2.0 \u00d7 2.5 mm flag.",
+  "shaft_mm": [
+   46,
+   1.6
+  ],
   "holes_mm": [
    [
     16.0,
@@ -1118,7 +1274,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Short hook. The first pick to learn single-pin picking with: lifts one pin at a time."
+  "note": "Short hook. The first pick to learn single-pin picking with: lifts one pin at a time.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-medium__xacto",
@@ -1134,7 +1294,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Medium hook. Reaches a pin set higher than its neighbours."
+  "note": "Medium hook. Reaches a pin set higher than its neighbours.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-deep__xacto",
@@ -1150,7 +1314,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Deep hook. Reaches a high pin at the back past low pins in front of it."
+  "note": "Deep hook. Reaches a high pin at the back past low pins in front of it.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-offset__xacto",
@@ -1166,7 +1334,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Offset hook. The tip leans forward, so it reaches over a low pin onto the next one."
+  "note": "Offset hook. The tip leans forward, so it reaches over a low pin onto the next one.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-1.2__xacto",
@@ -1182,7 +1354,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 1.2 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 1.2 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-1.6__xacto",
@@ -1198,7 +1374,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 1.6 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 1.6 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-2.0__xacto",
@@ -1214,7 +1394,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 2 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 2 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-2.5__xacto",
@@ -1230,7 +1414,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 2.5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 2.5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-3.0__xacto",
@@ -1246,7 +1434,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 3 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 3 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-3.5__xacto",
@@ -1262,7 +1454,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 3.5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 3.5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-4.0__xacto",
@@ -1278,7 +1474,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 4 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 4 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "hook-swept-5.0__xacto",
@@ -1294,7 +1494,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Swept hook, 5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins."
+  "note": "Swept hook, 5 mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "half-diamond-small__xacto",
@@ -1310,7 +1514,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Small half-diamond. Single pins in tight keyways, and gentle raking."
+  "note": "Small half-diamond. Single pins in tight keyways, and gentle raking.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "half-diamond-medium__xacto",
@@ -1326,7 +1534,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Medium half-diamond. The all-round shape: single pins, raking, wafer locks."
+  "note": "Medium half-diamond. The all-round shape: single pins, raking, wafer locks.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "half-diamond-large__xacto",
@@ -1342,7 +1554,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Large half-diamond. Easier to feel on wide keyways and wafer locks."
+  "note": "Large half-diamond. Easier to feel on wide keyways and wafer locks.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "half-diamond-deep__xacto",
@@ -1358,7 +1574,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Steep half-diamond. Steeper sides reach a higher pin than the medium one."
+  "note": "Steep half-diamond. Steeper sides reach a higher pin than the medium one.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "rake-bogota-2__xacto",
@@ -1374,7 +1594,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Bogota, two humps. Rock it up and down while pulling out slowly."
+  "note": "Bogota, two humps. Rock it up and down while pulling out slowly.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "rake-bogota-3__xacto",
@@ -1390,7 +1614,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Bogota, three humps. As the two-hump one, covers more pins at once."
+  "note": "Bogota, three humps. As the two-hump one, covers more pins at once.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "rake-snake__xacto",
@@ -1406,7 +1634,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Snake rake. Waves up and down; scrub it in and out with light tension."
+  "note": "Snake rake. Waves up and down; scrub it in and out with light tension.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "rake-city__xacto",
@@ -1422,7 +1654,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "City rake (L-rake). Shaped like a key's cuts; rock it to set several pins at once."
+  "note": "City rake (L-rake). Shaped like a key's cuts; rock it to set several pins at once.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "rake-triple-peak__xacto",
@@ -1438,7 +1674,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Triple-peak rake. Three sharp peaks; rock it while easing it out."
+  "note": "Triple-peak rake. Three sharp peaks; rock it while easing it out.",
+  "shaft_mm": [
+   46,
+   1.2
+  ]
  },
  {
   "id": "wafer-half-ball__xacto",
@@ -1454,7 +1694,11 @@
   ],
   "lock_type": "wafer",
   "handle": "xacto",
-  "note": "Half-ball. For wafer locks (desks, cabinets, cars); also lifts single pins."
+  "note": "Half-ball. For wafer locks (desks, cabinets, cars); also lifts single pins.",
+  "shaft_mm": [
+   50,
+   1.4
+  ]
  },
  {
   "id": "wafer-single-ball__xacto",
@@ -1470,7 +1714,11 @@
   ],
   "lock_type": "wafer",
   "handle": "xacto",
-  "note": "Ball. Rides over wafers without catching; rock it in and out."
+  "note": "Ball. Rides over wafers without catching; rock it in and out.",
+  "shaft_mm": [
+   50,
+   1.4
+  ]
  },
  {
   "id": "wafer-double-ball__xacto",
@@ -1486,7 +1734,11 @@
   ],
   "lock_type": "wafer",
   "handle": "xacto",
-  "note": "Double ball (snowman). Rocks two wafers at a time."
+  "note": "Double ball (snowman). Rocks two wafers at a time.",
+  "shaft_mm": [
+   48,
+   1.4
+  ]
  },
  {
   "id": "wafer-zigzag-rake__xacto",
@@ -1502,7 +1754,11 @@
   ],
   "lock_type": "wafer",
   "handle": "xacto",
-  "note": "Zig-zag rake for wafer locks."
+  "note": "Zig-zag rake for wafer locks.",
+  "shaft_mm": [
+   44,
+   1.4
+  ]
  },
  {
   "id": "wafer-wide-rocker__xacto",
@@ -1518,7 +1774,11 @@
   ],
   "lock_type": "wafer",
   "handle": "xacto",
-  "note": "Wide rocker. Two tall humps for rocking wafer locks."
+  "note": "Wide rocker. Two tall humps for rocking wafer locks.",
+  "shaft_mm": [
+   42,
+   1.6
+  ]
  },
  {
   "id": "pin-comb-kwikset-5__xacto",
@@ -1534,7 +1794,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Comb for Kwikset, 5 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins."
+  "note": "Comb for Kwikset, 5 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins.",
+  "shaft_mm": [
+   0,
+   0
+  ]
  },
  {
   "id": "pin-comb-schlage-5__xacto",
@@ -1550,7 +1814,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Comb for Schlage, 5 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins."
+  "note": "Comb for Schlage, 5 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins.",
+  "shaft_mm": [
+   0,
+   0
+  ]
  },
  {
   "id": "pin-comb-schlage-6__xacto",
@@ -1566,7 +1834,11 @@
   ],
   "lock_type": "pin tumbler",
   "handle": "xacto",
-  "note": "Comb for Schlage, 6 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins."
+  "note": "Comb for Schlage, 6 pins. Slide it in along the bottom of the keyway until the stop touches the lock face, then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins.",
+  "shaft_mm": [
+   0,
+   0
+  ]
  },
  {
   "id": "warded-L-4.0__xacto",
@@ -1582,7 +1854,11 @@
   ],
   "lock_type": "warded",
   "handle": "xacto",
-  "note": "Warded pick, L shape, 4.0 mm bit. For cheap warded padlocks: the bit reaches round the wards to the catch."
+  "note": "Warded pick, L shape, 4.0 mm bit. For cheap warded padlocks: the bit reaches round the wards to the catch.",
+  "shaft_mm": [
+   38,
+   2.2
+  ]
  },
  {
   "id": "warded-L-5.5__xacto",
@@ -1598,7 +1874,11 @@
   ],
   "lock_type": "warded",
   "handle": "xacto",
-  "note": "Warded pick, L shape, 5.5 mm bit."
+  "note": "Warded pick, L shape, 5.5 mm bit.",
+  "shaft_mm": [
+   38,
+   2.2
+  ]
  },
  {
   "id": "warded-L-6.8__xacto",
@@ -1614,7 +1894,11 @@
   ],
   "lock_type": "warded",
   "handle": "xacto",
-  "note": "Warded pick, L shape, 6.8 mm bit."
+  "note": "Warded pick, L shape, 6.8 mm bit.",
+  "shaft_mm": [
+   38,
+   2.2
+  ]
  },
  {
   "id": "warded-T-2.5__xacto",
@@ -1630,7 +1914,11 @@
   ],
   "lock_type": "warded",
   "handle": "xacto",
-  "note": "Warded pick, T shape, 2.5 mm bit each side."
+  "note": "Warded pick, T shape, 2.5 mm bit each side.",
+  "shaft_mm": [
+   38,
+   2.2
+  ]
  },
  {
   "id": "warded-T-3.5__xacto",
@@ -1646,7 +1934,11 @@
   ],
   "lock_type": "warded",
   "handle": "xacto",
-  "note": "Warded pick, T shape, 3.5 mm bit each side."
+  "note": "Warded pick, T shape, 3.5 mm bit each side.",
+  "shaft_mm": [
+   38,
+   2.2
+  ]
  },
  {
   "id": "lever-lifter-hook-3.5__xacto",
@@ -1662,7 +1954,11 @@
   ],
   "lock_type": "lever (mortice)",
   "handle": "xacto",
-  "note": "Lever lifter, 3.5 mm. For UK lever mortice locks: lifts one lever at a time. Use with a curtain wrench."
+  "note": "Lever lifter, 3.5 mm. For UK lever mortice locks: lifts one lever at a time. Use with a curtain wrench.",
+  "shaft_mm": [
+   70,
+   2.0
+  ]
  },
  {
   "id": "lever-lifter-hook-5.0__xacto",
@@ -1678,7 +1974,11 @@
   ],
   "lock_type": "lever (mortice)",
   "handle": "xacto",
-  "note": "Lever lifter, 5.0 mm. For levers that sit higher."
+  "note": "Lever lifter, 5.0 mm. For levers that sit higher.",
+  "shaft_mm": [
+   70,
+   2.0
+  ]
  },
  {
   "id": "lever-curtain-wrench-6__xacto",
@@ -1694,7 +1994,11 @@
   ],
   "lock_type": "lever (mortice)",
   "handle": "xacto",
-  "note": "Curtain wrench, 6 mm bit. The tension tool for lever locks: it turns the bolt stump. Check the bit fits your keyhole."
+  "note": "Curtain wrench, 6 mm bit. The tension tool for lever locks: it turns the bolt stump. Check the bit fits your keyhole.",
+  "shaft_mm": [
+   66,
+   2.2
+  ]
  },
  {
   "id": "lever-curtain-wrench-8__xacto",
@@ -1710,7 +2014,11 @@
   ],
   "lock_type": "lever (mortice)",
   "handle": "xacto",
-  "note": "Curtain wrench, 8 mm bit."
+  "note": "Curtain wrench, 8 mm bit.",
+  "shaft_mm": [
+   66,
+   2.2
+  ]
  },
  {
   "id": "dimple-flat-flag__xacto",
@@ -1726,7 +2034,11 @@
   ],
   "lock_type": "dimple",
   "handle": "xacto",
-  "note": "Dimple pick blank. Bend the end 90\u00b0 at the two notches to make a 2.0 \u00d7 2.5 mm flag."
+  "note": "Dimple pick blank. Bend the end 90\u00b0 at the two notches to make a 2.0 \u00d7 2.5 mm flag.",
+  "shaft_mm": [
+   46,
+   1.6
+  ]
  },
  {
   "id": "hook-short__xacto-flat-edge",
