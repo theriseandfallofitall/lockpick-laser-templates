@@ -239,14 +239,15 @@ def comb_tool(teeth, style, pitch=3.9, tooth_w=1.5, tooth_h=2.2, body_h=4.6):
         c = 0.4
         tang = Polygon([(0, -TW / 2 + c), (c, -TW / 2), (TL, -TW / 2), (TL, TW / 2), (c, TW / 2), (0, TW / 2 - c)])
         guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-0.4).buffer(0.4, quad_segs=16)
-        x0, bot = TL + SHOULDER_L - 0.4, SHOULDER_W / 2 - 0.4
+        x0, bot = TL + 1.0, SHOULDER_W / 2
         base, holes = unary_union([tang, guard]), []
-        root_top = -SHOULDER_W / 2 + 0.4
+        root_top = -SHOULDER_W / 2
     else:
         base = box(0, -4.5, 56, 4.5).buffer(-2).buffer(2, quad_segs=16)
         x0, bot, root_top, holes = 54.0, 4.5, -4.5, [(15.0, 0.0), (50.0, 0.0)]
     top = bot - body_h
-    body = Polygon([(x0, root_top), (x0 + 8, top), (x0 + 8 + L, top), (x0 + 8 + L, bot), (x0, bot)])
+    taper = [(x0 + 8 * i / 40, top + (root_top - top) * 0.5 * (1 + math.cos(math.pi * i / 40))) for i in range(41)]  # tangent, no kink
+    body = Polygon(taper + [(x0 + 8 + L, top), (x0 + 8 + L, bot), (x0, bot)])
     t = [box(x0 + 8 + L - 0.6 - tooth_w - i * pitch, top - tooth_h, x0 + 8 + L - 0.6 - i * pitch, top + 0.1) for i in range(teeth)]
     p = unary_union([base, body] + t)
     return clean(p, 0.4, 0.25), holes
@@ -274,9 +275,9 @@ def build_other(style):
         dy = max(0.0, -half - work.bounds[1])        # drop tall tips so the whole pick stays within the handle height
         work = translate(work, 0, dy)
         if style == "xacto":
-            neck = smooth_neck(TL + SHOULDER_L - 0.4, 3.3, x0 + 10, sh / 2, dy)
+            neck = smooth_neck(TL + 1.0, SHOULDER_W / 2, x0 + 10, sh / 2, dy)   # starts at full shoulder width: no step in front of the shoulders
         else:
-            neck = smooth_neck(62.0 - 4, 4.5 - 0.3, x0 + 10, sh / 2, dy)
+            neck = smooth_neck(62.0 - 4, 4.5, x0 + 10, sh / 2, dy)          # starts at full handle height: no step
         base = base.intersection(box(-1, -50, (TL + SHOULDER_L) if style == "xacto" else 62.0 - 3, 50))  # drop the old straight necks
         p = clean(unary_union([base, neck, work]))
         q = place(p)
@@ -319,7 +320,7 @@ if ORIGINALS:
         active_t = translate(active, x0 + 4 - SOURCE_CUT, -centre)
         xe = x0 + 14                                   # blend ends 10 mm into the original working section
         sec = active_t.intersection(LineString([(xe, -50), (xe, 50)]))
-        neck = smooth_neck(TL + SHOULDER_L - 0.4, 3.3, xe, (sec.bounds[3] - sec.bounds[1]) / 2, (sec.bounds[1] + sec.bounds[3]) / 2)
+        neck = smooth_neck(TL + 1.0, SHOULDER_W / 2, xe, (sec.bounds[3] - sec.bounds[1]) / 2, (sec.bounds[1] + sec.bounds[3]) / 2)
         base = base.intersection(box(-1, -50, TL + SHOULDER_L, 50))
         p = unary_union([base, neck, active_t]).simplify(0.001, preserve_topology=True)
         assert p.geom_type == "Polygon" and p.is_valid and not p.interiors, row["id"]

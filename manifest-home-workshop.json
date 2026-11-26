@@ -95,7 +95,7 @@
   "family": "other-lock-picks",
   "length_mm": 122.0,
   "height_mm": 9.0,
-  "area_mm2": 674.696,
+  "area_mm2": 681.875,
   "files": [
    "generated/other-lock-picks/hook-short__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/hook-short__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -121,7 +121,7 @@
   "family": "other-lock-picks",
   "length_mm": 121.998,
   "height_mm": 9.0,
-  "area_mm2": 675.699,
+  "area_mm2": 682.882,
   "files": [
    "generated/other-lock-picks/hook-medium__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/hook-medium__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -147,7 +147,7 @@
   "family": "other-lock-picks",
   "length_mm": 121.9,
   "height_mm": 9.0,
-  "area_mm2": 676.221,
+  "area_mm2": 683.404,
   "files": [
    "generated/other-lock-picks/hook-deep__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/hook-deep__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -173,7 +173,7 @@
   "family": "other-lock-picks",
   "length_mm": 122.778,
   "height_mm": 9.0,
-  "area_mm2": 675.491,
+  "area_mm2": 682.673,
   "files": [
    "generated/other-lock-picks/hook-offset__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/hook-offset__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -199,7 +199,7 @@
   "family": "other-lock-picks",
   "length_mm": 123.2,
   "height_mm": 9.0,
-  "area_mm2": 677.135,
+  "area_mm2": 684.315,
   "files": [
    "generated/other-lock-picks/half-diamond-small__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/half-diamond-small__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -225,7 +225,7 @@
   "family": "other-lock-picks",
   "length_mm": 124.4,
   "height_mm": 9.0,
-  "area_mm2": 681.301,
+  "area_mm2": 688.484,
   "files": [
    "generated/other-lock-picks/half-diamond-large__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/half-diamond-large__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -251,7 +251,7 @@
   "family": "other-lock-picks",
   "length_mm": 131.0,
   "height_mm": 9.0,
-  "area_mm2": 694.937,
+  "area_mm2": 702.121,
   "files": [
    "generated/other-lock-picks/rake-bogota-3__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/rake-bogota-3__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -277,7 +277,7 @@
   "family": "other-lock-picks",
   "length_mm": 133.0,
   "height_mm": 9.0,
-  "area_mm2": 700.634,
+  "area_mm2": 707.818,
   "files": [
    "generated/other-lock-picks/rake-snake__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/rake-snake__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -303,7 +303,7 @@
   "family": "other-lock-picks",
   "length_mm": 132.6,
   "height_mm": 9.0,
-  "area_mm2": 707.116,
+  "area_mm2": 714.301,
   "files": [
    "generated/other-lock-picks/rake-city__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/rake-city__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -329,7 +329,7 @@
   "family": "other-lock-picks",
   "length_mm": 127.2,
   "height_mm": 9.0,
-  "area_mm2": 694.315,
+  "area_mm2": 701.5,
   "files": [
    "generated/other-lock-picks/wafer-half-ball__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/wafer-half-ball__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -355,7 +355,7 @@
   "family": "other-lock-picks",
   "length_mm": 127.8,
   "height_mm": 9.0,
-  "area_mm2": 698.489,
+  "area_mm2": 705.671,
   "files": [
    "generated/other-lock-picks/wafer-single-ball__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/wafer-single-ball__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -381,7 +381,7 @@
   "family": "other-lock-picks",
   "length_mm": 130.6,
   "height_mm": 9.0,
-  "area_mm2": 704.242,
+  "area_mm2": 711.425,
   "files": [
    "generated/other-lock-picks/wafer-double-ball__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/wafer-double-ball__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -407,7 +407,7 @@
   "family": "other-lock-picks",
   "length_mm": 133.6,
   "height_mm": 9.0,
-  "area_mm2": 716.908,
+  "area_mm2": 724.091,
   "files": [
    "generated/other-lock-picks/wafer-zigzag-rake__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/wafer-zigzag-rake__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -433,7 +433,7 @@
   "family": "other-lock-picks",
   "length_mm": 130.0,
   "height_mm": 9.0,
-  "area_mm2": 728.733,
+  "area_mm2": 735.92,
   "files": [
    "generated/other-lock-picks/wafer-wide-rocker__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/wafer-wide-rocker__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -459,7 +459,7 @@
   "family": "other-lock-picks",
   "length_mm": 80.6,
   "height_mm": 9.0,
-  "area_mm2": 619.745,
+  "area_mm2": 619.428,
   "files": [
    "generated/other-lock-picks/pin-comb-4__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/pin-comb-4__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -485,7 +485,7 @@
   "family": "other-lock-picks",
   "length_mm": 84.5,
   "height_mm": 9.0,
-  "area_mm2": 641.03,
+  "area_mm2": 640.713,
   "files": [
    "generated/other-lock-picks/pin-comb-5__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/pin-comb-5__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -511,7 +511,7 @@
   "family": "other-lock-picks",
   "length_mm": 88.4,
   "height_mm": 9.0,
-  "area_mm2": 662.314,
+  "area_mm2": 661.998,
   "files": [
    "generated/other-lock-picks/pin-comb-6__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/pin-comb-6__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -537,7 +537,7 @@
   "family": "other-lock-picks",
   "length_mm": 115.0,
   "height_mm": 9.0,
-  "area_mm2": 716.745,
+  "area_mm2": 723.925,
   "files": [
    "generated/other-lock-picks/warded-L-4.0__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/warded-L-4.0__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -563,7 +563,7 @@
   "family": "other-lock-picks",
   "length_mm": 115.0,
   "height_mm": 9.0,
-  "area_mm2": 719.742,
+  "area_mm2": 726.931,
   "files": [
    "generated/other-lock-picks/warded-L-5.5__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/warded-L-5.5__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -589,7 +589,7 @@
   "family": "other-lock-picks",
   "length_mm": 115.0,
   "height_mm": 9.0,
-  "area_mm2": 722.367,
+  "area_mm2": 729.529,
   "files": [
    "generated/other-lock-picks/warded-L-6.8__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/warded-L-6.8__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -615,7 +615,7 @@
   "family": "other-lock-picks",
   "length_mm": 115.0,
   "height_mm": 9.0,
-  "area_mm2": 718.765,
+  "area_mm2": 725.952,
   "files": [
    "generated/other-lock-picks/warded-T-2.5__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/warded-T-2.5__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -641,7 +641,7 @@
   "family": "other-lock-picks",
   "length_mm": 115.0,
   "height_mm": 9.2,
-  "area_mm2": 722.755,
+  "area_mm2": 729.937,
   "files": [
    "generated/other-lock-picks/warded-T-3.5__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/warded-T-3.5__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -667,7 +667,7 @@
   "family": "other-lock-picks",
   "length_mm": 146.4,
   "height_mm": 9.0,
-  "area_mm2": 767.588,
+  "area_mm2": 774.771,
   "files": [
    "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -693,7 +693,7 @@
   "family": "other-lock-picks",
   "length_mm": 146.4,
   "height_mm": 9.0,
-  "area_mm2": 769.392,
+  "area_mm2": 776.574,
   "files": [
    "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -719,7 +719,7 @@
   "family": "other-lock-picks",
   "length_mm": 143.5,
   "height_mm": 9.0,
-  "area_mm2": 792.447,
+  "area_mm2": 799.632,
   "files": [
    "generated/other-lock-picks/lever-curtain-wrench-6__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/lever-curtain-wrench-6__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -745,7 +745,7 @@
   "family": "other-lock-picks",
   "length_mm": 143.5,
   "height_mm": 10.2,
-  "area_mm2": 799.565,
+  "area_mm2": 806.73,
   "files": [
    "generated/other-lock-picks/lever-curtain-wrench-8__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/lever-curtain-wrench-8__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -771,7 +771,7 @@
   "family": "other-lock-picks",
   "length_mm": 128.0,
   "height_mm": 9.0,
-  "area_mm2": 704.949,
+  "area_mm2": 712.127,
   "files": [
    "generated/other-lock-picks/dimple-flat-flag__full-handle__holes-3.40mm-at-15-50.svg",
    "generated/other-lock-picks/dimple-flat-flag__full-handle__holes-3.40mm-at-15-50.dxf",
@@ -797,7 +797,7 @@
   "family": "other-lock-picks",
   "length_mm": 66.0,
   "height_mm": 10.0,
-  "area_mm2": 186.223,
+  "area_mm2": 210.153,
   "files": [
    "generated/other-lock-picks/hook-short__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/hook-short__xacto__tang-5.80x10mm.dxf"
@@ -811,7 +811,7 @@
   "family": "other-lock-picks",
   "length_mm": 66.0,
   "height_mm": 10.0,
-  "area_mm2": 187.221,
+  "area_mm2": 211.15,
   "files": [
    "generated/other-lock-picks/hook-medium__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/hook-medium__xacto__tang-5.80x10mm.dxf"
@@ -825,7 +825,7 @@
   "family": "other-lock-picks",
   "length_mm": 65.9,
   "height_mm": 10.0,
-  "area_mm2": 187.741,
+  "area_mm2": 211.669,
   "files": [
    "generated/other-lock-picks/hook-deep__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/hook-deep__xacto__tang-5.80x10mm.dxf"
@@ -839,7 +839,7 @@
   "family": "other-lock-picks",
   "length_mm": 66.779,
   "height_mm": 10.0,
-  "area_mm2": 187.009,
+  "area_mm2": 210.936,
   "files": [
    "generated/other-lock-picks/hook-offset__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/hook-offset__xacto__tang-5.80x10mm.dxf"
@@ -853,7 +853,7 @@
   "family": "other-lock-picks",
   "length_mm": 67.2,
   "height_mm": 10.0,
-  "area_mm2": 188.661,
+  "area_mm2": 212.59,
   "files": [
    "generated/other-lock-picks/half-diamond-small__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/half-diamond-small__xacto__tang-5.80x10mm.dxf"
@@ -867,7 +867,7 @@
   "family": "other-lock-picks",
   "length_mm": 68.4,
   "height_mm": 10.0,
-  "area_mm2": 192.827,
+  "area_mm2": 216.76,
   "files": [
    "generated/other-lock-picks/half-diamond-large__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/half-diamond-large__xacto__tang-5.80x10mm.dxf"
@@ -881,7 +881,7 @@
   "family": "other-lock-picks",
   "length_mm": 75.0,
   "height_mm": 10.0,
-  "area_mm2": 206.465,
+  "area_mm2": 230.4,
   "files": [
    "generated/other-lock-picks/rake-bogota-3__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/rake-bogota-3__xacto__tang-5.80x10mm.dxf"
@@ -895,7 +895,7 @@
   "family": "other-lock-picks",
   "length_mm": 77.0,
   "height_mm": 10.0,
-  "area_mm2": 212.163,
+  "area_mm2": 236.098,
   "files": [
    "generated/other-lock-picks/rake-snake__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/rake-snake__xacto__tang-5.80x10mm.dxf"
@@ -909,7 +909,7 @@
   "family": "other-lock-picks",
   "length_mm": 76.6,
   "height_mm": 10.0,
-  "area_mm2": 218.637,
+  "area_mm2": 242.567,
   "files": [
    "generated/other-lock-picks/rake-city__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/rake-city__xacto__tang-5.80x10mm.dxf"
@@ -923,7 +923,7 @@
   "family": "other-lock-picks",
   "length_mm": 71.2,
   "height_mm": 10.0,
-  "area_mm2": 204.883,
+  "area_mm2": 228.873,
   "files": [
    "generated/other-lock-picks/wafer-half-ball__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/wafer-half-ball__xacto__tang-5.80x10mm.dxf"
@@ -937,7 +937,7 @@
   "family": "other-lock-picks",
   "length_mm": 71.8,
   "height_mm": 10.0,
-  "area_mm2": 209.054,
+  "area_mm2": 233.043,
   "files": [
    "generated/other-lock-picks/wafer-single-ball__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/wafer-single-ball__xacto__tang-5.80x10mm.dxf"
@@ -951,7 +951,7 @@
   "family": "other-lock-picks",
   "length_mm": 74.6,
   "height_mm": 10.0,
-  "area_mm2": 214.809,
+  "area_mm2": 238.797,
   "files": [
    "generated/other-lock-picks/wafer-double-ball__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/wafer-double-ball__xacto__tang-5.80x10mm.dxf"
@@ -965,7 +965,7 @@
   "family": "other-lock-picks",
   "length_mm": 77.6,
   "height_mm": 10.0,
-  "area_mm2": 227.475,
+  "area_mm2": 251.471,
   "files": [
    "generated/other-lock-picks/wafer-zigzag-rake__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/wafer-zigzag-rake__xacto__tang-5.80x10mm.dxf"
@@ -979,7 +979,7 @@
   "family": "other-lock-picks",
   "length_mm": 74.0,
   "height_mm": 10.0,
-  "area_mm2": 238.339,
+  "area_mm2": 262.391,
   "files": [
    "generated/other-lock-picks/wafer-wide-rocker__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/wafer-wide-rocker__xacto__tang-5.80x10mm.dxf"
@@ -991,9 +991,9 @@
  {
   "id": "pin-comb-4__xacto",
   "family": "other-lock-picks",
-  "length_mm": 38.2,
+  "length_mm": 37.6,
   "height_mm": 10.0,
-  "area_mm2": 228.265,
+  "area_mm2": 225.187,
   "files": [
    "generated/other-lock-picks/pin-comb-4__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/pin-comb-4__xacto__tang-5.80x10mm.dxf"
@@ -1005,9 +1005,9 @@
  {
   "id": "pin-comb-5__xacto",
   "family": "other-lock-picks",
-  "length_mm": 42.1,
+  "length_mm": 41.5,
   "height_mm": 10.0,
-  "area_mm2": 249.549,
+  "area_mm2": 246.471,
   "files": [
    "generated/other-lock-picks/pin-comb-5__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/pin-comb-5__xacto__tang-5.80x10mm.dxf"
@@ -1019,9 +1019,9 @@
  {
   "id": "pin-comb-6__xacto",
   "family": "other-lock-picks",
-  "length_mm": 46.0,
+  "length_mm": 45.4,
   "height_mm": 10.0,
-  "area_mm2": 270.836,
+  "area_mm2": 267.756,
   "files": [
    "generated/other-lock-picks/pin-comb-6__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/pin-comb-6__xacto__tang-5.80x10mm.dxf"
@@ -1034,8 +1034,8 @@
   "id": "warded-L-4.0__xacto",
   "family": "other-lock-picks",
   "length_mm": 59.0,
-  "height_mm": 9.999,
-  "area_mm2": 223.468,
+  "height_mm": 10.0,
+  "area_mm2": 247.699,
   "files": [
    "generated/other-lock-picks/warded-L-4.0__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/warded-L-4.0__xacto__tang-5.80x10mm.dxf"
@@ -1048,8 +1048,8 @@
   "id": "warded-L-5.5__xacto",
   "family": "other-lock-picks",
   "length_mm": 59.0,
-  "height_mm": 9.999,
-  "area_mm2": 226.466,
+  "height_mm": 10.0,
+  "area_mm2": 250.696,
   "files": [
    "generated/other-lock-picks/warded-L-5.5__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/warded-L-5.5__xacto__tang-5.80x10mm.dxf"
@@ -1063,7 +1063,7 @@
   "family": "other-lock-picks",
   "length_mm": 59.0,
   "height_mm": 10.0,
-  "area_mm2": 229.206,
+  "area_mm2": 253.303,
   "files": [
    "generated/other-lock-picks/warded-L-6.8__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/warded-L-6.8__xacto__tang-5.80x10mm.dxf"
@@ -1077,7 +1077,7 @@
   "family": "other-lock-picks",
   "length_mm": 59.0,
   "height_mm": 10.0,
-  "area_mm2": 225.483,
+  "area_mm2": 249.715,
   "files": [
    "generated/other-lock-picks/warded-T-2.5__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/warded-T-2.5__xacto__tang-5.80x10mm.dxf"
@@ -1091,7 +1091,7 @@
   "family": "other-lock-picks",
   "length_mm": 59.0,
   "height_mm": 10.0,
-  "area_mm2": 229.5,
+  "area_mm2": 253.711,
   "files": [
    "generated/other-lock-picks/warded-T-3.5__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/warded-T-3.5__xacto__tang-5.80x10mm.dxf"
@@ -1105,7 +1105,7 @@
   "family": "other-lock-picks",
   "length_mm": 90.4,
   "height_mm": 10.0,
-  "area_mm2": 275.277,
+  "area_mm2": 299.449,
   "files": [
    "generated/other-lock-picks/lever-lifter-hook-3.5__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/lever-lifter-hook-3.5__xacto__tang-5.80x10mm.dxf"
@@ -1119,7 +1119,7 @@
   "family": "other-lock-picks",
   "length_mm": 90.4,
   "height_mm": 10.0,
-  "area_mm2": 277.08,
+  "area_mm2": 301.247,
   "files": [
    "generated/other-lock-picks/lever-lifter-hook-5.0__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/lever-lifter-hook-5.0__xacto__tang-5.80x10mm.dxf"
@@ -1132,8 +1132,8 @@
   "id": "lever-curtain-wrench-6__xacto",
   "family": "other-lock-picks",
   "length_mm": 87.5,
-  "height_mm": 9.999,
-  "area_mm2": 299.182,
+  "height_mm": 10.0,
+  "area_mm2": 323.396,
   "files": [
    "generated/other-lock-picks/lever-curtain-wrench-6__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/lever-curtain-wrench-6__xacto__tang-5.80x10mm.dxf"
@@ -1147,7 +1147,7 @@
   "family": "other-lock-picks",
   "length_mm": 87.5,
   "height_mm": 10.2,
-  "area_mm2": 306.539,
+  "area_mm2": 330.442,
   "files": [
    "generated/other-lock-picks/lever-curtain-wrench-8__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/lever-curtain-wrench-8__xacto__tang-5.80x10mm.dxf"
@@ -1160,8 +1160,8 @@
   "id": "dimple-flat-flag__xacto",
   "family": "other-lock-picks",
   "length_mm": 72.0,
-  "height_mm": 9.997,
-  "area_mm2": 214.557,
+  "height_mm": 9.998,
+  "area_mm2": 238.608,
   "files": [
    "generated/other-lock-picks/dimple-flat-flag__xacto__tang-5.80x10mm.svg",
    "generated/other-lock-picks/dimple-flat-flag__xacto__tang-5.80x10mm.dxf"

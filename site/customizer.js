@@ -60,8 +60,8 @@ const CK = (() => {
       handleBot = x => H / 2 - edge(x);
       if (o.holes) holes = [[o.hole1, 0], [o.hole2, 0]];
     }
-    const rootHalf = o.handle === "xacto" ? 3.3 : o.handleH / 2 - 0.3;
-    const neckStart = o.handle === "xacto" ? x0 - 0.4 : x0 - 4;
+    const rootHalf = o.handle === "xacto" ? 5 : o.handleH / 2;      // full shoulder / handle width: no step where the neck starts
+    const neckStart = o.handle === "xacto" ? x0 - 1.0 : x0 - 4;
     const neckEnd = neckStart + o.neckL;
     const tipStart = neckEnd + o.shaftL;
     const tip = TIPS[o.tip](o);
