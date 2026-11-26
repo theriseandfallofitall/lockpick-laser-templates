@@ -101,7 +101,17 @@ const CK = (() => {
     const marks = o.handle === "xacto"
       ? [["tang", 0, o.tangL], ["shoulder", o.tangL, x0], ["neck", x0, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]]
       : [["handle", 0, neckStart], ["neck", neckStart, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]];
-    return finish({ rings: [ring], circles, guides: [], marks });
+    // vertical dimension marks: [label, x, y top, y bottom] in raw coordinates
+    let pk = tipStart, pkY = topAt(tipStart);                       // highest point of the tip
+    for (let x = tipStart; x <= xEnd; x += 0.02) { const y = topAt(Math.min(x, xEnd - 1e-6)); if (y < pkY) { pkY = y; pk = x; } }
+    const sx = (neckEnd + tipStart) / 2, hx = o.handle === "xacto" ? o.tangL / 2 : Math.min(8, neckStart / 2);
+    const vmarks = [
+      [o.handle === "xacto" ? "tang" : "handle", hx, topAt(hx), botAt(hx)],
+      ["shaft", sx, topAt(sx), botAt(sx)],
+      ["tip", pk, pkY, centre(tipStart) - half],
+    ];
+    if (o.handle === "xacto") vmarks.splice(1, 0, ["shoulder", o.tangL + o.shoulderL / 2, -o.shoulderW / 2, o.shoulderW / 2]);
+    return finish({ rings: [ring], circles, guides: [], marks, vmarks });
   }
 
   const flat = () => 0;
@@ -177,7 +187,16 @@ const CK = (() => {
     const bot = rBot.concat(wavy(xa, xb, SW / 2, true), lBot);
     const ring = corners(top.concat(bot), {
       outer: [o.outer, o.outerR], tip: [o.tipCorner, o.tipCornerR], leg: [o.legCorner, o.legCornerR], stretch: o.ovalStretch });
-    return finish({ rings: [ring], circles: [], guides: [] });
+    const off = o.wave ? o.wave * Math.sin(Math.PI * o.waves * ((L / 2 - xa) / Math.max(1, xb - xa))) : 0;   // follow the wave at mid-length
+    const vmarks = [["bar", L / 2, -SW / 2 + off, SW / 2 + off]], marks = [];
+    const endMarks = (e, side) => {
+      if (!on(e)) return;
+      const yS = e.dir * (SW / 2 + S), yE = yS + e.dir * e.lin, x = side ? L - e.tip / 2 : e.tip / 2;
+      vmarks.push(["in", x, Math.min(yS, yE), Math.max(yS, yE)]);
+      marks.push([`tip ${e.tip}`, side ? L - e.tip : 0, side ? L : e.tip]);
+    };
+    endMarks(A, 0); endMarks(B, 1);
+    return finish({ rings: [ring], circles: [], guides: [], marks, vmarks });
   }
 
   // corner treatments: round (tangent fillet), chamfer, mouse (round relief cut past the corner) or oval relief
@@ -268,6 +287,7 @@ const CK = (() => {
     g.rings = g.rings.map(r => r.map(([x, y]) => [x - minX + m, y - minY + m]));
     g.circles = g.circles.map(c => ({ ...c, x: c.x - minX + m, y: c.y - minY + m }));
     g.marks = (g.marks || []).map(([l, a, b]) => [l, a - minX + m, b - minX + m]);
+    g.vmarks = (g.vmarks || []).map(([l, x, a, b]) => [l, x - minX + m, a - minY + m, b - minY + m]);
     const all = g.rings.flat();
     g.w = Math.max(...all.map(p => p[0])) + m; g.h = Math.max(...all.map(p => p[1])) + m;
     g.length = g.w - 2 * m; g.height = g.h - 2 * m; g.fitsBlade = g.height <= BLADE_USABLE;
@@ -544,6 +564,13 @@ if (typeof document !== "undefined") {
         if (b - a < 0.5) return;
         const y = y0 - padT * (i % 2 ? 0.3 : 0.7);
         d += hdim(a, b, y, b - a > fs * 4 ? `${l} ${(b - a).toFixed(1)}` : (b - a).toFixed(1));
+      });
+      (g.vmarks || []).forEach(([l, x, a, b]) => {
+        if (b - a < 0.2) return;
+        const c = "#8fd3ff", t = fs * 0.32;
+        d += ln(x, a, x, b, c) + ln(x - t, a, x + t, a, c) + ln(x - t, b, x + t, b, c) +
+             `<text x="${x + fs * 0.4}" y="${(a + b) / 2 + fs * 0.3}" font-size="${fs * 0.8}" fill="${c}" font-family="system-ui" ` +
+             `paint-order="stroke" stroke="#0f1418" stroke-width="${fs * 0.25}">${l} ${(b - a).toFixed(1)}</text>`;
       });
       return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 ${-padT} ${g.w + padR} ${g.h + padT + padB}">${body}${d}</svg>`;
     }
