@@ -56,136 +56,180 @@
    "set": "own-picks-xacto",
    "sheet": 4,
    "outlines": [
-    "half-diamond-small__xacto",
-    "half-diamond-medium__xacto",
-    "half-diamond-large__xacto"
+    "hook-swept-1.2__xacto",
+    "hook-swept-1.6__xacto",
+    "hook-swept-2.0__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__04.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__04.dxf"
    ],
-   "min_gap_mm": 19.9,
+   "min_gap_mm": 20.25,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 5,
    "outlines": [
-    "half-diamond-deep__xacto",
-    "rake-bogota-2__xacto",
-    "rake-bogota-3__xacto"
+    "hook-swept-2.5__xacto",
+    "hook-swept-3.0__xacto",
+    "hook-swept-3.5__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__05.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__05.dxf"
    ],
-   "min_gap_mm": 17.0,
+   "min_gap_mm": 19.41,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 6,
    "outlines": [
-    "rake-snake__xacto",
-    "rake-wave__xacto",
-    "rake-triple-peak__xacto"
+    "hook-swept-4.0__xacto",
+    "hook-swept-5.0__xacto",
+    "half-diamond-small__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__06.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__06.dxf"
    ],
-   "min_gap_mm": 13.75,
+   "min_gap_mm": 19.13,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 7,
    "outlines": [
-    "rake-city__xacto",
-    "wafer-half-ball__xacto",
-    "wafer-single-ball__xacto"
+    "half-diamond-medium__xacto",
+    "half-diamond-large__xacto",
+    "half-diamond-deep__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__07.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__07.dxf"
    ],
-   "min_gap_mm": 15.85,
+   "min_gap_mm": 19.7,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 8,
    "outlines": [
-    "wafer-double-ball__xacto",
-    "wafer-zigzag-rake__xacto",
-    "wafer-wide-rocker__xacto"
+    "rake-bogota-2__xacto",
+    "rake-bogota-3__xacto",
+    "rake-snake__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__08.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__08.dxf"
    ],
-   "min_gap_mm": 14.2,
+   "min_gap_mm": 14.75,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 9,
    "outlines": [
-    "pin-comb-4__xacto",
-    "pin-comb-5__xacto",
-    "pin-comb-6__xacto",
-    "warded-L-4.0__xacto",
-    "warded-L-5.5__xacto"
+    "rake-wave__xacto",
+    "rake-triple-peak__xacto",
+    "rake-city__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__09.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__09.dxf"
    ],
-   "min_gap_mm": 6.75,
+   "min_gap_mm": 13.85,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 10,
    "outlines": [
-    "warded-L-6.8__xacto",
-    "warded-T-2.5__xacto",
-    "warded-T-3.5__xacto"
+    "wafer-half-ball__xacto",
+    "wafer-single-ball__xacto",
+    "wafer-double-ball__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__10.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__10.dxf"
    ],
-   "min_gap_mm": 26.5,
+   "min_gap_mm": 16.35,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 11,
    "outlines": [
-    "lever-lifter-hook-3.5__xacto",
-    "lever-lifter-hook-5.0__xacto"
+    "wafer-zigzag-rake__xacto",
+    "wafer-wide-rocker__xacto",
+    "pin-comb-4__xacto",
+    "pin-comb-5__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__11.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__11.dxf"
    ],
-   "min_gap_mm": 34.07,
+   "min_gap_mm": 10.46,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto",
    "sheet": 12,
    "outlines": [
-    "lever-curtain-wrench-6__xacto",
-    "lever-curtain-wrench-8__xacto",
-    "dimple-flat-flag__xacto"
+    "pin-comb-6__xacto",
+    "warded-L-4.0__xacto",
+    "warded-L-5.5__xacto",
+    "warded-L-6.8__xacto"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__12.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__12.dxf"
    ],
-   "min_gap_mm": 9.0,
+   "min_gap_mm": 12.12,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto",
+   "sheet": 13,
+   "outlines": [
+    "warded-T-2.5__xacto",
+    "warded-T-3.5__xacto",
+    "lever-lifter-hook-3.5__xacto"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__13.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__13.dxf"
+   ],
+   "min_gap_mm": 18.65,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto",
+   "sheet": 14,
+   "outlines": [
+    "lever-lifter-hook-5.0__xacto",
+    "lever-curtain-wrench-6__xacto"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__14.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__14.dxf"
+   ],
+   "min_gap_mm": 35.03,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto",
+   "sheet": 15,
+   "outlines": [
+    "lever-curtain-wrench-8__xacto",
+    "dimple-flat-flag__xacto"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__15.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__15.dxf"
+   ],
+   "min_gap_mm": 41.17,
    "ends_use_blade_pin_holes": false
   },
   {
@@ -249,206 +293,262 @@
    "sheet": 5,
    "outlines": [
     "lifter-flat__full-handle",
-    "half-diamond-small__full-handle"
+    "hook-swept-1.2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__05.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__05.dxf"
    ],
-   "min_gap_mm": 66.0,
+   "min_gap_mm": 66.19,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 6,
    "outlines": [
-    "half-diamond-medium__full-handle",
-    "half-diamond-large__full-handle"
+    "hook-swept-1.6__full-handle",
+    "hook-swept-2.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__06.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__06.dxf"
    ],
-   "min_gap_mm": 65.2,
+   "min_gap_mm": 66.42,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 7,
    "outlines": [
-    "half-diamond-deep__full-handle",
-    "rake-bogota-2__full-handle"
+    "hook-swept-2.5__full-handle",
+    "hook-swept-3.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__07.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__07.dxf"
    ],
-   "min_gap_mm": 61.4,
+   "min_gap_mm": 64.9,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 8,
    "outlines": [
-    "rake-bogota-3__full-handle",
-    "rake-snake__full-handle"
+    "hook-swept-3.5__full-handle",
+    "hook-swept-4.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__08.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__08.dxf"
    ],
-   "min_gap_mm": 49.4,
+   "min_gap_mm": 63.3,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 9,
    "outlines": [
-    "rake-wave__full-handle",
-    "rake-triple-peak__full-handle"
+    "hook-swept-5.0__full-handle",
+    "half-diamond-small__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__09.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__09.dxf"
    ],
-   "min_gap_mm": 50.4,
+   "min_gap_mm": 64.15,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 10,
    "outlines": [
-    "rake-city__full-handle",
-    "wafer-half-ball__full-handle"
+    "half-diamond-medium__full-handle",
+    "half-diamond-large__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__10.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__10.dxf"
    ],
-   "min_gap_mm": 53.6,
+   "min_gap_mm": 65.2,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 11,
    "outlines": [
-    "wafer-single-ball__full-handle",
-    "wafer-double-ball__full-handle"
+    "half-diamond-deep__full-handle",
+    "rake-bogota-2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__11.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__11.dxf"
    ],
-   "min_gap_mm": 55.0,
+   "min_gap_mm": 61.4,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 12,
    "outlines": [
-    "wafer-zigzag-rake__full-handle",
-    "wafer-wide-rocker__full-handle"
+    "rake-bogota-3__full-handle",
+    "rake-snake__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__12.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__12.dxf"
    ],
-   "min_gap_mm": 49.8,
+   "min_gap_mm": 49.4,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 13,
    "outlines": [
-    "pin-comb-4__full-handle",
-    "pin-comb-5__full-handle",
-    "pin-comb-6__full-handle"
+    "rake-wave__full-handle",
+    "rake-triple-peak__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__13.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__13.dxf"
    ],
-   "min_gap_mm": 29.95,
+   "min_gap_mm": 50.4,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 14,
    "outlines": [
-    "warded-L-4.0__full-handle",
-    "warded-L-5.5__full-handle"
+    "rake-city__full-handle",
+    "wafer-half-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__14.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__14.dxf"
    ],
-   "min_gap_mm": 83.4,
+   "min_gap_mm": 53.6,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 15,
    "outlines": [
-    "warded-L-6.8__full-handle",
-    "warded-T-2.5__full-handle"
+    "wafer-single-ball__full-handle",
+    "wafer-double-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__15.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__15.dxf"
    ],
-   "min_gap_mm": 83.4,
+   "min_gap_mm": 55.0,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 16,
    "outlines": [
-    "warded-T-3.5__full-handle",
-    "lever-lifter-hook-3.5__full-handle"
+    "wafer-zigzag-rake__full-handle",
+    "wafer-wide-rocker__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__16.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__16.dxf"
    ],
-   "min_gap_mm": 52.0,
+   "min_gap_mm": 49.8,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 17,
    "outlines": [
-    "lever-lifter-hook-5.0__full-handle",
-    "lever-curtain-wrench-6__full-handle"
+    "pin-comb-4__full-handle",
+    "pin-comb-5__full-handle",
+    "pin-comb-6__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__17.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__17.dxf"
    ],
-   "min_gap_mm": 23.5,
+   "min_gap_mm": 29.95,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__no-holes",
    "sheet": 18,
    "outlines": [
-    "lever-curtain-wrench-8__full-handle"
+    "warded-L-4.0__full-handle",
+    "warded-L-5.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__18.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__18.dxf"
+   ],
+   "min_gap_mm": 83.4,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__no-holes",
+   "sheet": 19,
+   "outlines": [
+    "warded-L-6.8__full-handle",
+    "warded-T-2.5__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__19.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__19.dxf"
+   ],
+   "min_gap_mm": 83.4,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__no-holes",
+   "sheet": 20,
+   "outlines": [
+    "warded-T-3.5__full-handle",
+    "lever-lifter-hook-3.5__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__20.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__20.dxf"
+   ],
+   "min_gap_mm": 52.0,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__no-holes",
+   "sheet": 21,
+   "outlines": [
+    "lever-lifter-hook-5.0__full-handle",
+    "lever-curtain-wrench-6__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__21.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__21.dxf"
+   ],
+   "min_gap_mm": 23.5,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__no-holes",
+   "sheet": 22,
+   "outlines": [
+    "lever-curtain-wrench-8__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__22.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__22.dxf"
    ],
    "min_gap_mm": null,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes",
-   "sheet": 19,
+   "sheet": 23,
    "outlines": [
     "dimple-flat-flag__full-handle"
    ],
    "files": [
-    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__19.svg",
-    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__19.dxf"
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__23.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__23.dxf"
    ],
    "min_gap_mm": null,
    "ends_use_blade_pin_holes": false
@@ -514,206 +614,262 @@
    "sheet": 5,
    "outlines": [
     "lifter-flat__full-handle",
-    "half-diamond-small__full-handle"
+    "hook-swept-1.2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__05.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__05.dxf"
    ],
-   "min_gap_mm": 66.0,
+   "min_gap_mm": 66.19,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 6,
    "outlines": [
-    "half-diamond-medium__full-handle",
-    "half-diamond-large__full-handle"
+    "hook-swept-1.6__full-handle",
+    "hook-swept-2.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__06.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__06.dxf"
    ],
-   "min_gap_mm": 65.2,
+   "min_gap_mm": 66.42,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 7,
    "outlines": [
-    "half-diamond-deep__full-handle",
-    "rake-bogota-2__full-handle"
+    "hook-swept-2.5__full-handle",
+    "hook-swept-3.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__07.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__07.dxf"
    ],
-   "min_gap_mm": 61.4,
+   "min_gap_mm": 64.9,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 8,
    "outlines": [
-    "rake-bogota-3__full-handle",
-    "rake-snake__full-handle"
+    "hook-swept-3.5__full-handle",
+    "hook-swept-4.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__08.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__08.dxf"
    ],
-   "min_gap_mm": 49.4,
+   "min_gap_mm": 63.3,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 9,
    "outlines": [
-    "rake-wave__full-handle",
-    "rake-triple-peak__full-handle"
+    "hook-swept-5.0__full-handle",
+    "half-diamond-small__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__09.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__09.dxf"
    ],
-   "min_gap_mm": 50.4,
+   "min_gap_mm": 64.15,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 10,
    "outlines": [
-    "rake-city__full-handle",
-    "wafer-half-ball__full-handle"
+    "half-diamond-medium__full-handle",
+    "half-diamond-large__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__10.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__10.dxf"
    ],
-   "min_gap_mm": 53.6,
+   "min_gap_mm": 65.2,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 11,
    "outlines": [
-    "wafer-single-ball__full-handle",
-    "wafer-double-ball__full-handle"
+    "half-diamond-deep__full-handle",
+    "rake-bogota-2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__11.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__11.dxf"
    ],
-   "min_gap_mm": 55.0,
+   "min_gap_mm": 61.4,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 12,
    "outlines": [
-    "wafer-zigzag-rake__full-handle",
-    "wafer-wide-rocker__full-handle"
+    "rake-bogota-3__full-handle",
+    "rake-snake__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__12.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__12.dxf"
    ],
-   "min_gap_mm": 49.8,
+   "min_gap_mm": 49.4,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 13,
    "outlines": [
-    "pin-comb-4__full-handle",
-    "pin-comb-5__full-handle",
-    "pin-comb-6__full-handle"
+    "rake-wave__full-handle",
+    "rake-triple-peak__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__13.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__13.dxf"
    ],
-   "min_gap_mm": 29.95,
+   "min_gap_mm": 50.4,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 14,
    "outlines": [
-    "warded-L-4.0__full-handle",
-    "warded-L-5.5__full-handle"
+    "rake-city__full-handle",
+    "wafer-half-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__14.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__14.dxf"
    ],
-   "min_gap_mm": 83.4,
+   "min_gap_mm": 53.6,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 15,
    "outlines": [
-    "warded-L-6.8__full-handle",
-    "warded-T-2.5__full-handle"
+    "wafer-single-ball__full-handle",
+    "wafer-double-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__15.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__15.dxf"
    ],
-   "min_gap_mm": 83.4,
+   "min_gap_mm": 55.0,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 16,
    "outlines": [
-    "warded-T-3.5__full-handle",
-    "lever-lifter-hook-3.5__full-handle"
+    "wafer-zigzag-rake__full-handle",
+    "wafer-wide-rocker__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__16.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__16.dxf"
    ],
-   "min_gap_mm": 52.0,
+   "min_gap_mm": 49.8,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 17,
    "outlines": [
-    "lever-lifter-hook-5.0__full-handle",
-    "lever-curtain-wrench-6__full-handle"
+    "pin-comb-4__full-handle",
+    "pin-comb-5__full-handle",
+    "pin-comb-6__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__17.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__17.dxf"
    ],
-   "min_gap_mm": 23.5,
+   "min_gap_mm": 29.95,
    "ends_use_blade_pin_holes": true
   },
   {
    "set": "own-picks-full-handle__with-holes",
    "sheet": 18,
    "outlines": [
-    "lever-curtain-wrench-8__full-handle"
+    "warded-L-4.0__full-handle",
+    "warded-L-5.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__18.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__18.dxf"
+   ],
+   "min_gap_mm": 83.4,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__with-holes",
+   "sheet": 19,
+   "outlines": [
+    "warded-L-6.8__full-handle",
+    "warded-T-2.5__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__19.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__19.dxf"
+   ],
+   "min_gap_mm": 83.4,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__with-holes",
+   "sheet": 20,
+   "outlines": [
+    "warded-T-3.5__full-handle",
+    "lever-lifter-hook-3.5__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__20.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__20.dxf"
+   ],
+   "min_gap_mm": 52.0,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__with-holes",
+   "sheet": 21,
+   "outlines": [
+    "lever-lifter-hook-5.0__full-handle",
+    "lever-curtain-wrench-6__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__21.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__21.dxf"
+   ],
+   "min_gap_mm": 23.5,
+   "ends_use_blade_pin_holes": true
+  },
+  {
+   "set": "own-picks-full-handle__with-holes",
+   "sheet": 22,
+   "outlines": [
+    "lever-curtain-wrench-8__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__22.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__22.dxf"
    ],
    "min_gap_mm": null,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes",
-   "sheet": 19,
+   "sheet": 23,
    "outlines": [
     "dimple-flat-flag__full-handle"
    ],
    "files": [
-    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__19.svg",
-    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__19.dxf"
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__23.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__23.dxf"
    ],
    "min_gap_mm": null,
    "ends_use_blade_pin_holes": false
@@ -869,218 +1025,274 @@
    "sheet": 5,
    "outlines": [
     "lifter-flat__full-handle",
-    "half-diamond-small__full-handle"
+    "hook-swept-1.2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__05.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__05.dxf"
    ],
-   "min_gap_mm": 11.87,
+   "min_gap_mm": 11.93,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 6,
    "outlines": [
-    "half-diamond-medium__full-handle",
-    "half-diamond-large__full-handle"
+    "hook-swept-1.6__full-handle",
+    "hook-swept-2.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__06.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__06.dxf"
    ],
-   "min_gap_mm": 11.6,
+   "min_gap_mm": 12.01,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 7,
    "outlines": [
-    "half-diamond-deep__full-handle",
-    "rake-bogota-2__full-handle"
+    "hook-swept-2.5__full-handle",
+    "hook-swept-3.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__07.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__07.dxf"
    ],
-   "min_gap_mm": 10.33,
+   "min_gap_mm": 11.5,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 8,
    "outlines": [
-    "rake-bogota-3__full-handle",
-    "rake-snake__full-handle"
+    "hook-swept-3.5__full-handle",
+    "hook-swept-4.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__08.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__08.dxf"
    ],
-   "min_gap_mm": 6.33,
+   "min_gap_mm": 10.97,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 9,
    "outlines": [
-    "rake-wave__full-handle",
-    "rake-triple-peak__full-handle"
+    "hook-swept-5.0__full-handle",
+    "half-diamond-small__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__09.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__09.dxf"
    ],
-   "min_gap_mm": 6.67,
+   "min_gap_mm": 11.25,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 10,
    "outlines": [
-    "rake-city__full-handle",
-    "wafer-half-ball__full-handle"
+    "half-diamond-medium__full-handle",
+    "half-diamond-large__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__10.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__10.dxf"
    ],
-   "min_gap_mm": 7.73,
+   "min_gap_mm": 11.6,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 11,
    "outlines": [
-    "wafer-single-ball__full-handle",
-    "wafer-double-ball__full-handle"
+    "half-diamond-deep__full-handle",
+    "rake-bogota-2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__11.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__11.dxf"
    ],
-   "min_gap_mm": 8.2,
+   "min_gap_mm": 10.33,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 12,
    "outlines": [
-    "wafer-zigzag-rake__full-handle",
-    "wafer-wide-rocker__full-handle"
+    "rake-bogota-3__full-handle",
+    "rake-snake__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__12.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__12.dxf"
    ],
-   "min_gap_mm": 6.47,
+   "min_gap_mm": 6.33,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 13,
    "outlines": [
-    "pin-comb-4__full-handle",
-    "pin-comb-5__full-handle",
-    "pin-comb-6__full-handle"
+    "rake-wave__full-handle",
+    "rake-triple-peak__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__13.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__13.dxf"
    ],
-   "min_gap_mm": 7.38,
+   "min_gap_mm": 6.67,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 14,
    "outlines": [
-    "warded-L-4.0__full-handle",
-    "warded-L-5.5__full-handle"
+    "rake-city__full-handle",
+    "wafer-half-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__14.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__14.dxf"
    ],
-   "min_gap_mm": 17.67,
+   "min_gap_mm": 7.73,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 15,
    "outlines": [
-    "warded-L-6.8__full-handle",
-    "warded-T-2.5__full-handle"
+    "wafer-single-ball__full-handle",
+    "wafer-double-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__15.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__15.dxf"
    ],
-   "min_gap_mm": 17.67,
+   "min_gap_mm": 8.2,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 16,
    "outlines": [
-    "warded-T-3.5__full-handle",
-    "lever-lifter-hook-3.5__full-handle"
+    "wafer-zigzag-rake__full-handle",
+    "wafer-wide-rocker__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__16.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__16.dxf"
    ],
-   "min_gap_mm": 7.2,
+   "min_gap_mm": 6.47,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 17,
    "outlines": [
-    "lever-lifter-hook-5.0__full-handle"
+    "pin-comb-4__full-handle",
+    "pin-comb-5__full-handle",
+    "pin-comb-6__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__17.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__17.dxf"
    ],
-   "min_gap_mm": null,
+   "min_gap_mm": 7.38,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 18,
    "outlines": [
-    "lever-curtain-wrench-6__full-handle"
+    "warded-L-4.0__full-handle",
+    "warded-L-5.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__18.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__18.dxf"
    ],
-   "min_gap_mm": null,
+   "min_gap_mm": 17.67,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 19,
    "outlines": [
-    "lever-curtain-wrench-8__full-handle"
+    "warded-L-6.8__full-handle",
+    "warded-T-2.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__19.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__19.dxf"
    ],
-   "min_gap_mm": null,
+   "min_gap_mm": 17.67,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__no-holes__spine",
    "sheet": 20,
    "outlines": [
-    "dimple-flat-flag__full-handle"
+    "warded-T-3.5__full-handle",
+    "lever-lifter-hook-3.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__20.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__20.dxf"
+   ],
+   "min_gap_mm": 7.2,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__no-holes__spine",
+   "sheet": 21,
+   "outlines": [
+    "lever-lifter-hook-5.0__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__21.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__21.dxf"
+   ],
+   "min_gap_mm": null,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__no-holes__spine",
+   "sheet": 22,
+   "outlines": [
+    "lever-curtain-wrench-6__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__22.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__22.dxf"
+   ],
+   "min_gap_mm": null,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__no-holes__spine",
+   "sheet": 23,
+   "outlines": [
+    "lever-curtain-wrench-8__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__23.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__23.dxf"
+   ],
+   "min_gap_mm": null,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__no-holes__spine",
+   "sheet": 24,
+   "outlines": [
+    "dimple-flat-flag__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__24.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__24.dxf"
    ],
    "min_gap_mm": null,
    "ends_use_blade_pin_holes": false
@@ -1146,218 +1358,274 @@
    "sheet": 5,
    "outlines": [
     "lifter-flat__full-handle",
-    "half-diamond-small__full-handle"
+    "hook-swept-1.2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__05.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__05.dxf"
    ],
-   "min_gap_mm": 11.87,
+   "min_gap_mm": 11.93,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 6,
    "outlines": [
-    "half-diamond-medium__full-handle",
-    "half-diamond-large__full-handle"
+    "hook-swept-1.6__full-handle",
+    "hook-swept-2.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__06.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__06.dxf"
    ],
-   "min_gap_mm": 11.6,
+   "min_gap_mm": 12.01,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 7,
    "outlines": [
-    "half-diamond-deep__full-handle",
-    "rake-bogota-2__full-handle"
+    "hook-swept-2.5__full-handle",
+    "hook-swept-3.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__07.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__07.dxf"
    ],
-   "min_gap_mm": 10.33,
+   "min_gap_mm": 11.5,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 8,
    "outlines": [
-    "rake-bogota-3__full-handle",
-    "rake-snake__full-handle"
+    "hook-swept-3.5__full-handle",
+    "hook-swept-4.0__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__08.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__08.dxf"
    ],
-   "min_gap_mm": 6.33,
+   "min_gap_mm": 10.97,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 9,
    "outlines": [
-    "rake-wave__full-handle",
-    "rake-triple-peak__full-handle"
+    "hook-swept-5.0__full-handle",
+    "half-diamond-small__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__09.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__09.dxf"
    ],
-   "min_gap_mm": 6.67,
+   "min_gap_mm": 11.25,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 10,
    "outlines": [
-    "rake-city__full-handle",
-    "wafer-half-ball__full-handle"
+    "half-diamond-medium__full-handle",
+    "half-diamond-large__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__10.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__10.dxf"
    ],
-   "min_gap_mm": 7.73,
+   "min_gap_mm": 11.6,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 11,
    "outlines": [
-    "wafer-single-ball__full-handle",
-    "wafer-double-ball__full-handle"
+    "half-diamond-deep__full-handle",
+    "rake-bogota-2__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__11.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__11.dxf"
    ],
-   "min_gap_mm": 8.2,
+   "min_gap_mm": 10.33,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 12,
    "outlines": [
-    "wafer-zigzag-rake__full-handle",
-    "wafer-wide-rocker__full-handle"
+    "rake-bogota-3__full-handle",
+    "rake-snake__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__12.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__12.dxf"
    ],
-   "min_gap_mm": 6.47,
+   "min_gap_mm": 6.33,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 13,
    "outlines": [
-    "pin-comb-4__full-handle",
-    "pin-comb-5__full-handle",
-    "pin-comb-6__full-handle"
+    "rake-wave__full-handle",
+    "rake-triple-peak__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__13.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__13.dxf"
    ],
-   "min_gap_mm": 7.38,
+   "min_gap_mm": 6.67,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 14,
    "outlines": [
-    "warded-L-4.0__full-handle",
-    "warded-L-5.5__full-handle"
+    "rake-city__full-handle",
+    "wafer-half-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__14.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__14.dxf"
    ],
-   "min_gap_mm": 17.67,
+   "min_gap_mm": 7.73,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 15,
    "outlines": [
-    "warded-L-6.8__full-handle",
-    "warded-T-2.5__full-handle"
+    "wafer-single-ball__full-handle",
+    "wafer-double-ball__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__15.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__15.dxf"
    ],
-   "min_gap_mm": 17.67,
+   "min_gap_mm": 8.2,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 16,
    "outlines": [
-    "warded-T-3.5__full-handle",
-    "lever-lifter-hook-3.5__full-handle"
+    "wafer-zigzag-rake__full-handle",
+    "wafer-wide-rocker__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__16.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__16.dxf"
    ],
-   "min_gap_mm": 7.2,
+   "min_gap_mm": 6.47,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 17,
    "outlines": [
-    "lever-lifter-hook-5.0__full-handle"
+    "pin-comb-4__full-handle",
+    "pin-comb-5__full-handle",
+    "pin-comb-6__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__17.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__17.dxf"
    ],
-   "min_gap_mm": null,
+   "min_gap_mm": 7.38,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 18,
    "outlines": [
-    "lever-curtain-wrench-6__full-handle"
+    "warded-L-4.0__full-handle",
+    "warded-L-5.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__18.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__18.dxf"
    ],
-   "min_gap_mm": null,
+   "min_gap_mm": 17.67,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 19,
    "outlines": [
-    "lever-curtain-wrench-8__full-handle"
+    "warded-L-6.8__full-handle",
+    "warded-T-2.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__19.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__19.dxf"
    ],
-   "min_gap_mm": null,
+   "min_gap_mm": 17.67,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-full-handle__with-holes__spine",
    "sheet": 20,
    "outlines": [
-    "dimple-flat-flag__full-handle"
+    "warded-T-3.5__full-handle",
+    "lever-lifter-hook-3.5__full-handle"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__20.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__20.dxf"
+   ],
+   "min_gap_mm": 7.2,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__with-holes__spine",
+   "sheet": 21,
+   "outlines": [
+    "lever-lifter-hook-5.0__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__21.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__21.dxf"
+   ],
+   "min_gap_mm": null,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__with-holes__spine",
+   "sheet": 22,
+   "outlines": [
+    "lever-curtain-wrench-6__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__22.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__22.dxf"
+   ],
+   "min_gap_mm": null,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__with-holes__spine",
+   "sheet": 23,
+   "outlines": [
+    "lever-curtain-wrench-8__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__23.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__23.dxf"
+   ],
+   "min_gap_mm": null,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-full-handle__with-holes__spine",
+   "sheet": 24,
+   "outlines": [
+    "dimple-flat-flag__full-handle"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__24.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__24.dxf"
    ],
    "min_gap_mm": null,
    "ends_use_blade_pin_holes": false
@@ -1411,58 +1679,90 @@
    "set": "own-picks-xacto-flat-edge__spine",
    "sheet": 4,
    "outlines": [
-    "half-diamond-small__xacto-flat-edge",
-    "half-diamond-medium__xacto-flat-edge",
-    "half-diamond-large__xacto-flat-edge"
+    "hook-swept-1.2__xacto-flat-edge",
+    "hook-swept-1.6__xacto-flat-edge",
+    "hook-swept-2.0__xacto-flat-edge"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__04.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__04.dxf"
    ],
-   "min_gap_mm": 19.9,
+   "min_gap_mm": 20.25,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto-flat-edge__spine",
    "sheet": 5,
    "outlines": [
-    "half-diamond-deep__xacto-flat-edge",
-    "rake-bogota-2__xacto-flat-edge",
-    "rake-bogota-3__xacto-flat-edge"
+    "hook-swept-2.5__xacto-flat-edge",
+    "hook-swept-3.0__xacto-flat-edge",
+    "hook-swept-3.5__xacto-flat-edge"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__05.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__05.dxf"
    ],
-   "min_gap_mm": 17.0,
+   "min_gap_mm": 19.41,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto-flat-edge__spine",
    "sheet": 6,
    "outlines": [
-    "rake-snake__xacto-flat-edge",
-    "rake-wave__xacto-flat-edge",
-    "rake-triple-peak__xacto-flat-edge"
+    "hook-swept-4.0__xacto-flat-edge",
+    "hook-swept-5.0__xacto-flat-edge",
+    "half-diamond-small__xacto-flat-edge"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__06.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__06.dxf"
    ],
-   "min_gap_mm": 13.75,
+   "min_gap_mm": 19.13,
    "ends_use_blade_pin_holes": false
   },
   {
    "set": "own-picks-xacto-flat-edge__spine",
    "sheet": 7,
    "outlines": [
-    "rake-city__xacto-flat-edge"
+    "half-diamond-medium__xacto-flat-edge",
+    "half-diamond-large__xacto-flat-edge",
+    "half-diamond-deep__xacto-flat-edge"
    ],
    "files": [
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__07.svg",
     "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__07.dxf"
    ],
-   "min_gap_mm": null,
+   "min_gap_mm": 19.7,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 8,
+   "outlines": [
+    "rake-bogota-2__xacto-flat-edge",
+    "rake-bogota-3__xacto-flat-edge",
+    "rake-snake__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__08.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__08.dxf"
+   ],
+   "min_gap_mm": 14.75,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 9,
+   "outlines": [
+    "rake-wave__xacto-flat-edge",
+    "rake-triple-peak__xacto-flat-edge",
+    "rake-city__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__09.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__09.dxf"
+   ],
+   "min_gap_mm": 13.85,
    "ends_use_blade_pin_holes": false
   },
   {

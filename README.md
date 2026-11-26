@@ -10,7 +10,7 @@ Free cut files for making your own lock picks and tension tools at home: laser-c
 
 | Tab | What you get |
 |---|---|
-| Picks | Straight and curved hooks (short, medium, deep), lifters, half-diamonds, rakes (Bogota, snake, city, wave, triple-peak), combs, wafer balls, warded L/T, UK lever-mortice lifters and curtain wrenches, dimple. Each one comes as a flat handle with or without two Ø3.40 holes at 15 and 50 mm, and on an X-Acto / DIY-bar tang. Pin-tumbler picks also come as a flat-edge tang version: one straight side from tang to tip, laid on the hacksaw blade's back edge so that side needs no cutting |
+| Picks | Straight and curved hooks (short, medium, deep), a swept-hook range (1.2–5.0 mm, the shaft bends up), lifters, half-diamonds, rakes (Bogota, snake, city, wave, triple-peak), combs, wafer balls, warded L/T, UK lever-mortice lifters and curtain wrenches, dimple. Each one comes as a flat handle with or without two Ø3.40 holes at 15 and 50 mm, and on an X-Acto / DIY-bar tang. Pin-tumbler picks also come as a flat-edge tang version: one straight side from tang to tip, laid on the hacksaw blade's back edge so that side needs no cutting |
 | Tension | Top- and bottom-of-keyway tools sized from the lock (`docs/tension-sizing.md`), blade-fit and bend-after-cutting versions, and some advanced designs |
 | Handles | A grub-screw bar handle you can make with hand tools or a lathe (`docs/diy-handle.md`) |
 | Fit tests | A scale check and an X-Acto tang width series. Cut these first |

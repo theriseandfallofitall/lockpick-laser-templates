@@ -196,6 +196,28 @@ def curve_pts(h, reach, w, front=0.6, n=40):
     return back + nose
 
 
+def swept_hook(x, h, reach, w_end=0.9, sh=1.2, n=48):
+    """Swept (bent-strip) hook like a commercial hook range: the shaft itself curves up on one arc, a strip that
+    narrows from the shaft height to `w_end`, ending in a round nose. The top of the nose is `h` above the shaft top;
+    `reach` is how far forward the strip's centreline travels. The arc turns at most 90 degrees (rise <= reach).
+    Same shape as the customiser's "swept" tip."""
+    c = h + sh / 2 - w_end / 2                       # centreline rise that puts the nose top h above the shaft top
+    th = min(math.pi / 2, 2 * math.atan2(c, reach))
+    R = reach / math.sin(th)
+    def side(s, k):                                  # k=+1 inner (top), -1 outer (bottom)
+        f = th * s; w = sh + (w_end - sh) * s
+        return (x + R * math.sin(f) - k * math.sin(f) * w / 2, -R + R * math.cos(f) - k * math.cos(f) * w / 2)
+    ex, ey = x + R * math.sin(th), -R + R * math.cos(th)
+    nose = [(ex + w_end / 2 * (math.sin(th) * math.cos(a) + math.cos(th) * math.sin(a)),
+             ey + w_end / 2 * (math.cos(th) * math.cos(a) - math.sin(th) * math.sin(a))) for a in (math.pi * i / 24 for i in range(25))]
+    ring = [side(i / n, -1) for i in range(n + 1)] + nose + [side(i / n, 1) for i in range(n, -1, -1)]
+    p = unary_union([Polygon(ring).buffer(0), box(x - 0.6, -sh / 2, x, sh / 2)])
+    return p, p.bounds[2]
+
+
+SWEPT = [1.2, 1.6, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0]   # nose height above the shaft top; reach = 0.8 h + 1.6 (gentler on the small ones)
+
+
 def wave(n, length, h, samples=60):
     return [(length * i / samples, h * (0.5 - 0.5 * math.cos(2 * math.pi * n * i / samples))) for i in range(samples + 1)]
 
@@ -210,6 +232,8 @@ PIN = [
     ("hook-curved-deep", lambda x: tip_profile(x, curve_pts(4.0, 5.0, 0.9)), "Deep curve (Gonzo-style): long sweeping curve for high pins behind low ones."),
     ("lifter-short", lambda x: tip_profile(x, curve_pts(1.0, 1.4, 0.8)), "Short lifter: a small low hook for tight keyways and low pins."),
     ("lifter-flat", lambda x: tip_profile(x, curve_pts(1.4, 1.6, 2.0)), "Flat lifter: low, wide flat top that lifts one pin without touching its neighbours."),
+] + [(f"hook-swept-{h:.1f}", (lambda h: lambda x: swept_hook(x, h, 0.8 * h + 1.6))(h),
+       f"Swept hook, {h:g} mm: the shaft bends up in one smooth curve, like a commercial hook range.") for h in SWEPT] + [
     ("half-diamond-small", lambda x: tip_profile(x, [(0, 0), (1.6, 1.6), (3.2, 0)]), "Small half-diamond: pins, wafers, raking."),
     ("half-diamond-medium", lambda x: tip_profile(x, [(0, 0), (2.0, 2.0), (3.8, 0)]), "Medium half-diamond: the all-round half-diamond."),
     ("half-diamond-large", lambda x: tip_profile(x, [(0, 0), (2.4, 2.4), (4.4, 0)]), "Large half-diamond."),
@@ -326,8 +350,8 @@ def xacto_flat_edge(tipf, sl, sh):
     top = [(xs + (xe - xs) * i / n, -(sh + (TW + up - sh) * 0.5 * (1 + math.cos(math.pi * i / n)))) for i in range(n + 1)]
     neck = Polygon(top + [(xe, 0), (xs, 0)])
     p = clean(unary_union([tang, guard, neck, work]))
-    edge = LineString([(1.0, -0.01), (p.bounds[2] - 1.0, -0.01)])
-    assert abs(p.bounds[3]) < 1e-6 and p.intersection(edge).length > edge.length - 0.5, "edge not straight"   # 0.5: the offset hook leans past its shaft end
+    edge = LineString([(1.0, -0.01), (x0 + sl - 0.1, -0.01)])   # straight to where the tip starts (a swept hook's underside rises)
+    assert abs(p.bounds[3]) < 1e-6 and p.intersection(edge).length > edge.length - 1e-3, "edge not straight"
     q = place(p)
     return q, [(TL - TANG_HOLE_X + q.bounds[0] - p.bounds[0], -TW / 2 + q.bounds[1] - p.bounds[1])]
 

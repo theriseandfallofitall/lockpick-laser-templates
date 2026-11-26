@@ -21,6 +21,9 @@ const CK = (() => {
       ["curveS", "Short curved hook", { tip: "curve", tipH: 1.8, tipL: 2.0, tipW: 0.9 }],
       ["curveM", "Medium curved hook", { tip: "curve", tipH: 2.8, tipL: 3.0, tipW: 0.9 }],
       ["curveD", "Deep curve (Gonzo-style)", { tip: "curve", tipH: 4.0, tipL: 5.0, tipW: 0.9 }],
+      ["sweptS", "Swept hook, short (shaft bends up)", { tip: "swept", tipH: 1.6, tipL: 2.9, tipW: 0.9 }],
+      ["sweptM", "Swept hook, medium", { tip: "swept", tipH: 3.0, tipL: 4.0, tipW: 0.9 }],
+      ["sweptD", "Swept hook, deep", { tip: "swept", tipH: 5.0, tipL: 5.6, tipW: 0.9 }],
       ["lifterS", "Short lifter", { tip: "curve", tipH: 1.0, tipL: 1.4, tipW: 0.8 }],
       ["lifterF", "Flat lifter", { tip: "curve", tipH: 1.4, tipL: 1.6, tipW: 2.0 }],
       ["diaS", "Small half-diamond", { tip: "halfDiamond", tipH: 2, tipL: 6 }],
@@ -110,7 +113,7 @@ const CK = (() => {
     // flat edge: shift every column down so the underside is one straight line from butt to tip (lay it on the
     // hacksaw blade's smooth back: that side needs no cutting). Column heights, and so the tip shape, are unchanged.
     const flatOk = o.flatEdge && FLAT_TIPS.includes(o.tip);
-    const nomBot = x => x < neckStart ? (o.handle === "xacto" ? (x < o.tangL ? o.tangW / 2 : o.shoulderW / 2) : o.handleH / 2) : botAt(x);
+    const nomBot = x => x < neckStart ? (o.handle === "xacto" ? (x < o.tangL ? o.tangW / 2 : o.shoulderW / 2) : o.handleH / 2) : x < tipStart ? botAt(x) : centre(tipStart) + half;
     const fe = x => flatOk ? rootHalf - nomBot(x) : 0;
     const top = xs.map(x => [x, topAt(x) + fe(x)]), bot = xs.slice().reverse().map(x => [x, botAt(x) + fe(x)]);
     const ring = top.concat(bot);
@@ -136,6 +139,7 @@ const CK = (() => {
     // peaks closer than ~1.2 mm leave valleys narrower than a kerf / needle file
     const notes = [];
     if (o.tip === "rake" && o.tipL / o.peaks < 1.2) notes.push(`Rake peaks are ${(o.tipL / o.peaks).toFixed(2)} mm apart - lengthen the tip or use fewer peaks (min 1.2 mm)`);
+    if (o.tip === "swept" && o.tipH + o.shaftH / 2 - o.tipW / 2 > o.tipL + 1e-9) notes.push(`A swept hook rises at most its reach: lengthen the reach to ${(o.tipH + o.shaftH / 2 - o.tipW / 2).toFixed(1)} mm for the full height`);
     if (o.tip === "custom") {
       const h = parseHeights(o.custom), st = o.tipL / Math.max(1, h.length - 1), pk = h.map((v, i) => i > 0 && i < h.length - 1 && v > h[i - 1] && v >= h[i + 1] ? i : -1).filter(i => i >= 0);
       const gap = Math.min(...pk.slice(1).map((v, i) => (v - pk[i]) * st));
@@ -145,7 +149,7 @@ const CK = (() => {
   }
 
   const flat = () => 0;
-  const FLAT_TIPS = ["hook", "curve", "gem", "halfDiamond", "rake", "saw", "halfBall", "comb", "warded", "lever", "custom"];   // flat underside
+  const FLAT_TIPS = ["hook", "curve", "swept", "gem", "halfDiamond", "rake", "saw", "halfBall", "comb", "warded", "lever", "custom"];   // flat underside
   const circ = (c, r, d) => Math.sqrt(Math.max(0, r * r - (d - c) * (d - c)));
   const leanRun = o => o.lean > 0 ? Math.min(8, o.tipH * Math.tan(Math.min(70, o.lean) * Math.PI / 180)) : 0;
   const parseHeights = s => String(s).split(/[ ,;]+/).map(Number).filter(v => !isNaN(v) && v !== "");
@@ -160,6 +164,25 @@ const CK = (() => {
     // (same shape as curve_pts() in build/generate_home_workshop.py)
     curve: o => { const R = o.tipL, H = o.tipH, W = o.tipW, f = 0.6;
       return { len: R + W + f, down: flat, up: d => d < R ? H * (1 - Math.sqrt(Math.max(0, 1 - (d / R) ** 2))) : d < R + W ? H : H * Math.sqrt(Math.max(0, 1 - ((d - R - W) / f) ** 2)) }; },
+    // swept hook: the shaft itself bends up on one arc (<= 90 deg), narrowing from the shaft height to tipW, round nose;
+    // nose top tipH above the shaft top, centreline reach tipL (same shape as swept_hook() in build/generate_home_workshop.py)
+    swept: o => {
+      const sh = o.shaftH, we = o.tipW, n = 48, c = o.tipH + sh / 2 - we / 2;
+      const th = Math.min(Math.PI / 2, 2 * Math.atan2(c, o.tipL)), R = o.tipL / Math.sin(th);
+      const side = (s, k) => { const f = th * s, w = sh + (we - sh) * s;
+        return [R * Math.sin(f) - k * Math.sin(f) * w / 2, -R + R * Math.cos(f) - k * Math.cos(f) * w / 2]; };
+      const ex = R * Math.sin(th), ey = -R + R * Math.cos(th), ring = [];
+      for (let i = 0; i <= n; i++) ring.push(side(i / n, -1));
+      for (let i = 0; i <= 24; i++) { const a = Math.PI * i / 24;
+        ring.push([ex + we / 2 * (Math.sin(th) * Math.cos(a) + Math.cos(th) * Math.sin(a)), ey + we / 2 * (Math.cos(th) * Math.cos(a) - Math.sin(th) * Math.sin(a))]); }
+      for (let i = n; i >= 0; i--) ring.push(side(i / n, 1));
+      let len = 0, endY = 0; for (const [x, y] of ring) if (x > len) { len = x; endY = y; }
+      const col = d => { let lo = Infinity, hi = -Infinity;   // where the vertical line x = d crosses the outline
+        for (let i = 0; i < ring.length - 1; i++) { const [x1, y1] = ring[i], [x2, y2] = ring[i + 1];
+          if ((x1 <= d) !== (x2 <= d)) { const y = y1 + (y2 - y1) * (d - x1) / (x2 - x1); lo = Math.min(lo, y); hi = Math.max(hi, y); } }
+        return lo === Infinity ? [endY, endY] : [lo, hi]; };
+      return { len, up: d => Math.max(0, -col(d)[0] - sh / 2), down: d => col(d)[1] - sh / 2 };
+    },
     halfDiamond: o => ({ len: o.tipL, up: d => o.tipH * (1 - Math.abs(2 * d / o.tipL - 1)), down: flat }),
     ball: o => { const r = o.tipH / 2, p = d => Math.max(0, circ(r, r, d) - o.shaftH / 2); return { len: o.tipH, up: p, down: p }; },
     doubleBall: o => { const r1 = o.tipH / 2, r2 = r1 * 0.64, c2 = r1 + (r1 + r2) * 0.8, half = o.shaftH / 2;
@@ -384,6 +407,7 @@ if (typeof process !== "undefined" && process.argv && process.argv.includes("--s
   emit("extra-ball-sweep", "pick", { ...B, tip: "ball", tipH: 4, sweep: -1.5, holes: false });
   emit("extra-hook-lean", "pick", { ...B, tip: "hook", tipH: 3, lean: 45 });
   emit("extra-holes-moved", "pick", { ...B, holeD: 4, hole1: 12, hole2: 44 });
+  emit("extra-xacto-flat-edge-swept", "pick", { ...B, handle: "xacto", tip: "swept", tipH: 3, tipL: 4, tipW: 0.9, flatEdge: true });
   emit("extra-xacto-flat-edge-curve", "pick", { ...B, handle: "xacto", tip: "curve", tipH: 2.8, tipL: 3, tipW: 0.9, flatEdge: true, tangHole: true });
   emit("extra-flat-handle-flat-edge-rake", "pick", { ...B, tip: "rake", tipH: 2.2, tipL: 14, peaks: 4, flatEdge: true });
   emit("extra-tension-serr-U", "tension", { ...B, serr: true });
@@ -434,11 +458,11 @@ if (typeof document !== "undefined") {
     shaftH: num(P, "Shaft", "Shaft height (thicker = stiffer)", "mm", 0.8, 3, 0.05, { simple: true }),
     sweep: num(P, "Shaft", "Sweep (- rises, + drops to tip)", "mm", -3, 3, 0.1, { only: o => !o.flatEdge }),
     // tip
-    tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["curve", "Curved hook / lifter"], ["gem", "Gem hook (leaning)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
+    tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["curve", "Curved hook / lifter"], ["swept", "Swept hook (shaft bends up)"], ["gem", "Gem hook (leaning)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
       ["halfBall", "Half-ball"], ["ball", "Ball"], ["doubleBall", "Double ball"], ["comb", "Comb"], ["warded", "Warded L bit"], ["lever", "Lever lifter"], ["custom", "Custom / drawn"]]),
     tipH: num(P, "Tip", "Tip height", "mm", 0.5, 6, 0.1, { simple: true }),
-    tipW: num(P, "Tip", "Tip width / tooth width", "mm", 0.6, 4, 0.05, { only: o => ["hook", "curve", "gem", "warded", "lever", "comb"].includes(o.tip) }),
-    tipL: num(P, "Tip", "Tip length (curved hook: reach of the curve)", "mm", 1, 25, 0.1, { only: o => ["halfDiamond", "rake", "custom", "lever", "curve"].includes(o.tip) }),
+    tipW: num(P, "Tip", "Tip width / tooth width", "mm", 0.6, 4, 0.05, { only: o => ["hook", "curve", "swept", "gem", "warded", "lever", "comb"].includes(o.tip) }),
+    tipL: num(P, "Tip", "Tip length (curved / swept hook: reach of the curve)", "mm", 1, 25, 0.1, { only: o => ["halfDiamond", "rake", "custom", "lever", "curve", "swept"].includes(o.tip) }),
     lean: num(P, "Tip", "Lean (forward)", "deg", 0, 60, 1, { only: o => ["hook", "gem"].includes(o.tip) }),
     peaks: num(P, "Tip", "Peaks", "", 1, 6, 0.5, { only: o => o.tip === "rake" }),
     n: num(P, "Tip", "Teeth / strokes", "", 2, 8, 1, { only: o => ["comb", "saw"].includes(o.tip) }),

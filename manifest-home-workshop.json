@@ -325,6 +325,214 @@
   ]
  },
  {
+  "id": "hook-swept-1.2__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 123.009,
+  "height_mm": 9.0,
+  "area_mm2": 681.414,
+  "files": [
+   "generated/other-lock-picks/hook-swept-1.2__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-1.2__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-1.2__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-1.2__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 1.2 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-swept-1.6__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 123.329,
+  "height_mm": 9.0,
+  "area_mm2": 681.977,
+  "files": [
+   "generated/other-lock-picks/hook-swept-1.6__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-1.6__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-1.6__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-1.6__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 1.6 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-swept-2.0__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 123.649,
+  "height_mm": 9.0,
+  "area_mm2": 682.551,
+  "files": [
+   "generated/other-lock-picks/hook-swept-2.0__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-2.0__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-2.0__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-2.0__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 2 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-swept-2.5__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 124.049,
+  "height_mm": 9.0,
+  "area_mm2": 683.291,
+  "files": [
+   "generated/other-lock-picks/hook-swept-2.5__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-2.5__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-2.5__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-2.5__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 2.5 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-swept-3.0__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 124.449,
+  "height_mm": 9.0,
+  "area_mm2": 684.015,
+  "files": [
+   "generated/other-lock-picks/hook-swept-3.0__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-3.0__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-3.0__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-3.0__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 3 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-swept-3.5__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 124.849,
+  "height_mm": 9.0,
+  "area_mm2": 684.764,
+  "files": [
+   "generated/other-lock-picks/hook-swept-3.5__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-3.5__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-3.5__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-3.5__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 3.5 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-swept-4.0__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 125.249,
+  "height_mm": 9.0,
+  "area_mm2": 685.516,
+  "files": [
+   "generated/other-lock-picks/hook-swept-4.0__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-4.0__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-4.0__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-4.0__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 4 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-swept-5.0__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 126.049,
+  "height_mm": 9.0,
+  "area_mm2": 687.024,
+  "files": [
+   "generated/other-lock-picks/hook-swept-5.0__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-swept-5.0__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-swept-5.0__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-swept-5.0__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Swept hook, 5 mm: the shaft bends up in one smooth curve, like a commercial hook range.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
   "id": "half-diamond-small__full-handle",
   "family": "other-lock-picks",
   "length_mm": 123.2,
@@ -1197,6 +1405,134 @@
   "note": "Flat lifter: low, wide flat top that lifts one pin without touching its neighbours."
  },
  {
+  "id": "hook-swept-1.2__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 67.009,
+  "height_mm": 10.0,
+  "area_mm2": 209.69,
+  "files": [
+   "generated/other-lock-picks/hook-swept-1.2__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-1.2__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-1.2__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-1.2__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 1.2 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-1.6__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 67.329,
+  "height_mm": 10.0,
+  "area_mm2": 210.252,
+  "files": [
+   "generated/other-lock-picks/hook-swept-1.6__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-1.6__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-1.6__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-1.6__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 1.6 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-2.0__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 67.649,
+  "height_mm": 10.0,
+  "area_mm2": 210.826,
+  "files": [
+   "generated/other-lock-picks/hook-swept-2.0__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-2.0__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-2.0__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-2.0__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 2 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-2.5__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 68.049,
+  "height_mm": 10.0,
+  "area_mm2": 211.565,
+  "files": [
+   "generated/other-lock-picks/hook-swept-2.5__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-2.5__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-2.5__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-2.5__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 2.5 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-3.0__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 68.449,
+  "height_mm": 10.0,
+  "area_mm2": 212.284,
+  "files": [
+   "generated/other-lock-picks/hook-swept-3.0__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-3.0__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-3.0__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-3.0__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 3 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-3.5__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 68.849,
+  "height_mm": 10.0,
+  "area_mm2": 213.036,
+  "files": [
+   "generated/other-lock-picks/hook-swept-3.5__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-3.5__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-3.5__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-3.5__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 3.5 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-4.0__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 69.249,
+  "height_mm": 10.0,
+  "area_mm2": 213.806,
+  "files": [
+   "generated/other-lock-picks/hook-swept-4.0__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-4.0__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-4.0__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-4.0__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 4 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-5.0__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 70.049,
+  "height_mm": 10.0,
+  "area_mm2": 215.293,
+  "files": [
+   "generated/other-lock-picks/hook-swept-5.0__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-5.0__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-5.0__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-5.0__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Swept hook, 5 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
   "id": "half-diamond-small__xacto",
   "family": "other-lock-picks",
   "length_mm": 67.2,
@@ -1787,6 +2123,134 @@
   "lock_type": "pin tumbler",
   "handle": "xacto-flat-edge",
   "note": "Flat lifter: low, wide flat top that lifts one pin without touching its neighbours."
+ },
+ {
+  "id": "hook-swept-1.2__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 67.009,
+  "height_mm": 7.9,
+  "area_mm2": 189.886,
+  "files": [
+   "generated/other-lock-picks/hook-swept-1.2__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-1.2__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-1.2__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-1.2__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 1.2 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-1.6__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 67.329,
+  "height_mm": 7.9,
+  "area_mm2": 190.448,
+  "files": [
+   "generated/other-lock-picks/hook-swept-1.6__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-1.6__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-1.6__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-1.6__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 1.6 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-2.0__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 67.649,
+  "height_mm": 7.9,
+  "area_mm2": 191.023,
+  "files": [
+   "generated/other-lock-picks/hook-swept-2.0__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-2.0__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-2.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-2.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 2 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-2.5__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 68.049,
+  "height_mm": 7.9,
+  "area_mm2": 191.759,
+  "files": [
+   "generated/other-lock-picks/hook-swept-2.5__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-2.5__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-2.5__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-2.5__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 2.5 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-3.0__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 68.449,
+  "height_mm": 7.9,
+  "area_mm2": 192.483,
+  "files": [
+   "generated/other-lock-picks/hook-swept-3.0__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-3.0__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-3.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-3.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 3 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-3.5__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 68.849,
+  "height_mm": 7.9,
+  "area_mm2": 193.232,
+  "files": [
+   "generated/other-lock-picks/hook-swept-3.5__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-3.5__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-3.5__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-3.5__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 3.5 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-4.0__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 69.249,
+  "height_mm": 7.9,
+  "area_mm2": 193.984,
+  "files": [
+   "generated/other-lock-picks/hook-swept-4.0__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-4.0__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-4.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-4.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 4 mm: the shaft bends up in one smooth curve, like a commercial hook range."
+ },
+ {
+  "id": "hook-swept-5.0__xacto-flat-edge",
+  "family": "other-lock-picks",
+  "length_mm": 70.049,
+  "height_mm": 7.9,
+  "area_mm2": 195.492,
+  "files": [
+   "generated/other-lock-picks/hook-swept-5.0__xacto-flat-edge__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-swept-5.0__xacto-flat-edge__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-swept-5.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-swept-5.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto-flat-edge",
+  "note": "Swept hook, 5 mm: the shaft bends up in one smooth curve, like a commercial hook range."
  },
  {
   "id": "half-diamond-small__xacto-flat-edge",
