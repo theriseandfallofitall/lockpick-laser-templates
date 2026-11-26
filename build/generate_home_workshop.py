@@ -310,6 +310,28 @@ def build_other(style):
     return out
 
 
+def xacto_flat_edge(tipf, sl, sh):
+    """X-Acto / DIY-bar tang pick with one straight edge from the tang end to the tip (like an X-Acto blade's back):
+    lay that edge on the hacksaw blade's smooth back and that side needs no cutting. The shoulder stop is on the
+    other side only. Pin-tumbler tips only (their underside is flat). Returns (polygon, tang hole) in the placed frame,
+    flat edge at the bottom (max y)."""
+    up = (SHOULDER_W - TW) / 2                      # same stop height as each side of the centred shoulders
+    c = 0.4
+    tang = Polygon([(0, 0), (0, -TW + c), (c, -TW), (TL, -TW), (TL, 0)])
+    guard = box(TL, -(TW + up), TL + SHOULDER_L, 0)
+    x0 = TL + SHOULDER_L + 6
+    tip, _ = tipf(x0 + sl)
+    work = translate(unary_union([shaft(x0 + 6, sl - 5.5, sh), tip]), 0, -sh / 2)   # shaft underside on the edge line
+    xs, xe, n = TL + NECK_IN, x0 + 10, 60          # neck: tangent taper on the top side only
+    top = [(xs + (xe - xs) * i / n, -(sh + (TW + up - sh) * 0.5 * (1 + math.cos(math.pi * i / n)))) for i in range(n + 1)]
+    neck = Polygon(top + [(xe, 0), (xs, 0)])
+    p = clean(unary_union([tang, guard, neck, work]))
+    edge = LineString([(1.0, -0.01), (p.bounds[2] - 1.0, -0.01)])
+    assert abs(p.bounds[3]) < 1e-6 and p.intersection(edge).length > edge.length - 0.5, "edge not straight"   # 0.5: the offset hook leans past its shaft end
+    q = place(p)
+    return q, [(TL - TANG_HOLE_X + q.bounds[0] - p.bounds[0], -TW / 2 + q.bounds[1] - p.bounds[1])]
+
+
 def drill(p, holes, web=1.2, r=None):
     """Cut the handle holes; refuse if any hole leaves less than `web` mm of metal round it."""
     for hx, hy in holes:
@@ -393,7 +415,7 @@ if not (CAL / "calibration-50x20__plastic-2.00mm.svg").exists():   # public buil
 OUTO = ROOT / "generated/other-lock-picks"; OUTO.mkdir(parents=True, exist_ok=True)
 for old in OUTO.glob("*__full-handle__holes-3.40mm-at-15-50.*"):     # pre-variant naming
     old.unlink()
-other_holes, other_plain, other_xacto, end_holes = {}, {}, {}, {}
+other_holes, other_plain, other_xacto, other_flat, end_holes = {}, {}, {}, {}, {}
 for ident, lock, note, p, holes in build_other("full"):
     full_id = f"{ident}__full-handle"
     ph = drill(p, holes)
@@ -402,7 +424,7 @@ for ident, lock, note, p, holes in build_other("full"):
     record(full_id, "other-lock-picks", ph, f1 + f2, lock_type=lock, handle="full-handle", note=note,
            holes_mm=[[round(x, 3), round(y, 3)] for x, y in holes])
     other_holes[full_id], other_plain[full_id] = ph, p
-for old in OUTO.glob("*__xacto__tang-*"):
+for old in [*OUTO.glob("*__xacto__tang-*"), *OUTO.glob("*__xacto-flat-edge__*")]:
     old.unlink()
 for ident, lock, note, p, tholes in build_other("xacto"):
     full_id = f"{ident}__xacto"
@@ -412,6 +434,16 @@ for ident, lock, note, p, tholes in build_other("xacto"):
                             [(full_id, drill(p, tholes, web=1.0, r=TANG_HOLE_D / 2))])
     record(full_id, "other-lock-picks", p, files, lock_type=lock, handle="xacto", note=note)
     other_xacto[full_id] = p
+for ident, tipf, note in PIN:                       # flat-edge tang version: one straight side cut by the blade's back
+    full_id = f"{ident}__xacto-flat-edge"
+    p, tholes = xacto_flat_edge(tipf, 46, 1.2)
+    files = write_pair(OUTO / (full_id + f"__tang-{TW:.2f}x{TL:.0f}mm"), [(full_id, p)],
+                       title="X-Acto tang pick with one straight edge: lay it on the hacksaw blade's back edge")
+    if TANG_HOLE_D > 0:
+        files += write_pair(OUTO / (full_id + f"__tang-{TW:.2f}x{TL:.0f}mm__hole-{TANG_HOLE_D:.1f}"),
+                            [(full_id, drill(p, tholes, web=1.0, r=TANG_HOLE_D / 2))])
+    record(full_id, "other-lock-picks", p, files, lock_type="pin tumbler", handle="xacto-flat-edge", note=note)
+    other_flat[full_id] = place(scale(p, 1, -1, origin=(0, 0)))     # flat edge on top: spine layouts put the top edge on the blade back
 
 for wa, wb in ((2.5, 3.0), (3.0, 4.0)):
     bar = box(0, -2.0, 76, 2.0)
@@ -565,6 +597,7 @@ if ORIGINALS:
              ("original-picks__with-holes", orig_holes, True)]
 # spine-edge versions of the flat-handle sets: handle edge on the blade's back edge (one side needs no cutting)
 sets += [(n + "__spine", polys, None) for n, polys, end_ok in list(sets) if end_ok]
+sets += [("own-picks-xacto-flat-edge__spine", list(other_flat.items()), None)]   # X-Acto picks whose straight edge is the blade back
 layouts = []
 too_tall = [i for _, polys, _ in sets for i, p in polys if p.bounds[3] - p.bounds[1] > usable_h]
 for name, polys, end_ok in sets:

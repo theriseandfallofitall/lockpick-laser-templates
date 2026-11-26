@@ -23,6 +23,7 @@ GROUPS = [
     ("own-picks-full-handle-with-holes", r"^generated/other-lock-picks/.*__full-handle__holes"),
     ("own-picks-full-handle-no-holes", r"^generated/other-lock-picks/.*__full-handle__no-holes"),
     ("own-picks-xacto", r"^generated/other-lock-picks/.*__xacto__"),
+    ("own-picks-xacto-flat-edge", r"^generated/other-lock-picks/.*__xacto-flat-edge__"),
     ("tension-tools", r"^generated/tension-tools-v2/(TOK-C|TOK-L|TOK-STRAIGHT|BOK-STRAIGHT|TOK-Z|BOK-L)"),
     ("fit-tests", r"^generated/(calibration/|xacto-tang-v2/fit-tests/FIT-TEST)"),
     ("xacto-picks", r"^generated/xacto-tang-v2/pick-"),

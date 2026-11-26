@@ -99,6 +99,10 @@ for lock, chip in LOCKS:
             if xr:
                 xs = [f for f in xr["files"] if f.endswith(".svg")]
                 rows = [fmt_row("Plain", xs[0])] + ([fmt_row("Tang hole", xs[1])] if len(xs) > 1 else [])
+                fr = by_id.get(base + "__xacto-flat-edge")          # optional flat-edge version (one side = the blade's back)
+                if fr:
+                    fs = [f for f in fr["files"] if f.endswith(".svg")]
+                    rows += [fmt_row("Flat edge", fs[0])] + ([fmt_row("Flat edge + hole", fs[1])] if len(fs) > 1 else [])
                 cards.append(styled(xs[0][:-4], pretty(base), rows, "xacto", r.get("note", "")))
         elif r.get("handle") == "bar":
             c = laser_card(r["files"][0][:-4], pretty(base) + " " + r["id"].split("__")[1] + " mm"); c["note"] = r.get("note", "")
@@ -160,7 +164,7 @@ T[("fit", "Cut these first")] = fit
 # Blade layouts: holes / no-holes pairs share one card (labelled rows); spine-edge layouts have their own chips
 LAY = json.loads((ROOT / "generated/hacksaw-blade-layouts/layouts.json").read_text(encoding="utf-8"))["layouts"]
 SETNAME = [("jig", "", "Jig"), ("own-picks-xacto", "", "Picks · X-Acto"), ("own-picks-full-handle", "", "Picks · flat, centred"),
-           ("own-picks-full-handle", "spine", "Picks · flat, on the blade edge"), ("tension-tools-v2", "", "Tension tools"),
+           ("own-picks-full-handle", "spine", "Picks · flat, on the blade edge"), ("own-picks-xacto-flat-edge", "spine", "Picks · X-Acto, on the blade edge"), ("tension-tools-v2", "", "Tension tools"),
            ("xacto-v2-picks", "", "Originals · X-Acto"), ("original-picks", "", "Originals · centred"),
            ("original-picks", "spine", "Originals · on the blade edge")]
 NOTE_SPINE = "Each handle's straight edge sits on the blade's smooth back edge: that side is already cut. Teeth side down."

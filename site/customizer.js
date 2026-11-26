@@ -7,7 +7,7 @@ const CK = (() => {
 
   // ---------- defaults (also the "Reset all" values) and presets
   const PICK_BASE = { handle: "full", handleL: 62, handleH: 9, handleEnd: "round", holes: true, holeD: 3.4, hole1: 15, hole2: 50,
-    tangW: 5.8, tangL: 10, shoulderL: 2, shoulderW: 10, tangHole: false, tangHoleD: 2.2, tangHoleX: 5, tangHole2: false, tangHole2X: 10, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
+    tangW: 5.8, tangL: 10, shoulderL: 2, shoulderW: 10, tangHole: false, tangHoleD: 2.2, tangHoleX: 5, tangHole2: false, tangHole2X: 10, flatEdge: false, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
     tip: "hook", tipH: 2.6, tipW: 1.0, tipL: 10, peaks: 3, lean: 0, n: 5, pitch: 3.2, custom: "0 2.2 0.6 2.8 1.2 2.4 0" };
   const TENSION_BASE = { length: 76, shaftW: 3.4, dirA: "up", tipA: 2.4, linA: 4.7, dirB: "up", tipB: 2.8, linB: 4.7, serr: false,
     outer: "round", outerR: 0.3, tipCorner: "sharp", tipCornerR: 0.5, legCorner: "round", legCornerR: 0.8, ovalStretch: 1.6, wave: 0, waves: 1 };
@@ -56,6 +56,9 @@ const CK = (() => {
   // ---------- picks: outline = top edge (left->right) + bottom edge (right->left), as functions of x
   function pick(o) {
     o = { ...PICK_BASE, ...o };
+    // flat-edge X-Acto: the stop is on one side only, as tall as one side of the centred shoulders
+    // (same as build/generate_home_workshop.py xacto_flat_edge)
+    if (o.flatEdge && o.handle === "xacto" && FLAT_TIPS.includes(o.tip)) o.shoulderW = (o.shoulderW + o.tangW) / 2;
     const sh = o.shaftH, half = sh / 2;
     let x0, handleTop, handleBot, holes = [];
     if (o.handle === "xacto") {
@@ -104,27 +107,32 @@ const CK = (() => {
     for (let i = xs.length - 1; i > 0; i--) if (xs[i] - xs[i - 1] < 5e-5) xs.splice(i, 1);
     while (xs.length && xs[xs.length - 1] >= xEnd - 1e-6) xs.pop();
     xs.push(xEnd);
-    const top = xs.map(x => [x, topAt(x)]), bot = xs.slice().reverse().map(x => [x, botAt(x)]);
+    // flat edge: shift every column down so the underside is one straight line from butt to tip (lay it on the
+    // hacksaw blade's smooth back: that side needs no cutting). Column heights, and so the tip shape, are unchanged.
+    const flatOk = o.flatEdge && FLAT_TIPS.includes(o.tip);
+    const nomBot = x => x < neckStart ? (o.handle === "xacto" ? (x < o.tangL ? o.tangW / 2 : o.shoulderW / 2) : o.handleH / 2) : botAt(x);
+    const fe = x => flatOk ? rootHalf - nomBot(x) : 0;
+    const top = xs.map(x => [x, topAt(x) + fe(x)]), bot = xs.slice().reverse().map(x => [x, botAt(x) + fe(x)]);
     const ring = top.concat(bot);
-    const circles = holes.map(([hx, hy]) => ({ x: hx, y: hy, r: o.holeD / 2 }));
+    const circles = holes.map(([hx, hy]) => ({ x: hx, y: hy + fe(hx), r: o.holeD / 2 }));
     // optional hole through the tang: a cone-point grub screw in the DIY bar handle seats in it (stops pull-out)
-    if (o.handle === "xacto" && o.tangHole) circles.push({ x: o.tangL - o.tangHoleX, y: 0, r: o.tangHoleD / 2 });
+    if (o.handle === "xacto" && o.tangHole) { const hx = o.tangL - o.tangHoleX; circles.push({ x: hx, y: fe(hx), r: o.tangHoleD / 2 }); }
     // optional second hole (second grub screw in the DIY bar handle); needs a longer tang, e.g. 14 mm with holes at 4 / 10
-    if (o.handle === "xacto" && o.tangHole && o.tangHole2) circles.push({ x: o.tangL - o.tangHole2X, y: 0, r: o.tangHoleD / 2 });
+    if (o.handle === "xacto" && o.tangHole && o.tangHole2) { const hx = o.tangL - o.tangHole2X; circles.push({ x: hx, y: fe(hx), r: o.tangHoleD / 2 }); }
     // dimension marks for the preview (display only): [label, x from, x to] in raw coordinates
     const marks = o.handle === "xacto"
       ? [["tang", 0, o.tangL], ["shoulder", o.tangL, x0], ["neck", neckStart, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]]
       : [["handle", 0, x0], ["neck", neckStart, neckEnd], ["shaft", neckEnd, tipStart], ["tip", tipStart, xEnd]];
     // vertical dimension marks: [label, x, y top, y bottom] in raw coordinates
-    let pk = tipStart, pkY = topAt(tipStart);                       // highest point of the tip
-    for (let x = tipStart; x <= xEnd; x += 0.02) { const y = topAt(Math.min(x, xEnd - 1e-6)); if (y < pkY) { pkY = y; pk = x; } }
+    let pk = tipStart, pkY = topAt(tipStart) + fe(tipStart);          // highest point of the tip
+    for (let x = tipStart; x <= xEnd; x += 0.02) { const xx = Math.min(x, xEnd - 1e-6), y = topAt(xx) + fe(xx); if (y < pkY) { pkY = y; pk = x; } }
     const sx = (neckEnd + tipStart) / 2, hx = o.handle === "xacto" ? o.tangL / 2 : Math.min(8, neckStart / 2);
     const vmarks = [
-      [o.handle === "xacto" ? "tang" : "handle", hx, topAt(hx), botAt(hx)],
-      ["shaft", sx, topAt(sx), botAt(sx)],
-      [["ball", "doubleBall", "halfBall"].includes(o.tip) ? "above shaft" : "tip", pk, pkY, centre(tipStart) - half],
+      [o.handle === "xacto" ? "tang" : "handle", hx, topAt(hx) + fe(hx), botAt(hx) + fe(hx)],
+      ["shaft", sx, topAt(sx) + fe(sx), botAt(sx) + fe(sx)],
+      [["ball", "doubleBall", "halfBall"].includes(o.tip) ? "above shaft" : "tip", pk, pkY, centre(tipStart) - half + fe(tipStart)],
     ];
-    if (o.handle === "xacto") vmarks.splice(1, 0, ["shoulder", o.tangL + o.shoulderL / 2, -o.shoulderW / 2, o.shoulderW / 2]);
+    if (o.handle === "xacto") vmarks.splice(1, 0, ["shoulder", o.tangL + o.shoulderL / 2, -o.shoulderW / 2 + fe(o.tangL + 0.1), o.shoulderW / 2 + fe(o.tangL + 0.1)]);
     // peaks closer than ~1.2 mm leave valleys narrower than a kerf / needle file
     const notes = [];
     if (o.tip === "rake" && o.tipL / o.peaks < 1.2) notes.push(`Rake peaks are ${(o.tipL / o.peaks).toFixed(2)} mm apart - lengthen the tip or use fewer peaks (min 1.2 mm)`);
@@ -137,6 +145,7 @@ const CK = (() => {
   }
 
   const flat = () => 0;
+  const FLAT_TIPS = ["hook", "curve", "gem", "halfDiamond", "rake", "saw", "halfBall", "comb", "warded", "lever", "custom"];   // flat underside
   const circ = (c, r, d) => Math.sqrt(Math.max(0, r * r - (d - c) * (d - c)));
   const leanRun = o => o.lean > 0 ? Math.min(8, o.tipH * Math.tan(Math.min(70, o.lean) * Math.PI / 180)) : 0;
   const parseHeights = s => String(s).split(/[ ,;]+/).map(Number).filter(v => !isNaN(v) && v !== "");
@@ -346,7 +355,7 @@ const CK = (() => {
     L.push("0", "ENDSEC", "0", "EOF");
     return L.join("\n") + "\n";
   }
-  return { pick, tension, tensionFromForm, build, validate, toSVG, toDXF, TIPS, BLADE_USABLE, BASE, PICK_BASE, TENSION_BASE, PRESETS, parseHeights };
+  return { FLAT_TIPS, pick, tension, tensionFromForm, build, validate, toSVG, toDXF, TIPS, BLADE_USABLE, BASE, PICK_BASE, TENSION_BASE, PRESETS, parseHeights };
 })();
 
 if (typeof module !== "undefined") module.exports = CK;
@@ -375,6 +384,8 @@ if (typeof process !== "undefined" && process.argv && process.argv.includes("--s
   emit("extra-ball-sweep", "pick", { ...B, tip: "ball", tipH: 4, sweep: -1.5, holes: false });
   emit("extra-hook-lean", "pick", { ...B, tip: "hook", tipH: 3, lean: 45 });
   emit("extra-holes-moved", "pick", { ...B, holeD: 4, hole1: 12, hole2: 44 });
+  emit("extra-xacto-flat-edge-curve", "pick", { ...B, handle: "xacto", tip: "curve", tipH: 2.8, tipL: 3, tipW: 0.9, flatEdge: true, tangHole: true });
+  emit("extra-flat-handle-flat-edge-rake", "pick", { ...B, tip: "rake", tipH: 2.2, tipL: 14, peaks: 4, flatEdge: true });
   emit("extra-tension-serr-U", "tension", { ...B, serr: true });
   emit("extra-tension-downdown", "tension", { ...B, dirA: "down", dirB: "down", serr: true });
   emit("extra-tension-Zserr", "tension", { ...B, dirB: "down", linB: 10.7, serr: true });
@@ -415,11 +426,13 @@ if (typeof document !== "undefined") {
     tangHoleX: num(P, "Handle", "Tang hole, distance in front of the shoulders", "mm", 2, 15, 0.1, { only: o => o.handle === "xacto" && o.tangHole }),
     tangHole2: { tool: P, grp: "Handle", label: "Second tang hole (two grub screws; lengthen the tang to ~14 mm)", type: "check", only: o => o.handle === "xacto" && o.tangHole },
     tangHole2X: num(P, "Handle", "Second hole, distance in front of the shoulders", "mm", 2, 15, 0.1, { only: o => o.handle === "xacto" && o.tangHole && o.tangHole2 }),
+    flatEdge: { tool: P, grp: "Handle", label: "Flat edge: one straight side from butt to tip (lay it on the hacksaw blade's back, no cutting on that side)", type: "check", simple: true,
+      only: o => !["ball", "doubleBall"].includes(o.tip) },
     // shaft
     neckL: num(P, "Shaft", "Neck taper length", "mm", 6, 30, 0.5),
     shaftL: num(P, "Shaft", "Shaft length", "mm", 15, 75, 0.5, { simple: true }),
     shaftH: num(P, "Shaft", "Shaft height (thicker = stiffer)", "mm", 0.8, 3, 0.05, { simple: true }),
-    sweep: num(P, "Shaft", "Sweep (- rises, + drops to tip)", "mm", -3, 3, 0.1),
+    sweep: num(P, "Shaft", "Sweep (- rises, + drops to tip)", "mm", -3, 3, 0.1, { only: o => !o.flatEdge }),
     // tip
     tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["curve", "Curved hook / lifter"], ["gem", "Gem hook (leaning)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
       ["halfBall", "Half-ball"], ["ball", "Ball"], ["doubleBall", "Double ball"], ["comb", "Comb"], ["warded", "Warded L bit"], ["lever", "Lever lifter"], ["custom", "Custom / drawn"]]),
@@ -620,7 +633,7 @@ if (typeof document !== "undefined") {
       for (const fs of Object.values(sets)) fs.hidden = !fs.querySelector(".f:not([hidden])");
       if (o.tool === "pick" && o.tip === "custom") drawCanvas(o);
       g = CK.build(o.tool, o);
-      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW + (o.tangHole ? (o.tangHole2 ? "-2holes-" : "-hole-") + o.tangHoleD : "") : (o.holes ? "holes" : "no-holes")}`
+      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW + (o.tangHole ? (o.tangHole2 ? "-2holes-" : "-hole-") + o.tangHoleD : "") : (o.holes ? "holes" : "no-holes")}${o.flatEdge && CK.FLAT_TIPS.includes(o.tip) ? "__flat-edge" : ""}`
         : `custom-tension__${o.dirA}-${o.dirB}__tip-${o.tipA}`;
       view.innerHTML = preview(g, document.getElementById("ck-dims") ? document.getElementById("ck-dims").checked : true);
       const w = CK.validate(g);

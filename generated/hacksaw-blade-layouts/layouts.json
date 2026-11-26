@@ -1363,6 +1363,109 @@
    "ends_use_blade_pin_holes": false
   },
   {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 1,
+   "outlines": [
+    "hook-short__xacto-flat-edge",
+    "hook-medium__xacto-flat-edge",
+    "hook-deep__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__01.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__01.dxf"
+   ],
+   "min_gap_mm": 21.28,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 2,
+   "outlines": [
+    "hook-offset__xacto-flat-edge",
+    "hook-curved-short__xacto-flat-edge",
+    "hook-curved-medium__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__02.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__02.dxf"
+   ],
+   "min_gap_mm": 20.06,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 3,
+   "outlines": [
+    "hook-curved-deep__xacto-flat-edge",
+    "lifter-short__xacto-flat-edge",
+    "lifter-flat__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__03.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__03.dxf"
+   ],
+   "min_gap_mm": 19.38,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 4,
+   "outlines": [
+    "half-diamond-small__xacto-flat-edge",
+    "half-diamond-medium__xacto-flat-edge",
+    "half-diamond-large__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__04.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__04.dxf"
+   ],
+   "min_gap_mm": 19.9,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 5,
+   "outlines": [
+    "half-diamond-deep__xacto-flat-edge",
+    "rake-bogota-2__xacto-flat-edge",
+    "rake-bogota-3__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__05.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__05.dxf"
+   ],
+   "min_gap_mm": 17.0,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 6,
+   "outlines": [
+    "rake-snake__xacto-flat-edge",
+    "rake-wave__xacto-flat-edge",
+    "rake-triple-peak__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__06.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__06.dxf"
+   ],
+   "min_gap_mm": 13.75,
+   "ends_use_blade_pin_holes": false
+  },
+  {
+   "set": "own-picks-xacto-flat-edge__spine",
+   "sheet": 7,
+   "outlines": [
+    "rake-city__xacto-flat-edge"
+   ],
+   "files": [
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__07.svg",
+    "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__07.dxf"
+   ],
+   "min_gap_mm": null,
+   "ends_use_blade_pin_holes": false
+  },
+  {
    "set": "jig",
    "sheet": 1,
    "outlines": [
