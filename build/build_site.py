@@ -273,7 +273,7 @@ dialog{border:1px solid #243038;border-radius:12px;padding:16px;width:min(1200px
 dialog::backdrop{background:#000c} dialog img{width:100%;max-height:72vh;object-fit:contain;background:#0f1418;border-radius:8px}
 dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px} dialog h3{margin:0}
 dialog button.x{font:inherit;color:inherit;border:1px solid #33424c;background:#0d1114;border-radius:8px;padding:4px 12px;cursor:pointer}
-.custom{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px} @media(max-width:800px){.custom{grid-template-columns:1fr}}
+.custom{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start} @media(max-width:800px){.custom{grid-template-columns:1fr}.ck-out{order:-1}}
 #ck-form{display:flex;flex-direction:column;gap:6px;background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px}
 #ck-form [hidden]{display:none!important}
 .ck-bar{display:flex;flex-direction:column;gap:10px;padding-bottom:10px;border-bottom:1px solid #243038}
@@ -294,11 +294,12 @@ dialog button.x{font:inherit;color:inherit;border:1px solid #33424c;background:#
 #ck-canvas{width:100%;height:auto;aspect-ratio:500/120;border:1px solid #33424c;border-radius:6px;cursor:crosshair;touch-action:none}
 .ck-draw-btns{display:flex;gap:6px}
 #ck-warn{color:#ffb454;font-size:13px;margin:8px 0 0} #ck-warn:empty{display:none}
-.ck-out{background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px}
+.ck-out{background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px;position:sticky;top:calc(var(--hdr,112px) + 10px);z-index:1;max-height:calc(100vh - var(--hdr,112px) - 20px);overflow:auto}
 #ck-view svg{width:100%;height:auto;max-height:320px;background:#0f1418;border-radius:6px}
 """
 JS = """
 const $=s=>document.querySelectorAll(s);
+const setHdr=()=>document.documentElement.style.setProperty('--hdr',document.querySelector('header').offsetHeight+'px');setHdr();addEventListener('resize',setHdr);
 function tab(k){$('nav button').forEach(b=>b.classList.toggle('on',b.dataset.tab===k));$('main section').forEach(s=>s.hidden=s.id!=='sec-'+k);
  const sec=document.getElementById('sec-'+k);if(sec&&sec.querySelector('.chips')&&!sec.querySelector('.chips .on'))chip(sec,0);history.replaceState(null,'','#'+k)}
 function chip(sec,i){sec.querySelectorAll('.chips button').forEach(b=>b.classList.toggle('on',+b.dataset.chip===+i));
