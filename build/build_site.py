@@ -68,7 +68,21 @@ exists = lambda rel: (ROOT / rel).exists()
 MAN = json.loads((ROOT / "manifest-home-workshop.json").read_text(encoding="utf-8")) if exists("manifest-home-workshop.json") else []
 T = {}
 
-# Picks: own designs, one card per design with every handle variant
+# Picks: one card per design PER HANDLE STYLE ("flat" / "xacto"); a switch on the Picks tab shows one style at a time.
+# Each card has labelled rows of SVG / DXF / PDF buttons instead of one long list.
+def fmt_row(label, svg):
+    """[label, [(SVG, ...), (DXF, ...), (PDF, ...)]] for one variant, given its SVG path (PDF only if built)."""
+    st = svg[:-4]
+    return [label, [("SVG", st + ".svg"), ("DXF", st + ".dxf")] + ([("PDF", st + ".pdf")] if (ROOT / (st + ".pdf")).exists() else [])]
+
+
+def styled(stem, name, rows, style, note=""):
+    c = laser_card(stem, name); c["links"] = [l for _, ls in rows for l in ls]; c["rows"] = rows; c["style"] = style
+    if note:
+        c["note"] = note
+    return c
+
+
 LOCKS = [("pin tumbler", "Pin tumbler"), ("wafer", "Wafer"), ("warded", "Warded"), ("lever (mortice)", "Lever (mortice)"), ("dimple", "Dimple")]
 by_id = {r["id"]: r for r in MAN}
 for lock, chip in LOCKS:
@@ -78,39 +92,39 @@ for lock, chip in LOCKS:
             continue
         base = r["id"].split("__")[0]
         if r.get("handle") == "full-handle":
-            holes = [f for f in r["files"] if "__holes" in f]; plain = [f for f in r["files"] if "__no-holes" in f]
+            holes = next(f for f in r["files"] if "__holes" in f and f.endswith(".svg"))
+            plain = next(f for f in r["files"] if "__no-holes" in f and f.endswith(".svg"))
+            cards.append(styled(holes[:-4], pretty(base), [fmt_row("Holes", holes), fmt_row("No holes", plain)], "flat", r.get("note", "")))
             xr = by_id.get(base + "__xacto")
-            pdf = lambda f, lab: [(lab, f[:-4] + ".pdf")] if (ROOT / (f[:-4] + ".pdf")).exists() else []
-            links = ([("Holes SVG", holes[0]), ("Holes DXF", holes[1])] + pdf(holes[0], "Holes PDF")
-                     + [("No holes SVG", plain[0]), ("No holes DXF", plain[1])] + pdf(plain[0], "No holes PDF"))
             if xr:
-                links += [("X-Acto SVG", xr["files"][0]), ("X-Acto DXF", xr["files"][1])] + pdf(xr["files"][0], "X-Acto PDF")
-                if len(xr["files"]) >= 4:
-                    links += [("X-Acto + hole SVG", xr["files"][2]), ("X-Acto + hole DXF", xr["files"][3])] + pdf(xr["files"][2], "X-Acto + hole PDF")
-            c = laser_card(holes[0][:-4], pretty(base))
-            c["links"] = links; c["note"] = r.get("note", "")
-            cards.append(c)
+                xs = [f for f in xr["files"] if f.endswith(".svg")]
+                rows = [fmt_row("Plain", xs[0])] + ([fmt_row("Tang hole", xs[1])] if len(xs) > 1 else [])
+                cards.append(styled(xs[0][:-4], pretty(base), rows, "xacto", r.get("note", "")))
         elif r.get("handle") == "bar":
             c = laser_card(r["files"][0][:-4], pretty(base) + " " + r["id"].split("__")[1] + " mm"); c["note"] = r.get("note", "")
-            cards.append(c)
+            cards.append(c)                                     # no handle: shown in both styles
     T[("picks", chip)] = cards
-T[("picks", "Originals · X-Acto")] = [laser_card(s, pretty(re.sub(r"-xacto-v2.*", "", s.rsplit("/", 1)[1])),
-                                                 [("+ hole SVG", s + "__hole-2.2.svg"), ("+ hole DXF", s + "__hole-2.2.dxf")] if (ROOT / (s + "__hole-2.2.svg")).exists() else [])
-                                      for s in stems(r"^generated/xacto-tang-v2/pick-") if "__hole-" not in s]
 
 
 def oid(s):
     return re.sub(r"__steel.*", "", s.rsplit("/", 1)[1])
 
 
-T[("picks", "Originals · flat handle")] = [
-    laser_card(s, pretty(oid(s)), [("Holes SVG", f"generated/picks-with-holes/{oid(s)}__holes-3.40mm-at-15-50.svg"),
-                                   ("Holes DXF", f"generated/picks-with-holes/{oid(s)}__holes-3.40mm-at-15-50.dxf")])
-    for s in stems(r"^generated/picks/pick-.*steel-0\.50mm$")]
+orig = []
+for s in stems(r"^generated/picks/pick-.*steel-0\.50mm$"):
+    hp = f"generated/picks-with-holes/{oid(s)}__holes-3.40mm-at-15-50.svg"
+    orig.append(styled(hp[:-4] if (ROOT / hp).exists() else s, pretty(oid(s)),
+                       ([fmt_row("Holes", hp)] if (ROOT / hp).exists() else []) + [fmt_row("No holes", s + ".svg")], "flat"))
+for s in stems(r"^generated/xacto-tang-v2/pick-"):
+    if "__hole-" in s:
+        continue
+    hs = s + "__hole-2.2.svg"
+    orig.append(styled(s, pretty(re.sub(r"-xacto-v2.*", "", s.rsplit("/", 1)[1])),
+                       [fmt_row("Plain", s + ".svg")] + ([fmt_row("Tang hole", hs)] if (ROOT / hs).exists() else []), "xacto"))
+T[("picks", "Originals")] = orig
 T[("picks", "Originals · Le Corbeau")] = [
-    laser_card(s, pretty(re.sub(r"-le-corbeau.*", "", oid(s))),
-               [("Holes SVG", f"generated/le-corbeau-body-blended-with-holes/{oid(s)}__holes-3.40mm-at-15-50.svg"),
-                ("Holes DXF", f"generated/le-corbeau-body-blended-with-holes/{oid(s)}__holes-3.40mm-at-15-50.dxf")])
+    styled(s, pretty(re.sub(r"-le-corbeau.*", "", oid(s))),
+           [fmt_row("Holes", f"generated/le-corbeau-body-blended-with-holes/{oid(s)}__holes-3.40mm-at-15-50.svg"), fmt_row("No holes", s + ".svg")], None)  # no X-Acto version: shown in both
     for s in stems(r"^generated/le-corbeau-body-blended/.*steel-0\.50mm$")]
 
 
@@ -229,13 +243,17 @@ TABS = [("picks", "Picks", "Every design comes as a flat handle with or without 
 
 def card_html(c):
     badge = "" if c["fit"] is None else ('<span class="ok">fits blade</span>' if c["fit"] else '<span class="no">needs wider sheet</span>')
-    links = "".join(f'<a download href="{esc(h)}">{esc(l)}</a>' for l, h in c["links"])
+    if c.get("rows"):
+        links = "".join(f'<div class="dl"><span class="rl">{esc(lab)}</span>' + "".join(f'<a download href="{esc(h)}">{esc(f)}</a>' for f, h in ls) + "</div>"
+                        for lab, ls in c["rows"])
+    else:
+        links = '<div class="dl">' + "".join(f'<a download href="{esc(h)}">{esc(l)}</a>' for l, h in c["links"]) + "</div>"
     q = esc((c["name"] + " " + " ".join(h for _, h in c["links"])).lower())
     img = (f'<button class="img" data-big="{esc(c["thumb"])}" aria-label="Enlarge {esc(c["name"])}"><img loading="lazy" src="{esc(c["thumb"])}" alt=""></button>'
            if c["thumb"] else "")
     note = f'<p class="note">{esc(c["note"])}</p>' if c.get("note") else ""
-    return f'<article data-q="{q}">{img}<h3>{esc(c["name"])}</h3><p>{esc(c["size"])} {badge}</p>{note}<div class="dl">{links}</div></article>'
-
+    st = f' data-style="{c["style"]}"' if c.get("style") else ""
+    return f'<article data-q="{q}"{st}>{img}<h3>{esc(c["name"])}</h3><p>{esc(c["size"])} {badge}</p>{note}<div class="dls">{links}</div></article>'
 
 CUSTOM = """<div class="custom"><form id="ck-form" onsubmit="return false"></form><div class="ck-out"><div id="ck-view"></div>
 <p id="ck-warn"></p><p id="ck-info"></p><div class="dl"><a id="ck-svg" href="#">Download SVG</a><a id="ck-dxf" href="#">Download DXF</a><a id="ck-print" href="#">Print 1:1</a></div>
@@ -251,12 +269,15 @@ for key, title, intro in TABS:
     groups = [(chip, cards) for (k, chip), cards in T.items() if k == key and cards]
     if not groups:
         continue
-    n = sum(len(c) for _, c in groups)
+    n = sum(sum(1 for x in c if x.get("style") != "xacto") for _, c in groups)
     tabs.append(f'<button data-tab="{key}">{esc(title)} <small>{n}</small></button>')
-    chips = "".join(f'<button data-chip="{i}">{esc(chip)} <small>{len(cards)}</small></button>' for i, (chip, cards) in enumerate(groups))
+    count = lambda cards: sum(1 for c in cards if c.get("style") != "xacto")
+    chips = "".join(f'<button data-chip="{i}">{esc(chip)} <small>{count(cards)}</small></button>' for i, (chip, cards) in enumerate(groups))
+    switch = ('<div class="switch" role="group" aria-label="Handle style"><button data-style="flat" class="on">Flat handle</button>'
+              '<button data-style="xacto">X-Acto / DIY-bar tang</button></div>') if key == "picks" else ""
     body = "".join(f'<div class="group" data-group="{i}"><div class="grid">{"".join(card_html(c) for c in cards)}</div></div>'
                    for i, (_, cards) in enumerate(groups))
-    sections.append(f'<section id="sec-{key}" hidden><p class="intro">{esc(intro)}</p><div class="chips">{chips}</div>{body}</section>')
+    sections.append(f'<section id="sec-{key}" data-style="flat" hidden><p class="intro">{esc(intro)}</p>{switch}<div class="chips">{chips}</div>{body}</section>')
 
 CSS = """
 *{box-sizing:border-box} html{color-scheme:dark} body{margin:0;font:15px/1.45 system-ui,sans-serif;color:#e8ecef;background:#0d1114}
@@ -278,6 +299,12 @@ article{background:#151b20;border:1px solid #243038;border-radius:10px;padding:1
 .dl{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:6px}
 .dl a{font-size:13px;padding:3px 10px;border:1px solid #ff5a5a;border-radius:6px;color:#ff8080;text-decoration:none}
 .dl a:hover{background:#ff5a5a;color:#0d1114}
+.dls{display:flex;flex-direction:column;gap:5px;margin-top:auto;padding-top:6px} .dls .dl{margin:0;padding:0;align-items:center}
+.rl{min-width:74px;font-size:12px;color:#9aa7b0}
+.switch{display:inline-flex;border:1px solid #33424c;border-radius:9px;overflow:hidden;margin:0 0 12px}
+.switch button{font:inherit;font-size:14px;color:#cfd8de;background:#151b20;border:0;padding:6px 14px;cursor:pointer}
+.switch button.on{background:#ff5a5a;color:#0d1114;font-weight:600}
+section[data-style=flat] article[data-style=xacto],section[data-style=xacto] article[data-style=flat]{display:none}
 footer{max-width:1240px;margin:0 auto;padding:0 24px 30px;color:#7d8b95;font-size:13px}
 body.searching .chips,body.searching .intro{display:none}
 dialog{border:1px solid #243038;border-radius:12px;padding:16px;width:min(1200px,96vw);max-height:92vh;background:#151b20;color:inherit}
@@ -319,8 +346,10 @@ function chip(sec,i){sec.querySelectorAll('.chips button').forEach(b=>b.classLis
  sec.querySelectorAll('.group').forEach(g=>g.hidden=+g.dataset.group!==+i)}
 $('nav button').forEach(b=>b.onclick=()=>{q.value='';q.oninput();tab(b.dataset.tab)});
 $('.chips button').forEach(b=>b.onclick=()=>chip(b.closest('section'),b.dataset.chip));
+$('.switch button').forEach(b=>b.onclick=()=>{const sec=b.closest('section');sec.dataset.style=b.dataset.style;
+ sec.querySelectorAll('.switch button').forEach(x=>x.classList.toggle('on',x===b))});
 $('button.img').forEach(b=>b.onclick=()=>{const a=b.closest('article');document.getElementById('big-t').textContent=a.querySelector('h3').textContent;
- document.getElementById('big-i').src=b.dataset.big;document.getElementById('big-d').innerHTML=a.querySelector('.dl').innerHTML;big.showModal()});
+ document.getElementById('big-i').src=b.dataset.big;document.getElementById('big-d').innerHTML=a.querySelector('.dls').innerHTML;big.showModal()});
 big.onclick=e=>{if(e.target===big)big.close()};
 q.oninput=()=>{const v=q.value.toLowerCase().trim();document.body.classList.toggle('searching',!!v);
  if(!v){const k=(document.querySelector('nav .on')||{dataset:{}}).dataset.tab||'picks';$('main section').forEach(s=>s.hidden=s.id!=='sec-'+k);
@@ -336,7 +365,7 @@ page = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
         '<meta name="color-scheme" content="dark"><title>Lockpick fabrication library</title><style>' + CSS + '</style></head><body>'
         '<header><div class="top"><h1>Lockpick fabrication library</h1><input id="q" type="search" placeholder="Search everything, e.g. wafer, hook, comb, U-bar"></div>'
         '<nav>' + "".join(tabs) + '</nav></header><main>' + "".join(sections) + '</main>'
-        '<dialog id="big"><div class="bar"><h3 id="big-t"></h3><button class="x" onclick="big.close()">Close ✕</button></div><img id="big-i" alt=""><div class="dl" id="big-d"></div></dialog>'
+        '<dialog id="big"><div class="bar"><h3 id="big-t"></h3><button class="x" onclick="big.close()">Close ✕</button></div><img id="big-i" alt=""><div class="dls" id="big-d"></div></dialog>'
         '<footer>All laser files: millimetres, import at 100 % (never “fit to bed”), no kerf offset. Red / layer CUT = cut. Blue / layer REFERENCE-DO-NOT-CUT = guide only. '
         'Cut or print the fit tests first. Only use these tools on locks you own or have permission to pick.</footer>'
         + ('<script src="site/customizer.js"></script>' if exists("site/customizer.js") else "") + '<script>' + JS + '</script></body></html>')
