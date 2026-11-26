@@ -290,15 +290,15 @@ nav button.on{color:#fff;border-color:#ff5a5a;font-weight:600} small{color:#6f7d
 main{max-width:1240px;margin:0 auto;padding:18px 24px 60px} .intro{color:#a9b5bd;margin:0 0 12px;max-width:920px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .chips button{font:inherit;font-size:14px;color:#cfd8de;border:1px solid #33424c;background:#151b20;border-radius:99px;padding:5px 13px;cursor:pointer}
-.chips button.on{background:#e8ecef;color:#0d1114;border-color:#e8ecef} .chips button.on small{color:#556}
+.chips button.on{background:#ff5a5a;color:#0d1114;border-color:#ff5a5a;font-weight:600} .chips button.on small{color:#4a1214}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
 article{background:#151b20;border:1px solid #243038;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px}
 .img{height:84px;display:flex;align-items:center;justify-content:center;background:#0f1418;border:0;border-radius:6px;cursor:zoom-in;padding:3px}
 .img img{max-width:100%;max-height:78px} h3{font-size:14.5px;margin:6px 0 0} article p{margin:0;font-size:13px;color:#9aa7b0}
 .note{font-size:12px!important;color:#7d8b95!important} .ok{color:#6fd08c} .no{color:#ff8a8a}
 .dl{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:6px}
-.dl a{font-size:13px;padding:3px 10px;border:1px solid #ff5a5a;border-radius:6px;color:#ff8080;text-decoration:none}
-.dl a:hover{background:#ff5a5a;color:#0d1114}
+.dl a{font-size:13px;font-weight:600;padding:3px 10px;border:1px solid #ff5a5a;border-radius:6px;background:#ff5a5a;color:#0d1114;text-decoration:none}
+.dl a:hover{background:#ff8080;border-color:#ff8080}
 .dls{display:flex;flex-direction:column;gap:5px;margin-top:auto;padding-top:6px} .dls .dl{margin:0;padding:0;align-items:center}
 .rl{min-width:74px;font-size:12px;color:#9aa7b0}
 .switch{display:inline-flex;border:1px solid #33424c;border-radius:9px;overflow:hidden;margin:0 0 12px}
@@ -310,7 +310,7 @@ body.searching .chips,body.searching .intro{display:none}
 dialog{border:1px solid #243038;border-radius:12px;padding:16px;width:min(1200px,96vw);max-height:92vh;background:#151b20;color:inherit}
 dialog::backdrop{background:#000c} dialog img{width:100%;max-height:72vh;object-fit:contain;background:#0f1418;border-radius:8px}
 dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px} dialog h3{margin:0}
-dialog button.x{font:inherit;color:inherit;border:1px solid #33424c;background:#0d1114;border-radius:8px;padding:4px 12px;cursor:pointer}
+dialog button.x{font:inherit;font-weight:600;color:#0d1114;border:1px solid #ff5a5a;background:#ff5a5a;border-radius:8px;padding:4px 12px;cursor:pointer}
 .custom{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start} @media(max-width:800px){.custom{grid-template-columns:1fr}.ck-out{order:-1}}
 #ck-form{display:flex;flex-direction:column;gap:6px;background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px}
 #ck-form [hidden]{display:none!important}
@@ -320,8 +320,8 @@ dialog button.x{font:inherit;color:inherit;border:1px solid #33424c;background:#
 #ck-form legend{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6f7d87;padding:0;margin-bottom:6px}
 #ck-form .f{display:flex;flex-direction:column;gap:3px;font-size:13px;color:#a9b5bd}
 #ck-form .f.chk{flex-direction:row;align-items:center;gap:8px}
-#ck-form .f{position:relative} #ck-form .f .rs{position:absolute;right:0;top:-3px;font:13px system-ui;line-height:1;color:#9aa7b0;background:none;border:1px solid #33424c;border-radius:5px;padding:2px 6px;cursor:pointer}
-#ck-form .f .rs:hover{color:#ff8080;border-color:#ff5a5a} #ck-form .f.chk{padding-right:30px}
+#ck-form .f{position:relative} #ck-form .f .rs{position:absolute;right:0;top:-3px;font:13px system-ui;line-height:1;color:#0d1114;background:#ff5a5a;border:1px solid #ff5a5a;border-radius:5px;padding:2px 6px;cursor:pointer}
+#ck-form .f .rs:hover{background:#ff8080;border-color:#ff8080} #ck-form .f.chk{padding-right:30px}
 #ck-form .row{display:flex;align-items:center;gap:8px}
 #ck-form .row input[type=range]{flex:1;min-width:0;accent-color:#ff5a5a}
 #ck-form .row input[type=number]{width:72px;flex:none}
@@ -329,8 +329,8 @@ dialog button.x{font:inherit;color:inherit;border:1px solid #33424c;background:#
 #ck-form input,#ck-form select{font:inherit;color:inherit;background:#0d1114;padding:5px 8px;border:1px solid #33424c;border-radius:6px}
 #ck-form input[type=range]{padding:0;border:0;background:none}
 #ck-form input[type=checkbox]{padding:0}
-#ck-form button{font:inherit;font-size:13px;color:#ff8080;background:none;border:1px solid #ff5a5a;border-radius:6px;padding:3px 12px;cursor:pointer}
-#ck-form button:hover{background:#ff5a5a;color:#0d1114}
+#ck-form button{font:inherit;font-size:13px;font-weight:600;color:#0d1114;background:#ff5a5a;border:1px solid #ff5a5a;border-radius:6px;padding:3px 12px;cursor:pointer}
+#ck-form button:hover{background:#ff8080;border-color:#ff8080}
 #ck-canvas{width:100%;height:auto;aspect-ratio:500/120;border:1px solid #33424c;border-radius:6px;cursor:crosshair;touch-action:none}
 .ck-draw-btns{display:flex;gap:6px}
 #ck-warn{color:#ffb454;font-size:13px;margin:8px 0 0} #ck-warn:empty{display:none}
