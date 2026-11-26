@@ -1,0 +1,464 @@
+[
+ {
+  "id": "TOK-Z__tip-2.4__short-4.71-long-10.71",
+  "group": "TOK double-ended (sheet)",
+  "length_mm": 76.0,
+  "height_mm": 21.82,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "SP-style: short end stops before pin 1, long end for recessed plugs.",
+  "files": [
+   "generated/tension-tools-v2/TOK-Z__tip-2.4__short-4.71-long-10.71.svg",
+   "generated/tension-tools-v2/TOK-Z__tip-2.4__short-4.71-long-10.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-C__tip-2.4-2.8__short-4.71",
+  "group": "TOK double-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Both short ends on one side so it fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-C__tip-2.4-2.8__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-C__tip-2.4-2.8__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND__tip-2.4-2.8",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Peterson-style. Cut flat, bend 90 deg at the blue lines (heat hacksaw steel first or it snaps).",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-2.4-2.8.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-2.4-2.8.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND-SERRATED__tip-2.4-2.8",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "As above with 0.6 mm grip serrations on the bearing edge.",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-2.4-2.8.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-2.4-2.8.dxf"
+  ]
+ },
+ {
+  "id": "TOK-Z__tip-2.8__short-4.71-long-10.71",
+  "group": "TOK double-ended (sheet)",
+  "length_mm": 76.0,
+  "height_mm": 21.82,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "SP-style: short end stops before pin 1, long end for recessed plugs.",
+  "files": [
+   "generated/tension-tools-v2/TOK-Z__tip-2.8__short-4.71-long-10.71.svg",
+   "generated/tension-tools-v2/TOK-Z__tip-2.8__short-4.71-long-10.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-C__tip-2.8-3.2__short-4.71",
+  "group": "TOK double-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Both short ends on one side so it fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-C__tip-2.8-3.2__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-C__tip-2.8-3.2__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND__tip-2.8-3.2",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Peterson-style. Cut flat, bend 90 deg at the blue lines (heat hacksaw steel first or it snaps).",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-2.8-3.2.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-2.8-3.2.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND-SERRATED__tip-2.8-3.2",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "As above with 0.6 mm grip serrations on the bearing edge.",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-2.8-3.2.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-2.8-3.2.dxf"
+  ]
+ },
+ {
+  "id": "TOK-Z__tip-3.3__short-4.71-long-10.71",
+  "group": "TOK double-ended (sheet)",
+  "length_mm": 76.0,
+  "height_mm": 21.82,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "SP-style: short end stops before pin 1, long end for recessed plugs.",
+  "files": [
+   "generated/tension-tools-v2/TOK-Z__tip-3.3__short-4.71-long-10.71.svg",
+   "generated/tension-tools-v2/TOK-Z__tip-3.3__short-4.71-long-10.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-C__tip-3.3-3.7__short-4.71",
+  "group": "TOK double-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Both short ends on one side so it fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-C__tip-3.3-3.7__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-C__tip-3.3-3.7__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND__tip-3.3-3.7",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Peterson-style. Cut flat, bend 90 deg at the blue lines (heat hacksaw steel first or it snaps).",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-3.3-3.7.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-3.3-3.7.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND-SERRATED__tip-3.3-3.7",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "As above with 0.6 mm grip serrations on the bearing edge.",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-3.3-3.7.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-3.3-3.7.dxf"
+  ]
+ },
+ {
+  "id": "TOK-Z__tip-4.0__short-4.71-long-10.71",
+  "group": "TOK double-ended (sheet)",
+  "length_mm": 76.0,
+  "height_mm": 21.82,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "SP-style: short end stops before pin 1, long end for recessed plugs.",
+  "files": [
+   "generated/tension-tools-v2/TOK-Z__tip-4.0__short-4.71-long-10.71.svg",
+   "generated/tension-tools-v2/TOK-Z__tip-4.0__short-4.71-long-10.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-C__tip-4.0-4.4__short-4.71",
+  "group": "TOK double-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Both short ends on one side so it fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-C__tip-4.0-4.4__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-C__tip-4.0-4.4__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND__tip-4.0-4.4",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Peterson-style. Cut flat, bend 90 deg at the blue lines (heat hacksaw steel first or it snaps).",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-4.0-4.4.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND__tip-4.0-4.4.dxf"
+  ]
+ },
+ {
+  "id": "TOK-STRAIGHT-BEND-SERRATED__tip-4.0-4.4",
+  "group": "TOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.4,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "As above with 0.6 mm grip serrations on the bearing edge.",
+  "files": [
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-4.0-4.4.svg",
+   "generated/tension-tools-v2/TOK-STRAIGHT-BEND-SERRATED__tip-4.0-4.4.dxf"
+  ]
+ },
+ {
+  "id": "TOK-L-SINGLE__tip-2.4__short-4.71",
+  "group": "TOK single-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "One working end, round other end: the simplest bar that fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-2.4__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-2.4__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-L-SINGLE__tip-2.8__short-4.71",
+  "group": "TOK single-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "One working end, round other end: the simplest bar that fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-2.8__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-2.8__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-L-SINGLE__tip-3.3__short-4.71",
+  "group": "TOK single-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "One working end, round other end: the simplest bar that fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-3.3__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-3.3__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "TOK-L-SINGLE__tip-4.0__short-4.71",
+  "group": "TOK single-ended, blade-fit",
+  "length_mm": 76.0,
+  "height_mm": 9.61,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "One working end, round other end: the simplest bar that fits a 12.7 mm hacksaw blade.",
+  "files": [
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-4.0__short-4.71.svg",
+   "generated/tension-tools-v2/TOK-L-SINGLE__tip-4.0__short-4.71.dxf"
+  ]
+ },
+ {
+  "id": "BOK-L__tip-2.2__leg-12",
+  "group": "BOK flat L (sheet)",
+  "length_mm": 76.0,
+  "height_mm": 15.0,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Bottom-of-keyway L wrench, 3.0 mm shaft.",
+  "files": [
+   "generated/tension-tools-v2/BOK-L__tip-2.2__leg-12.svg",
+   "generated/tension-tools-v2/BOK-L__tip-2.2__leg-12.dxf"
+  ]
+ },
+ {
+  "id": "BOK-STRAIGHT-BEND__tip-2.2",
+  "group": "BOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.0,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Classic bent BOK wrench; 10 / 14 mm legs.",
+  "files": [
+   "generated/tension-tools-v2/BOK-STRAIGHT-BEND__tip-2.2.svg",
+   "generated/tension-tools-v2/BOK-STRAIGHT-BEND__tip-2.2.dxf"
+  ]
+ },
+ {
+  "id": "BOK-L__tip-3.1__leg-12",
+  "group": "BOK flat L (sheet)",
+  "length_mm": 76.0,
+  "height_mm": 15.0,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Bottom-of-keyway L wrench, 3.0 mm shaft.",
+  "files": [
+   "generated/tension-tools-v2/BOK-L__tip-3.1__leg-12.svg",
+   "generated/tension-tools-v2/BOK-L__tip-3.1__leg-12.dxf"
+  ]
+ },
+ {
+  "id": "BOK-STRAIGHT-BEND__tip-3.1",
+  "group": "BOK straight, bend after cutting (blade-fit)",
+  "length_mm": 76.0,
+  "height_mm": 3.0,
+  "fits_12_7mm_blade": true,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Classic bent BOK wrench; 10 / 14 mm legs.",
+  "files": [
+   "generated/tension-tools-v2/BOK-STRAIGHT-BEND__tip-3.1.svg",
+   "generated/tension-tools-v2/BOK-STRAIGHT-BEND__tip-3.1.dxf"
+  ]
+ },
+ {
+  "id": "ADV__flex-gauge-tensioner",
+  "group": "Advanced",
+  "length_mm": 76.0,
+  "height_mm": 12.01,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "S-flexure between head and handle with a pointer and tick notches: repeatable feather-light tension.",
+  "files": [
+   "generated/tension-tools-v2/ADV__flex-gauge-tensioner.svg",
+   "generated/tension-tools-v2/ADV__flex-gauge-tensioner.dxf"
+  ]
+ },
+ {
+  "id": "ADV__curved-finger-pad-TOK",
+  "group": "Advanced",
+  "length_mm": 76.0,
+  "height_mm": 21.82,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Waved shaft, finger pad and dimple; short and recessed ends on opposite sides.",
+  "files": [
+   "generated/tension-tools-v2/ADV__curved-finger-pad-TOK.svg",
+   "generated/tension-tools-v2/ADV__curved-finger-pad-TOK.dxf"
+  ]
+ },
+ {
+  "id": "ADV__Z-bar-TOK-plus-BOK",
+  "group": "Advanced",
+  "length_mm": 76.0,
+  "height_mm": 21.61,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "TOK end + BOK end in one tool.",
+  "files": [
+   "generated/tension-tools-v2/ADV__Z-bar-TOK-plus-BOK.svg",
+   "generated/tension-tools-v2/ADV__Z-bar-TOK-plus-BOK.dxf"
+  ]
+ },
+ {
+  "id": "ADV__multi-arm-wrench",
+  "group": "Advanced",
+  "length_mm": 64.42,
+  "height_mm": 36.21,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Own multi-arm wrench: short TOK, recessed TOK, 4.0 mm wide wafer/Euro TOK and 12 mm BOK on one plate.",
+  "files": [
+   "generated/tension-tools-v2/ADV__multi-arm-wrench.svg",
+   "generated/tension-tools-v2/ADV__multi-arm-wrench.dxf"
+  ]
+ },
+ {
+  "id": "ADV__tension-wheel-40",
+  "group": "Advanced",
+  "length_mm": 39.9,
+  "height_mm": 39.9,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Own tension wheel: slides onto a flat bar; roll the rim, count the notches for repeatable tension.",
+  "files": [
+   "generated/tension-tools-v2/ADV__tension-wheel-40.svg",
+   "generated/tension-tools-v2/ADV__tension-wheel-40.dxf"
+  ]
+ },
+ {
+  "id": "ADV__comb-bar-3-pin",
+  "group": "Advanced",
+  "length_mm": 76.0,
+  "height_mm": 13.01,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Own comb bar: stepped TOK tension leg (4.7 mm) at one end, 3-tooth comb (3.9 mm pitch) at the other.",
+  "files": [
+   "generated/tension-tools-v2/ADV__comb-bar-3-pin.svg",
+   "generated/tension-tools-v2/ADV__comb-bar-3-pin.dxf"
+  ]
+ },
+ {
+  "id": "ADV__comb-bar-4-pin",
+  "group": "Advanced",
+  "length_mm": 76.0,
+  "height_mm": 13.01,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Own comb bar: stepped TOK tension leg (4.7 mm) at one end, 4-tooth comb (3.9 mm pitch) at the other.",
+  "files": [
+   "generated/tension-tools-v2/ADV__comb-bar-4-pin.svg",
+   "generated/tension-tools-v2/ADV__comb-bar-4-pin.dxf"
+  ]
+ },
+ {
+  "id": "ADV__comb-bar-5-pin",
+  "group": "Advanced",
+  "length_mm": 76.0,
+  "height_mm": 13.01,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Own comb bar: stepped TOK tension leg (4.7 mm) at one end, 5-tooth comb (3.9 mm pitch) at the other.",
+  "files": [
+   "generated/tension-tools-v2/ADV__comb-bar-5-pin.svg",
+   "generated/tension-tools-v2/ADV__comb-bar-5-pin.dxf"
+  ]
+ },
+ {
+  "id": "ADV__tension-card-85x54",
+  "group": "Advanced",
+  "length_mm": 95.6,
+  "height_mm": 69.42,
+  "fits_12_7mm_blade": false,
+  "insertion_mm": 4.71,
+  "recessed_insertion_mm": 10.71,
+  "note": "Credit-card multi-tool: 4 short TOK, 4 recessed TOK, 2 BOK tips, finger hole. Cut from 0.6-1.0 mm sheet.",
+  "files": [
+   "generated/tension-tools-v2/ADV__tension-card-85x54.svg",
+   "generated/tension-tools-v2/ADV__tension-card-85x54.dxf"
+  ]
+ }
+]

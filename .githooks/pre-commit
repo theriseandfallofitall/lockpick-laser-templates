@@ -1,0 +1,4 @@
+#!/bin/sh
+# Integrate this invocation with existing hooks; do not overwrite their checks.
+PY=$(command -v python3 || command -v python) || { printf '%s\n' 'pre-commit: Python required'; exit 1; }
+"$PY" .githooks/staged_layout_check.py || exit 1

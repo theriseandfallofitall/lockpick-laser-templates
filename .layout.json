@@ -1,0 +1,4 @@
+{
+ "rootFiles": ["index.html", "LICENSE", "requirements.txt", ".nojekyll", "manifest-home-workshop.json", "manifest-tension-tools-v2.json"],
+ "codeMap": {"file": "docs/code.md", "dirs": ["build", "tools"]}
+}

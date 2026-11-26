@@ -1,0 +1,1201 @@
+[
+ {
+  "id": "FIT-TEST__xacto-tang-5.40x10mm__1-holes",
+  "family": "xacto-fit-test",
+  "length_mm": 32.0,
+  "height_mm": 10.0,
+  "area_mm2": 172.573,
+  "files": [
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.40x10mm__1-holes.svg",
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.40x10mm__1-holes.dxf"
+  ],
+  "tang_width_mm": 5.4,
+  "holes": 1
+ },
+ {
+  "id": "FIT-TEST__xacto-tang-5.50x10mm__2-holes",
+  "family": "xacto-fit-test",
+  "length_mm": 32.0,
+  "height_mm": 10.0,
+  "area_mm2": 172.444,
+  "files": [
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.50x10mm__2-holes.svg",
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.50x10mm__2-holes.dxf"
+  ],
+  "tang_width_mm": 5.5,
+  "holes": 2
+ },
+ {
+  "id": "FIT-TEST__xacto-tang-5.60x10mm__3-holes",
+  "family": "xacto-fit-test",
+  "length_mm": 32.0,
+  "height_mm": 10.0,
+  "area_mm2": 172.314,
+  "files": [
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.60x10mm__3-holes.svg",
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.60x10mm__3-holes.dxf"
+  ],
+  "tang_width_mm": 5.6,
+  "holes": 3
+ },
+ {
+  "id": "FIT-TEST__xacto-tang-5.70x10mm__4-holes",
+  "family": "xacto-fit-test",
+  "length_mm": 32.0,
+  "height_mm": 10.0,
+  "area_mm2": 172.185,
+  "files": [
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.70x10mm__4-holes.svg",
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.70x10mm__4-holes.dxf"
+  ],
+  "tang_width_mm": 5.7,
+  "holes": 4
+ },
+ {
+  "id": "FIT-TEST__xacto-tang-5.80x10mm__5-holes",
+  "family": "xacto-fit-test",
+  "length_mm": 32.0,
+  "height_mm": 10.0,
+  "area_mm2": 172.056,
+  "files": [
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.80x10mm__5-holes.svg",
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.80x10mm__5-holes.dxf"
+  ],
+  "tang_width_mm": 5.8,
+  "holes": 5
+ },
+ {
+  "id": "FIT-TEST__xacto-tang-5.90x10mm__6-holes",
+  "family": "xacto-fit-test",
+  "length_mm": 32.0,
+  "height_mm": 10.0,
+  "area_mm2": 171.927,
+  "files": [
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.90x10mm__6-holes.svg",
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-5.90x10mm__6-holes.dxf"
+  ],
+  "tang_width_mm": 5.9,
+  "holes": 6
+ },
+ {
+  "id": "FIT-TEST__xacto-tang-6.00x10mm__7-holes",
+  "family": "xacto-fit-test",
+  "length_mm": 32.0,
+  "height_mm": 10.0,
+  "area_mm2": 171.798,
+  "files": [
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-6.00x10mm__7-holes.svg",
+   "generated/xacto-tang-v2/fit-tests/FIT-TEST__xacto-tang-6.00x10mm__7-holes.dxf"
+  ],
+  "tang_width_mm": 6.0,
+  "holes": 7
+ },
+ {
+  "id": "hook-short__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 122.0,
+  "height_mm": 9.0,
+  "area_mm2": 674.696,
+  "files": [
+   "generated/other-lock-picks/hook-short__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-short__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-short__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-short__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Short hook: single-pin picking, low-set pins.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-medium__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 121.998,
+  "height_mm": 9.0,
+  "area_mm2": 675.699,
+  "files": [
+   "generated/other-lock-picks/hook-medium__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-medium__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-medium__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-medium__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Medium hook: the everyday single-pin pick.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-deep__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 121.9,
+  "height_mm": 9.0,
+  "area_mm2": 676.221,
+  "files": [
+   "generated/other-lock-picks/hook-deep__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-deep__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-deep__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-deep__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Deep hook: reaches high pins behind low ones.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-offset__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 122.778,
+  "height_mm": 9.0,
+  "area_mm2": 675.491,
+  "files": [
+   "generated/other-lock-picks/hook-offset__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-offset__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-offset__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-offset__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Offset (forward-leaning) hook for tight bitting.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "half-diamond-small__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 123.2,
+  "height_mm": 9.0,
+  "area_mm2": 677.135,
+  "files": [
+   "generated/other-lock-picks/half-diamond-small__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/half-diamond-small__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/half-diamond-small__full-handle__no-holes.svg",
+   "generated/other-lock-picks/half-diamond-small__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Small half-diamond: pins, wafers, raking.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "half-diamond-large__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 124.4,
+  "height_mm": 9.0,
+  "area_mm2": 681.301,
+  "files": [
+   "generated/other-lock-picks/half-diamond-large__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/half-diamond-large__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/half-diamond-large__full-handle__no-holes.svg",
+   "generated/other-lock-picks/half-diamond-large__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Large half-diamond.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "rake-bogota-3__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 131.0,
+  "height_mm": 9.0,
+  "area_mm2": 694.937,
+  "files": [
+   "generated/other-lock-picks/rake-bogota-3__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/rake-bogota-3__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/rake-bogota-3__full-handle__no-holes.svg",
+   "generated/other-lock-picks/rake-bogota-3__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Bogota-style triple-peak rake (rounded peaks).",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "rake-snake__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 133.0,
+  "height_mm": 9.0,
+  "area_mm2": 700.634,
+  "files": [
+   "generated/other-lock-picks/rake-snake__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/rake-snake__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/rake-snake__full-handle__no-holes.svg",
+   "generated/other-lock-picks/rake-snake__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Snake rake: rocking and raking.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "rake-city__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 132.6,
+  "height_mm": 9.0,
+  "area_mm2": 707.116,
+  "files": [
+   "generated/other-lock-picks/rake-city__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/rake-city__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/rake-city__full-handle__no-holes.svg",
+   "generated/other-lock-picks/rake-city__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "City (L) rake: a stepped key-like profile.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "wafer-half-ball__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 127.2,
+  "height_mm": 9.0,
+  "area_mm2": 694.315,
+  "files": [
+   "generated/other-lock-picks/wafer-half-ball__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/wafer-half-ball__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/wafer-half-ball__full-handle__no-holes.svg",
+   "generated/other-lock-picks/wafer-half-ball__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "full-handle",
+  "note": "Half-ball: wafer locks, also single-pin work.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "wafer-single-ball__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 127.8,
+  "height_mm": 9.0,
+  "area_mm2": 698.489,
+  "files": [
+   "generated/other-lock-picks/wafer-single-ball__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/wafer-single-ball__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/wafer-single-ball__full-handle__no-holes.svg",
+   "generated/other-lock-picks/wafer-single-ball__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "full-handle",
+  "note": "Ball pick for wafer locks (desk, cabinet, car).",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "wafer-double-ball__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 130.6,
+  "height_mm": 9.0,
+  "area_mm2": 704.242,
+  "files": [
+   "generated/other-lock-picks/wafer-double-ball__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/wafer-double-ball__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/wafer-double-ball__full-handle__no-holes.svg",
+   "generated/other-lock-picks/wafer-double-ball__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "full-handle",
+  "note": "Snowman / double-ball for wafer rocking.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "wafer-zigzag-rake__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 133.6,
+  "height_mm": 9.0,
+  "area_mm2": 716.908,
+  "files": [
+   "generated/other-lock-picks/wafer-zigzag-rake__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/wafer-zigzag-rake__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/wafer-zigzag-rake__full-handle__no-holes.svg",
+   "generated/other-lock-picks/wafer-zigzag-rake__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "full-handle",
+  "note": "Zig-zag rake, wafer and low-pin-count locks.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "wafer-wide-rocker__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 130.0,
+  "height_mm": 9.0,
+  "area_mm2": 728.733,
+  "files": [
+   "generated/other-lock-picks/wafer-wide-rocker__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/wafer-wide-rocker__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/wafer-wide-rocker__full-handle__no-holes.svg",
+   "generated/other-lock-picks/wafer-wide-rocker__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "full-handle",
+  "note": "Wide rocker rake: two tall rounded humps for rocking wafers.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "pin-comb-4__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 80.6,
+  "height_mm": 9.0,
+  "area_mm2": 619.745,
+  "files": [
+   "generated/other-lock-picks/pin-comb-4__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/pin-comb-4__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/pin-comb-4__full-handle__no-holes.svg",
+   "generated/other-lock-picks/pin-comb-4__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "4-pin comb; over-lifts all pins. Locks without overlift protection only.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "pin-comb-5__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 84.5,
+  "height_mm": 9.0,
+  "area_mm2": 641.03,
+  "files": [
+   "generated/other-lock-picks/pin-comb-5__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/pin-comb-5__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/pin-comb-5__full-handle__no-holes.svg",
+   "generated/other-lock-picks/pin-comb-5__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "5-pin comb.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "pin-comb-6__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 88.4,
+  "height_mm": 9.0,
+  "area_mm2": 662.314,
+  "files": [
+   "generated/other-lock-picks/pin-comb-6__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/pin-comb-6__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/pin-comb-6__full-handle__no-holes.svg",
+   "generated/other-lock-picks/pin-comb-6__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "6-pin comb.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "warded-L-4.0__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 115.0,
+  "height_mm": 9.0,
+  "area_mm2": 716.745,
+  "files": [
+   "generated/other-lock-picks/warded-L-4.0__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/warded-L-4.0__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/warded-L-4.0__full-handle__no-holes.svg",
+   "generated/other-lock-picks/warded-L-4.0__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "full-handle",
+  "note": "Warded L pick, 4.0 mm bit.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "warded-L-5.5__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 115.0,
+  "height_mm": 9.0,
+  "area_mm2": 719.742,
+  "files": [
+   "generated/other-lock-picks/warded-L-5.5__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/warded-L-5.5__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/warded-L-5.5__full-handle__no-holes.svg",
+   "generated/other-lock-picks/warded-L-5.5__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "full-handle",
+  "note": "Warded L pick, 5.5 mm bit.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "warded-L-6.8__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 115.0,
+  "height_mm": 9.0,
+  "area_mm2": 722.367,
+  "files": [
+   "generated/other-lock-picks/warded-L-6.8__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/warded-L-6.8__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/warded-L-6.8__full-handle__no-holes.svg",
+   "generated/other-lock-picks/warded-L-6.8__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "full-handle",
+  "note": "Warded L pick, 6.8 mm bit (fits a 12.7 mm blade).",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "warded-T-2.5__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 115.0,
+  "height_mm": 9.0,
+  "area_mm2": 718.765,
+  "files": [
+   "generated/other-lock-picks/warded-T-2.5__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/warded-T-2.5__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/warded-T-2.5__full-handle__no-holes.svg",
+   "generated/other-lock-picks/warded-T-2.5__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "full-handle",
+  "note": "Warded T pick, 2.5 mm each side.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "warded-T-3.5__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 115.0,
+  "height_mm": 9.2,
+  "area_mm2": 722.755,
+  "files": [
+   "generated/other-lock-picks/warded-T-3.5__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/warded-T-3.5__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/warded-T-3.5__full-handle__no-holes.svg",
+   "generated/other-lock-picks/warded-T-3.5__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "full-handle",
+  "note": "Warded T pick, 3.5 mm each side.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "lever-lifter-hook-3.5__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 146.4,
+  "height_mm": 9.0,
+  "area_mm2": 767.588,
+  "files": [
+   "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__no-holes.svg",
+   "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "full-handle",
+  "note": "Lever lifter, 3.5 mm lift. Multipick lever blades are 0.4-0.6 mm thick, 120 mm long. Lever pitch unverified.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "lever-lifter-hook-5.0__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 146.4,
+  "height_mm": 9.0,
+  "area_mm2": 769.392,
+  "files": [
+   "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__no-holes.svg",
+   "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "full-handle",
+  "note": "Lever lifter, 5.0 mm lift.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "lever-curtain-wrench-6__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 143.5,
+  "height_mm": 9.0,
+  "area_mm2": 792.447,
+  "files": [
+   "generated/other-lock-picks/lever-curtain-wrench-6__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/lever-curtain-wrench-6__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/lever-curtain-wrench-6__full-handle__no-holes.svg",
+   "generated/other-lock-picks/lever-curtain-wrench-6__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "full-handle",
+  "note": "Curtain / bolt-stump tension wrench, 6 mm bit. Bit size unverified: check against your keyhole.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "lever-curtain-wrench-8__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 143.5,
+  "height_mm": 10.2,
+  "area_mm2": 799.565,
+  "files": [
+   "generated/other-lock-picks/lever-curtain-wrench-8__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/lever-curtain-wrench-8__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/lever-curtain-wrench-8__full-handle__no-holes.svg",
+   "generated/other-lock-picks/lever-curtain-wrench-8__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "full-handle",
+  "note": "Curtain wrench, 8 mm bit.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "dimple-flat-flag__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 128.0,
+  "height_mm": 9.0,
+  "area_mm2": 704.949,
+  "files": [
+   "generated/other-lock-picks/dimple-flat-flag__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/dimple-flat-flag__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/dimple-flat-flag__full-handle__no-holes.svg",
+   "generated/other-lock-picks/dimple-flat-flag__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "dimple",
+  "handle": "full-handle",
+  "note": "Flat blank; bend the 2.0 mm flag 90\u00b0 at the notches. Flag 2.0 x 2.5 mm after bending (Multipick-style). Hand-finish.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-short__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 66.0,
+  "height_mm": 10.0,
+  "area_mm2": 186.223,
+  "files": [
+   "generated/other-lock-picks/hook-short__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-short__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Short hook: single-pin picking, low-set pins."
+ },
+ {
+  "id": "hook-medium__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 66.0,
+  "height_mm": 10.0,
+  "area_mm2": 187.221,
+  "files": [
+   "generated/other-lock-picks/hook-medium__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-medium__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Medium hook: the everyday single-pin pick."
+ },
+ {
+  "id": "hook-deep__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 65.9,
+  "height_mm": 10.0,
+  "area_mm2": 187.741,
+  "files": [
+   "generated/other-lock-picks/hook-deep__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-deep__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Deep hook: reaches high pins behind low ones."
+ },
+ {
+  "id": "hook-offset__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 66.779,
+  "height_mm": 10.0,
+  "area_mm2": 187.009,
+  "files": [
+   "generated/other-lock-picks/hook-offset__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-offset__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Offset (forward-leaning) hook for tight bitting."
+ },
+ {
+  "id": "half-diamond-small__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 67.2,
+  "height_mm": 10.0,
+  "area_mm2": 188.661,
+  "files": [
+   "generated/other-lock-picks/half-diamond-small__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/half-diamond-small__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Small half-diamond: pins, wafers, raking."
+ },
+ {
+  "id": "half-diamond-large__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 68.4,
+  "height_mm": 10.0,
+  "area_mm2": 192.827,
+  "files": [
+   "generated/other-lock-picks/half-diamond-large__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/half-diamond-large__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Large half-diamond."
+ },
+ {
+  "id": "rake-bogota-3__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 75.0,
+  "height_mm": 10.0,
+  "area_mm2": 206.465,
+  "files": [
+   "generated/other-lock-picks/rake-bogota-3__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/rake-bogota-3__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Bogota-style triple-peak rake (rounded peaks)."
+ },
+ {
+  "id": "rake-snake__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 77.0,
+  "height_mm": 10.0,
+  "area_mm2": 212.163,
+  "files": [
+   "generated/other-lock-picks/rake-snake__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/rake-snake__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Snake rake: rocking and raking."
+ },
+ {
+  "id": "rake-city__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 76.6,
+  "height_mm": 10.0,
+  "area_mm2": 218.637,
+  "files": [
+   "generated/other-lock-picks/rake-city__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/rake-city__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "City (L) rake: a stepped key-like profile."
+ },
+ {
+  "id": "wafer-half-ball__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 71.2,
+  "height_mm": 10.0,
+  "area_mm2": 204.883,
+  "files": [
+   "generated/other-lock-picks/wafer-half-ball__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/wafer-half-ball__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "xacto",
+  "note": "Half-ball: wafer locks, also single-pin work."
+ },
+ {
+  "id": "wafer-single-ball__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 71.8,
+  "height_mm": 10.0,
+  "area_mm2": 209.054,
+  "files": [
+   "generated/other-lock-picks/wafer-single-ball__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/wafer-single-ball__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "xacto",
+  "note": "Ball pick for wafer locks (desk, cabinet, car)."
+ },
+ {
+  "id": "wafer-double-ball__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 74.6,
+  "height_mm": 10.0,
+  "area_mm2": 214.809,
+  "files": [
+   "generated/other-lock-picks/wafer-double-ball__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/wafer-double-ball__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "xacto",
+  "note": "Snowman / double-ball for wafer rocking."
+ },
+ {
+  "id": "wafer-zigzag-rake__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 77.6,
+  "height_mm": 10.0,
+  "area_mm2": 227.475,
+  "files": [
+   "generated/other-lock-picks/wafer-zigzag-rake__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/wafer-zigzag-rake__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "xacto",
+  "note": "Zig-zag rake, wafer and low-pin-count locks."
+ },
+ {
+  "id": "wafer-wide-rocker__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 74.0,
+  "height_mm": 10.0,
+  "area_mm2": 238.339,
+  "files": [
+   "generated/other-lock-picks/wafer-wide-rocker__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/wafer-wide-rocker__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "wafer",
+  "handle": "xacto",
+  "note": "Wide rocker rake: two tall rounded humps for rocking wafers."
+ },
+ {
+  "id": "pin-comb-4__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 38.2,
+  "height_mm": 10.0,
+  "area_mm2": 228.265,
+  "files": [
+   "generated/other-lock-picks/pin-comb-4__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/pin-comb-4__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "4-pin comb; over-lifts all pins. Locks without overlift protection only."
+ },
+ {
+  "id": "pin-comb-5__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 42.1,
+  "height_mm": 10.0,
+  "area_mm2": 249.549,
+  "files": [
+   "generated/other-lock-picks/pin-comb-5__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/pin-comb-5__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "5-pin comb."
+ },
+ {
+  "id": "pin-comb-6__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 46.0,
+  "height_mm": 10.0,
+  "area_mm2": 270.836,
+  "files": [
+   "generated/other-lock-picks/pin-comb-6__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/pin-comb-6__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "6-pin comb."
+ },
+ {
+  "id": "warded-L-4.0__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 59.0,
+  "height_mm": 9.999,
+  "area_mm2": 223.468,
+  "files": [
+   "generated/other-lock-picks/warded-L-4.0__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/warded-L-4.0__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "xacto",
+  "note": "Warded L pick, 4.0 mm bit."
+ },
+ {
+  "id": "warded-L-5.5__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 59.0,
+  "height_mm": 9.999,
+  "area_mm2": 226.466,
+  "files": [
+   "generated/other-lock-picks/warded-L-5.5__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/warded-L-5.5__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "xacto",
+  "note": "Warded L pick, 5.5 mm bit."
+ },
+ {
+  "id": "warded-L-6.8__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 59.0,
+  "height_mm": 10.0,
+  "area_mm2": 229.206,
+  "files": [
+   "generated/other-lock-picks/warded-L-6.8__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/warded-L-6.8__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "xacto",
+  "note": "Warded L pick, 6.8 mm bit (fits a 12.7 mm blade)."
+ },
+ {
+  "id": "warded-T-2.5__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 59.0,
+  "height_mm": 10.0,
+  "area_mm2": 225.483,
+  "files": [
+   "generated/other-lock-picks/warded-T-2.5__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/warded-T-2.5__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "xacto",
+  "note": "Warded T pick, 2.5 mm each side."
+ },
+ {
+  "id": "warded-T-3.5__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 59.0,
+  "height_mm": 10.0,
+  "area_mm2": 229.5,
+  "files": [
+   "generated/other-lock-picks/warded-T-3.5__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/warded-T-3.5__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "warded",
+  "handle": "xacto",
+  "note": "Warded T pick, 3.5 mm each side."
+ },
+ {
+  "id": "lever-lifter-hook-3.5__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 90.4,
+  "height_mm": 10.0,
+  "area_mm2": 275.277,
+  "files": [
+   "generated/other-lock-picks/lever-lifter-hook-3.5__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/lever-lifter-hook-3.5__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "xacto",
+  "note": "Lever lifter, 3.5 mm lift. Multipick lever blades are 0.4-0.6 mm thick, 120 mm long. Lever pitch unverified."
+ },
+ {
+  "id": "lever-lifter-hook-5.0__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 90.4,
+  "height_mm": 10.0,
+  "area_mm2": 277.08,
+  "files": [
+   "generated/other-lock-picks/lever-lifter-hook-5.0__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/lever-lifter-hook-5.0__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "xacto",
+  "note": "Lever lifter, 5.0 mm lift."
+ },
+ {
+  "id": "lever-curtain-wrench-6__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 87.5,
+  "height_mm": 9.999,
+  "area_mm2": 299.182,
+  "files": [
+   "generated/other-lock-picks/lever-curtain-wrench-6__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/lever-curtain-wrench-6__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "xacto",
+  "note": "Curtain / bolt-stump tension wrench, 6 mm bit. Bit size unverified: check against your keyhole."
+ },
+ {
+  "id": "lever-curtain-wrench-8__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 87.5,
+  "height_mm": 10.2,
+  "area_mm2": 306.539,
+  "files": [
+   "generated/other-lock-picks/lever-curtain-wrench-8__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/lever-curtain-wrench-8__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "lever (mortice)",
+  "handle": "xacto",
+  "note": "Curtain wrench, 8 mm bit."
+ },
+ {
+  "id": "dimple-flat-flag__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 72.0,
+  "height_mm": 9.997,
+  "area_mm2": 214.557,
+  "files": [
+   "generated/other-lock-picks/dimple-flat-flag__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/dimple-flat-flag__xacto__tang-5.80x10mm.dxf"
+  ],
+  "lock_type": "dimple",
+  "handle": "xacto",
+  "note": "Flat blank; bend the 2.0 mm flag 90\u00b0 at the notches. Flag 2.0 x 2.5 mm after bending (Multipick-style). Hand-finish."
+ },
+ {
+  "id": "dimple-tensioner__2.5-3.0",
+  "family": "other-lock-picks",
+  "length_mm": 76.0,
+  "height_mm": 4.0,
+  "area_mm2": 274.0,
+  "files": [
+   "generated/other-lock-picks/dimple-tensioner__2.5-3.0.svg",
+   "generated/other-lock-picks/dimple-tensioner__2.5-3.0.dxf"
+  ],
+  "lock_type": "dimple",
+  "handle": "bar",
+  "note": "Dimple tensioner: tips 2.5-4.0 mm wide, 12 mm long. Needs 1.2-1.5 mm stock, not hacksaw blade."
+ },
+ {
+  "id": "dimple-tensioner__3.0-4.0",
+  "family": "other-lock-picks",
+  "length_mm": 76.0,
+  "height_mm": 4.0,
+  "area_mm2": 291.991,
+  "files": [
+   "generated/other-lock-picks/dimple-tensioner__3.0-4.0.svg",
+   "generated/other-lock-picks/dimple-tensioner__3.0-4.0.dxf"
+  ],
+  "lock_type": "dimple",
+  "handle": "bar",
+  "note": "Dimple tensioner: tips 2.5-4.0 mm wide, 12 mm long. Needs 1.2-1.5 mm stock, not hacksaw blade."
+ }
+]
