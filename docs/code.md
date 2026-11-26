@@ -3,6 +3,7 @@
 | File | Does |
 |---|---|
 | `build/laser_io.py` | Shared SVG/DXF writer: mm 1:1, unfilled closed outlines, CUT and REFERENCE-DO-NOT-CUT layers |
+| `build/pick_shapes.py` | Pick tip shapes shared by the generators and matched by the customiser: bent-strip hooks and rakes, half-diamonds, combs (`docs/pick-profiles.md`) |
 | `build/generate_tension_tools.py` | Tension tools sized from lock geometry (`--first-pin`, `--recess`) → `generated/tension-tools-v2/` |
 | `build/generate_home_workshop.py` | Picks (flat handle with / without holes, X-Acto tang), fit tests, hacksaw-blade layouts and jig (`--tang-width`, `--blade-width`, `--gap`) |
 | `build/generate_diy_handle.py` | DIY grub-screw bar handle drawing, marking wrap and end disc → `generated/diy-handle/` |

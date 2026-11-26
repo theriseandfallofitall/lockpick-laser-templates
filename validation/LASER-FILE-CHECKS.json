@@ -1,13 +1,13 @@
 {
  "summary": {
-  "checked_stems": 404,
+  "checked_stems": 354,
   "with_issues": 0,
   "issue_counts": {},
   "too_wide_for_hacksaw": [
    "generated/tension-tools-v2/ADV__Z-bar-TOK-plus-BOK",
-   "generated/tension-tools-v2/ADV__comb-bar-3-pin",
-   "generated/tension-tools-v2/ADV__comb-bar-4-pin",
-   "generated/tension-tools-v2/ADV__comb-bar-5-pin",
+   "generated/tension-tools-v2/ADV__comb-bar-kwikset-5-pin",
+   "generated/tension-tools-v2/ADV__comb-bar-schlage-5-pin",
+   "generated/tension-tools-v2/ADV__comb-bar-schlage-6-pin",
    "generated/tension-tools-v2/ADV__curved-finger-pad-TOK",
    "generated/tension-tools-v2/ADV__flex-gauge-tensioner",
    "generated/tension-tools-v2/ADV__multi-arm-wrench",
@@ -85,7 +85,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2152.055
+   "area_mm2": 2152.65
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__02",
@@ -101,7 +101,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2150.735
+   "area_mm2": 2149.855
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__03",
@@ -117,7 +117,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2142.472
+   "area_mm2": 2153.419
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__04",
@@ -133,7 +133,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2138.461
+   "area_mm2": 2150.957
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__05",
@@ -149,7 +149,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2148.486
+   "area_mm2": 2148.036
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__06",
@@ -165,7 +165,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2152.285
+   "area_mm2": 2144.28
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__07",
@@ -181,7 +181,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2149.507
+   "area_mm2": 2145.736
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__08",
@@ -197,7 +197,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2146.532
+   "area_mm2": 2135.096
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__09",
@@ -213,7 +213,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2145.473
+   "area_mm2": 2129.076
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__10",
@@ -229,7 +229,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2142.055
+   "area_mm2": 2110.21
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__11",
@@ -245,7 +245,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2132.171
+   "area_mm2": 2115.239
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__12",
@@ -261,7 +261,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2106.873
+   "area_mm2": 2099.717
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__13",
@@ -277,7 +277,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2107.484
+   "area_mm2": 2076.476
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__14",
@@ -293,7 +293,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2101.012
+   "area_mm2": 2213.111
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__15",
@@ -303,13 +303,13 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 6
+    "LWPOLYLINE": 5
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 2099.717
+   "area_mm2": 2842.075
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__16",
@@ -325,42 +325,10 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2056.802
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__17",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 7
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 1576.523
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__18",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 6
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
    "area_mm2": 2065.957
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__19",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__17",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -376,39 +344,39 @@
    "area_mm2": 2061.332
   },
   {
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__18",
+   "issues": [],
+   "svg_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "dxf_entities": {
+    "LWPOLYLINE": 6
+   },
+   "dxf_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "area_mm2": 2013.254
+  },
+  {
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__19",
+   "issues": [],
+   "svg_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "dxf_entities": {
+    "LWPOLYLINE": 6
+   },
+   "dxf_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "area_mm2": 1941.158
+  },
+  {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__20",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 6
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2012.105
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__21",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 6
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 1940.607
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__22",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -424,7 +392,7 @@
    "area_mm2": 2678.004
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__23",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__21",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -453,7 +421,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2101.826
+   "area_mm2": 2102.421
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__02",
@@ -469,7 +437,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2100.506
+   "area_mm2": 2099.625
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__03",
@@ -485,7 +453,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2092.243
+   "area_mm2": 2103.189
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__04",
@@ -501,7 +469,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2088.232
+   "area_mm2": 2100.728
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__05",
@@ -517,7 +485,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2098.257
+   "area_mm2": 2097.807
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__06",
@@ -533,7 +501,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2102.055
+   "area_mm2": 2094.05
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__07",
@@ -549,7 +517,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2099.277
+   "area_mm2": 2095.507
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__08",
@@ -565,7 +533,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2096.303
+   "area_mm2": 2084.867
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__09",
@@ -581,7 +549,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2095.244
+   "area_mm2": 2078.847
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__10",
@@ -597,7 +565,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2091.825
+   "area_mm2": 2059.98
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__11",
@@ -613,7 +581,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2081.941
+   "area_mm2": 2065.01
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__12",
@@ -629,7 +597,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2056.643
+   "area_mm2": 2049.487
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__13",
@@ -645,7 +613,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2057.255
+   "area_mm2": 2026.246
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__14",
@@ -661,7 +629,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2050.782
+   "area_mm2": 2213.111
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__15",
@@ -677,7 +645,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2049.487
+   "area_mm2": 2099.999
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__16",
@@ -693,7 +661,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2006.572
+   "area_mm2": 2010.123
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__17",
@@ -703,64 +671,16 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 7
+    "LWPOLYLINE": 6
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 1526.293
+   "area_mm2": 2010.694
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__18",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 6
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2015.728
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__19",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 6
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2011.103
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__20",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 6
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 1961.875
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__21",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -773,10 +693,26 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2708.16
+   "area_mm2": 2711.113
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__22",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__19",
+   "issues": [],
+   "svg_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "dxf_entities": {
+    "LWPOLYLINE": 5
+   },
+   "dxf_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "area_mm2": 2708.712
+  },
+  {
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__20",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -792,7 +728,7 @@
    "area_mm2": 2685.102
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__23",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__21",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -808,7 +744,7 @@
    "area_mm2": 2678.004
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__24",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__no-holes__spine__22",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -837,7 +773,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2188.357
+   "area_mm2": 2188.953
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__02",
@@ -853,7 +789,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2187.038
+   "area_mm2": 2186.157
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__03",
@@ -869,7 +805,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2178.775
+   "area_mm2": 2189.721
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__04",
@@ -885,7 +821,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2174.764
+   "area_mm2": 2187.259
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__05",
@@ -901,7 +837,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2184.789
+   "area_mm2": 2184.339
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__06",
@@ -917,7 +853,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2188.587
+   "area_mm2": 2180.582
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__07",
@@ -933,7 +869,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2185.809
+   "area_mm2": 2182.038
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__08",
@@ -949,7 +885,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2182.835
+   "area_mm2": 2171.399
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__09",
@@ -965,7 +901,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2181.776
+   "area_mm2": 2165.379
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__10",
@@ -981,7 +917,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2178.357
+   "area_mm2": 2146.512
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__11",
@@ -997,7 +933,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2168.473
+   "area_mm2": 2151.542
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__12",
@@ -1013,7 +949,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2143.175
+   "area_mm2": 2136.019
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__13",
@@ -1029,7 +965,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2143.787
+   "area_mm2": 2112.778
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__14",
@@ -1045,7 +981,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2137.314
+   "area_mm2": 2249.413
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__15",
@@ -1055,13 +991,13 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 10
+    "LWPOLYLINE": 7
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 2136.019
+   "area_mm2": 2860.226
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__16",
@@ -1077,42 +1013,10 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2093.104
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__17",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 13
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 1630.976
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__18",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 10
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
    "area_mm2": 2102.259
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__19",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__17",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1128,39 +1032,39 @@
    "area_mm2": 2097.635
   },
   {
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__18",
+   "issues": [],
+   "svg_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "dxf_entities": {
+    "LWPOLYLINE": 10
+   },
+   "dxf_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "area_mm2": 2049.556
+  },
+  {
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__19",
+   "issues": [],
+   "svg_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "dxf_entities": {
+    "LWPOLYLINE": 10
+   },
+   "dxf_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "area_mm2": 1977.461
+  },
+  {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__20",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 10
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2048.407
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__21",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 10
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 1976.909
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__22",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1176,7 +1080,7 @@
    "area_mm2": 2696.155
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__23",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__21",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1205,7 +1109,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2138.128
+   "area_mm2": 2138.723
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__02",
@@ -1221,7 +1125,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2136.808
+   "area_mm2": 2135.927
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__03",
@@ -1237,7 +1141,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2128.545
+   "area_mm2": 2139.491
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__04",
@@ -1253,7 +1157,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2124.534
+   "area_mm2": 2137.03
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__05",
@@ -1269,7 +1173,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2134.559
+   "area_mm2": 2134.109
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__06",
@@ -1285,7 +1189,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2138.357
+   "area_mm2": 2130.352
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__07",
@@ -1301,7 +1205,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2135.58
+   "area_mm2": 2131.809
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__08",
@@ -1317,7 +1221,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2132.605
+   "area_mm2": 2121.169
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__09",
@@ -1333,7 +1237,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2131.546
+   "area_mm2": 2115.149
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__10",
@@ -1349,7 +1253,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2128.127
+   "area_mm2": 2096.283
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__11",
@@ -1365,7 +1269,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2118.244
+   "area_mm2": 2101.312
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__12",
@@ -1381,7 +1285,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2092.945
+   "area_mm2": 2085.789
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__13",
@@ -1397,7 +1301,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2093.557
+   "area_mm2": 2062.549
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__14",
@@ -1413,7 +1317,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2087.084
+   "area_mm2": 2249.413
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__15",
@@ -1429,7 +1333,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2085.789
+   "area_mm2": 2136.302
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__16",
@@ -1445,7 +1349,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2042.874
+   "area_mm2": 2046.426
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__17",
@@ -1455,64 +1359,16 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 13
+    "LWPOLYLINE": 10
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 1580.746
+   "area_mm2": 2046.996
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__18",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 10
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2052.03
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__19",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 10
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2047.405
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__20",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 10
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 1998.177
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__21",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1525,10 +1381,26 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2726.312
+   "area_mm2": 2729.264
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__22",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__19",
+   "issues": [],
+   "svg_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "dxf_entities": {
+    "LWPOLYLINE": 7
+   },
+   "dxf_bbox_mm": [
+    315.0,
+    12.7
+   ],
+   "area_mm2": 2726.863
+  },
+  {
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__20",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1544,7 +1416,7 @@
    "area_mm2": 2703.253
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__23",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__21",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1560,7 +1432,7 @@
    "area_mm2": 2696.155
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__24",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-full-handle__with-holes__spine__22",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1589,7 +1461,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2929.315
+   "area_mm2": 2929.284
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__02",
@@ -1605,7 +1477,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2920.477
+   "area_mm2": 2931.156
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__03",
@@ -1621,7 +1493,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2912.208
+   "area_mm2": 2927.607
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__04",
@@ -1637,7 +1509,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2931.528
+   "area_mm2": 2920.188
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__05",
@@ -1653,7 +1525,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2925.411
+   "area_mm2": 2915.853
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__06",
@@ -1669,7 +1541,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2920.622
+   "area_mm2": 2898.564
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__07",
@@ -1679,45 +1551,13 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 7
+    "LWPOLYLINE": 6
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 2913.6
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__08",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 7
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2872.015
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto-flat-edge__spine__09",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 7
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2853.856
+   "area_mm2": 3073.087
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__01",
@@ -1733,7 +1573,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2869.914
+   "area_mm2": 2869.885
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__02",
@@ -1749,7 +1589,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2861.061
+   "area_mm2": 2871.757
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__03",
@@ -1765,7 +1605,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2852.798
+   "area_mm2": 2868.195
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__04",
@@ -1781,7 +1621,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2872.116
+   "area_mm2": 2860.756
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__05",
@@ -1797,7 +1637,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2865.999
+   "area_mm2": 2856.45
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__06",
@@ -1813,7 +1653,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2861.195
+   "area_mm2": 2839.159
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__07",
@@ -1829,7 +1669,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2854.193
+   "area_mm2": 2811.398
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__08",
@@ -1845,7 +1685,7 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2812.584
+   "area_mm2": 2802.172
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__09",
@@ -1855,13 +1695,13 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 7
+    "LWPOLYLINE": 8
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 2794.448
+   "area_mm2": 2517.298
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__10",
@@ -1871,13 +1711,13 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 7
+    "LWPOLYLINE": 8
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 2802.172
+   "area_mm2": 2489.563
   },
   {
    "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__11",
@@ -1887,48 +1727,16 @@
     12.7
    ],
    "dxf_entities": {
-    "LWPOLYLINE": 8
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2517.365
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__12",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 8
-   },
-   "dxf_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "area_mm2": 2483.43
-  },
-  {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__13",
-   "issues": [],
-   "svg_bbox_mm": [
-    315.0,
-    12.7
-   ],
-   "dxf_entities": {
     "LWPOLYLINE": 7
    },
    "dxf_bbox_mm": [
     315.0,
     12.7
    ],
-   "area_mm2": 2700.011
+   "area_mm2": 2701.164
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__14",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__12",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -1941,10 +1749,10 @@
     315.0,
     12.7
    ],
-   "area_mm2": 2878.242
+   "area_mm2": 2878.795
   },
   {
-   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__15",
+   "stem": "generated/hacksaw-blade-layouts/blade-12.7mm__own-picks-xacto__13",
    "issues": [],
    "svg_bbox_mm": [
     315.0,
@@ -2161,1224 +1969,918 @@
    "stem": "generated/other-lock-picks/half-diamond-deep__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    124.0,
+    125.365,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    124.0,
+    125.365,
     9.0
    ],
-   "area_mm2": 689.118,
+   "area_mm2": 691.173,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-deep__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    124.0,
+    125.365,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    124.0,
+    125.365,
     9.0
    ],
-   "area_mm2": 707.269,
+   "area_mm2": 709.324,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-deep__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.0,
+    69.365,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.0,
+    69.365,
     7.9
    ],
-   "area_mm2": 197.586,
+   "area_mm2": 199.641,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-deep__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.0,
+    69.365,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.0,
+    69.365,
     7.9
    ],
-   "area_mm2": 193.786,
+   "area_mm2": 195.841,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-deep__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.0,
+    69.365,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.0,
+    69.365,
     10.0
    ],
-   "area_mm2": 217.383,
+   "area_mm2": 219.437,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-deep__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.0,
+    69.365,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.0,
+    69.365,
     10.0
    ],
-   "area_mm2": 213.583,
+   "area_mm2": 215.637,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-large__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    124.4,
+    125.655,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    124.4,
+    125.655,
     9.0
    ],
-   "area_mm2": 688.484,
+   "area_mm2": 690.543,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-large__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    124.4,
+    125.655,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    124.4,
+    125.655,
     9.0
    ],
-   "area_mm2": 706.635,
+   "area_mm2": 708.694,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-large__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.4,
+    69.655,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.4,
+    69.655,
     7.9
    ],
-   "area_mm2": 196.952,
+   "area_mm2": 199.012,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-large__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.4,
+    69.655,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.4,
+    69.655,
     7.9
    ],
-   "area_mm2": 193.153,
+   "area_mm2": 195.212,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-large__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.4,
+    69.655,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.4,
+    69.655,
     10.0
    ],
-   "area_mm2": 216.76,
+   "area_mm2": 218.808,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-large__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.4,
+    69.655,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.4,
+    69.655,
     10.0
    ],
-   "area_mm2": 212.96,
+   "area_mm2": 215.008,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-medium__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    123.8,
+    124.545,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    123.8,
+    124.545,
     9.0
    ],
-   "area_mm2": 686.274,
+   "area_mm2": 686.648,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-medium__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    123.8,
+    124.545,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    123.8,
+    124.545,
     9.0
    ],
-   "area_mm2": 704.425,
+   "area_mm2": 704.799,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-medium__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.8,
+    68.545,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.8,
+    68.545,
     7.9
    ],
-   "area_mm2": 194.746,
+   "area_mm2": 195.12,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-medium__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.8,
+    68.545,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.8,
+    68.545,
     7.9
    ],
-   "area_mm2": 190.947,
+   "area_mm2": 191.32,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-medium__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.8,
+    68.545,
     9.999
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.8,
+    68.545,
     10.0
    ],
-   "area_mm2": 214.549,
+   "area_mm2": 214.923,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-medium__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.8,
+    68.545,
     9.999
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.8,
+    68.545,
     10.0
    ],
-   "area_mm2": 210.75,
+   "area_mm2": 211.123,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-small__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    123.2,
+    123.805,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    123.2,
+    123.805,
     9.0
    ],
-   "area_mm2": 684.315,
+   "area_mm2": 684.428,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-small__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    123.2,
+    123.805,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    123.2,
+    123.805,
     9.0
    ],
-   "area_mm2": 702.466,
+   "area_mm2": 702.579,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-small__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.2,
+    67.805,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.2,
+    67.805,
     7.9
    ],
-   "area_mm2": 192.787,
+   "area_mm2": 192.901,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-small__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.2,
+    67.805,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.2,
+    67.805,
     7.9
    ],
-   "area_mm2": 188.987,
+   "area_mm2": 189.101,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-small__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.2,
+    67.805,
     9.999
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.2,
+    67.805,
     10.0
    ],
-   "area_mm2": 212.59,
+   "area_mm2": 212.704,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/half-diamond-small__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.2,
+    67.805,
     9.999
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.2,
+    67.805,
     10.0
    ],
-   "area_mm2": 208.791,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-deep__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    126.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 3
-   },
-   "dxf_bbox_mm": [
-    126.5,
-    9.0
-   ],
-   "area_mm2": 695.492,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-deep__full-handle__no-holes",
-   "issues": [],
-   "svg_bbox_mm": [
-    126.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    126.5,
-    9.0
-   ],
-   "area_mm2": 713.643,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-deep__xacto-flat-edge__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    70.5,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    70.5,
-    7.9
-   ],
-   "area_mm2": 203.961,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-deep__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    70.5,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    70.5,
-    7.9
-   ],
-   "area_mm2": 200.161,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-deep__xacto__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    70.5,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    70.5,
-    10.0
-   ],
-   "area_mm2": 223.765,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-deep__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    70.5,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    70.5,
-    10.0
-   ],
-   "area_mm2": 219.965,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-medium__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    124.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 3
-   },
-   "dxf_bbox_mm": [
-    124.5,
-    9.0
-   ],
-   "area_mm2": 688.957,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-medium__full-handle__no-holes",
-   "issues": [],
-   "svg_bbox_mm": [
-    124.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    124.5,
-    9.0
-   ],
-   "area_mm2": 707.108,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-medium__xacto-flat-edge__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    68.5,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    68.5,
-    7.9
-   ],
-   "area_mm2": 197.425,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-medium__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    68.5,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    68.5,
-    7.9
-   ],
-   "area_mm2": 193.625,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-medium__xacto__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    68.5,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    68.5,
-    10.0
-   ],
-   "area_mm2": 217.23,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-medium__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    68.5,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    68.5,
-    10.0
-   ],
-   "area_mm2": 213.43,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-short__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    123.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 3
-   },
-   "dxf_bbox_mm": [
-    123.5,
-    9.0
-   ],
-   "area_mm2": 685.383,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-short__full-handle__no-holes",
-   "issues": [],
-   "svg_bbox_mm": [
-    123.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    123.5,
-    9.0
-   ],
-   "area_mm2": 703.534,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-short__xacto-flat-edge__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    67.5,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    67.5,
-    7.9
-   ],
-   "area_mm2": 193.856,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-short__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    67.5,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    67.5,
-    7.9
-   ],
-   "area_mm2": 190.056,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-short__xacto__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    67.5,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    67.5,
-    10.0
-   ],
-   "area_mm2": 213.659,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/hook-curved-short__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    67.5,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    67.5,
-    10.0
-   ],
-   "area_mm2": 209.859,
+   "area_mm2": 208.904,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-deep__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    121.9,
+    122.708,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    121.9,
+    122.708,
     9.0
    ],
-   "area_mm2": 683.404,
+   "area_mm2": 684.033,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-deep__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    121.9,
+    122.708,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    121.9,
+    122.708,
     9.0
    ],
-   "area_mm2": 701.555,
+   "area_mm2": 702.184,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-deep__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    65.9,
+    66.708,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    65.9,
+    66.708,
     7.9
    ],
-   "area_mm2": 191.872,
+   "area_mm2": 192.501,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-deep__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    65.9,
+    66.708,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    65.9,
+    66.708,
     7.9
    ],
-   "area_mm2": 188.072,
+   "area_mm2": 188.701,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-deep__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    65.9,
+    66.707,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    65.9,
+    66.708,
     10.0
    ],
-   "area_mm2": 211.669,
+   "area_mm2": 212.306,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-deep__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    65.9,
+    66.707,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    65.9,
+    66.708,
     10.0
    ],
-   "area_mm2": 207.869,
+   "area_mm2": 208.507,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-medium__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    121.998,
+    122.457,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    121.998,
+    122.457,
     9.0
    ],
-   "area_mm2": 682.882,
+   "area_mm2": 682.675,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-medium__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    121.998,
+    122.457,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    121.998,
+    122.457,
     9.0
    ],
-   "area_mm2": 701.033,
+   "area_mm2": 700.826,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-medium__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    65.998,
+    66.457,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    65.998,
+    66.457,
     7.9
    ],
-   "area_mm2": 191.35,
+   "area_mm2": 191.141,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-medium__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    65.998,
+    66.457,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    65.998,
+    66.457,
     7.9
    ],
-   "area_mm2": 187.55,
+   "area_mm2": 187.342,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-medium__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    66.0,
+    66.457,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    66.0,
+    66.457,
     10.0
    ],
-   "area_mm2": 211.15,
+   "area_mm2": 210.93,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-medium__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    66.0,
+    66.457,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    66.0,
+    66.457,
     10.0
    ],
-   "area_mm2": 207.35,
+   "area_mm2": 207.131,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-offset__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    122.778,
+    123.206,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    122.778,
+    123.206,
     9.0
    ],
-   "area_mm2": 682.673,
+   "area_mm2": 682.925,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-offset__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    122.778,
+    123.206,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    122.778,
+    123.206,
     9.0
    ],
-   "area_mm2": 700.825,
+   "area_mm2": 701.076,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-offset__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    66.778,
+    67.206,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    66.778,
+    67.206,
     7.9
    ],
-   "area_mm2": 191.127,
+   "area_mm2": 191.392,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-offset__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    66.778,
+    67.206,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    66.778,
+    67.206,
     7.9
    ],
-   "area_mm2": 187.328,
+   "area_mm2": 187.592,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-offset__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    66.779,
+    67.206,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    66.779,
+    67.206,
     10.0
    ],
-   "area_mm2": 210.936,
+   "area_mm2": 211.183,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-offset__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    66.779,
+    67.206,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    66.779,
+    67.206,
     10.0
    ],
-   "area_mm2": 207.136,
+   "area_mm2": 207.383,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-short__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    122.0,
+    122.171,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    122.0,
+    122.171,
     9.0
    ],
-   "area_mm2": 681.875,
+   "area_mm2": 681.488,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-short__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    122.0,
+    122.171,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    122.0,
+    122.171,
     9.0
    ],
-   "area_mm2": 700.026,
+   "area_mm2": 699.639,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-short__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    66.0,
+    66.171,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    66.0,
+    66.171,
     7.9
    ],
-   "area_mm2": 190.348,
+   "area_mm2": 189.959,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-short__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    66.0,
+    66.171,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    66.0,
+    66.171,
     7.9
    ],
-   "area_mm2": 186.548,
+   "area_mm2": 186.159,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-short__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    66.0,
-    9.999
+    66.171,
+    10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    66.0,
+    66.171,
     10.0
    ],
-   "area_mm2": 210.153,
+   "area_mm2": 209.763,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-short__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    66.0,
-    9.999
+    66.171,
+    10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    66.0,
+    66.171,
     10.0
    ],
-   "area_mm2": 206.353,
+   "area_mm2": 205.963,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-1.2__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    123.009,
+    123.008,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    123.009,
+    123.008,
     9.0
    ],
-   "area_mm2": 681.414,
+   "area_mm2": 681.417,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-1.2__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    123.009,
+    123.008,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    123.009,
+    123.008,
     9.0
    ],
-   "area_mm2": 699.565,
+   "area_mm2": 699.568,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-1.2__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.009,
+    67.008,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.009,
+    67.008,
     7.9
    ],
-   "area_mm2": 189.886,
+   "area_mm2": 189.889,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-1.2__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.009,
+    67.008,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.009,
+    67.008,
     7.9
    ],
-   "area_mm2": 186.086,
+   "area_mm2": 186.089,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-1.2__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.009,
+    67.01,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.009,
+    67.01,
     10.0
    ],
-   "area_mm2": 209.69,
+   "area_mm2": 209.693,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-1.2__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.009,
+    67.01,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.009,
+    67.01,
     10.0
    ],
-   "area_mm2": 205.891,
+   "area_mm2": 205.893,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3392,7 +2894,7 @@
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    123.329,
+    123.33,
     9.0
    ],
    "area_mm2": 681.977,
@@ -3409,7 +2911,7 @@
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    123.329,
+    123.33,
     9.0
    ],
    "area_mm2": 700.128,
@@ -3426,10 +2928,10 @@
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.329,
+    67.33,
     7.9
    ],
-   "area_mm2": 190.448,
+   "area_mm2": 190.449,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3443,7 +2945,7 @@
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.329,
+    67.33,
     7.9
    ],
    "area_mm2": 186.649,
@@ -3453,31 +2955,31 @@
    "stem": "generated/other-lock-picks/hook-swept-1.6__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.329,
+    67.33,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.329,
+    67.33,
     10.0
    ],
-   "area_mm2": 210.252,
+   "area_mm2": 210.253,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-1.6__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.329,
+    67.33,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.329,
+    67.33,
     10.0
    ],
    "area_mm2": 206.453,
@@ -3487,68 +2989,68 @@
    "stem": "generated/other-lock-picks/hook-swept-2.0__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    123.649,
+    123.65,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    123.649,
+    123.65,
     9.0
    ],
-   "area_mm2": 682.551,
+   "area_mm2": 682.552,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-2.0__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    123.649,
+    123.65,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    123.649,
+    123.65,
     9.0
    ],
-   "area_mm2": 700.702,
+   "area_mm2": 700.704,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-2.0__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    67.649,
+    67.65,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.649,
+    67.65,
     7.9
    ],
-   "area_mm2": 191.023,
+   "area_mm2": 191.024,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-2.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    67.649,
+    67.65,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.649,
+    67.65,
     7.9
    ],
-   "area_mm2": 187.223,
+   "area_mm2": 187.224,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3562,10 +3064,10 @@
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    67.649,
+    67.65,
     10.0
    ],
-   "area_mm2": 210.826,
+   "area_mm2": 210.828,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3579,10 +3081,10 @@
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    67.649,
+    67.65,
     10.0
    ],
-   "area_mm2": 207.027,
+   "area_mm2": 207.028,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3596,10 +3098,10 @@
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    124.049,
+    124.05,
     9.0
    ],
-   "area_mm2": 683.291,
+   "area_mm2": 683.303,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3613,10 +3115,10 @@
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    124.049,
+    124.05,
     9.0
    ],
-   "area_mm2": 701.442,
+   "area_mm2": 701.454,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3630,10 +3132,10 @@
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.049,
+    68.05,
     7.9
    ],
-   "area_mm2": 191.759,
+   "area_mm2": 191.77,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -3647,418 +3149,418 @@
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.049,
+    68.05,
     7.9
    ],
-   "area_mm2": 187.959,
+   "area_mm2": 187.97,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-2.5__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.049,
+    68.05,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.049,
+    68.05,
     10.0
    ],
-   "area_mm2": 211.565,
+   "area_mm2": 211.577,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-2.5__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.049,
+    68.05,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.049,
+    68.05,
     10.0
    ],
-   "area_mm2": 207.766,
+   "area_mm2": 207.777,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.0__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    124.449,
+    124.45,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    124.449,
+    124.45,
     9.0
    ],
-   "area_mm2": 684.015,
+   "area_mm2": 684.016,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.0__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    124.449,
+    124.45,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    124.449,
+    124.45,
     9.0
    ],
-   "area_mm2": 702.166,
+   "area_mm2": 702.167,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.0__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.449,
+    68.45,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.449,
+    68.45,
     7.9
    ],
-   "area_mm2": 192.483,
+   "area_mm2": 192.484,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.449,
+    68.45,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.449,
+    68.45,
     7.9
    ],
-   "area_mm2": 188.683,
+   "area_mm2": 188.684,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.0__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.449,
+    68.45,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.449,
+    68.45,
     10.0
    ],
-   "area_mm2": 212.284,
+   "area_mm2": 212.285,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.0__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.449,
+    68.45,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.449,
+    68.45,
     10.0
    ],
-   "area_mm2": 208.484,
+   "area_mm2": 208.486,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.5__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    124.849,
+    124.85,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    124.849,
+    124.85,
     9.0
    ],
-   "area_mm2": 684.764,
+   "area_mm2": 684.761,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.5__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    124.849,
+    124.85,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    124.849,
+    124.85,
     9.0
    ],
-   "area_mm2": 702.915,
+   "area_mm2": 702.912,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.5__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.849,
+    68.85,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.849,
+    68.85,
     7.9
    ],
-   "area_mm2": 193.232,
+   "area_mm2": 193.229,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.5__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.849,
+    68.85,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.849,
+    68.85,
     7.9
    ],
-   "area_mm2": 189.433,
+   "area_mm2": 189.429,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.5__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.849,
+    68.85,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.849,
+    68.85,
     10.0
    ],
-   "area_mm2": 213.036,
+   "area_mm2": 213.031,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-3.5__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.849,
+    68.85,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.849,
+    68.85,
     10.0
    ],
-   "area_mm2": 209.236,
+   "area_mm2": 209.231,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-4.0__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    125.249,
+    125.25,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    125.249,
+    125.25,
     9.0
    ],
-   "area_mm2": 685.516,
+   "area_mm2": 685.511,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-4.0__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    125.249,
+    125.25,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    125.249,
+    125.25,
     9.0
    ],
-   "area_mm2": 703.667,
+   "area_mm2": 703.662,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-4.0__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    69.249,
+    69.25,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    69.249,
+    69.25,
     7.9
    ],
-   "area_mm2": 193.984,
+   "area_mm2": 193.979,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-4.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    69.249,
+    69.25,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    69.249,
+    69.25,
     7.9
    ],
-   "area_mm2": 190.184,
+   "area_mm2": 190.179,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-4.0__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    69.249,
+    69.25,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    69.249,
+    69.25,
     10.0
    ],
-   "area_mm2": 213.806,
+   "area_mm2": 213.783,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-4.0__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    69.249,
+    69.25,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    69.249,
+    69.25,
     10.0
    ],
-   "area_mm2": 210.007,
+   "area_mm2": 209.983,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-5.0__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    126.049,
+    126.05,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    126.049,
+    126.05,
     9.0
    ],
-   "area_mm2": 687.024,
+   "area_mm2": 687.022,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-5.0__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    126.049,
+    126.05,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    126.049,
+    126.05,
     9.0
    ],
-   "area_mm2": 705.175,
+   "area_mm2": 705.173,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-5.0__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    70.049,
+    70.05,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    70.049,
+    70.05,
     7.9
    ],
-   "area_mm2": 195.492,
+   "area_mm2": 195.489,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/hook-swept-5.0__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    70.049,
+    70.05,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    70.049,
+    70.05,
     7.9
    ],
-   "area_mm2": 191.693,
+   "area_mm2": 191.689,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -4072,10 +3574,10 @@
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    70.049,
+    70.05,
     10.0
    ],
-   "area_mm2": 215.293,
+   "area_mm2": 215.315,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -4089,10 +3591,10 @@
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    70.049,
+    70.05,
     10.0
    ],
-   "area_mm2": 211.493,
+   "area_mm2": 211.515,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -4235,1156 +3737,816 @@
    "stem": "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    146.4,
+    146.591,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    146.4,
+    146.591,
     9.0
    ],
-   "area_mm2": 774.771,
+   "area_mm2": 773.621,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/lever-lifter-hook-3.5__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    146.4,
+    146.591,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    146.4,
+    146.591,
     9.0
    ],
-   "area_mm2": 792.922,
+   "area_mm2": 791.772,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/lever-lifter-hook-3.5__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    90.4,
+    90.591,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    90.4,
+    90.591,
     10.0
    ],
-   "area_mm2": 299.449,
+   "area_mm2": 298.295,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/lever-lifter-hook-3.5__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    90.4,
+    90.591,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    90.4,
+    90.591,
     10.0
    ],
-   "area_mm2": 295.649,
+   "area_mm2": 294.496,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    146.4,
+    146.722,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    146.4,
+    146.722,
     9.0
    ],
-   "area_mm2": 776.574,
+   "area_mm2": 776.022,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/lever-lifter-hook-5.0__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    146.4,
+    146.722,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    146.4,
+    146.722,
     9.0
    ],
-   "area_mm2": 794.725,
+   "area_mm2": 794.173,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/lever-lifter-hook-5.0__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    90.4,
+    90.722,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    90.4,
+    90.722,
     10.0
    ],
-   "area_mm2": 301.247,
+   "area_mm2": 300.694,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/lever-lifter-hook-5.0__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    90.4,
+    90.722,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    90.4,
+    90.722,
     10.0
    ],
-   "area_mm2": 297.447,
+   "area_mm2": 296.894,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-flat__full-handle__holes-3.40mm-at-15-50",
+   "stem": "generated/other-lock-picks/pin-comb-kwikset-5__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    124.2,
-    9.0
+    85.514,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    124.2,
-    9.0
+    85.514,
+    10.2
    ],
-   "area_mm2": 686.912,
+   "area_mm2": 626.533,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-flat__full-handle__no-holes",
+   "stem": "generated/other-lock-picks/pin-comb-kwikset-5__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    124.2,
-    9.0
+    85.514,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    124.2,
-    9.0
+    85.514,
+    10.2
    ],
-   "area_mm2": 705.064,
+   "area_mm2": 644.684,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-flat__xacto-flat-edge__tang-5.80x10mm",
+   "stem": "generated/other-lock-picks/pin-comb-kwikset-5__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    68.2,
-    7.9
+    43.514,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    68.2,
-    7.9
+    43.514,
+    10.2
    ],
-   "area_mm2": 195.385,
+   "area_mm2": 245.497,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-flat__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
+   "stem": "generated/other-lock-picks/pin-comb-kwikset-5__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    68.2,
-    7.9
+    43.514,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    68.2,
-    7.9
+    43.514,
+    10.2
    ],
-   "area_mm2": 191.585,
+   "area_mm2": 241.697,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-flat__xacto__tang-5.80x10mm",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-5__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    68.2,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    68.2,
-    10.0
-   ],
-   "area_mm2": 215.188,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/lifter-flat__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    68.2,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    68.2,
-    10.0
-   ],
-   "area_mm2": 211.388,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/lifter-short__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    122.8,
-    9.0
+    85.717,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    122.8,
-    9.0
+    85.717,
+    10.2
    ],
-   "area_mm2": 682.859,
+   "area_mm2": 626.939,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-short__full-handle__no-holes",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-5__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    122.8,
-    9.0
+    85.717,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    122.8,
-    9.0
+    85.717,
+    10.2
    ],
-   "area_mm2": 701.01,
+   "area_mm2": 645.09,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-short__xacto-flat-edge__tang-5.80x10mm",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-5__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    66.8,
-    7.9
+    43.717,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    66.8,
-    7.9
+    43.717,
+    10.2
    ],
-   "area_mm2": 191.331,
+   "area_mm2": 245.903,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-short__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-5__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    66.8,
-    7.9
+    43.717,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    66.8,
-    7.9
+    43.717,
+    10.2
    ],
-   "area_mm2": 187.531,
+   "area_mm2": 242.103,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/lifter-short__xacto__tang-5.80x10mm",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-6__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    66.8,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    66.8,
-    10.0
-   ],
-   "area_mm2": 211.134,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/lifter-short__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    66.8,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    66.8,
-    10.0
-   ],
-   "area_mm2": 207.335,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-4__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    80.6,
-    9.0
+    89.679,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    80.6,
-    9.0
+    89.679,
+    10.2
    ],
-   "area_mm2": 619.428,
+   "area_mm2": 642.659,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/pin-comb-4__full-handle__no-holes",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-6__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    80.6,
-    9.0
+    89.679,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    80.6,
-    9.0
+    89.679,
+    10.2
    ],
-   "area_mm2": 637.579,
+   "area_mm2": 660.81,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/pin-comb-4__xacto__tang-5.80x10mm",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-6__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    37.6,
-    10.0
+    47.679,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    37.6,
-    10.0
+    47.679,
+    10.2
    ],
-   "area_mm2": 225.187,
+   "area_mm2": 261.623,
    "fits_hacksaw_12.7mm": true
   },
   {
-   "stem": "generated/other-lock-picks/pin-comb-4__xacto__tang-5.80x10mm__hole-2.2",
+   "stem": "generated/other-lock-picks/pin-comb-schlage-6__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    37.6,
-    10.0
+    47.679,
+    10.2
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    37.6,
-    10.0
+    47.679,
+    10.2
    ],
-   "area_mm2": 221.387,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-5__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    84.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 3
-   },
-   "dxf_bbox_mm": [
-    84.5,
-    9.0
-   ],
-   "area_mm2": 640.713,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-5__full-handle__no-holes",
-   "issues": [],
-   "svg_bbox_mm": [
-    84.5,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    84.5,
-    9.0
-   ],
-   "area_mm2": 658.864,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-5__xacto__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    41.5,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    41.5,
-    10.0
-   ],
-   "area_mm2": 246.471,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-5__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    41.5,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    41.5,
-    10.0
-   ],
-   "area_mm2": 242.671,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-6__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    88.4,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 3
-   },
-   "dxf_bbox_mm": [
-    88.4,
-    9.0
-   ],
-   "area_mm2": 661.998,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-6__full-handle__no-holes",
-   "issues": [],
-   "svg_bbox_mm": [
-    88.4,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    88.4,
-    9.0
-   ],
-   "area_mm2": 680.149,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-6__xacto__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    45.4,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    45.4,
-    10.0
-   ],
-   "area_mm2": 267.756,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/pin-comb-6__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    45.4,
-    10.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    45.4,
-    10.0
-   ],
-   "area_mm2": 263.957,
+   "area_mm2": 257.823,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-2__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    128.0,
+    129.45,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    128.0,
+    129.45,
     9.0
    ],
-   "area_mm2": 695.524,
+   "area_mm2": 690.747,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-2__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    128.0,
+    129.45,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    128.0,
+    129.45,
     9.0
    ],
-   "area_mm2": 713.675,
+   "area_mm2": 708.898,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-2__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    73.448,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    72.0,
+    73.448,
     7.9
    ],
-   "area_mm2": 203.992,
+   "area_mm2": 199.218,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-2__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    73.448,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    72.0,
+    73.448,
     7.9
    ],
-   "area_mm2": 200.193,
+   "area_mm2": 195.419,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-2__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    73.45,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    72.0,
+    73.45,
     10.0
    ],
-   "area_mm2": 223.803,
+   "area_mm2": 219.021,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-2__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    73.45,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    72.0,
+    73.45,
     10.0
    ],
-   "area_mm2": 220.003,
+   "area_mm2": 215.222,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-3__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    131.0,
+    133.95,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    131.0,
+    133.95,
     9.0
    ],
-   "area_mm2": 702.121,
+   "area_mm2": 696.99,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-3__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    131.0,
+    133.95,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    131.0,
+    133.95,
     9.0
    ],
-   "area_mm2": 720.273,
+   "area_mm2": 715.141,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-3__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    75.0,
+    77.948,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    75.0,
+    77.948,
     7.9
    ],
-   "area_mm2": 210.59,
+   "area_mm2": 205.461,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-3__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    75.0,
+    77.948,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    75.0,
+    77.948,
     7.9
    ],
-   "area_mm2": 206.79,
+   "area_mm2": 201.661,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-3__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    75.0,
+    77.95,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    75.0,
+    77.95,
     10.0
    ],
-   "area_mm2": 230.4,
+   "area_mm2": 225.267,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-bogota-3__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    75.0,
+    77.95,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    75.0,
+    77.95,
     10.0
    ],
-   "area_mm2": 226.601,
+   "area_mm2": 221.467,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-city__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    132.6,
+    132.495,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    132.6,
+    132.495,
     9.0
    ],
-   "area_mm2": 714.301,
+   "area_mm2": 712.789,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-city__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    132.6,
+    132.495,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    132.6,
+    132.495,
     9.0
    ],
-   "area_mm2": 732.452,
+   "area_mm2": 730.94,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-city__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    76.6,
+    76.495,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    76.6,
+    76.495,
     7.9
    ],
-   "area_mm2": 222.769,
+   "area_mm2": 221.257,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-city__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    76.6,
+    76.495,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    76.6,
+    76.495,
     7.9
    ],
-   "area_mm2": 218.969,
+   "area_mm2": 217.458,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-city__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    76.6,
+    76.495,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    76.6,
+    76.495,
     10.0
    ],
-   "area_mm2": 242.567,
+   "area_mm2": 241.057,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-city__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    76.6,
+    76.495,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    76.6,
+    76.495,
     10.0
    ],
-   "area_mm2": 238.768,
+   "area_mm2": 237.258,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-snake__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    133.0,
+    132.448,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    133.0,
+    132.448,
     9.0
    ],
-   "area_mm2": 707.818,
+   "area_mm2": 693.814,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-snake__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    133.0,
+    132.448,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    133.0,
+    132.448,
     9.0
    ],
-   "area_mm2": 725.97,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-snake__xacto-flat-edge__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    77.0,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    77.0,
-    7.9
-   ],
-   "area_mm2": 216.287,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-snake__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    77.0,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    77.0,
-    7.9
-   ],
-   "area_mm2": 212.487,
+   "area_mm2": 711.965,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-snake__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    77.0,
+    76.45,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    77.0,
+    76.45,
     10.0
    ],
-   "area_mm2": 236.098,
+   "area_mm2": 222.089,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-snake__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    77.0,
+    76.45,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    77.0,
+    76.45,
     10.0
    ],
-   "area_mm2": 232.298,
+   "area_mm2": 218.289,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-triple-peak__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    128.0,
+    128.489,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    128.0,
+    128.489,
     9.0
    ],
-   "area_mm2": 699.904,
+   "area_mm2": 700.073,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-triple-peak__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    128.0,
+    128.489,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    128.0,
+    128.489,
     9.0
    ],
-   "area_mm2": 718.055,
+   "area_mm2": 718.224,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-triple-peak__xacto-flat-edge__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    72.489,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    72.0,
+    72.489,
     7.9
    ],
-   "area_mm2": 208.372,
+   "area_mm2": 208.541,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-triple-peak__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    72.489,
     7.9
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    72.0,
+    72.489,
     7.9
    ],
-   "area_mm2": 204.573,
+   "area_mm2": 204.741,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-triple-peak__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    72.489,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    72.0,
+    72.489,
     10.0
    ],
-   "area_mm2": 228.172,
+   "area_mm2": 228.341,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/rake-triple-peak__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    72.0,
+    72.489,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    72.0,
+    72.489,
     10.0
    ],
-   "area_mm2": 224.372,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-wave__full-handle__holes-3.40mm-at-15-50",
-   "issues": [],
-   "svg_bbox_mm": [
-    135.0,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 3
-   },
-   "dxf_bbox_mm": [
-    135.0,
-    9.0
-   ],
-   "area_mm2": 709.424,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-wave__full-handle__no-holes",
-   "issues": [],
-   "svg_bbox_mm": [
-    135.0,
-    9.0
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    135.0,
-    9.0
-   ],
-   "area_mm2": 727.575,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-wave__xacto-flat-edge__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    79.0,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    79.0,
-    7.9
-   ],
-   "area_mm2": 217.888,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-wave__xacto-flat-edge__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    79.0,
-    7.9
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    79.0,
-    7.9
-   ],
-   "area_mm2": 214.088,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-wave__xacto__tang-5.80x10mm",
-   "issues": [],
-   "svg_bbox_mm": [
-    79.0,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 1
-   },
-   "dxf_bbox_mm": [
-    79.0,
-    10.0
-   ],
-   "area_mm2": 237.698,
-   "fits_hacksaw_12.7mm": true
-  },
-  {
-   "stem": "generated/other-lock-picks/rake-wave__xacto__tang-5.80x10mm__hole-2.2",
-   "issues": [],
-   "svg_bbox_mm": [
-    79.0,
-    9.999
-   ],
-   "dxf_entities": {
-    "LWPOLYLINE": 2
-   },
-   "dxf_bbox_mm": [
-    79.0,
-    10.0
-   ],
-   "area_mm2": 233.898,
+   "area_mm2": 224.541,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -5595,136 +4757,136 @@
    "stem": "generated/other-lock-picks/wafer-wide-rocker__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    130.0,
+    130.6,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    130.0,
+    130.6,
     9.0
    ],
-   "area_mm2": 735.92,
+   "area_mm2": 716.831,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/wafer-wide-rocker__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    130.0,
+    130.6,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    130.0,
+    130.6,
     9.0
    ],
-   "area_mm2": 754.071,
+   "area_mm2": 734.982,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/wafer-wide-rocker__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    74.0,
+    74.6,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    74.0,
+    74.6,
     10.0
    ],
-   "area_mm2": 262.391,
+   "area_mm2": 243.302,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/wafer-wide-rocker__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    74.0,
+    74.6,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    74.0,
+    74.6,
     10.0
    ],
-   "area_mm2": 258.591,
+   "area_mm2": 239.502,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/wafer-zigzag-rake__full-handle__holes-3.40mm-at-15-50",
    "issues": [],
    "svg_bbox_mm": [
-    133.6,
+    133.751,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 3
    },
    "dxf_bbox_mm": [
-    133.6,
+    133.751,
     9.0
    ],
-   "area_mm2": 724.091,
+   "area_mm2": 723.506,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/wafer-zigzag-rake__full-handle__no-holes",
    "issues": [],
    "svg_bbox_mm": [
-    133.6,
+    133.751,
     9.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    133.6,
+    133.751,
     9.0
    ],
-   "area_mm2": 742.242,
+   "area_mm2": 741.657,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/wafer-zigzag-rake__xacto__tang-5.80x10mm",
    "issues": [],
    "svg_bbox_mm": [
-    77.6,
+    77.751,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
-    77.6,
+    77.751,
     10.0
    ],
-   "area_mm2": 251.471,
+   "area_mm2": 250.886,
    "fits_hacksaw_12.7mm": true
   },
   {
    "stem": "generated/other-lock-picks/wafer-zigzag-rake__xacto__tang-5.80x10mm__hole-2.2",
    "issues": [],
    "svg_bbox_mm": [
-    77.6,
+    77.751,
     10.0
    ],
    "dxf_entities": {
     "LWPOLYLINE": 2
    },
    "dxf_bbox_mm": [
-    77.6,
+    77.751,
     10.0
    ],
-   "area_mm2": 247.671,
+   "area_mm2": 247.086,
    "fits_hacksaw_12.7mm": true
   },
   {
@@ -6085,54 +5247,54 @@
    "fits_hacksaw_12.7mm": false
   },
   {
-   "stem": "generated/tension-tools-v2/ADV__comb-bar-3-pin",
+   "stem": "generated/tension-tools-v2/ADV__comb-bar-kwikset-5-pin",
    "issues": [],
    "svg_bbox_mm": [
     76.0,
-    13.01
+    16.41
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
     76.0,
-    13.01
+    16.41
    ],
-   "area_mm2": 312.151,
+   "area_mm2": 297.085,
    "fits_hacksaw_12.7mm": false
   },
   {
-   "stem": "generated/tension-tools-v2/ADV__comb-bar-4-pin",
+   "stem": "generated/tension-tools-v2/ADV__comb-bar-schlage-5-pin",
    "issues": [],
    "svg_bbox_mm": [
     76.0,
-    13.01
+    16.41
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
     76.0,
-    13.01
+    16.41
    ],
-   "area_mm2": 320.213,
+   "area_mm2": 296.801,
    "fits_hacksaw_12.7mm": false
   },
   {
-   "stem": "generated/tension-tools-v2/ADV__comb-bar-5-pin",
+   "stem": "generated/tension-tools-v2/ADV__comb-bar-schlage-6-pin",
    "issues": [],
    "svg_bbox_mm": [
     76.0,
-    13.01
+    16.41
    ],
    "dxf_entities": {
     "LWPOLYLINE": 1
    },
    "dxf_bbox_mm": [
     76.0,
-    13.01
+    16.41
    ],
-   "area_mm2": 328.271,
+   "area_mm2": 299.084,
    "fits_hacksaw_12.7mm": false
   },
   {

@@ -19,6 +19,7 @@ ap = argparse.ArgumentParser(); ap.add_argument("--page", default="INDEX.html");
 checks = {r["stem"]: r for r in json.loads((ROOT / "validation/LASER-FILE-CHECKS.json").read_text(encoding="utf-8"))["files"]}
 esc = html.escape
 THUMBS = ROOT / "previews/laser-index"
+MADE = set()   # thumbnails written this run; the rest are left over from removed designs
 
 
 def thumb(stem):
@@ -36,6 +37,7 @@ def thumb(stem):
     out = THUMBS / (stem.replace("/", "__") + ".svg")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(src, encoding="utf-8")
+    MADE.add(out.name)
     return out.relative_to(ROOT).as_posix()
 
 
@@ -139,7 +141,8 @@ def tension_name(s):
     kinds += [("ADV__multi-arm", "Multi-arm wrench"), ("ADV__tension-wheel", "Tension wheel Ø40"), ("ADV__comb-bar", "Comb bar (tension + comb)")]
     k = next((v for key, v in kinds if n.startswith(key)), pretty(n.replace("ADV__", "").split("__")[0]))
     if n.startswith("ADV__comb-bar"):
-        k += " · " + n.split("comb-bar-")[1].replace("-pin", "-pin comb")
+        lk, pins = re.match(r"([a-z]+)-(\d+)-pin", n.split("comb-bar-")[1]).groups()
+        k += f" · {lk.capitalize()} {pins}-pin"
         t = ""
     return f"{k} · {t}" if t else k
 
@@ -334,6 +337,8 @@ page = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
         'Cut or print the fit tests first. Only use these tools on locks you own or have permission to pick.</footer>'
         + ('<script src="site/customizer.js"></script>' if exists("site/customizer.js") else "") + '<script>' + JS + '</script></body></html>')
 (ROOT / ARGS.page).write_text(page, encoding="utf-8")
+for old in [p for p in THUMBS.glob("*.svg") if p.name not in MADE]:
+    old.unlink()
 if ARGS.page == "INDEX.html":
     (ROOT / "LASER-FILES.html").write_text('<!doctype html><meta charset="utf-8"><title>Moved</title>'
                                            '<meta http-equiv="refresh" content="0; url=INDEX.html"><a href="INDEX.html">This page moved to INDEX.html</a>',

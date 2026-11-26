@@ -10,7 +10,7 @@ Free cut files for making your own lock picks and tension tools at home: laser-c
 
 | Tab | What you get |
 |---|---|
-| Picks | Straight and curved hooks (short, medium, deep), a swept-hook range (1.2–5.0 mm, the shaft bends up), lifters, half-diamonds, rakes (Bogota, snake, city, wave, triple-peak), combs, wafer balls, warded L/T, UK lever-mortice lifters and curtain wrenches, dimple. Each one comes as a flat handle with or without two Ø3.40 holes at 15 and 50 mm, and on an X-Acto / DIY-bar tang. Pin-tumbler picks also come as a flat-edge tang version: one straight side from tang to tip, laid on the hacksaw blade's back edge so that side needs no cutting |
+| Picks | Hooks (short, medium, deep, offset) and a swept-hook range (1.2–5.0 mm), all bent-strip shapes with no square corners; half-diamonds; rakes (Bogota, snake, city, triple-peak); Kwikset and Schlage combs with 5 mm teeth and a lock-face stop (`docs/pick-profiles.md`); wafer balls, warded L/T, UK lever-mortice lifters and curtain wrenches, dimple. Each one comes as a flat handle with or without two Ø3.40 holes at 15 and 50 mm, and on an X-Acto / DIY-bar tang. Pin-tumbler picks also come as a flat-edge tang version: one straight side from tang to tip, laid on the hacksaw blade's back edge so that side needs no cutting |
 | Tension | Top- and bottom-of-keyway tools sized from the lock (`docs/tension-sizing.md`), blade-fit and bend-after-cutting versions, and some advanced designs |
 | Handles | A grub-screw bar handle you can make with hand tools or a lathe (`docs/diy-handle.md`) |
 | Fit tests | A scale check and an X-Acto tang width series. Cut these first |
@@ -45,6 +45,7 @@ These are untested prototypes. Fit, strength and durability have not been checke
 
 | Doc | Read it for |
 |---|---|
+| [docs/pick-profiles.md](docs/pick-profiles.md) | How the hooks, rakes and combs are shaped, and why the combs are the size they are |
 | [docs/tension-sizing.md](docs/tension-sizing.md) | How tension tools are sized from the lock |
 | [docs/diy-handle.md](docs/diy-handle.md) | Making the grub-screw bar handle |
 | [docs/xacto-tang.md](docs/xacto-tang.md) | Why the X-Acto tang is 5.80 × 10 mm, and how to measure yours |

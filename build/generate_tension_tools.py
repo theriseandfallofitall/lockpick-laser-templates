@@ -23,6 +23,7 @@ from shapely.ops import unary_union
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import laser_io as W  # shared SVG/DXF writer
+import pick_shapes as S  # comb geometry shared with the picks
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--first-pin", type=float, default=6.27, help="plug face to first pin centre, mm (KW1 0.247in)")
@@ -204,16 +205,16 @@ def tension_wheel(d=40.0, slot_w=3.6, slot_t=1.3, notches=24):
     return disc.difference(unary_union(cuts))
 
 
-def comb_bar(teeth=4, pitch=3.9, tooth_w=1.5, tooth_h=2.2, body_h=4.6):
+def comb_bar(lock="kwikset", pins=5):
     """Own comb bar (tension + comb in one tool, like the commercial idea): a stepped TOK leg going down at the
-    left end (4.7 mm insertion, stops before pin 1) and a wide comb body with `teeth` teeth at the right end."""
-    shaft = box(0, -SW / 2, LEN - teeth * pitch - 6, SW / 2)
-    x0 = LEN - teeth * pitch - 6
-    body = Polygon([(x0 - 6, -SW / 2), (x0, -SW / 2 - (body_h - SW)), (LEN, -SW / 2 - (body_h - SW)), (LEN, SW / 2), (x0 - 6, SW / 2)])
-    top = -SW / 2 - (body_h - SW)
-    t = [box(LEN - 0.6 - tooth_w - i * pitch, top - tooth_h, LEN - 0.6 - i * pitch, top + 0.1) for i in range(teeth)]
+    left end (4.7 mm insertion, stops before pin 1) and a comb at the right end, sized as the comb picks
+    (build/pick_shapes.py COMB: 2 mm body, 5 mm teeth at the lock's cut spacing, a stop that rests on the lock face)."""
+    first, pitch = S.COMB_LOCKS[lock]
+    x_stop = LEN - (first + (pins - 1) * pitch + S.COMB_TOOTH_W / 2 + 1.2)
+    shaft = box(0, -SW / 2, x_stop, SW / 2)
+    comb, _ = S.comb(x_stop, lock, pins, bottom=SW / 2)
     la, _ = leg(0, -1, +1, 2.8, L_IN)
-    return fillet(unary_union([shaft, body, la] + t), 0.5, 0.25)
+    return fillet(unary_union([shaft, comb, la]), 0.5, 0.25)
 
 
 # ---------------------------------------------------------------- build everything
@@ -258,9 +259,11 @@ emit("ADV__multi-arm-wrench", "Advanced", multi_wrench(),
      "Own multi-arm wrench: short TOK, recessed TOK, 4.0 mm wide wafer/Euro TOK and 12 mm BOK on one plate.")
 emit("ADV__tension-wheel-40", "Advanced", tension_wheel(),
      "Own tension wheel: slides onto a flat bar; roll the rim, count the notches for repeatable tension.", ins=(None, None))
-for n in (3, 4, 5):
-    emit(f"ADV__comb-bar-{n}-pin", "Advanced", comb_bar(n),
-         f"Own comb bar: stepped TOK tension leg (4.7 mm) at one end, {n}-tooth comb (3.9 mm pitch) at the other.", ins=(L_IN, None))
+for lock, n in (("kwikset", 5), ("schlage", 5), ("schlage", 6)):
+    emit(f"ADV__comb-bar-{lock}-{n}-pin", "Advanced", comb_bar(lock, n),
+         f"Comb bar for {lock.capitalize()}, {n} pins: a tension leg (4.7 mm) at one end and a comb at the other. "
+         "Slide the comb in along the bottom of the keyway to the stop, then lift: 5 mm teeth push the pins past the shear line.",
+         ins=(L_IN, None))
 emit("ADV__tension-card-85x54", "Advanced", tension_card(),
      "Credit-card multi-tool: 4 short TOK, 4 recessed TOK, 2 BOK tips, finger hole. Cut from 0.6-1.0 mm sheet.")
 

@@ -8,41 +8,37 @@ const CK = (() => {
   // ---------- defaults (also the "Reset all" values) and presets
   const PICK_BASE = { handle: "full", handleL: 62, handleH: 9, handleEnd: "round", holes: true, holeD: 3.4, hole1: 15, hole2: 50,
     tangW: 5.8, tangL: 10, shoulderL: 2, shoulderW: 10, tangHole: false, tangHoleD: 2.2, tangHoleX: 5, tangHole2: false, tangHole2X: 10, flatEdge: false, neckL: 18, shaftL: 40, shaftH: 1.2, sweep: 0,
-    tip: "hook", tipH: 2.6, tipW: 1.0, tipL: 10, peaks: 3, lean: 0, n: 5, pitch: 3.2, custom: "0 2.2 0.6 2.8 1.2 2.4 0" };
+    tip: "hook", tipH: 3.0, tipW: 0.9, tipL: 10, bendR: 1.8, peaks: 3, waveStyle: "up", lean: 8, n: 5, pitch: 3.81, first: 6.27, custom: "0 2.2 0.6 2.8 1.2 2.4 0" };
   const TENSION_BASE = { length: 76, shaftW: 3.4, dirA: "up", tipA: 2.4, linA: 4.7, dirB: "up", tipB: 2.8, linB: 4.7, serr: false,
     outer: "round", outerR: 0.3, tipCorner: "sharp", tipCornerR: 0.5, legCorner: "round", legCornerR: 0.8, ovalStretch: 1.6, wave: 0, waves: 1 };
   const BASE = { tool: "pick", ...PICK_BASE, ...TENSION_BASE };
   const PRESETS = {
     pick: [
-      ["hookM", "Medium hook", { tip: "hook", tipH: 2.6 }],
-      ["hookS", "Short hook", { tip: "hook", tipH: 1.6 }],
-      ["hookD", "Deep hook", { tip: "hook", tipH: 4, tipW: 1.2 }],
-      ["gem", "Gem / offset hook (leaning)", { tip: "gem", tipH: 3, tipW: 1.4, lean: 35 }],
-      ["curveS", "Short curved hook", { tip: "curve", tipH: 1.8, tipL: 2.0, tipW: 0.9 }],
-      ["curveM", "Medium curved hook", { tip: "curve", tipH: 2.8, tipL: 3.0, tipW: 0.9 }],
-      ["curveD", "Deep curve (Gonzo-style)", { tip: "curve", tipH: 4.0, tipL: 5.0, tipW: 0.9 }],
-      ["sweptS", "Swept hook, short (shaft bends up)", { tip: "swept", tipH: 1.6, tipL: 2.9, tipW: 0.9 }],
+      // same shapes and numbers as build/pick_shapes.py (hooks and rakes are bent strips: no right-angle corners)
+      ["hookM", "Medium hook", { tip: "hook", tipH: 3.0, tipW: 0.9, bendR: 1.8, lean: 8 }],
+      ["hookS", "Short hook", { tip: "hook", tipH: 2.0, tipW: 0.9, bendR: 1.6, lean: 10 }],
+      ["hookD", "Deep hook", { tip: "hook", tipH: 4.2, tipW: 0.9, bendR: 2.0, lean: 6 }],
+      ["hookO", "Offset hook (tip leans forward)", { tip: "hook", tipH: 3.0, tipW: 0.9, bendR: 1.8, lean: 28 }],
+      ["sweptS", "Swept hook, short (shaft curves up)", { tip: "swept", tipH: 1.6, tipL: 2.9, tipW: 0.9 }],
       ["sweptM", "Swept hook, medium", { tip: "swept", tipH: 3.0, tipL: 4.0, tipW: 0.9 }],
       ["sweptD", "Swept hook, deep", { tip: "swept", tipH: 5.0, tipL: 5.6, tipW: 0.9 }],
-      ["lifterS", "Short lifter", { tip: "curve", tipH: 1.0, tipL: 1.4, tipW: 0.8 }],
-      ["lifterF", "Flat lifter", { tip: "curve", tipH: 1.4, tipL: 1.6, tipW: 2.0 }],
-      ["diaS", "Small half-diamond", { tip: "halfDiamond", tipH: 2, tipL: 6 }],
-      ["diaM", "Medium half-diamond", { tip: "halfDiamond", tipH: 2.0, tipL: 3.8 }],
-      ["diaL", "Large half-diamond", { tip: "halfDiamond", tipH: 3.2, tipL: 10 }],
-      ["diaD", "Deep (steep) half-diamond", { tip: "halfDiamond", tipH: 3.2, tipL: 4.0 }],
-      ["bogota2", "Bogota double", { tip: "custom", tipL: 8, custom: "0 2 0.6 2 0" }],
-      ["bogota", "Bogota triple", { tip: "custom", tipL: 12, custom: "0 2.6 0.7 3.4 0.7 2.6 0" }],
-      ["snake", "Snake rake", { tip: "rake", tipH: 2.2, tipL: 14, peaks: 4 }],
-      ["city", "City rake", { tip: "custom", tipL: 14, custom: "0 3 1.2 3.6 1 2.8 0.8 3.4 0" }],
-      ["wave", "Wave (S) rake", { tip: "rake", tipH: 1.8, tipL: 15, peaks: 3 }],
-      ["triple", "Triple-peak rake", { tip: "custom", tipL: 8, custom: "0 2.4 0.9 2.8 0.9 2.4 0" }],
+      ["diaS", "Small half-diamond", { tip: "halfDiamond", tipH: 1.6, tipL: 1.6 }],
+      ["diaM", "Medium half-diamond", { tip: "halfDiamond", tipH: 2.0, tipL: 2.0 }],
+      ["diaL", "Large half-diamond", { tip: "halfDiamond", tipH: 2.6, tipL: 2.6 }],
+      ["diaD", "Steep half-diamond", { tip: "halfDiamond", tipH: 3.2, tipL: 1.8 }],
+      ["bogota2", "Bogota, two humps", { tip: "rake", waveStyle: "up", peaks: 2, tipL: 9, tipH: 1.65, tipW: 0.9 }],
+      ["bogota", "Bogota, three humps", { tip: "rake", waveStyle: "up", peaks: 3, tipL: 13.5, tipH: 1.65, tipW: 0.9 }],
+      ["snake", "Snake rake", { tip: "rake", waveStyle: "both", peaks: 4, tipL: 12, tipH: 0.85, tipW: 0.9 }],
+      ["city", "City rake (L-rake)", { tip: "custom", tipL: 12.6, custom: "0 2.2 2.2 0.6 0.6 2.8 2.8 1.2 1.2 2.4 2.4 -1.2" }],
+      ["triple", "Triple-peak rake", { tip: "custom", tipL: 8.6, custom: "0 2.4 0.9 2.8 0.9 2.4 -1.2" }],
       ["saw", "Sawtooth rake (strokes)", { tip: "saw", tipH: 2.4, n: 5, pitch: 2.4 }],
       ["ball", "Single ball", { tip: "ball", tipH: 4 }],
       ["halfBall", "Half ball", { tip: "halfBall", tipH: 4 }],
       ["snowman", "Double ball (snowman)", { tip: "doubleBall", tipH: 4 }],
-      ["comb5", "5-pin comb", { tip: "comb", n: 5, pitch: 3.2, tipW: 1.2, tipH: 2.4 }],
+      ["combK", "Comb, Kwikset 5-pin", { tip: "comb", n: 5, pitch: 3.81, first: 6.27, tipW: 1.6, tipH: 5.0, shaftH: 2.0, shaftL: 15, sweep: 3.5 }],
+      ["combS", "Comb, Schlage 5-pin", { tip: "comb", n: 5, pitch: 3.96, first: 5.87, tipW: 1.6, tipH: 5.0, shaftH: 2.0, shaftL: 15, sweep: 3.5 }],
       ["warded", "Warded L bit", { tip: "warded", tipH: 4, tipW: 3.2 }],
-      ["lever", "Lever lifter", { tip: "lever", tipH: 1.4, tipL: 8, tipW: 1.4, shaftH: 1.0 }],
+      ["lever", "Lever lifter (UK mortice)", { tip: "hook", tipH: 3.5, tipW: 1.2, bendR: 1.8, lean: 5, shaftH: 2.0, shaftL: 60 }],
       ["draw", "Draw your own tip", { tip: "custom", tipL: 14, custom: "0 1.5 2.5 3 2.5 1.5 0" }],
     ],
     tension: [
@@ -61,7 +57,7 @@ const CK = (() => {
     o = { ...PICK_BASE, ...o };
     // flat-edge X-Acto: the stop is on one side only, as tall as one side of the centred shoulders
     // (same as build/generate_home_workshop.py xacto_flat_edge)
-    if (o.flatEdge && o.handle === "xacto" && FLAT_TIPS.includes(o.tip)) o.shoulderW = (o.shoulderW + o.tangW) / 2;
+    if (o.flatEdge && o.handle === "xacto" && flatTip(o)) o.shoulderW = (o.shoulderW + o.tangW) / 2;
     const sh = o.shaftH, half = sh / 2;
     let x0, handleTop, handleBot, holes = [];
     if (o.handle === "xacto") {
@@ -112,7 +108,7 @@ const CK = (() => {
     xs.push(xEnd);
     // flat edge: shift every column down so the underside is one straight line from butt to tip (lay it on the
     // hacksaw blade's smooth back: that side needs no cutting). Column heights, and so the tip shape, are unchanged.
-    const flatOk = o.flatEdge && FLAT_TIPS.includes(o.tip);
+    const flatOk = o.flatEdge && flatTip(o);
     const nomBot = x => x < neckStart ? (o.handle === "xacto" ? (x < o.tangL ? o.tangW / 2 : o.shoulderW / 2) : o.handleH / 2) : x < tipStart ? botAt(x) : centre(tipStart) + half;
     const fe = x => flatOk ? rootHalf - nomBot(x) : 0;
     const top = xs.map(x => [x, topAt(x) + fe(x)]), bot = xs.slice().reverse().map(x => [x, botAt(x) + fe(x)]);
@@ -139,7 +135,10 @@ const CK = (() => {
     // peaks closer than ~1.2 mm leave valleys narrower than a kerf / needle file
     const notes = [];
     if (o.tip === "rake" && o.tipL / o.peaks < 1.2) notes.push(`Rake peaks are ${(o.tipL / o.peaks).toFixed(2)} mm apart - lengthen the tip or use fewer peaks (min 1.2 mm)`);
-    if (o.tip === "swept" && o.tipH + o.shaftH / 2 - o.tipW / 2 > o.tipL + 1e-9) notes.push(`A swept hook rises at most its reach: lengthen the reach to ${(o.tipH + o.shaftH / 2 - o.tipW / 2).toFixed(1)} mm for the full height`);
+    if (o.tip === "comb") {   // COMB in build/pick_shapes.py: slide in under the pins, lift until the body meets the keyway ceiling (~8.5 mm)
+      if (o.shaftH + o.tipH > 7.5) notes.push(`Comb is ${(o.shaftH + o.tipH).toFixed(1)} mm tall: it may not slide in under the pins (keep body + teeth near 7 mm)`);
+      if (8.5 + o.tipH < 13.0) notes.push(`Teeth ${o.tipH} mm: lifted, they reach about ${(8.5 + o.tipH).toFixed(1)} mm, short of the 12.7 mm shear line (use about 5 mm)`);
+    }
     if (o.tip === "custom") {
       const h = parseHeights(o.custom), st = o.tipL / Math.max(1, h.length - 1), pk = h.map((v, i) => i > 0 && i < h.length - 1 && v > h[i - 1] && v >= h[i + 1] ? i : -1).filter(i => i >= 0);
       const gap = Math.min(...pk.slice(1).map((v, i) => (v - pk[i]) * st));
@@ -150,61 +149,79 @@ const CK = (() => {
 
   const flat = () => 0;
   const FLAT_TIPS = ["hook", "curve", "swept", "gem", "halfDiamond", "rake", "saw", "halfBall", "comb", "warded", "lever", "custom"];   // flat underside
+  const flatTip = o => FLAT_TIPS.includes(o.tip) && !(o.tip === "rake" && o.waveStyle === "both");   // a snake dips below the shaft
   const circ = (c, r, d) => Math.sqrt(Math.max(0, r * r - (d - c) * (d - c)));
-  const leanRun = o => o.lean > 0 ? Math.min(8, o.tipH * Math.tan(Math.min(70, o.lean) * Math.PI / 180)) : 0;
   const parseHeights = s => String(s).split(/[ ,;]+/).map(Number).filter(v => !isNaN(v) && v !== "");
+  // bent strip: discs of varying width along a centreline (same as strip() in build/pick_shapes.py),
+  // sampled once into top / bottom columns. cen(t) -> [x, y up], wid(t) -> mm, t in 0..1.
+  function stripTip(o, cen, wid, total) {
+    const n = Math.max(80, Math.ceil(total / 0.04)), D = [];
+    for (let i = 0; i <= n; i++) { const t = i / n, [x, y] = cen(t); D.push([x, y, wid(t) / 2]); }
+    let len = 0; for (const [x, , r] of D) len = Math.max(len, x + r);
+    const step = 0.01, m = Math.ceil(len / step) + 2, hi = new Float64Array(m), lo = new Float64Array(m);
+    for (let j = 0; j < m; j++) {
+      const d = j * step; let a = -Infinity, b = Infinity;
+      for (const [x, y, r] of D) { const dx = d - x; if (dx * dx < r * r) { const h = Math.sqrt(r * r - dx * dx); if (y + h > a) a = y + h; if (y - h < b) b = y - h; } }
+      if (a === -Infinity) a = b = j ? (hi[j - 1] + lo[j - 1]) / 2 : 0;   // past the nose: close at the nose's height
+      hi[j] = a; lo[j] = b;
+    }
+    const at = (arr, d) => { const f = Math.min(m - 1, Math.max(0, d / step)), i = Math.min(m - 2, Math.floor(f)), t = f - i; return arr[i] * (1 - t) + arr[i + 1] * t; };
+    const half = o.shaftH / 2;
+    return { len, up: d => at(hi, d) - half, down: d => -at(lo, d) - half };
+  }
+  // hook centreline: arc of radius R turning up by th, then a straight riser up to the nose (hook_centre() in pick_shapes.py)
+  function hookTip(o, R, thDeg) {
+    const sh = o.shaftH, w = o.tipW, rise = Math.max(0.05, o.tipH + sh / 2 - w / 2);
+    R = Math.max(0.3, R);
+    let th = Math.max(5, Math.min(90, thDeg)) * Math.PI / 180, ar = R * (1 - Math.cos(th));
+    if (ar > rise) { th = Math.acos(1 - rise / R); ar = rise; }
+    const Ls = (rise - ar) / Math.sin(th), La = R * th, total = La + Ls;
+    const c = t => { const s = t * total; if (s <= La) { const a = s / R; return [R * Math.sin(a), R * (1 - Math.cos(a))]; }
+      const d = s - La; return [R * Math.sin(th) + d * Math.cos(th), ar + d * Math.sin(th)]; };
+    return stripTip(o, c, t => sh + (w - sh) * t, total);
+  }
+  const sweptTip = o => { const rise = o.tipH + o.shaftH / 2 - o.tipW / 2, th = Math.min(Math.PI / 2, 2 * Math.atan2(rise, o.tipL));
+    return hookTip(o, o.tipL / Math.sin(th), th * 180 / Math.PI); };
   const TIPS = {
-    // hook: vertical post; "lean" slopes the rear face (post leans forward, top edge stays a function of x)
-    hook: o => { const run = leanRun(o), h = o.tipH;
-      return { len: 1 + run + o.tipW, down: flat, up: d => d < 1 ? 0 : d < 1 + run ? h * (d - 1) / run : h }; },
-    // gem: leaning rear face, short flat top, chamfered front
-    gem: o => { const run = leanRun(o), h = o.tipH, a = 0.8, W = o.tipW, c = Math.min(0.8, W * 0.5 + 0.2);
-      return { len: a + run + W + c, down: flat, up: d => d < a ? 0 : d < a + run ? h * (d - a) / run : d < a + run + W ? h : h - 0.4 * h * (d - a - run - W) / c }; },
-    // curved hook / lifter: quarter-ellipse back rising to tipH over tipL, flat top tipW wide, rounded nose
-    // (same shape as curve_pts() in build/generate_home_workshop.py)
-    curve: o => { const R = o.tipL, H = o.tipH, W = o.tipW, f = 0.6;
-      return { len: R + W + f, down: flat, up: d => d < R ? H * (1 - Math.sqrt(Math.max(0, 1 - (d / R) ** 2))) : d < R + W ? H : H * Math.sqrt(Math.max(0, 1 - ((d - R - W) / f) ** 2)) }; },
-    // swept hook: the shaft itself bends up on one arc (<= 90 deg), narrowing from the shaft height to tipW, round nose;
-    // nose top tipH above the shaft top, centreline reach tipL (same shape as swept_hook() in build/generate_home_workshop.py)
-    swept: o => {
-      const sh = o.shaftH, we = o.tipW, n = 48, c = o.tipH + sh / 2 - we / 2;
-      const th = Math.min(Math.PI / 2, 2 * Math.atan2(c, o.tipL)), R = o.tipL / Math.sin(th);
-      const side = (s, k) => { const f = th * s, w = sh + (we - sh) * s;
-        return [R * Math.sin(f) - k * Math.sin(f) * w / 2, -R + R * Math.cos(f) - k * Math.cos(f) * w / 2]; };
-      const ex = R * Math.sin(th), ey = -R + R * Math.cos(th), ring = [];
-      for (let i = 0; i <= n; i++) ring.push(side(i / n, -1));
-      for (let i = 0; i <= 24; i++) { const a = Math.PI * i / 24;
-        ring.push([ex + we / 2 * (Math.sin(th) * Math.cos(a) + Math.cos(th) * Math.sin(a)), ey + we / 2 * (Math.cos(th) * Math.cos(a) - Math.sin(th) * Math.sin(a))]); }
-      for (let i = n; i >= 0; i--) ring.push(side(i / n, 1));
-      let len = 0, endY = 0; for (const [x, y] of ring) if (x > len) { len = x; endY = y; }
-      const col = d => { let lo = Infinity, hi = -Infinity;   // where the vertical line x = d crosses the outline
-        for (let i = 0; i < ring.length - 1; i++) { const [x1, y1] = ring[i], [x2, y2] = ring[i + 1];
-          if ((x1 <= d) !== (x2 <= d)) { const y = y1 + (y2 - y1) * (d - x1) / (x2 - x1); lo = Math.min(lo, y); hi = Math.max(hi, y); } }
-        return lo === Infinity ? [endY, endY] : [lo, hi]; };
-      return { len, up: d => Math.max(0, -col(d)[0] - sh / 2), down: d => col(d)[1] - sh / 2 };
-    },
-    halfDiamond: o => ({ len: o.tipL, up: d => o.tipH * (1 - Math.abs(2 * d / o.tipL - 1)), down: flat }),
+    // hook: bent strip, bend radius bendR, tip leaning forward by `lean` degrees ("gem" kept for old links)
+    hook: o => hookTip(o, o.bendR, 90 - o.lean),
+    gem: o => hookTip(o, o.bendR, 90 - o.lean),
+    // swept hook: one long arc, reach tipL ("curve" kept for old links)
+    swept: sweptTip,
+    curve: sweptTip,
+    // half-diamond: back slope tipL long up to tipH, front slope straight down to the bottom edge (pointed nose)
+    halfDiamond: o => { const b = o.tipL, h = o.tipH, sh = o.shaftH, f = 0.85 * (h + sh);
+      return { len: b + f, down: flat, up: d => d < b ? h * d / b : h - (h + sh) * (d - b) / f }; },
     ball: o => { const r = o.tipH / 2, p = d => Math.max(0, circ(r, r, d) - o.shaftH / 2); return { len: o.tipH, up: p, down: p }; },
     doubleBall: o => { const r1 = o.tipH / 2, r2 = r1 * 0.64, c2 = r1 + (r1 + r2) * 0.8, half = o.shaftH / 2;
       const p = d => Math.max(0, Math.max(circ(r1, r1, d), circ(c2, r2, d)) - half); return { len: c2 + r2, up: p, down: p }; },
     halfBall: o => ({ len: o.tipH, up: d => circ(o.tipH / 2, o.tipH / 2, d), down: flat }),
-    rake: o => ({ len: o.tipL, up: d => o.tipH * (0.5 - 0.5 * Math.cos(2 * Math.PI * o.peaks * d / o.tipL)), down: flat }),
+    // rake: a strip that waves `peaks` times over tipL; humps up only (Bogota) or up and down (snake). Humps tipH above the shaft top.
+    rake: o => { const sh = o.shaftH, w = o.tipW, A = Math.max(0.1, o.tipH + sh / 2 - w / 2), L = o.tipL, k = Math.max(1, Math.round(o.peaks));
+      const cy = o.waveStyle === "both" ? t => A * Math.sin(Math.PI * k * t) : t => A * 0.5 * (1 - Math.cos(2 * Math.PI * k * t));
+      return stripTip(o, t => [L * t, cy(t)], t => sh + (w - sh) * t, L * 1.5); },
     // sawtooth "strokes": n ramps rising to tipH over `pitch`, then dropping
     saw: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch;
       return { len: n * p, down: flat, up: d => { const k = Math.min(n - 1, Math.floor(d / p)); return o.tipH * (d - k * p) / p; } }; },
-    // comb: n square teeth, `pitch` apart, tipW wide, tipH tall
-    comb: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch, tw = Math.max(0.3, Math.min(o.tipW, p - 0.5));   // >= 0.5 mm gap between teeth (kerf)
-      return { len: (n - 1) * p + tw, down: flat, up: d => { const k = Math.min(n - 1, Math.floor(d / p)); return d - k * p <= tw ? o.tipH : 0; } }; },
+    // comb (COMB in build/pick_shapes.py): 2 mm stop rising 10.2 mm above the comb's bottom edge (rests on the lock face),
+    // then round-topped teeth tipH tall at first + k * pitch from the stop face. The shaft is the comb body.
+    comb: o => { const n = Math.max(1, Math.round(o.n)), p = o.pitch, tw = Math.max(0.3, Math.min(o.tipW, p - 0.5)), r = tw / 2, S = 2;
+      const stopUp = Math.max(0, 10.2 - o.shaftH);
+      return { len: S + o.first + (n - 1) * p + r + 1.2, down: flat, up: d => {
+        if (d < S) return stopUp;
+        const k = Math.min(n - 1, Math.max(0, Math.round((d - S - o.first) / p))), dx = Math.abs(d - S - o.first - k * p);
+        return dx >= r ? 0 : o.tipH - r + Math.sqrt(r * r - dx * dx); } }; },
     // warded L bit: flat-topped post with a centre slot (half depth)
     warded: o => { const W = Math.max(1.5, o.tipW), sl = Math.max(0.25, W / 6);   // slot >= 0.5 mm wide (kerf)
       return { len: 1 + W, down: flat, up: d => d < 1 ? 0 : Math.abs(d - 1 - W / 2) < sl ? o.tipH * 0.5 : o.tipH }; },
-    // lever lifter: long gentle ramp ending in a short flat lip
-    lever: o => ({ len: o.tipL + o.tipW, down: flat, up: d => d < o.tipL ? o.tipH * d / o.tipL : o.tipH }),
+    // lever lifter (old links): a hook with a 5 degree lean
+    lever: o => hookTip(o, o.bendR, 85),
+    // custom: heights along the tip; a final -shaft height ends on the bottom edge (sloped nose)
     custom: o => {
       const h = parseHeights(o.custom);
       const n = Math.max(2, h.length), step = o.tipL / (n - 1);
       return { len: o.tipL, down: flat, up: d => { const i = Math.min(n - 2, Math.floor(d / step)), t = d / step - i;
-        return Math.min(6, Math.max(0, (h[i] || 0) * (1 - t) + (h[i + 1] || 0) * t)); } };
+        return Math.min(6, Math.max(-o.shaftH, (h[i] || 0) * (1 - t) + (h[i + 1] || 0) * t)); } };
     },
   };
 
@@ -311,9 +328,12 @@ const CK = (() => {
 
   // ---------- validation: self-intersection and hole clearance
   function validate(g, minWall = 1.2) {
-    const warn = [], R = g.rings[0], n = R.length;
-    const segs = [];
-    for (let i = 0; i < n; i++) { const a = R[i], b = R[(i + 1) % n]; if (Math.hypot(b[0] - a[0], b[1] - a[1]) > 1e-9) segs.push([a, b]); }
+    const warn = [], R = [];
+    // merge repeated points (dropping a zero-length segment instead would break the ring and upset the hole test)
+    for (const q of g.rings[0]) if (!R.length || Math.hypot(q[0] - R[R.length - 1][0], q[1] - R[R.length - 1][1]) > 1e-9) R.push(q);
+    if (R.length > 1 && Math.hypot(R[0][0] - R[R.length - 1][0], R[0][1] - R[R.length - 1][1]) <= 1e-9) R.pop();
+    const n = R.length, segs = [];
+    for (let i = 0; i < n; i++) segs.push([R[i], R[(i + 1) % n]]);
     const m = segs.length, orient = (p, q, r) => (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]);
     let cross = 0;
     for (let i = 0; i < m && cross < 1; i++) {
@@ -378,7 +398,7 @@ const CK = (() => {
     L.push("0", "ENDSEC", "0", "EOF");
     return L.join("\n") + "\n";
   }
-  return { FLAT_TIPS, pick, tension, tensionFromForm, build, validate, toSVG, toDXF, TIPS, BLADE_USABLE, BASE, PICK_BASE, TENSION_BASE, PRESETS, parseHeights };
+  return { FLAT_TIPS, flatTip, pick, tension, tensionFromForm, build, validate, toSVG, toDXF, TIPS, BLADE_USABLE, BASE, PICK_BASE, TENSION_BASE, PRESETS, parseHeights };
 })();
 
 if (typeof module !== "undefined") module.exports = CK;
@@ -456,17 +476,20 @@ if (typeof document !== "undefined") {
     neckL: num(P, "Shaft", "Neck taper length", "mm", 6, 30, 0.5),
     shaftL: num(P, "Shaft", "Shaft length", "mm", 15, 75, 0.5, { simple: true }),
     shaftH: num(P, "Shaft", "Shaft height (thicker = stiffer)", "mm", 0.8, 3, 0.05, { simple: true }),
-    sweep: num(P, "Shaft", "Sweep (- rises, + drops to tip)", "mm", -3, 3, 0.1, { only: o => !o.flatEdge }),
+    sweep: num(P, "Shaft", "Sweep (- rises, + drops to tip)", "mm", -4, 4, 0.1, { only: o => !o.flatEdge }),
     // tip
-    tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["curve", "Curved hook / lifter"], ["swept", "Swept hook (shaft bends up)"], ["gem", "Gem hook (leaning)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
-      ["halfBall", "Half-ball"], ["ball", "Ball"], ["doubleBall", "Double ball"], ["comb", "Comb"], ["warded", "Warded L bit"], ["lever", "Lever lifter"], ["custom", "Custom / drawn"]]),
-    tipH: num(P, "Tip", "Tip height", "mm", 0.5, 6, 0.1, { simple: true }),
-    tipW: num(P, "Tip", "Tip width / tooth width", "mm", 0.6, 4, 0.05, { only: o => ["hook", "curve", "swept", "gem", "warded", "lever", "comb"].includes(o.tip) }),
-    tipL: num(P, "Tip", "Tip length (curved / swept hook: reach of the curve)", "mm", 1, 25, 0.1, { only: o => ["halfDiamond", "rake", "custom", "lever", "curve", "swept"].includes(o.tip) }),
+    tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["swept", "Swept hook (shaft curves up)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
+      ["halfBall", "Half-ball"], ["ball", "Ball"], ["doubleBall", "Double ball"], ["comb", "Comb"], ["warded", "Warded L bit"], ["custom", "Custom / drawn"]]),
+    tipH: num(P, "Tip", "Tip height (above the shaft top; comb: tooth height)", "mm", 0.5, 6, 0.1, { simple: true }),
+    tipW: num(P, "Tip", "Tip width (hooks and rakes: strip width at the end; comb: tooth width)", "mm", 0.6, 4, 0.05, { only: o => ["hook", "curve", "swept", "gem", "warded", "lever", "comb", "rake"].includes(o.tip) }),
+    tipL: num(P, "Tip", "Tip length (swept hook: reach of the curve; half-diamond: back slope)", "mm", 1, 25, 0.1, { only: o => ["halfDiamond", "rake", "custom", "curve", "swept"].includes(o.tip) }),
+    bendR: num(P, "Tip", "Bend radius (bigger = gentler curve)", "mm", 0.6, 6, 0.1, { only: o => ["hook", "gem", "lever"].includes(o.tip) }),
     lean: num(P, "Tip", "Lean (forward)", "deg", 0, 60, 1, { only: o => ["hook", "gem"].includes(o.tip) }),
-    peaks: num(P, "Tip", "Peaks", "", 1, 6, 0.5, { only: o => o.tip === "rake" }),
+    waveStyle: sel(P, "Tip", "Waves", [["up", "Up only (Bogota)"], ["both", "Up and down (snake)"]], { only: o => o.tip === "rake" }),
+    peaks: num(P, "Tip", "Humps", "", 1, 6, 1, { only: o => o.tip === "rake" }),
     n: num(P, "Tip", "Teeth / strokes", "", 2, 8, 1, { only: o => ["comb", "saw"].includes(o.tip) }),
-    pitch: num(P, "Tip", "Pitch", "mm", 1.5, 6, 0.1, { only: o => ["comb", "saw"].includes(o.tip) }),
+    pitch: num(P, "Tip", "Pitch (comb: Kwikset 3.81, Schlage 3.96)", "mm", 1.5, 6, 0.01, { only: o => ["comb", "saw"].includes(o.tip) }),
+    first: num(P, "Tip", "First tooth from the stop (Kwikset 6.27, Schlage 5.87)", "mm", 3, 9, 0.01, { only: o => o.tip === "comb" }),
     draw: { tool: P, grp: "Tip", type: "draw", label: "Draw the tip top edge (click / drag)", simple: true, only: o => o.tip === "custom" },
     custom: { tool: P, grp: "Tip", label: "Heights along the tip, mm", type: "text", only: o => o.tip === "custom" },
     // tension
@@ -657,7 +680,7 @@ if (typeof document !== "undefined") {
       for (const fs of Object.values(sets)) fs.hidden = !fs.querySelector(".f:not([hidden])");
       if (o.tool === "pick" && o.tip === "custom") drawCanvas(o);
       g = CK.build(o.tool, o);
-      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW + (o.tangHole ? (o.tangHole2 ? "-2holes-" : "-hole-") + o.tangHoleD : "") : (o.holes ? "holes" : "no-holes")}${o.flatEdge && CK.FLAT_TIPS.includes(o.tip) ? "__flat-edge" : ""}`
+      name = o.tool === "pick" ? `custom-pick__${o.tip}-${o.tipH}__${o.handle === "xacto" ? "tang-" + o.tangW + (o.tangHole ? (o.tangHole2 ? "-2holes-" : "-hole-") + o.tangHoleD : "") : (o.holes ? "holes" : "no-holes")}${o.flatEdge && CK.flatTip(o) ? "__flat-edge" : ""}`
         : `custom-tension__${o.dirA}-${o.dirB}__tip-${o.tipA}`;
       view.innerHTML = preview(g, document.getElementById("ck-dims") ? document.getElementById("ck-dims").checked : true);
       const w = CK.validate(g);

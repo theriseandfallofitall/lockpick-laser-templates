@@ -156,6 +156,7 @@ def main():
     include_all = "--all" in sys.argv
     r = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard", "*.svg", "*.dxf"], cwd=ROOT, capture_output=True, text=True)
     files = r.stdout.split() if r.returncode == 0 else         sorted(p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*") if p.suffix in (".svg", ".dxf") and ".git" not in p.parts)
+    files = [f for f in files if (ROOT / f).exists()]   # tracked files a generator just removed
     if not include_all:
         files = [f for f in files if not f.startswith(HISTORY)]
     stems = {}

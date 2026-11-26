@@ -406,45 +406,45 @@
   ]
  },
  {
-  "id": "ADV__comb-bar-3-pin",
+  "id": "ADV__comb-bar-kwikset-5-pin",
   "group": "Advanced",
   "length_mm": 76.0,
-  "height_mm": 13.01,
+  "height_mm": 16.41,
   "fits_12_7mm_blade": false,
   "insertion_mm": 4.71,
   "recessed_insertion_mm": null,
-  "note": "Own comb bar: stepped TOK tension leg (4.7 mm) at one end, 3-tooth comb (3.9 mm pitch) at the other.",
+  "note": "Comb bar for Kwikset, 5 pins: a tension leg (4.7 mm) at one end and a comb at the other. Slide the comb in along the bottom of the keyway to the stop, then lift: 5 mm teeth push the pins past the shear line.",
   "files": [
-   "generated/tension-tools-v2/ADV__comb-bar-3-pin.svg",
-   "generated/tension-tools-v2/ADV__comb-bar-3-pin.dxf"
+   "generated/tension-tools-v2/ADV__comb-bar-kwikset-5-pin.svg",
+   "generated/tension-tools-v2/ADV__comb-bar-kwikset-5-pin.dxf"
   ]
  },
  {
-  "id": "ADV__comb-bar-4-pin",
+  "id": "ADV__comb-bar-schlage-5-pin",
   "group": "Advanced",
   "length_mm": 76.0,
-  "height_mm": 13.01,
+  "height_mm": 16.41,
   "fits_12_7mm_blade": false,
   "insertion_mm": 4.71,
   "recessed_insertion_mm": null,
-  "note": "Own comb bar: stepped TOK tension leg (4.7 mm) at one end, 4-tooth comb (3.9 mm pitch) at the other.",
+  "note": "Comb bar for Schlage, 5 pins: a tension leg (4.7 mm) at one end and a comb at the other. Slide the comb in along the bottom of the keyway to the stop, then lift: 5 mm teeth push the pins past the shear line.",
   "files": [
-   "generated/tension-tools-v2/ADV__comb-bar-4-pin.svg",
-   "generated/tension-tools-v2/ADV__comb-bar-4-pin.dxf"
+   "generated/tension-tools-v2/ADV__comb-bar-schlage-5-pin.svg",
+   "generated/tension-tools-v2/ADV__comb-bar-schlage-5-pin.dxf"
   ]
  },
  {
-  "id": "ADV__comb-bar-5-pin",
+  "id": "ADV__comb-bar-schlage-6-pin",
   "group": "Advanced",
   "length_mm": 76.0,
-  "height_mm": 13.01,
+  "height_mm": 16.41,
   "fits_12_7mm_blade": false,
   "insertion_mm": 4.71,
   "recessed_insertion_mm": null,
-  "note": "Own comb bar: stepped TOK tension leg (4.7 mm) at one end, 5-tooth comb (3.9 mm pitch) at the other.",
+  "note": "Comb bar for Schlage, 6 pins: a tension leg (4.7 mm) at one end and a comb at the other. Slide the comb in along the bottom of the keyway to the stop, then lift: 5 mm teeth push the pins past the shear line.",
   "files": [
-   "generated/tension-tools-v2/ADV__comb-bar-5-pin.svg",
-   "generated/tension-tools-v2/ADV__comb-bar-5-pin.dxf"
+   "generated/tension-tools-v2/ADV__comb-bar-schlage-6-pin.svg",
+   "generated/tension-tools-v2/ADV__comb-bar-schlage-6-pin.dxf"
   ]
  },
  {

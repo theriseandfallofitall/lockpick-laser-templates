@@ -51,6 +51,7 @@ records = []
 
 
 from laser_io import ROOT, STROKE, rings_of, path_d, write_pair, place
+import pick_shapes as S
 
 
 def clean(p, r_in=0.25, r_out=0.15):
@@ -124,20 +125,12 @@ def tip_double_ball(x, d=3.4, pitch=5.2):
 
 
 def tip_wafer_rake(x, peaks=4, pitch=3.6, h=2.4):
-    pts = [(x, SH / 2), (x, -SH / 2)]
+    """Zig-zag rake: sharp peaks on top, sloped nose down to the bottom edge (no square end)."""
+    pts = [(0, 0)]
     for i in range(peaks):
-        pts += [(x + i * pitch + pitch * 0.5, -SH / 2 - h), (x + (i + 1) * pitch, -SH / 2)]
-    pts += [(x + peaks * pitch + 1.2, -SH / 2), (x + peaks * pitch + 1.2, SH / 2)]
-    return Polygon(pts), x + peaks * pitch + 1.2
-
-
-def tip_comb(x, teeth, pitch=3.9, tooth_w=1.5, tooth_h=2.2, body_h=4.6):
-    """Comb pick: a wide flat body (like commercial combs) with one tooth per pin stack on top, front tooth at the tip.
-    Pitch 3.9 mm sits between Kwikset 3.81 and Schlage 3.96. Only defeats locks without overlift protection."""
-    L = teeth * pitch + 0.8
-    body = box(x, -body_h / 2, x + L, body_h / 2)
-    t = [box(x + L - 0.4 - tooth_w - i * pitch, -body_h / 2 - tooth_h, x + L - 0.4 - i * pitch, -body_h / 2 + 0.1) for i in range(teeth)]
-    return unary_union([body] + t), x + L
+        pts += [(i * pitch + pitch * 0.5, h), ((i + 1) * pitch, 0)]
+    pts += [(peaks * pitch + 1.6, -SH)]
+    return S.profile(x, pts, sh=SH)
 
 
 def tip_warded_L(x, bit, shaft_h=2.2, bit_w=2.0):
@@ -161,10 +154,8 @@ def tip_dimple_flag(x, flag_l=2.0, flag_w=2.5, shaft_h=1.6):
 
 
 def tip_lever_hook(x, lift=3.5, shaft_h=2.0):
-    """Lever (mortice) lifter: small upright hook at the end of a long shaft, lifts one lever at a time."""
-    return unary_union([box(x, -shaft_h / 2, x + 2.4, shaft_h / 2),
-                        box(x + 1.2, -shaft_h / 2 - lift, x + 2.4, shaft_h / 2),
-                        box(x + 0.4, -shaft_h / 2 - lift, x + 2.4, -shaft_h / 2 - lift + 0.8)]), x + 2.4
+    """Lever (mortice) lifter: a short upturned end on a long shaft, lifts one lever at a time. Bent strip, no corners."""
+    return S.hook(x, lift, 1.8, 85, 1.2, shaft_h)
 
 
 def tip_curtain(x, bit, shaft_h=2.2, bit_w=3.5):
@@ -173,132 +164,60 @@ def tip_curtain(x, bit, shaft_h=2.2, bit_w=3.5):
                         box(x, -shaft_h / 2 - bit, x + bit_w, shaft_h / 2)]), x + bit_w
 
 
-def tip_profile(x, pts, sh=1.2):
-    """Generic pin-tumbler tip: `pts` is the top edge as (dx, height above the shaft top) pairs; bottom edge is the shaft."""
-    top = [(x + dx, -sh / 2 - h) for dx, h in pts]
-    end = x + pts[-1][0]
-    return Polygon([(x, sh / 2), (x, -sh / 2)] + top + [(end, sh / 2)]).buffer(0), end
-
-
-def tip_hook(x, h, w=1.0, lean=0.0, sh=1.2):
-    """Hook: a post `h` tall, `w` wide, at the end of the shaft; `lean` tips it forward (offset hook)."""
-    post = Polygon([(x + 1.0, -sh / 2 + 0.1), (x + 1.0 + lean, -sh / 2 - h), (x + 1.0 + lean + w, -sh / 2 - h),
-                    (x + 1.0 + w, -sh / 2 + 0.1)])
-    p = unary_union([box(x, -sh / 2, x + 1.0 + w, sh / 2), post])
-    return p.buffer(-0.3).buffer(0.3, quad_segs=12), x + 1.0 + w + max(lean, 0)
-
-
-def curve_pts(h, reach, w, front=0.6, n=40):
-    """Curved hook / lifter top edge (same shape as the customiser's "curve" tip): a quarter-ellipse back that rises
-    from the shaft and ends vertical at height h after `reach` mm, a flat top `w` wide, then a rounded nose."""
-    back = [(reach * math.sin(a), h * (1 - math.cos(a))) for a in (math.pi / 2 * i / n for i in range(n + 1))]
-    nose = [(reach + w + front * math.sin(b), h * math.cos(b)) for b in (math.pi / 2 * i / 12 for i in range(13))]
-    return back + nose
-
-
-def swept_hook(x, h, reach, w_end=0.9, sh=1.2, n=48):
-    """Swept (bent-strip) hook like a commercial hook range: the shaft itself curves up on one arc, a strip that
-    narrows from the shaft height to `w_end`, ending in a round nose. The top of the nose is `h` above the shaft top;
-    `reach` is how far forward the strip's centreline travels. The arc turns at most 90 degrees (rise <= reach).
-    Same shape as the customiser's "swept" tip."""
-    c = h + sh / 2 - w_end / 2                       # centreline rise that puts the nose top h above the shaft top
-    th = min(math.pi / 2, 2 * math.atan2(c, reach))
-    R = reach / math.sin(th)
-    def side(s, k):                                  # k=+1 inner (top), -1 outer (bottom)
-        f = th * s; w = sh + (w_end - sh) * s
-        return (x + R * math.sin(f) - k * math.sin(f) * w / 2, -R + R * math.cos(f) - k * math.cos(f) * w / 2)
-    ex, ey = x + R * math.sin(th), -R + R * math.cos(th)
-    nose = [(ex + w_end / 2 * (math.sin(th) * math.cos(a) + math.cos(th) * math.sin(a)),
-             ey + w_end / 2 * (math.cos(th) * math.cos(a) - math.sin(th) * math.sin(a))) for a in (math.pi * i / 24 for i in range(25))]
-    ring = [side(i / n, -1) for i in range(n + 1)] + nose + [side(i / n, 1) for i in range(n, -1, -1)]
-    p = unary_union([Polygon(ring).buffer(0), box(x - 0.6, -sh / 2, x, sh / 2)])
-    return p, p.bounds[2]
-
-
-SWEPT = [1.2, 1.6, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0]   # nose height above the shaft top; reach = 0.8 h + 1.6 (gentler on the small ones)
-
-
-def wave(n, length, h, samples=60):
-    return [(length * i / samples, h * (0.5 - 0.5 * math.cos(2 * math.pi * n * i / samples))) for i in range(samples + 1)]
-
-
-PIN = [
-    ("hook-short", lambda x: tip_hook(x, 1.6), "Short hook: single-pin picking, low-set pins."),
-    ("hook-medium", lambda x: tip_hook(x, 2.6), "Medium hook: the everyday single-pin pick."),
-    ("hook-deep", lambda x: tip_hook(x, 3.6, w=0.9), "Deep hook: reaches high pins behind low ones."),
-    ("hook-offset", lambda x: tip_hook(x, 2.8, w=0.9, lean=1.0), "Offset (forward-leaning) hook for tight bitting."),
-    ("hook-curved-short", lambda x: tip_profile(x, curve_pts(1.8, 2.0, 0.9)), "Short curved hook: the standard first pick for single-pin picking."),
-    ("hook-curved-medium", lambda x: tip_profile(x, curve_pts(2.8, 3.0, 0.9)), "Medium curved hook: reaches mid-height pins, smooth back curve."),
-    ("hook-curved-deep", lambda x: tip_profile(x, curve_pts(4.0, 5.0, 0.9)), "Deep curve (Gonzo-style): long sweeping curve for high pins behind low ones."),
-    ("lifter-short", lambda x: tip_profile(x, curve_pts(1.0, 1.4, 0.8)), "Short lifter: a small low hook for tight keyways and low pins."),
-    ("lifter-flat", lambda x: tip_profile(x, curve_pts(1.4, 1.6, 2.0)), "Flat lifter: low, wide flat top that lifts one pin without touching its neighbours."),
-] + [(f"hook-swept-{h:.1f}", (lambda h: lambda x: swept_hook(x, h, 0.8 * h + 1.6))(h),
-       f"Swept hook, {h:g} mm: the shaft bends up in one smooth curve, like a commercial hook range.") for h in SWEPT] + [
-    ("half-diamond-small", lambda x: tip_profile(x, [(0, 0), (1.6, 1.6), (3.2, 0)]), "Small half-diamond: pins, wafers, raking."),
-    ("half-diamond-medium", lambda x: tip_profile(x, [(0, 0), (2.0, 2.0), (3.8, 0)]), "Medium half-diamond: the all-round half-diamond."),
-    ("half-diamond-large", lambda x: tip_profile(x, [(0, 0), (2.4, 2.4), (4.4, 0)]), "Large half-diamond."),
-    ("half-diamond-deep", lambda x: tip_profile(x, [(0, 0), (2.2, 3.2), (4.0, 0)]), "Deep (steep) half-diamond: reaches higher pins."),
-    ("rake-bogota-2", lambda x: tip_profile(x, wave(2, 8.0, 2.0)), "Bogota-style double-peak rake (rounded peaks)."),
-    ("rake-bogota-3", lambda x: tip_profile(x, wave(3, 11.0, 2.0)), "Bogota-style triple-peak rake (rounded peaks)."),
-    ("rake-snake", lambda x: tip_profile(x, wave(2.5, 13.0, 2.2)), "Snake rake: rocking and raking."),
-    ("rake-wave", lambda x: tip_profile(x, wave(3, 15.0, 1.8)), "Wave (S) rake: long low waves for scrubbing."),
-    ("rake-triple-peak", lambda x: tip_profile(x, [(0, 0), (1.5, 2.4), (2.5, 0.9), (4.0, 2.8), (5.0, 0.9), (6.5, 2.4), (8.0, 0)]),
-     "Triple-peak rake: three sharp peaks for rocking."),
-    ("rake-city", lambda x: tip_profile(x, [(0, 0), (1.2, 2.2), (2.6, 2.2), (3.6, 0.6), (4.8, 0.6), (6.0, 2.8), (7.2, 2.8),
-                                             (8.2, 1.2), (9.4, 1.2), (10.4, 2.4), (11.6, 2.4), (12.6, 0)]),
-     "City (L) rake: a stepped key-like profile."),
-]
+# Pin-tumbler set: bent-strip hooks and rakes, half-diamonds with a sloped nose (build/pick_shapes.py)
+PIN = ([(i, (lambda h, R, a, w: lambda x: S.hook(x, h, R, a, w))(h, R, a, w), n) for i, h, R, a, w, n in S.HOOKS]
+       + [(f"hook-swept-{h:.1f}", (lambda h: lambda x: S.swept_hook(x, h, S.swept_reach(h)))(h),
+           f"Swept hook, {h:g} mm tall. The shaft curves up in one smooth bend. Taller ones reach higher pins.") for h in S.SWEPT]
+       + [(i, (lambda h, b: lambda x: S.profile(x, S.half_diamond(h, b)))(h, b), n) for i, h, b, n in S.DIAMONDS]
+       + S.RAKES)
+COMBS = [("pin-comb-kwikset-5", "kwikset", 5), ("pin-comb-schlage-5", "schlage", 5), ("pin-comb-schlage-6", "schlage", 6)]
+COMB_NOTE = ("Comb for {lock}, {n} pins. Slide it in along the bottom of the keyway until the stop touches the lock face, "
+             "then lift: the 5 mm teeth push every pin stack above the shear line. Not for locks with anti-comb pins.")
 
 OTHER = [
     # id, lock type, tip builder, shaft length, shaft height, notes
 ] + [(i, "pin tumbler", f, 46, 1.2, n) for i, f, n in PIN] + [
-    ("wafer-half-ball", "wafer", lambda x: tip_half_ball(x), 50, SH, "Half-ball: wafer locks, also single-pin work."),
-    ("wafer-single-ball", "wafer", lambda x: tip_single_ball(x), 50, SH, "Ball pick for wafer locks (desk, cabinet, car)."),
-    ("wafer-double-ball", "wafer", lambda x: tip_double_ball(x), 48, SH, "Snowman / double-ball for wafer rocking."),
-    ("wafer-zigzag-rake", "wafer", lambda x: tip_wafer_rake(x), 44, SH, "Zig-zag rake, wafer and low-pin-count locks."),
-    ("wafer-wide-rocker", "wafer", lambda x: tip_profile(x, wave(2, 14.0, 3.2), sh=1.6), 42, 1.6, "Wide rocker rake: two tall rounded humps for rocking wafers."),
-    ("pin-comb-4", "pin tumbler", lambda x: tip_comb(x, 4), 40, 4.6, "4-pin comb; over-lifts all pins. Locks without overlift protection only."),
-    ("pin-comb-5", "pin tumbler", lambda x: tip_comb(x, 5), 38, 4.6, "5-pin comb."),
-    ("pin-comb-6", "pin tumbler", lambda x: tip_comb(x, 6), 36, 4.6, "6-pin comb."),
-    ("warded-L-4.0", "warded", lambda x: tip_warded_L(x, 4.0), 38, 2.2, "Warded L pick, 4.0 mm bit."),
-    ("warded-L-5.5", "warded", lambda x: tip_warded_L(x, 5.5), 38, 2.2, "Warded L pick, 5.5 mm bit."),
-    ("warded-L-6.8", "warded", lambda x: tip_warded_L(x, 6.8), 38, 2.2, "Warded L pick, 6.8 mm bit (fits a 12.7 mm blade)."),
-    ("warded-T-2.5", "warded", lambda x: tip_warded_T(x, 2.5), 38, 2.2, "Warded T pick, 2.5 mm each side."),
-    ("warded-T-3.5", "warded", lambda x: tip_warded_T(x, 3.5), 38, 2.2, "Warded T pick, 3.5 mm each side."),
+    ("wafer-half-ball", "wafer", lambda x: tip_half_ball(x), 50, SH, "Half-ball. For wafer locks (desks, cabinets, cars); also lifts single pins."),
+    ("wafer-single-ball", "wafer", lambda x: tip_single_ball(x), 50, SH, "Ball. Rides over wafers without catching; rock it in and out."),
+    ("wafer-double-ball", "wafer", lambda x: tip_double_ball(x), 48, SH, "Double ball (snowman). Rocks two wafers at a time."),
+    ("wafer-zigzag-rake", "wafer", lambda x: tip_wafer_rake(x), 44, SH, "Zig-zag rake for wafer locks."),
+    ("wafer-wide-rocker", "wafer", lambda x: S.wave_rake(x, 2, 14.0, 2.6, sh=1.6, w_end=1.2), 42, 1.6, "Wide rocker. Two tall humps for rocking wafer locks."),
+] + [(i, "pin tumbler", None, 0, 0, COMB_NOTE.format(lock=lock.capitalize(), n=n)) for i, lock, n in COMBS] + [
+    ("warded-L-4.0", "warded", lambda x: tip_warded_L(x, 4.0), 38, 2.2, "Warded pick, L shape, 4.0 mm bit. For cheap warded padlocks: the bit reaches round the wards to the catch."),
+    ("warded-L-5.5", "warded", lambda x: tip_warded_L(x, 5.5), 38, 2.2, "Warded pick, L shape, 5.5 mm bit."),
+    ("warded-L-6.8", "warded", lambda x: tip_warded_L(x, 6.8), 38, 2.2, "Warded pick, L shape, 6.8 mm bit."),
+    ("warded-T-2.5", "warded", lambda x: tip_warded_T(x, 2.5), 38, 2.2, "Warded pick, T shape, 2.5 mm bit each side."),
+    ("warded-T-3.5", "warded", lambda x: tip_warded_T(x, 3.5), 38, 2.2, "Warded pick, T shape, 3.5 mm bit each side."),
     ("lever-lifter-hook-3.5", "lever (mortice)", lambda x: tip_lever_hook(x, 3.5), 70, 2.0,
-     "Lever lifter, 3.5 mm lift. Multipick lever blades are 0.4-0.6 mm thick, 120 mm long. Lever pitch unverified."),
-    ("lever-lifter-hook-5.0", "lever (mortice)", lambda x: tip_lever_hook(x, 5.0), 70, 2.0, "Lever lifter, 5.0 mm lift."),
+     "Lever lifter, 3.5 mm. For UK lever mortice locks: lifts one lever at a time. Use with a curtain wrench."),
+    ("lever-lifter-hook-5.0", "lever (mortice)", lambda x: tip_lever_hook(x, 5.0), 70, 2.0, "Lever lifter, 5.0 mm. For levers that sit higher."),
     ("lever-curtain-wrench-6", "lever (mortice)", lambda x: tip_curtain(x, 6.0), 66, 2.2,
-     "Curtain / bolt-stump tension wrench, 6 mm bit. Bit size unverified: check against your keyhole."),
+     "Curtain wrench, 6 mm bit. The tension tool for lever locks: it turns the bolt stump. Check the bit fits your keyhole."),
     ("lever-curtain-wrench-8", "lever (mortice)", lambda x: tip_curtain(x, 8.0), 66, 2.2, "Curtain wrench, 8 mm bit."),
     ("dimple-flat-flag", "dimple", lambda x: tip_dimple_flag(x), 46, 1.6,
-     "Flat blank; bend the 2.0 mm flag 90° at the notches. Flag 2.0 x 2.5 mm after bending (Multipick-style). Hand-finish."),
+     "Dimple pick blank. Bend the end 90° at the two notches to make a 2.0 × 2.5 mm flag."),
 ]
 
 HOLE_R = 1.7          # Ø3.40 handle holes
 HOLE_X = (15.0, 50.0)  # from the butt
 
 
-def comb_tool(teeth, style, pitch=3.9, tooth_w=1.5, tooth_h=2.2, body_h=4.6):
-    """Comb like commercial ones: one wide flat body, a short taper on the tooth side only, teeth along the top edge,
-    straight bottom edge. No thin shaft and no neck. Returns (polygon, holes)."""
-    L = teeth * pitch + 3.0
+def comb_tool(lock, pins, style):
+    """Comb (build/pick_shapes.py COMB): a 2 mm body along the straight bottom edge, 5 mm teeth at the lock's cut
+    positions, and a 10.2 mm stop that rests on the lock face like a key's shoulder so the teeth meet the pin holes.
+    Returns (polygon, holes)."""
     if style == "xacto":
         c = 0.4
         tang = Polygon([(0, -TW / 2 + c), (c, -TW / 2), (TL, -TW / 2), (TL, TW / 2), (c, TW / 2), (0, TW / 2 - c)])
-        guard = box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2).buffer(-SH_R).buffer(SH_R, quad_segs=16)
-        x0, bot = TL + NECK_IN, SHOULDER_W / 2
-        base, holes = unary_union([tang, guard]), [(TL - TANG_HOLE_X, 0.0)]
-        root_top = -SHOULDER_W / 2
+        x_stop, bottom = TL + SHOULDER_L + 8.0, SHOULDER_W / 2
+        grip = unary_union([box(TL, -SHOULDER_W / 2, TL + SHOULDER_L, SHOULDER_W / 2),        # X-Acto shoulders
+                            box(TL + SHOULDER_L - 0.01, bottom - S.COMB_STOP_H, x_stop, bottom)])   # stop block
+        base, holes = unary_union([tang, grip]), [(TL - TANG_HOLE_X, 0.0)]
     else:
-        base = box(0, -4.5, 56, 4.5).buffer(-2).buffer(2, quad_segs=16)
-        x0, bot, root_top, holes = 54.0, 4.5, -4.5, [(15.0, 0.0), (50.0, 0.0)]
-    top = bot - body_h
-    taper = [(x0 + 8 * i / 40, top + (root_top - top) * 0.5 * (1 + math.cos(math.pi * i / 40))) for i in range(41)]  # tangent, no kink
-    body = Polygon(taper + [(x0 + 8 + L, top), (x0 + 8 + L, bot), (x0, bot)])
-    t = [box(x0 + 8 + L - 0.6 - tooth_w - i * pitch, top - tooth_h, x0 + 8 + L - 0.6 - i * pitch, top + 0.1) for i in range(teeth)]
-    p = unary_union([base, body] + t)
-    return clean(p, 0.4, 0.25), holes
+        x_stop, bottom = 62.0, 4.5
+        base, holes = box(0, -4.5, x_stop, 4.5).buffer(-2).buffer(2, quad_segs=16), [(15.0, 0.0), (50.0, 0.0)]
+    teeth, _ = S.comb(x_stop, lock, pins, bottom)
+    return clean(unary_union([base, teeth]), 0.4, 0.25), holes
 
 
 def build_other(style):
@@ -306,7 +225,8 @@ def build_other(style):
     out = []
     for ident, lock, tipf, sl, sh, note in OTHER:
         if ident.startswith("pin-comb-"):
-            p, holes = comb_tool(int(ident[-1]), "xacto" if style == "xacto" else "full")
+            _, lk, n = next(c for c in COMBS if c[0] == ident)
+            p, holes = comb_tool(lk, n, "xacto" if style == "xacto" else "full")
             q = place(p)
             dx, dyp = q.bounds[0] - p.bounds[0], q.bounds[1] - p.bounds[1]
             out.append((ident, lock, note, q, [(hx + dx, hy + dyp) for hx, hy in holes]))
@@ -459,6 +379,8 @@ for ident, lock, note, p, tholes in build_other("xacto"):
     record(full_id, "other-lock-picks", p, files, lock_type=lock, handle="xacto", note=note)
     other_xacto[full_id] = p
 for ident, tipf, note in PIN:                       # flat-edge tang version: one straight side cut by the blade's back
+    if tipf(0)[0].bounds[3] > 0.6 + 1e-6:          # underside dips below the shaft (snake): no straight edge possible
+        continue
     full_id = f"{ident}__xacto-flat-edge"
     p, tholes = xacto_flat_edge(tipf, 46, 1.2)
     files = write_pair(OUTO / (full_id + f"__tang-{TW:.2f}x{TL:.0f}mm"), [(full_id, p)],
@@ -477,6 +399,10 @@ for wa, wb in ((2.5, 3.0), (3.0, 4.0)):
     files = write_pair(OUTO / ident, [(ident, p)], title="Dimple tensioner bar; cut from 1.2-1.5 mm sheet (Multipick SP-62..67 / BMS-09..10 sizes)")
     record(ident, "other-lock-picks", p, files, lock_type="dimple", handle="bar",
            note="Dimple tensioner: tips 2.5-4.0 mm wide, 12 mm long. Needs 1.2-1.5 mm stock, not hacksaw blade.")
+
+keep = {Path(fl).stem for r in records if r["family"] == "other-lock-picks" for fl in r["files"]}
+for old in [fl for e in ("svg", "dxf", "pdf") for fl in OUTO.glob("*." + e) if fl.stem not in keep]:
+    old.unlink()                                   # designs dropped from the set (and their PDFs)
 
 orig_plain, orig_holes = [], []
 

@@ -34,8 +34,10 @@ Not found anywhere: serration pitch, bend radii, curtain-wrench bit size, lever 
 |---|---|---|
 | Dimple flat flag | 2.0 × 2.5 mm | [Multipick](https://multipick.com/en/elite-g-pro-dimple-pick-13-lr1-flat-flag) |
 | Ball pick | Ø4.05 mm ball, 0.4 mm blade | [Multipick](https://multipick.com/en/elite-ball-slim-pick-0.4-mm-v10) |
-| Pin pitch for combs | 3.81 (Kwikset), 3.96 (Schlage), 3.9 used | common key specs |
-| Warded bit sizes, comb tooth size | design choices, unverified | — |
+| Comb spacing, first cut | Kwikset 3.81 / 6.27; Schlage 3.96 / 5.87 (Schlage not checked) | [LockWiki](https://www.lockwiki.com/index.php/Kwikset_Classic), common key specs |
+| Kwikset shear line | #1 cut 0.329" + #1 key pin 0.172" = 0.501" (12.7 mm) above the key bottom | [LockWiki](https://www.lockwiki.com/index.php/Kwikset_Classic) |
+| Comb tooth height (5 mm) | worked out from the line above: `docs/pick-profiles.md` | — |
+| Warded bit sizes | design choices, unverified | — |
 
 ## Stock
 
