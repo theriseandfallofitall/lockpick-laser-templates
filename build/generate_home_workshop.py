@@ -188,6 +188,14 @@ def tip_hook(x, h, w=1.0, lean=0.0, sh=1.2):
     return p.buffer(-0.3).buffer(0.3, quad_segs=12), x + 1.0 + w + max(lean, 0)
 
 
+def curve_pts(h, reach, w, front=0.6, n=40):
+    """Curved hook / lifter top edge (same shape as the customiser's "curve" tip): a quarter-ellipse back that rises
+    from the shaft and ends vertical at height h after `reach` mm, a flat top `w` wide, then a rounded nose."""
+    back = [(reach * math.sin(a), h * (1 - math.cos(a))) for a in (math.pi / 2 * i / n for i in range(n + 1))]
+    nose = [(reach + w + front * math.sin(b), h * math.cos(b)) for b in (math.pi / 2 * i / 12 for i in range(13))]
+    return back + nose
+
+
 def wave(n, length, h, samples=60):
     return [(length * i / samples, h * (0.5 - 0.5 * math.cos(2 * math.pi * n * i / samples))) for i in range(samples + 1)]
 
@@ -197,10 +205,21 @@ PIN = [
     ("hook-medium", lambda x: tip_hook(x, 2.6), "Medium hook: the everyday single-pin pick."),
     ("hook-deep", lambda x: tip_hook(x, 3.6, w=0.9), "Deep hook: reaches high pins behind low ones."),
     ("hook-offset", lambda x: tip_hook(x, 2.8, w=0.9, lean=1.0), "Offset (forward-leaning) hook for tight bitting."),
+    ("hook-curved-short", lambda x: tip_profile(x, curve_pts(1.8, 2.0, 0.9)), "Short curved hook: the standard first pick for single-pin picking."),
+    ("hook-curved-medium", lambda x: tip_profile(x, curve_pts(2.8, 3.0, 0.9)), "Medium curved hook: reaches mid-height pins, smooth back curve."),
+    ("hook-curved-deep", lambda x: tip_profile(x, curve_pts(4.0, 5.0, 0.9)), "Deep curve (Gonzo-style): long sweeping curve for high pins behind low ones."),
+    ("lifter-short", lambda x: tip_profile(x, curve_pts(1.0, 1.4, 0.8)), "Short lifter: a small low hook for tight keyways and low pins."),
+    ("lifter-flat", lambda x: tip_profile(x, curve_pts(1.4, 1.6, 2.0)), "Flat lifter: low, wide flat top that lifts one pin without touching its neighbours."),
     ("half-diamond-small", lambda x: tip_profile(x, [(0, 0), (1.6, 1.6), (3.2, 0)]), "Small half-diamond: pins, wafers, raking."),
+    ("half-diamond-medium", lambda x: tip_profile(x, [(0, 0), (2.0, 2.0), (3.8, 0)]), "Medium half-diamond: the all-round half-diamond."),
     ("half-diamond-large", lambda x: tip_profile(x, [(0, 0), (2.4, 2.4), (4.4, 0)]), "Large half-diamond."),
+    ("half-diamond-deep", lambda x: tip_profile(x, [(0, 0), (2.2, 3.2), (4.0, 0)]), "Deep (steep) half-diamond: reaches higher pins."),
+    ("rake-bogota-2", lambda x: tip_profile(x, wave(2, 8.0, 2.0)), "Bogota-style double-peak rake (rounded peaks)."),
     ("rake-bogota-3", lambda x: tip_profile(x, wave(3, 11.0, 2.0)), "Bogota-style triple-peak rake (rounded peaks)."),
     ("rake-snake", lambda x: tip_profile(x, wave(2.5, 13.0, 2.2)), "Snake rake: rocking and raking."),
+    ("rake-wave", lambda x: tip_profile(x, wave(3, 15.0, 1.8)), "Wave (S) rake: long low waves for scrubbing."),
+    ("rake-triple-peak", lambda x: tip_profile(x, [(0, 0), (1.5, 2.4), (2.5, 0.9), (4.0, 2.8), (5.0, 0.9), (6.5, 2.4), (8.0, 0)]),
+     "Triple-peak rake: three sharp peaks for rocking."),
     ("rake-city", lambda x: tip_profile(x, [(0, 0), (1.2, 2.2), (2.6, 2.2), (3.6, 0.6), (4.8, 0.6), (6.0, 2.8), (7.2, 2.8),
                                              (8.2, 1.2), (9.4, 1.2), (10.4, 2.4), (11.6, 2.4), (12.6, 0)]),
      "City (L) rake: a stepped key-like profile."),

@@ -195,6 +195,136 @@
   ]
  },
  {
+  "id": "hook-curved-short__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 123.5,
+  "height_mm": 9.0,
+  "area_mm2": 685.383,
+  "files": [
+   "generated/other-lock-picks/hook-curved-short__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-curved-short__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-curved-short__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-curved-short__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Short curved hook: the standard first pick for single-pin picking.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-curved-medium__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 124.5,
+  "height_mm": 9.0,
+  "area_mm2": 688.957,
+  "files": [
+   "generated/other-lock-picks/hook-curved-medium__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-curved-medium__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-curved-medium__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-curved-medium__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Medium curved hook: reaches mid-height pins, smooth back curve.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "hook-curved-deep__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 126.5,
+  "height_mm": 9.0,
+  "area_mm2": 695.492,
+  "files": [
+   "generated/other-lock-picks/hook-curved-deep__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/hook-curved-deep__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/hook-curved-deep__full-handle__no-holes.svg",
+   "generated/other-lock-picks/hook-curved-deep__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Deep curve (Gonzo-style): long sweeping curve for high pins behind low ones.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "lifter-short__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 122.8,
+  "height_mm": 9.0,
+  "area_mm2": 682.859,
+  "files": [
+   "generated/other-lock-picks/lifter-short__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/lifter-short__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/lifter-short__full-handle__no-holes.svg",
+   "generated/other-lock-picks/lifter-short__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Short lifter: a small low hook for tight keyways and low pins.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "lifter-flat__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 124.2,
+  "height_mm": 9.0,
+  "area_mm2": 686.912,
+  "files": [
+   "generated/other-lock-picks/lifter-flat__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/lifter-flat__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/lifter-flat__full-handle__no-holes.svg",
+   "generated/other-lock-picks/lifter-flat__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Flat lifter: low, wide flat top that lifts one pin without touching its neighbours.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
   "id": "half-diamond-small__full-handle",
   "family": "other-lock-picks",
   "length_mm": 123.2,
@@ -221,6 +351,32 @@
   ]
  },
  {
+  "id": "half-diamond-medium__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 123.8,
+  "height_mm": 9.0,
+  "area_mm2": 686.274,
+  "files": [
+   "generated/other-lock-picks/half-diamond-medium__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/half-diamond-medium__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/half-diamond-medium__full-handle__no-holes.svg",
+   "generated/other-lock-picks/half-diamond-medium__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Medium half-diamond: the all-round half-diamond.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
   "id": "half-diamond-large__full-handle",
   "family": "other-lock-picks",
   "length_mm": 124.4,
@@ -235,6 +391,58 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Large half-diamond.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "half-diamond-deep__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 124.0,
+  "height_mm": 9.0,
+  "area_mm2": 689.118,
+  "files": [
+   "generated/other-lock-picks/half-diamond-deep__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/half-diamond-deep__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/half-diamond-deep__full-handle__no-holes.svg",
+   "generated/other-lock-picks/half-diamond-deep__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Deep (steep) half-diamond: reaches higher pins.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "rake-bogota-2__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 128.0,
+  "height_mm": 9.0,
+  "area_mm2": 695.524,
+  "files": [
+   "generated/other-lock-picks/rake-bogota-2__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/rake-bogota-2__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/rake-bogota-2__full-handle__no-holes.svg",
+   "generated/other-lock-picks/rake-bogota-2__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Bogota-style double-peak rake (rounded peaks).",
   "holes_mm": [
    [
     16.0,
@@ -287,6 +495,58 @@
   "lock_type": "pin tumbler",
   "handle": "full-handle",
   "note": "Snake rake: rocking and raking.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "rake-wave__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 135.0,
+  "height_mm": 9.0,
+  "area_mm2": 709.424,
+  "files": [
+   "generated/other-lock-picks/rake-wave__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/rake-wave__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/rake-wave__full-handle__no-holes.svg",
+   "generated/other-lock-picks/rake-wave__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Wave (S) rake: long low waves for scrubbing.",
+  "holes_mm": [
+   [
+    16.0,
+    5.5
+   ],
+   [
+    51.0,
+    5.5
+   ]
+  ]
+ },
+ {
+  "id": "rake-triple-peak__full-handle",
+  "family": "other-lock-picks",
+  "length_mm": 128.0,
+  "height_mm": 9.0,
+  "area_mm2": 699.904,
+  "files": [
+   "generated/other-lock-picks/rake-triple-peak__full-handle__holes-3.40mm-at-15-50.svg",
+   "generated/other-lock-picks/rake-triple-peak__full-handle__holes-3.40mm-at-15-50.dxf",
+   "generated/other-lock-picks/rake-triple-peak__full-handle__no-holes.svg",
+   "generated/other-lock-picks/rake-triple-peak__full-handle__no-holes.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "full-handle",
+  "note": "Triple-peak rake: three sharp peaks for rocking.",
   "holes_mm": [
    [
     16.0,
@@ -857,6 +1117,86 @@
   "note": "Offset (forward-leaning) hook for tight bitting."
  },
  {
+  "id": "hook-curved-short__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 67.5,
+  "height_mm": 10.0,
+  "area_mm2": 213.659,
+  "files": [
+   "generated/other-lock-picks/hook-curved-short__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-curved-short__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-curved-short__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-curved-short__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Short curved hook: the standard first pick for single-pin picking."
+ },
+ {
+  "id": "hook-curved-medium__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 68.5,
+  "height_mm": 10.0,
+  "area_mm2": 217.23,
+  "files": [
+   "generated/other-lock-picks/hook-curved-medium__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-curved-medium__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-curved-medium__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-curved-medium__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Medium curved hook: reaches mid-height pins, smooth back curve."
+ },
+ {
+  "id": "hook-curved-deep__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 70.5,
+  "height_mm": 10.0,
+  "area_mm2": 223.765,
+  "files": [
+   "generated/other-lock-picks/hook-curved-deep__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/hook-curved-deep__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/hook-curved-deep__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/hook-curved-deep__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Deep curve (Gonzo-style): long sweeping curve for high pins behind low ones."
+ },
+ {
+  "id": "lifter-short__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 66.8,
+  "height_mm": 10.0,
+  "area_mm2": 211.134,
+  "files": [
+   "generated/other-lock-picks/lifter-short__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/lifter-short__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/lifter-short__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/lifter-short__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Short lifter: a small low hook for tight keyways and low pins."
+ },
+ {
+  "id": "lifter-flat__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 68.2,
+  "height_mm": 10.0,
+  "area_mm2": 215.188,
+  "files": [
+   "generated/other-lock-picks/lifter-flat__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/lifter-flat__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/lifter-flat__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/lifter-flat__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Flat lifter: low, wide flat top that lifts one pin without touching its neighbours."
+ },
+ {
   "id": "half-diamond-small__xacto",
   "family": "other-lock-picks",
   "length_mm": 67.2,
@@ -873,6 +1213,22 @@
   "note": "Small half-diamond: pins, wafers, raking."
  },
  {
+  "id": "half-diamond-medium__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 67.8,
+  "height_mm": 10.0,
+  "area_mm2": 214.549,
+  "files": [
+   "generated/other-lock-picks/half-diamond-medium__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/half-diamond-medium__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/half-diamond-medium__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/half-diamond-medium__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Medium half-diamond: the all-round half-diamond."
+ },
+ {
   "id": "half-diamond-large__xacto",
   "family": "other-lock-picks",
   "length_mm": 68.4,
@@ -887,6 +1243,38 @@
   "lock_type": "pin tumbler",
   "handle": "xacto",
   "note": "Large half-diamond."
+ },
+ {
+  "id": "half-diamond-deep__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 68.0,
+  "height_mm": 10.0,
+  "area_mm2": 217.383,
+  "files": [
+   "generated/other-lock-picks/half-diamond-deep__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/half-diamond-deep__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/half-diamond-deep__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/half-diamond-deep__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Deep (steep) half-diamond: reaches higher pins."
+ },
+ {
+  "id": "rake-bogota-2__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 72.0,
+  "height_mm": 10.0,
+  "area_mm2": 223.803,
+  "files": [
+   "generated/other-lock-picks/rake-bogota-2__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/rake-bogota-2__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/rake-bogota-2__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/rake-bogota-2__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Bogota-style double-peak rake (rounded peaks)."
  },
  {
   "id": "rake-bogota-3__xacto",
@@ -919,6 +1307,38 @@
   "lock_type": "pin tumbler",
   "handle": "xacto",
   "note": "Snake rake: rocking and raking."
+ },
+ {
+  "id": "rake-wave__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 79.0,
+  "height_mm": 10.0,
+  "area_mm2": 237.698,
+  "files": [
+   "generated/other-lock-picks/rake-wave__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/rake-wave__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/rake-wave__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/rake-wave__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Wave (S) rake: long low waves for scrubbing."
+ },
+ {
+  "id": "rake-triple-peak__xacto",
+  "family": "other-lock-picks",
+  "length_mm": 72.0,
+  "height_mm": 10.0,
+  "area_mm2": 228.172,
+  "files": [
+   "generated/other-lock-picks/rake-triple-peak__xacto__tang-5.80x10mm.svg",
+   "generated/other-lock-picks/rake-triple-peak__xacto__tang-5.80x10mm.dxf",
+   "generated/other-lock-picks/rake-triple-peak__xacto__tang-5.80x10mm__hole-2.2.svg",
+   "generated/other-lock-picks/rake-triple-peak__xacto__tang-5.80x10mm__hole-2.2.dxf"
+  ],
+  "lock_type": "pin tumbler",
+  "handle": "xacto",
+  "note": "Triple-peak rake: three sharp peaks for rocking."
  },
  {
   "id": "rake-city__xacto",

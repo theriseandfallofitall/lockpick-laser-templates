@@ -18,11 +18,21 @@ const CK = (() => {
       ["hookS", "Short hook", { tip: "hook", tipH: 1.6 }],
       ["hookD", "Deep hook", { tip: "hook", tipH: 4, tipW: 1.2 }],
       ["gem", "Gem / offset hook (leaning)", { tip: "gem", tipH: 3, tipW: 1.4, lean: 35 }],
+      ["curveS", "Short curved hook", { tip: "curve", tipH: 1.8, tipL: 2.0, tipW: 0.9 }],
+      ["curveM", "Medium curved hook", { tip: "curve", tipH: 2.8, tipL: 3.0, tipW: 0.9 }],
+      ["curveD", "Deep curve (Gonzo-style)", { tip: "curve", tipH: 4.0, tipL: 5.0, tipW: 0.9 }],
+      ["lifterS", "Short lifter", { tip: "curve", tipH: 1.0, tipL: 1.4, tipW: 0.8 }],
+      ["lifterF", "Flat lifter", { tip: "curve", tipH: 1.4, tipL: 1.6, tipW: 2.0 }],
       ["diaS", "Small half-diamond", { tip: "halfDiamond", tipH: 2, tipL: 6 }],
+      ["diaM", "Medium half-diamond", { tip: "halfDiamond", tipH: 2.0, tipL: 3.8 }],
       ["diaL", "Large half-diamond", { tip: "halfDiamond", tipH: 3.2, tipL: 10 }],
+      ["diaD", "Deep (steep) half-diamond", { tip: "halfDiamond", tipH: 3.2, tipL: 4.0 }],
+      ["bogota2", "Bogota double", { tip: "custom", tipL: 8, custom: "0 2 0.6 2 0" }],
       ["bogota", "Bogota triple", { tip: "custom", tipL: 12, custom: "0 2.6 0.7 3.4 0.7 2.6 0" }],
       ["snake", "Snake rake", { tip: "rake", tipH: 2.2, tipL: 14, peaks: 4 }],
       ["city", "City rake", { tip: "custom", tipL: 14, custom: "0 3 1.2 3.6 1 2.8 0.8 3.4 0" }],
+      ["wave", "Wave (S) rake", { tip: "rake", tipH: 1.8, tipL: 15, peaks: 3 }],
+      ["triple", "Triple-peak rake", { tip: "custom", tipL: 8, custom: "0 2.4 0.9 2.8 0.9 2.4 0" }],
       ["saw", "Sawtooth rake (strokes)", { tip: "saw", tipH: 2.4, n: 5, pitch: 2.4 }],
       ["ball", "Single ball", { tip: "ball", tipH: 4 }],
       ["halfBall", "Half ball", { tip: "halfBall", tipH: 4 }],
@@ -137,6 +147,10 @@ const CK = (() => {
     // gem: leaning rear face, short flat top, chamfered front
     gem: o => { const run = leanRun(o), h = o.tipH, a = 0.8, W = o.tipW, c = Math.min(0.8, W * 0.5 + 0.2);
       return { len: a + run + W + c, down: flat, up: d => d < a ? 0 : d < a + run ? h * (d - a) / run : d < a + run + W ? h : h - 0.4 * h * (d - a - run - W) / c }; },
+    // curved hook / lifter: quarter-ellipse back rising to tipH over tipL, flat top tipW wide, rounded nose
+    // (same shape as curve_pts() in build/generate_home_workshop.py)
+    curve: o => { const R = o.tipL, H = o.tipH, W = o.tipW, f = 0.6;
+      return { len: R + W + f, down: flat, up: d => d < R ? H * (1 - Math.sqrt(Math.max(0, 1 - (d / R) ** 2))) : d < R + W ? H : H * Math.sqrt(Math.max(0, 1 - ((d - R - W) / f) ** 2)) }; },
     halfDiamond: o => ({ len: o.tipL, up: d => o.tipH * (1 - Math.abs(2 * d / o.tipL - 1)), down: flat }),
     ball: o => { const r = o.tipH / 2, p = d => Math.max(0, circ(r, r, d) - o.shaftH / 2); return { len: o.tipH, up: p, down: p }; },
     doubleBall: o => { const r1 = o.tipH / 2, r2 = r1 * 0.64, c2 = r1 + (r1 + r2) * 0.8, half = o.shaftH / 2;
@@ -407,11 +421,11 @@ if (typeof document !== "undefined") {
     shaftH: num(P, "Shaft", "Shaft height (thicker = stiffer)", "mm", 0.8, 3, 0.05, { simple: true }),
     sweep: num(P, "Shaft", "Sweep (- rises, + drops to tip)", "mm", -3, 3, 0.1),
     // tip
-    tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["gem", "Gem hook (leaning)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
+    tip: sel(P, "Tip", "Profile", [["hook", "Hook"], ["curve", "Curved hook / lifter"], ["gem", "Gem hook (leaning)"], ["halfDiamond", "Half-diamond"], ["rake", "Rake (waves)"], ["saw", "Sawtooth strokes"],
       ["halfBall", "Half-ball"], ["ball", "Ball"], ["doubleBall", "Double ball"], ["comb", "Comb"], ["warded", "Warded L bit"], ["lever", "Lever lifter"], ["custom", "Custom / drawn"]]),
     tipH: num(P, "Tip", "Tip height", "mm", 0.5, 6, 0.1, { simple: true }),
-    tipW: num(P, "Tip", "Tip width / tooth width", "mm", 0.6, 4, 0.05, { only: o => ["hook", "gem", "warded", "lever", "comb"].includes(o.tip) }),
-    tipL: num(P, "Tip", "Tip length", "mm", 2, 25, 0.2, { only: o => ["halfDiamond", "rake", "custom", "lever"].includes(o.tip) }),
+    tipW: num(P, "Tip", "Tip width / tooth width", "mm", 0.6, 4, 0.05, { only: o => ["hook", "curve", "gem", "warded", "lever", "comb"].includes(o.tip) }),
+    tipL: num(P, "Tip", "Tip length (curved hook: reach of the curve)", "mm", 1, 25, 0.1, { only: o => ["halfDiamond", "rake", "custom", "lever", "curve"].includes(o.tip) }),
     lean: num(P, "Tip", "Lean (forward)", "deg", 0, 60, 1, { only: o => ["hook", "gem"].includes(o.tip) }),
     peaks: num(P, "Tip", "Peaks", "", 1, 6, 0.5, { only: o => o.tip === "rake" }),
     n: num(P, "Tip", "Teeth / strokes", "", 2, 8, 1, { only: o => ["comb", "saw"].includes(o.tip) }),
