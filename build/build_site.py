@@ -22,6 +22,9 @@ esc = html.escape
 THUMBS = ROOT / "previews/laser-index"
 sys.path.insert(0, str(ROOT / "build"))
 import pick_shapes as PS   # the same numbers the generators used, handed to the customiser
+# Public repo that takes design submissions (opens a prefilled new-issue page). Empty = the dialog only downloads the file
+# and tells the person to send it to the library owner. Taken from the public export's git remote (lockpick-laser-templates).
+SUBMIT_URL = "https://github.com/theriseandfallofitall/lockpick-laser-templates"
 MADE = set()   # thumbnails written this run; the rest are left over from removed designs
 
 
@@ -85,7 +88,12 @@ FIXED = {
     "wafer-wide-rocker": dict(tip="rake", waveStyle="up", peaks=2, tipL=14, tipH=2.4, tipW=1.2),
     "lever-lifter-hook-3.5": dict(tip="hook", tipH=3.5, bendR=1.8, lean=5, tipW=1.2),
     "lever-lifter-hook-5.0": dict(tip="hook", tipH=5.0, bendR=1.8, lean=5, tipW=1.2),
+    "dimple-flat-flag": dict(tip="dimple", tipL=2.0, tipW=2.5),
 }
+WARDED_L, WARDED_T, CURTAIN = (4.0, 5.5, 6.8), (2.5, 3.5), (6, 8)
+FIXED.update({f"warded-L-{b:.1f}": dict(tip="warded", tipW=2.0, tipH=b) for b in WARDED_L})
+FIXED.update({f"warded-T-{b:.1f}": dict(tip="wardedT", tipW=2.0, tipH=b) for b in WARDED_T})
+FIXED.update({f"lever-curtain-wrench-{b}": dict(tip="curtain", tipW=3.5, tipH=float(b)) for b in CURTAIN})
 
 
 def _tip_top(build):
@@ -97,6 +105,17 @@ TIP_TOP.update({f"hook-swept-{h:.1f}": _tip_top(lambda x, h=h: PS.swept_hook(x, 
 TIP_TOP.update({i: _tip_top(lambda x, h=h, b=b: PS.profile(x, PS.half_diamond(h, b))) for i, h, b, _ in PS.DIAMONDS})
 TIP_TOP.update({i: _tip_top(f) for i, f, _ in PS.RAKES})
 TIP_TOP.update({f"lever-lifter-hook-{h:.1f}": _tip_top(lambda x, h=h: PS.hook(x, h, 1.8, 85, 1.2, 2.0)) for h in (3.5, 5.0)})
+# warded / curtain / dimple tips: bounds of the shapes in generate_home_workshop.py (tip_warded_L / _T, tip_curtain, tip_dimple_flag;
+# that module generates on import, so the boxes are reproduced here: shaft 2.2 mm tall, dimple shaft 1.6 mm, flag 2.5 mm tall)
+from shapely.geometry import box as _box
+from shapely.ops import unary_union as _union
+for _b in WARDED_L:
+    TIP_TOP[f"warded-L-{_b:.1f}"] = _union([_box(0, -1.1, 3, 1.1), _box(1, -1.1 - _b, 3, 1.1)]).bounds[1]
+for _b in WARDED_T:
+    TIP_TOP[f"warded-T-{_b:.1f}"] = _union([_box(1, -1.1 - _b, 3, 1.1 + _b), _box(0, -1.1, 3, 1.1)]).bounds[1]
+for _b in CURTAIN:
+    TIP_TOP[f"lever-curtain-wrench-{_b}"] = _union([_box(0, -1.1, 3.5, 1.1), _box(0, -1.1 - _b, 3.5, 1.1)]).bounds[1]
+TIP_TOP["dimple-flat-flag"] = _union([_box(0, -0.8, 8, 0.8), _box(6, -1.25, 8, 1.25)]).bounds[1]
 TIP_TOP["wafer-wide-rocker"] = _tip_top(lambda x: PS.wave_rake(x, 2, 14.0, 2.6, sh=1.6, w_end=1.2))
 
 
@@ -252,10 +271,10 @@ fit = ([laser_card(s, "Laser / printer scale check · must measure 50 × 20 mm")
 T[("fit", "Cut these first")] = fit
 # Blade layouts: holes / no-holes pairs share one card (labelled rows); spine-edge layouts have their own chips
 LAY = json.loads((ROOT / "generated/hacksaw-blade-layouts/layouts.json").read_text(encoding="utf-8"))["layouts"]
-SETNAME = [("jig", "", "Jig"), ("own-picks-xacto", "", "Picks · X-Acto"), ("own-picks-full-handle", "", "Picks · flat, centred"),
+SETNAME = [("own-picks-xacto", "", "Picks · X-Acto"), ("own-picks-full-handle", "", "Picks · flat, centred"),
            ("own-picks-full-handle", "spine", "Picks · flat, on the blade edge"), ("own-picks-xacto-flat-edge", "spine", "Picks · X-Acto, on the blade edge"), ("tension-tools-v2", "", "Tension tools"),
            ("xacto-v2-picks", "", "Originals · X-Acto"), ("original-picks", "", "Originals · centred"),
-           ("original-picks", "spine", "Originals · on the blade edge")]
+           ("original-picks", "spine", "Originals · on the blade edge"), ("jig", "", "Jig")]
 NOTE_SPINE = "Each handle's straight edge sits on the blade's smooth back edge: that side is already cut. Teeth side down."
 for key, mode, label in SETNAME:
     cards = []
@@ -282,6 +301,24 @@ pdfs = sorted((ROOT / "generated/print-sheets").glob("*.pdf")) if exists("genera
 T[("print", "A4 sheets")] = [file_card(pretty(p.stem.split("__")[0]), "", "A4 · print at 100 % / Actual size",
                                        [("PDF", p.relative_to(ROOT).as_posix())]) for p in pdfs]
 
+# Community: designs submitted with consent (CC BY 4.0), imported by build/import_submissions.py
+CD = ROOT / "generated/community/designs.json"
+COMMUNITY = json.loads(CD.read_text(encoding="utf-8")) if CD.exists() else []
+if COMMUNITY:
+    def _size(svg):
+        m = re.search(r'<svg[^>]*\swidth="([\d.]+)(?:mm)?"[^>]*\sheight="([\d.]+)', (ROOT / svg).read_text(encoding="utf-8"))
+        return f"{float(m[1]):.1f} × {float(m[2]):.1f} mm" if m else "1:1 mm"
+    cards = []
+    for d in COMMUNITY:
+        svg = next(f for f in d["files"] if f.endswith(".svg"))
+        c = dict(name=d["title"], size=_size(svg), fit=None, thumb=thumb(svg[:-4]),
+                 links=[(f.rsplit(".", 1)[1].upper(), f) for f in d["files"]],
+                 note=("Design by " + d["credit"] + " · " if d.get("credit") else "") + "licence " + d.get("licence", "CC-BY-4.0").replace("CC-BY-", "CC BY "))
+        if d.get("query"):
+            c["custom"] = d["query"]
+        cards.append(c)
+    T[("community", "Community designs")] = cards
+
 TABS = [("picks", "Picks", "Every design comes as a flat handle with or without two Ø3.40 screw holes at 15 / 50 mm (for bolting on handle scales), "
                            "and on the X-Acto / DIY-bar tang. The outline is the same for any steel thickness."),
         ("tension", "Tension", "Sized from the lock: the short end (4.7 mm) stops in front of pin 1, the long end (10.7 mm) is for recessed plugs. "
@@ -291,6 +328,7 @@ TABS = [("picks", "Picks", "Every design comes as a flat handle with or without 
         ("blade", "Blade layouts", "One file per 12.7 × 315 mm hacksaw blade, parts evenly spaced with at least 6 mm between them to saw apart. "
                                    "Cut the jig once, leave it on the bed, drop a blade in, run a layout at the same origin. Blue = blade outline, do not output."),
         ("print", "Print", "No laser? Print these at 100 % (Actual size) on any printer, check the 100 mm bar, cut out, glue to the steel and file to the line."),
+        ("community", "Community", "Designs shared by other people, each under CC BY 4.0 with credit to the designer. Same rules as everything else: cut or print a test piece first."),
         ("custom", "Customise", "")]
 
 
@@ -310,17 +348,17 @@ def card_html(c):
     st = f' data-style="{c["style"]}"' if c.get("style") else ""
     return f'<article data-q="{q}"{st}>{img}<h3>{esc(c["name"])}</h3><p>{esc(c["size"])} {badge}</p>{note}<div class="dls">{links}</div></article>'
 
-CUSTOM = """<div class="custom"><form id="ck-form" onsubmit="return false"></form><div class="ck-out"><div id="ck-view"></div>
-<p id="ck-warn"></p><p id="ck-info"></p><div class="dl"><a id="ck-svg" href="#">Download SVG</a><a id="ck-dxf" href="#">Download DXF</a><a id="ck-print" href="#">Print 1:1</a></div>
-<p class="note">Built in your browser: mm 1:1, no kerf. Cut a test piece first; custom shapes are only checked for size.</p></div></div>"""
+CUSTOM = """<div class="custom"><form id="ck-form" onsubmit="return false"></form><div class="ck-out"><div class="ck-pin"><div class="ck-res"><p id="ck-info"></p><div class="dl"><a id="ck-svg" href="#">Download SVG</a><a id="ck-dxf" href="#">Download DXF</a><a id="ck-print" href="#">Print 1:1</a><a id="ck-submit" href="#" data-submit="__SUBMIT__">Submit to the library</a></div></div>
+<p id="ck-warn"></p><div id="ck-view"></div></div><div id="ck-ol-slot" hidden></div>
+<p class="note">Built in your browser: mm 1:1, no kerf. Make a test piece first; custom shapes are only checked for size.</p></div></div>"""
 sections, tabs = [], []
 for key, title, intro in TABS:
     if key == "custom":
         if exists("site/customizer.js"):
             tabs.append('<button data-tab="custom">Customise</button>')
-            sections.append('<section id="sec-custom" hidden><p class="intro">Design your own pick or tension bar, then download the cut file. '
-                            'Start from a preset, or press "Customise this" on any design in the Picks or Tension tabs to start from that one. '
-                            'Every value can be changed; ↺ puts a field back to the design you started from.</p>' + CUSTOM + '</section>')
+            sections.append('<section id="sec-custom" hidden><p class="intro">Design your own pick or tension bar (set the material, or draw or trace a freehand tip), then download the file. '
+                            'Go step by step, or tick "Show every setting" for every field on one page. '
+                            'Press "Customise this" on any design to start from that one; ↺ puts a field back to the design you started from.</p>' + CUSTOM.replace("__SUBMIT__", esc(SUBMIT_URL)) + '</section>')
         continue
     groups = [(chip, cards) for (k, chip), cards in T.items() if k == key and cards]
     if not groups:
@@ -367,19 +405,26 @@ body.searching .chips,body.searching .intro{display:none}
 dialog{border:1px solid #243038;border-radius:12px;padding:16px;width:min(1200px,96vw);max-height:92vh;background:#151b20;color:inherit}
 dialog::backdrop{background:#000c} dialog img{width:100%;max-height:72vh;object-fit:contain;background:#0f1418;border-radius:8px}
 dialog .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px} dialog h3{margin:0}
+#sub-d{width:min(520px,94vw)} #sub-d form{display:flex;flex-direction:column;gap:10px;font-size:13px;color:#a9b5bd}
+#sub-d label{display:flex;flex-direction:column;gap:3px} #sub-d label.chk{flex-direction:row;align-items:flex-start;gap:8px}
+#sub-d input[type=text],#sub-d textarea{font:inherit;color:inherit;background:#0d1114;padding:6px 8px;border:1px solid #33424c;border-radius:6px}
+#sub-d .acts{display:flex;gap:8px;justify-content:flex-end} #sub-d .acts button{font:inherit;font-weight:600;border-radius:8px;padding:5px 14px;cursor:pointer;border:1px solid #ff5a5a;background:#ff5a5a;color:#0d1114}
+#sub-d .acts button[value=cancel]{background:none;color:#ff8080} #sub-d .msg{margin:0;color:#ffb454} #sub-d .msg:empty{display:none}
 dialog button.x{font:inherit;font-weight:600;color:#0d1114;border:1px solid #ff5a5a;background:#ff5a5a;border-radius:8px;padding:4px 12px;cursor:pointer}
-.custom{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start} @media(max-width:800px){.custom{grid-template-columns:1fr}.ck-out{order:-1}}
+.custom{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1fr);gap:18px;align-items:start}
 #ck-form{display:flex;flex-direction:column;gap:6px;background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px}
 #ck-form [hidden]{display:none!important}
 .ck-bar{display:flex;flex-direction:column;gap:10px;padding-bottom:10px;border-bottom:1px solid #243038}
 .ck-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:13px;color:#a9b5bd} .ck-actions label{white-space:nowrap} .ck-actions #ck-reset{margin-left:auto}
-#ck-form fieldset{border:0;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;min-width:0}
-#ck-form legend{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#6f7d87;padding:0;margin-bottom:6px}
+#ck-form details.grp{margin:8px 0 0;padding:10px 0 0;border-top:1px solid #243038;min-width:0}
+#ck-form details.grp>summary{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8a98a2;cursor:pointer;margin-bottom:8px}
+#ck-form .gb{display:flex;flex-direction:column;gap:8px}
+#ck-form .t .hint{color:#6f7d87;font-size:12px}
 #ck-form .f{display:flex;flex-direction:column;gap:3px;font-size:13px;color:#a9b5bd}
 #ck-form .f.chk{flex-direction:row;align-items:center;gap:8px}
-#ck-form .f{position:relative} #ck-form .f .rs{position:absolute;right:0;top:-3px;font:13px system-ui;line-height:1;color:#0d1114;background:#ff5a5a;border:1px solid #ff5a5a;border-radius:5px;padding:2px 6px;cursor:pointer}
-#ck-form .f .rs:hover{background:#ff8080;border-color:#ff8080} #ck-form .f.chk{padding-right:30px}
-#ck-form .f:not(.chk)>.t{padding-right:34px}   /* label text wraps before the reset button */
+#ck-form .hd{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+#ck-form .f .rs{flex:none;font:13px system-ui;line-height:1;color:#ff8080;background:none;border:1px solid #5a3a3d;border-radius:5px;padding:2px 6px;cursor:pointer}
+#ck-form .f .rs:hover{color:#0d1114;background:#ff8080;border-color:#ff8080} #ck-form .f .rs.same{opacity:.25} #ck-form .f.chk .rs{margin-left:auto}
 #ck-form .row{display:flex;align-items:center;gap:8px}
 #ck-form .row input[type=range]{flex:1;min-width:0;accent-color:#ff5a5a}
 #ck-form .row input[type=number]{width:72px;flex:none}
@@ -389,11 +434,76 @@ dialog button.x{font:inherit;font-weight:600;color:#0d1114;border:1px solid #ff5
 #ck-form input[type=checkbox]{padding:0}
 #ck-form button{font:inherit;font-size:13px;font-weight:600;color:#0d1114;background:#ff5a5a;border:1px solid #ff5a5a;border-radius:6px;padding:3px 12px;cursor:pointer}
 #ck-form button:hover{background:#ff8080;border-color:#ff8080}
+#ck-form button#ck-reset{background:none;color:#ff8080;border-color:#5a3a3d} #ck-form button#ck-reset:hover{background:#2a1416;color:#ffb0b0}
 #ck-canvas{width:100%;height:auto;aspect-ratio:500/120;border:1px solid #33424c;border-radius:6px;cursor:crosshair;touch-action:none}
 .ck-draw-btns{display:flex;gap:6px}
 #ck-warn{color:#ffb454;font-size:13px;margin:8px 0 0} #ck-warn:empty{display:none}
-.ck-out{background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px;position:sticky;top:calc(var(--hdr,112px) + 10px);z-index:1;max-height:calc(100vh - var(--hdr,112px) - 20px);overflow:auto}
+.ck-res{position:sticky;top:0;z-index:1;background:#151b20;margin:0 -14px 8px;padding:12px 14px 8px;border-bottom:1px solid #243038;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px}
+.ck-res #ck-info{margin:0;font-size:13px} .ck-res .dl{margin:0;padding:0}
+.ck-out{align-self:stretch;display:flex;flex-direction:column;gap:12px;min-width:0}
+.ck-out>.note{margin:0}
+.ck-pin{position:sticky;top:calc(var(--hdr,112px) + 10px);z-index:3;background:#151b20;border:1px solid #243038;border-radius:10px;padding:0 14px 12px;max-height:calc(100vh - var(--hdr,112px) - 20px);overflow:auto;box-shadow:0 8px 18px -10px #000}
+@media(min-width:801px){.custom.ol{grid-template-rows:auto auto 1fr}.custom.ol .ck-out{display:contents}.custom.ol #ck-form{grid-column:1;grid-row:2}.custom.ol .ck-pin{grid-column:1;grid-row:1;align-self:start}.custom.ol #ck-ol-slot,.custom.ol .ck-out>.note{grid-column:2}.custom.ol #ck-ol-slot{grid-row:1/span 3}.custom.ol .ck-res .dl a{font-size:12px;padding:2px 8px}}  /* outline: the preview pins at the top of the left column, above the steps and beside the editor */
+.ck-pin .ck-hide{font:inherit;font-size:12px;background:none;color:#8a98a2;border:1px solid #33424c;border-radius:6px;padding:2px 8px;cursor:pointer}
+.ck-pin.min #ck-view,.ck-pin.min #ck-warn{display:none}
+#ck-form .lim{font-size:12px;color:#ffb454} #ck-form .lim:empty{display:none}
+/* nothing in the form may be wider than the column (a long preset name or outline text used to push it past a phone screen) */
+#ck-form{min-width:0;max-width:100%;box-sizing:border-box} #ck-form select,#ck-form input,#ck-form textarea{max-width:100%;min-width:0;box-sizing:border-box}
+#ck-form .f,#ck-form .row,#ck-form .hd,#ck-form details,#ck-form .gb{min-width:0;max-width:100%}
+#ck-ol-slot{background:#151b20;border:1px solid #243038;border-radius:10px;padding:14px;min-width:0}
+#ck-ol-slot[hidden]{display:none}
+#ck-view .cap{margin:10px 0 4px;font-size:12px;color:#6f7d87}
 #ck-view svg{width:100%;height:auto;max-height:320px;background:#0f1418;border-radius:6px}
+.custom.ol #ck-view svg{max-height:24vh}
+/* phone: the result is a compact strip under the header; the editor and the form scroll below it */
+@media(max-width:800px){.custom{display:flex;flex-direction:column;gap:12px}.ck-out{display:contents}.ck-pin{order:-2;top:var(--hdr,112px);max-height:42vh;padding:0 10px 8px;border-radius:0 0 10px 10px}
+ #ck-ol-slot{order:-1;padding:10px}.ck-out>.note{order:2}.ck-res{margin:0 -10px 6px;padding:8px 10px 6px}.ck-res .dl a{font-size:12px;padding:2px 8px}
+ #ck-view svg{max-height:17vh}.custom.ol #ck-view svg{max-height:14vh}#ck-view .cap,#ck-view svg.cu{display:none}
+ /* outline mode: the preview is a compact strip fixed to the bottom of the screen, so it never covers the editor toolbar or canvas */
+ .custom.ol{padding-bottom:calc(25vh + 16px)}.custom.ol:has(.ck-pin.min){padding-bottom:70px}
+ .custom.ol .ck-pin{position:fixed;top:auto;bottom:0;left:0;right:0;z-index:30;max-height:25vh;border-radius:10px 10px 0 0;box-shadow:0 -8px 18px -10px #000}
+ .custom.ol #ck-view svg{max-height:9vh}}
+/* step layout (site/customizer.js): step strip, panels, Advanced, short labels with a "?", reset buttons on hover */
+.ck-mode{display:flex;justify-content:flex-end;font-size:13px;color:#a9b5bd}
+.ck-mode label{display:flex;align-items:center;gap:6px;cursor:pointer}
+#ck-form:not(.ck-wiz) .ck-steps,#ck-form:not(.ck-wiz) .ck-panels,#ck-form:not(.ck-wiz) .ck-nav,#ck-form.ck-wiz .ck-bar{display:none}
+.ck-steps{display:flex;flex-wrap:wrap;gap:4px;padding-bottom:10px;border-bottom:1px solid #243038}
+#ck-form .ck-steps button{background:none;color:#9aa7b0;border:1px solid #33424c;border-radius:99px;padding:3px 10px;font-weight:600}
+#ck-form .ck-steps button .n{color:#6f7d87;font-weight:400}
+#ck-form .ck-steps button.on{background:#ff5a5a;color:#0d1114;border-color:#ff5a5a} #ck-form .ck-steps button.on .n{color:#4a1214}
+#ck-form .ck-steps button:hover:not(.on){background:#2a1416;color:#ffb0b0}
+.ck-step{display:flex;flex-direction:column;gap:8px}
+.ck-step h2{font-size:16px;margin:4px 0 0} .ck-intro{font-size:13px;color:#8a98a2;margin:0}
+.ck-main,.ck-advb{display:flex;flex-direction:column;gap:8px}
+#ck-form details.ck-advd{border-top:1px solid #243038;padding-top:8px;margin-top:4px}
+#ck-form details.ck-advd>summary{font-size:12px;font-weight:600;color:#8a98a2;cursor:pointer;margin-bottom:8px}
+.ck-nav{display:flex;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid #243038}
+#ck-form .ck-nav button{padding:6px 14px}
+#ck-form .ck-nav #ck-back{background:none;color:#ff8080;border-color:#5a3a3d} #ck-form .ck-nav #ck-next{margin-left:auto}
+#ck-form button:disabled{opacity:.35;cursor:default}
+.ck-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#ck-form .ck-card{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;background:#0f1418;color:#e8ecef;border:1px solid #33424c;border-radius:8px;padding:9px 10px;font-weight:400}
+#ck-form .ck-card b{font-size:14px} #ck-form .ck-card span{font-size:12px;color:#8a98a2}
+#ck-form .ck-card:hover{background:#1c1416;border-color:#ff8080} #ck-form .ck-card.on{border-color:#ff5a5a;background:#2a1416;box-shadow:inset 0 0 0 1px #ff5a5a}
+.ck-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;max-height:330px;overflow:auto;padding:2px}
+#ck-form .ck-pre{display:flex;flex-direction:column;gap:3px;background:#0f1418;color:#cfd8de;border:1px solid #243038;border-radius:6px;padding:4px;font-weight:400;font-size:11px;line-height:1.2}
+#ck-form .ck-pre .th{display:block;height:26px} #ck-form .ck-pre .th svg{width:100%;height:26px;display:block}
+#ck-form .ck-pre:hover{border-color:#ff8080;background:#1c1416} #ck-form .ck-pre.on{border-color:#ff5a5a;background:#2a1416}
+.ck-xbtns{display:flex;flex-wrap:wrap;gap:6px} #ck-form .ck-xbtns button{padding:6px 12px}
+.ck-check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:13px}
+.ck-check b{display:inline-block;width:16px} .ck-check .ok b{color:#6fd08c} .ck-check .no{color:#ff8a8a} .ck-check .nb{color:#ffb454}
+#ck-photo-host{margin:0}
+#ck-form .hd{justify-content:flex-start} #ck-form .hd .rs{margin-left:auto}
+#ck-form .ls{display:none} #ck-form.ck-wiz .ls{display:inline} #ck-form.ck-wiz .ll{display:none}
+#ck-form button.qm{flex:none;width:18px;height:18px;padding:0;border-radius:50%;font-size:11px;line-height:16px;background:none;color:#8a98a2;border:1px solid #33424c}
+#ck-form button.qm:hover{color:#0d1114;background:#8a98a2;border-color:#8a98a2}
+#ck-form:not(.ck-wiz) .qm{display:none}
+#ck-form .f .exp{margin:0;font-size:12px;color:#8a98a2}
+#ck-form.ck-wiz .f .rs{opacity:0;transition:opacity .15s} #ck-form.ck-wiz .f:hover .rs:not(.same),#ck-form.ck-wiz .f:focus-within .rs:not(.same){opacity:1}
+#ck-form.ck-wiz .f .rs.same{pointer-events:none}
+@media(hover:none){#ck-form.ck-wiz .f .rs:not(.same){opacity:1}}
+#ck-ol-wrap .ck-tb-main{align-items:center}
+#ck-ol-wrap details.ck-more>summary{cursor:pointer;color:#8a98a2;font-size:12px;padding:2px 0 6px}
 """
 JS = """
 const $=s=>document.querySelectorAll(s);
@@ -426,9 +536,9 @@ page = ('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="
         '<header><div class="top"><h1>Lockpick fabrication library</h1><input id="q" type="search" placeholder="Search everything, e.g. wafer, hook, comb, U-bar"></div>'
         '<nav>' + "".join(tabs) + '</nav></header><main>' + "".join(sections) + '</main>'
         '<dialog id="big"><div class="bar"><h3 id="big-t"></h3><button class="x" onclick="big.close()">Close ✕</button></div><img id="big-i" alt=""><div class="dls" id="big-d"></div></dialog>'
-        '<footer>All laser files: millimetres, import at 100 % (never “fit to bed”), no kerf offset. Red / layer CUT = cut. Blue / layer REFERENCE-DO-NOT-CUT = guide only. '
-        'Cut or print the fit tests first. Only use these tools on locks you own or have permission to pick.</footer>'
-        + ('<script src="site/customizer.js"></script>' if exists("site/customizer.js") else "") + '<script>' + JS + '</script></body></html>')
+        '<footer>All files are 1:1 millimetre templates for laser or CNC cutting, printing, or cutting and filing by hand. Import at 100 % (never “fit to bed” or “fit to page”), no kerf offset. '
+        'Red / layer CUT = cut line. Blue / layer REFERENCE-DO-NOT-CUT = guide only. Cut or print the fit tests first. Only use these tools on locks you own or have permission to pick.</footer>'
+        + "".join(f'<script src="site/{n}.js"></script>' for n in ("trace-image", "freehand", "customizer", "submit") if exists(f"site/{n}.js")) + '<script>' + JS + '</script></body></html>')
 (ROOT / ARGS.page).write_text(page, encoding="utf-8")
 for old in [p for p in THUMBS.glob("*.svg") if p.name not in MADE]:
     old.unlink()
